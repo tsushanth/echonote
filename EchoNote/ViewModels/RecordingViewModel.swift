@@ -3,6 +3,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 
+@MainActor
 @Observable
 final class RecordingViewModel {
     let recorderService = AudioRecorderService()

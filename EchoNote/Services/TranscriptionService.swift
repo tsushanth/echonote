@@ -51,18 +51,24 @@ final class TranscriptionService {
         request.addsPunctuation = true
 
         return try await withCheckedThrowingContinuation { continuation in
+            var hasResumed = false
             recognizer.recognitionTask(with: request) { [weak self] result, error in
+                guard !hasResumed else { return }
+
                 if let error = error {
+                    hasResumed = true
                     continuation.resume(throwing: error)
                     return
                 }
 
                 guard let result = result else {
+                    hasResumed = true
                     continuation.resume(throwing: TranscriptionError.noResult)
                     return
                 }
 
                 if result.isFinal {
+                    hasResumed = true
                     self?.progress = 1.0
                     continuation.resume(returning: result.bestTranscription.formattedString)
                 } else {

@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 import SwiftData
 
+@MainActor
 @Observable
 final class EditorViewModel {
     let editorService = AudioEditorService()
