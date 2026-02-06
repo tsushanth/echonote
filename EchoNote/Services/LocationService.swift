@@ -57,7 +57,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        #if DEBUG
         print("Location error: \(error.localizedDescription)")
+        #endif
         locationContinuation?.resume(returning: nil)
         locationContinuation = nil
     }

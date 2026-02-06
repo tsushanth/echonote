@@ -45,7 +45,9 @@ final class AudioPlayerService: NSObject {
             state = .paused
             return true
         } catch {
+            #if DEBUG
             print("Failed to load audio: \(error.localizedDescription)")
+            #endif
             return false
         }
     }
@@ -74,7 +76,9 @@ final class AudioPlayerService: NSObject {
         do {
             try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         } catch {
+            #if DEBUG
             print("Failed to deactivate audio session: \(error.localizedDescription)")
+            #endif
         }
     }
 
@@ -225,7 +229,9 @@ extension AudioPlayerService: AVAudioPlayerDelegate {
 
     func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let error = error {
+            #if DEBUG
             print("Player decode error: \(error.localizedDescription)")
+            #endif
         }
         state = .idle
         stopPlayerTimer()

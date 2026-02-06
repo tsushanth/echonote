@@ -43,7 +43,9 @@ final class AudioRecorderService: NSObject {
             try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
             try session.setActive(true)
         } catch {
+            #if DEBUG
             print("Failed to set up audio session: \(error.localizedDescription)")
+            #endif
         }
     }
 
@@ -93,7 +95,9 @@ final class AudioRecorderService: NSObject {
 
             return fileURL
         } catch {
+            #if DEBUG
             print("Failed to start recording: \(error.localizedDescription)")
+            #endif
             return nil
         }
     }
@@ -145,7 +149,9 @@ final class AudioRecorderService: NSObject {
         do {
             try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         } catch {
+            #if DEBUG
             print("Failed to deactivate audio session: \(error.localizedDescription)")
+            #endif
         }
     }
 
@@ -187,14 +193,18 @@ final class AudioRecorderService: NSObject {
 extension AudioRecorderService: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
+            #if DEBUG
             print("Recording finished unsuccessfully")
+            #endif
         }
         state = .idle
     }
 
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         if let error = error {
+            #if DEBUG
             print("Recording encode error: \(error.localizedDescription)")
+            #endif
         }
         state = .idle
     }
