@@ -12,6 +12,7 @@ struct RecordingsListView: View {
     @State private var showRecordingSheet = false
     @State private var renamingRecording: Recording?
     @State private var newName: String = ""
+    @State private var movingRecording: Recording?
 
     var body: some View {
         NavigationStack {
@@ -90,6 +91,9 @@ struct RecordingsListView: View {
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("This action cannot be undone.")
+            }
+            .sheet(item: $movingRecording) { recording in
+                MoveToFolderView(recording: recording)
             }
         }
     }
@@ -181,6 +185,12 @@ struct RecordingsListView: View {
                         editorVM.loadRecording(recording)
                     } label: {
                         Label("Edit", systemImage: "waveform.and.magnifyingglass")
+                    }
+
+                    Button {
+                        movingRecording = recording
+                    } label: {
+                        Label("Move to Folder", systemImage: "folder")
                     }
 
                     ShareLink(item: recording.actualFileURL) {

@@ -73,16 +73,24 @@ struct PlaybackView: View {
     }
 
     private var waveformSection: some View {
-        WaveformView(
-            samples: playerVM.waveformSamples,
-            progress: playerVM.progress,
-            activeColor: .accentColor,
-            inactiveColor: AppConstants.Colors.waveformGray
-        )
-        .padding(.horizontal)
-        .onTapGesture { location in
-            // Handled by the slider below
+        GeometryReader { geometry in
+            WaveformView(
+                samples: playerVM.waveformSamples,
+                progress: playerVM.progress,
+                activeColor: .accentColor,
+                inactiveColor: AppConstants.Colors.waveformGray,
+                maxHeight: geometry.size.height
+            )
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onEnded { value in
+                        let tapProgress = max(0, min(value.location.x / geometry.size.width, 1.0))
+                        playerVM.seekToProgress(tapProgress)
+                    }
+            )
         }
+        .frame(height: AppConstants.UI.maxWaveformHeight)
+        .padding(.horizontal)
     }
 
     private var timeDisplay: some View {

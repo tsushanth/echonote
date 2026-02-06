@@ -8,14 +8,21 @@ final class RecordingViewModel {
     let recorderService = AudioRecorderService()
     let locationService = LocationService()
 
-    var selectedFormat: AudioFormat = .compressed
-    var selectedQuality: RecordingQuality = .high
-    var isStereo: Bool = false
+    var selectedFormat: AudioFormat
+    var selectedQuality: RecordingQuality
+    var isStereo: Bool
     var currentRecordingURL: URL?
     var recordingTitle: String = ""
     var showSaveSheet: Bool = false
     var errorMessage: String?
     var showError: Bool = false
+
+    init() {
+        let defaults = UserDefaults.standard
+        self.selectedFormat = AudioFormat(rawValue: defaults.string(forKey: "defaultFormat") ?? "") ?? .compressed
+        self.selectedQuality = RecordingQuality(rawValue: defaults.string(forKey: "defaultQuality") ?? "") ?? .high
+        self.isStereo = defaults.bool(forKey: "defaultStereo")
+    }
 
     var isRecording: Bool { recorderService.isRecording }
     var isPaused: Bool { recorderService.isPaused }
@@ -62,8 +69,13 @@ final class RecordingViewModel {
 
         var title = recordingTitle.trimmingCharacters(in: .whitespacesAndNewlines)
         if title.isEmpty {
-            let locationName = await locationService.getCurrentLocationName()
-            title = locationName ?? "New Recording"
+            let autoLocationNaming = UserDefaults.standard.object(forKey: "autoLocationNaming") as? Bool ?? true
+            if autoLocationNaming {
+                let locationName = await locationService.getCurrentLocationName()
+                title = locationName ?? "New Recording"
+            } else {
+                title = "New Recording"
+            }
         }
 
         let fileSize = recorderService.getFileSize(url: url)
