@@ -27,6 +27,7 @@ struct FoldersView: View {
                     } label: {
                         Image(systemName: "folder.badge.plus")
                     }
+                    .accessibilityLabel("Create new folder")
                 }
             }
             .alert("New Folder", isPresented: $folderVM.showCreateFolder) {
@@ -67,6 +68,7 @@ struct FoldersView: View {
             Image(systemName: "folder")
                 .font(.system(size: 64))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             Text("No Folders")
                 .font(.title2)
@@ -85,6 +87,7 @@ struct FoldersView: View {
                 Label("Create Folder", systemImage: "folder.badge.plus")
             }
             .buttonStyle(.borderedProminent)
+            .accessibilityLabel("Create your first folder")
         }
     }
 
@@ -101,6 +104,7 @@ struct FoldersView: View {
                 } label: {
                     FolderRowView(folder: folder)
                 }
+                .accessibilityLabel("\(folder.name), \(folder.recordingCount) recording\(folder.recordingCount == 1 ? "" : "s")")
                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
                         folderVM.folderToDelete = folder
@@ -133,6 +137,7 @@ struct FolderRowView: View {
                 .font(.title2)
                 .foregroundStyle(Color(hex: folder.colorHex))
                 .frame(width: 36, height: 36)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(folder.name)
@@ -154,6 +159,7 @@ struct FolderRowView: View {
             Spacer()
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -171,6 +177,7 @@ struct FolderDetailView: View {
                     Image(systemName: "folder")
                         .font(.system(size: 48))
                         .foregroundStyle(.secondary)
+                        .accessibilityHidden(true)
                     Text("Empty Folder")
                         .font(.headline)
                     Text("Move recordings here to organize them.")
@@ -184,6 +191,7 @@ struct FolderDetailView: View {
                             .onTapGesture {
                                 playerVM.loadRecording(recording)
                             }
+                            .accessibilityHint("Double tap to play")
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button(role: .destructive) {
                                     listVM.deleteRecording(recording, modelContext: modelContext)

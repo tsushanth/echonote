@@ -22,6 +22,7 @@ struct MoveToFolderView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .accessibilityLabel("Cancel moving recording")
                 }
             }
             .alert("New Folder", isPresented: $showCreateFolder) {
@@ -44,6 +45,8 @@ struct MoveToFolderView: View {
                 noFolderRow
             }
             .foregroundStyle(.primary)
+            .accessibilityLabel("No folder")
+            .accessibilityValue(recording.folder == nil ? "Currently selected" : "")
         }
     }
 
@@ -71,6 +74,8 @@ struct MoveToFolderView: View {
                     folderRow(folder)
                 }
                 .foregroundStyle(.primary)
+                .accessibilityLabel("Move to \(folder.name)")
+                .accessibilityValue(recording.folder?.id == folder.id ? "Currently selected" : "")
             }
         }
     }
@@ -95,6 +100,8 @@ struct MoveToFolderView: View {
             } label: {
                 Label("Create New Folder", systemImage: "folder.badge.plus")
             }
+            .accessibilityLabel("Create new folder")
+            .accessibilityHint("Creates a new folder and moves the recording into it")
         }
     }
 

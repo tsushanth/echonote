@@ -31,10 +31,12 @@ struct RecordingView: View {
                             recordingVM.cancelRecording()
                             dismiss()
                         }
+                        .accessibilityLabel("Cancel recording")
                     } else {
                         Button("Close") {
                             dismiss()
                         }
+                        .accessibilityLabel("Close recording screen")
                     }
                 }
             }
@@ -55,6 +57,7 @@ struct RecordingView: View {
             .foregroundStyle(recordingVM.isRecording ? AppConstants.Colors.recordingRed : .primary)
             .contentTransition(.numericText())
             .animation(.linear(duration: 0.1), value: recordingVM.currentTime)
+            .accessibilityLabel("Recording time: \(recordingVM.currentTime.formattedTimeWithMilliseconds)")
     }
 
     private var liveWaveform: some View {
@@ -63,6 +66,8 @@ struct RecordingView: View {
             color: AppConstants.Colors.recordingRed
         )
         .padding(.horizontal)
+        .accessibilityLabel("Audio level meter")
+        .accessibilityHidden(!recordingVM.isRecording)
     }
 
     private var recordingControls: some View {
@@ -80,6 +85,8 @@ struct RecordingView: View {
                                 .fill(Color(.tertiarySystemBackground))
                         )
                 }
+                .accessibilityLabel("Stop recording")
+                .sensoryFeedback(.impact(weight: .medium), trigger: recordingVM.isPaused)
 
                 Button {
                     if recordingVM.isRecording {
@@ -97,6 +104,7 @@ struct RecordingView: View {
                                 .fill(AppConstants.Colors.recordingRed)
                         )
                 }
+                .accessibilityLabel(recordingVM.isRecording ? "Pause recording" : "Resume recording")
             } else {
                 Button {
                     recordingVM.startRecording()
@@ -111,6 +119,8 @@ struct RecordingView: View {
                             .frame(width: AppConstants.UI.recordButtonSize + 8, height: AppConstants.UI.recordButtonSize + 8)
                     }
                 }
+                .accessibilityLabel("Start recording")
+                .accessibilityHint("Double tap to begin a new recording")
             }
         }
     }
@@ -129,6 +139,8 @@ struct RecordingView: View {
                         }
                     }
                     .pickerStyle(.menu)
+                    .accessibilityLabel("Audio format")
+                    .accessibilityValue(recordingVM.selectedFormat.displayName)
                 }
 
                 HStack {
@@ -142,11 +154,15 @@ struct RecordingView: View {
                         }
                     }
                     .pickerStyle(.menu)
+                    .accessibilityLabel("Recording quality")
+                    .accessibilityValue(recordingVM.selectedQuality.displayName)
                 }
 
                 Toggle("Stereo Recording", isOn: $recordingVM.isStereo)
                     .font(.subheadline)
                     .tint(.accentColor)
+                    .accessibilityLabel("Stereo recording")
+                    .accessibilityHint("Enable to record in stereo")
             }
         }
         .padding(.horizontal)
@@ -157,6 +173,7 @@ struct SaveRecordingSheet: View {
     @Bindable var recordingVM: RecordingViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @FocusState private var isNameFocused: Bool
 
     var body: some View {
         NavigationStack {
@@ -164,6 +181,10 @@ struct SaveRecordingSheet: View {
                 Section("Recording Name") {
                     TextField("Enter name (or use location)", text: $recordingVM.recordingTitle)
                         .textInputAutocapitalization(.words)
+                        .focused($isNameFocused)
+                        .submitLabel(.done)
+                        .onSubmit { isNameFocused = false }
+                        .accessibilityLabel("Recording name")
                 }
 
                 Section {
@@ -184,16 +205,21 @@ struct SaveRecordingSheet: View {
                     }
                     .font(.headline)
                     .frame(maxWidth: .infinity)
+                    .accessibilityLabel("Save recording")
+                    .accessibilityHint("Saves the recording with the entered name")
 
                     Button("Discard", role: .destructive) {
                         recordingVM.discardRecording()
                         dismiss()
                     }
                     .frame(maxWidth: .infinity)
+                    .accessibilityLabel("Discard recording")
+                    .accessibilityHint("Permanently deletes this recording")
                 }
             }
             .navigationTitle("Save Recording")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear { isNameFocused = true }
         }
     }
 }

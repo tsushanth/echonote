@@ -27,9 +27,11 @@ struct EditorView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .accessibilityLabel("Cancel editing")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
+                        .accessibilityLabel("Finish editing")
                 }
             }
             .overlay {
@@ -61,6 +63,7 @@ struct EditorView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
+        .accessibilityElement(children: .combine)
     }
 
     private var trimSection: some View {
@@ -91,6 +94,8 @@ struct EditorView: View {
                 }
             }
             .padding(.horizontal)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Trim range: \(editorVM.trimStart.formattedTimeWithMilliseconds) to \(editorVM.trimEnd.formattedTimeWithMilliseconds)")
         }
     }
 
@@ -104,6 +109,8 @@ struct EditorView: View {
             )
             .frame(height: 150)
             .padding(.horizontal)
+            .accessibilityLabel("Trim waveform")
+            .accessibilityHint("Drag the handles to adjust the trim range")
         }
     }
 
@@ -117,6 +124,8 @@ struct EditorView: View {
                     .font(.subheadline)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("Preview trimmed audio")
+            .accessibilityHint("Plays the selected trim range")
 
             Button {
                 playerVM.stop()
@@ -126,6 +135,7 @@ struct EditorView: View {
             }
             .buttonStyle(.bordered)
             .disabled(!playerVM.isPlaying)
+            .accessibilityLabel("Stop preview")
         }
     }
 
@@ -139,6 +149,8 @@ struct EditorView: View {
                 } label: {
                     Label("Trim Recording", systemImage: "scissors")
                 }
+                .accessibilityLabel("Trim recording")
+                .accessibilityHint("Trims the recording to the selected range")
 
                 Button {
                     editorVM.saveAsName = recording.title + " (Copy)"
@@ -146,6 +158,7 @@ struct EditorView: View {
                 } label: {
                     Label("Save As...", systemImage: "doc.badge.plus")
                 }
+                .accessibilityLabel("Save as new recording")
 
                 Button {
                     Task {
@@ -155,6 +168,8 @@ struct EditorView: View {
                     Label("Enhance Recording", systemImage: "wand.and.stars")
                 }
                 .disabled(recording.isEnhanced)
+                .accessibilityLabel("Enhance recording")
+                .accessibilityHint(recording.isEnhanced ? "Already enhanced" : "Improves audio quality")
 
                 Button {
                     Task {
@@ -163,6 +178,8 @@ struct EditorView: View {
                 } label: {
                     Label("Generate Transcript", systemImage: "text.alignleft")
                 }
+                .accessibilityLabel("Generate transcript")
+                .accessibilityHint("Creates a text transcript from the audio")
             }
         }
         .listStyle(.insetGrouped)
@@ -187,13 +204,28 @@ struct EditorView: View {
                     .fill(.ultraThinMaterial)
             )
         }
+        .accessibilityLabel("Processing audio")
     }
 
     private var saveAsSheet: some View {
+        SaveAsSheetView(editorVM: editorVM, modelContext: modelContext)
+    }
+}
+
+struct SaveAsSheetView: View {
+    @Bindable var editorVM: EditorViewModel
+    let modelContext: ModelContext
+    @FocusState private var isNameFocused: Bool
+
+    var body: some View {
         NavigationStack {
             Form {
                 Section("New Name") {
                     TextField("Recording name", text: $editorVM.saveAsName)
+                        .focused($isNameFocused)
+                        .submitLabel(.done)
+                        .onSubmit { isNameFocused = false }
+                        .accessibilityLabel("New recording name")
                 }
 
                 Section {
@@ -205,6 +237,8 @@ struct EditorView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .disabled(editorVM.saveAsName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .accessibilityLabel("Save copy")
+                    .accessibilityHint("Saves a copy of the recording with the new name")
                 }
             }
             .navigationTitle("Save As")
@@ -214,8 +248,10 @@ struct EditorView: View {
                     Button("Cancel") {
                         editorVM.showSaveAsSheet = false
                     }
+                    .accessibilityLabel("Cancel save as")
                 }
             }
+            .onAppear { isNameFocused = true }
         }
     }
 }
@@ -275,6 +311,9 @@ struct TrimWaveformView: View {
                                 trimStart = (Double(newX) / Double(width)) * totalDuration
                             }
                     )
+                    .accessibilityLabel("Trim start handle")
+                    .accessibilityValue(trimStart.formattedTimeWithMilliseconds)
+                    .accessibilityHint("Drag to adjust trim start position")
 
                 // Right handle
                 Rectangle()
@@ -288,6 +327,9 @@ struct TrimWaveformView: View {
                                 trimEnd = (Double(newX) / Double(width)) * totalDuration
                             }
                     )
+                    .accessibilityLabel("Trim end handle")
+                    .accessibilityValue(trimEnd.formattedTimeWithMilliseconds)
+                    .accessibilityHint("Drag to adjust trim end position")
             }
         }
     }

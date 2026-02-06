@@ -28,6 +28,7 @@ struct FavoritesView: View {
             Image(systemName: "star")
                 .font(.system(size: 64))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             Text("No Favorites")
                 .font(.title2)
@@ -48,6 +49,7 @@ struct FavoritesView: View {
                     .onTapGesture {
                         playerVM.loadRecording(recording)
                     }
+                    .accessibilityHint("Double tap to play")
                     .swipeActions(edge: .trailing) {
                         Button {
                             listVM.toggleFavorite(recording, modelContext: modelContext)

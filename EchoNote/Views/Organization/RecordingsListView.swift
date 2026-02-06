@@ -43,6 +43,8 @@ struct RecordingsListView: View {
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                     }
+                    .accessibilityLabel("Sort recordings")
+                    .accessibilityHint("Choose how to sort the recordings list")
                 }
 
                 ToolbarItem(placement: .primaryAction) {
@@ -51,11 +53,14 @@ struct RecordingsListView: View {
                             listVM.isSelectionMode = false
                             listVM.deselectAll()
                         }
+                        .accessibilityLabel("Exit selection mode")
                     } else {
                         Button("Select") {
                             listVM.isSelectionMode = true
                         }
                         .disabled(recordings.isEmpty)
+                        .accessibilityLabel("Select recordings")
+                        .accessibilityHint("Enter selection mode to select multiple recordings")
                     }
                 }
             }
@@ -103,6 +108,7 @@ struct RecordingsListView: View {
             Image(systemName: "waveform")
                 .font(.system(size: 64))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             Text("No Recordings")
                 .font(.title2)
@@ -131,6 +137,7 @@ struct RecordingsListView: View {
                         playerVM.loadRecording(recording)
                     }
                 }
+                .accessibilityHint(listVM.isSelectionMode ? "Double tap to select" : "Double tap to play")
                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
                         listVM.recordingToDelete = recording
@@ -231,6 +238,9 @@ struct RecordingsListView: View {
                             .font(.system(size: 36))
                             .foregroundStyle(AppConstants.Colors.recordingRed)
                     }
+                    .accessibilityLabel("New recording")
+                    .accessibilityHint("Opens the recording screen")
+                    .sensoryFeedback(.impact(weight: .medium), trigger: showRecordingSheet)
                 }
             }
             .padding(.horizontal)
@@ -251,6 +261,7 @@ struct RecordingsListView: View {
                 Text(listVM.selectedRecordings.count == recordings.count ? "Deselect All" : "Select All")
                     .font(.subheadline)
             }
+            .accessibilityLabel(listVM.selectedRecordings.count == recordings.count ? "Deselect all recordings" : "Select all recordings")
 
             Spacer()
 
@@ -266,12 +277,14 @@ struct RecordingsListView: View {
                 ) {
                     Image(systemName: "square.and.arrow.up")
                 }
+                .accessibilityLabel("Share selected recordings")
 
                 Button(role: .destructive) {
                     listVM.deleteSelectedRecordings(from: recordings, modelContext: modelContext)
                 } label: {
                     Image(systemName: "trash")
                 }
+                .accessibilityLabel("Delete selected recordings")
             }
         }
     }

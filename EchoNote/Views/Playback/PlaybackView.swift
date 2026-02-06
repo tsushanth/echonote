@@ -37,6 +37,7 @@ struct PlaybackView: View {
                         playerVM.stop()
                         dismiss()
                     }
+                    .accessibilityLabel("Close player")
                 }
             }
             .sheet(isPresented: $showEditorSheet) {
@@ -70,6 +71,7 @@ struct PlaybackView: View {
                     .foregroundStyle(.secondary)
             }
         }
+        .accessibilityElement(children: .combine)
     }
 
     private var waveformSection: some View {
@@ -91,6 +93,9 @@ struct PlaybackView: View {
         }
         .frame(height: AppConstants.UI.maxWaveformHeight)
         .padding(.horizontal)
+        .accessibilityLabel("Audio waveform")
+        .accessibilityHint("Tap to seek to a position")
+        .accessibilityValue("\(Int(playerVM.progress * 100)) percent played")
     }
 
     private var timeDisplay: some View {
@@ -106,6 +111,8 @@ struct PlaybackView: View {
                 .monospacedDigit()
         }
         .padding(.horizontal)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Time: \(playerVM.currentTime.formattedTime) of \(playerVM.duration.formattedTime)")
     }
 
     private var progressSlider: some View {
@@ -118,6 +125,8 @@ struct PlaybackView: View {
         )
         .tint(.accentColor)
         .padding(.horizontal)
+        .accessibilityLabel("Playback position")
+        .accessibilityValue("\(Int(playerVM.progress * 100)) percent")
     }
 
     private var playbackControls: some View {
@@ -129,6 +138,7 @@ struct PlaybackView: View {
                     .font(.title2)
                     .foregroundStyle(.primary)
             }
+            .accessibilityLabel("Skip back 15 seconds")
 
             Button {
                 playerVM.togglePlayPause()
@@ -137,6 +147,8 @@ struct PlaybackView: View {
                     .font(.system(size: 56))
                     .foregroundStyle(Color.accentColor)
             }
+            .accessibilityLabel(playerVM.isPlaying ? "Pause" : "Play")
+            .sensoryFeedback(.selection, trigger: playerVM.isPlaying)
 
             Button {
                 playerVM.skipForward()
@@ -145,6 +157,7 @@ struct PlaybackView: View {
                     .font(.title2)
                     .foregroundStyle(.primary)
             }
+            .accessibilityLabel("Skip forward 15 seconds")
         }
     }
 
@@ -156,11 +169,14 @@ struct PlaybackView: View {
                 Image(systemName: "minus")
                     .font(.caption)
             }
+            .accessibilityLabel("Decrease playback speed")
+            .accessibilityHint("Current speed: \(playerVM.playbackRate, specifier: "%.2f")x")
 
             Text("\(playerVM.playbackRate, specifier: "%.2f")x")
                 .font(.subheadline)
                 .monospacedDigit()
                 .frame(width: 50)
+                .accessibilityLabel("Playback speed: \(playerVM.playbackRate, specifier: "%.2f")x")
 
             Button {
                 playerVM.increaseRate()
@@ -168,6 +184,8 @@ struct PlaybackView: View {
                 Image(systemName: "plus")
                     .font(.caption)
             }
+            .accessibilityLabel("Increase playback speed")
+            .accessibilityHint("Current speed: \(playerVM.playbackRate, specifier: "%.2f")x")
 
             Divider()
                 .frame(height: 20)
@@ -189,6 +207,9 @@ struct PlaybackView: View {
                 )
             }
             .foregroundStyle(playerVM.isSkippingSilence ? Color.accentColor : Color.secondary)
+            .accessibilityLabel("Skip silence")
+            .accessibilityValue(playerVM.isSkippingSilence ? "On" : "Off")
+            .accessibilityHint("Double tap to toggle skipping silent sections")
         }
     }
 
@@ -202,6 +223,8 @@ struct PlaybackView: View {
                     .font(.subheadline)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("Edit recording")
+            .accessibilityHint("Opens the audio editor")
 
             Button {
                 showTranscript = true
@@ -210,12 +233,15 @@ struct PlaybackView: View {
                     .font(.subheadline)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("View transcript")
+            .accessibilityHint("Opens the transcript view")
 
             ShareLink(item: recording.actualFileURL) {
                 Label("Share", systemImage: "square.and.arrow.up")
                     .font(.subheadline)
             }
             .buttonStyle(.bordered)
+            .accessibilityLabel("Share recording")
         }
     }
 }

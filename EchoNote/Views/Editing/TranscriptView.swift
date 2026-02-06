@@ -6,6 +6,7 @@ struct TranscriptView: View {
     @Bindable var editorVM: EditorViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @State private var didCopy = false
 
     var body: some View {
         NavigationStack {
@@ -23,6 +24,7 @@ struct TranscriptView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
+                        .accessibilityLabel("Close transcript")
                 }
             }
         }
@@ -33,6 +35,8 @@ struct TranscriptView: View {
             Spacer()
             ProgressView(value: editorVM.transcriptionProgress)
                 .padding(.horizontal, 40)
+                .accessibilityLabel("Transcription progress")
+                .accessibilityValue("\(Int(editorVM.transcriptionProgress * 100)) percent")
             Text("Transcribing audio...")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -49,11 +53,15 @@ struct TranscriptView: View {
                     Spacer()
                     Button {
                         UIPasteboard.general.string = transcript
+                        didCopy.toggle()
                     } label: {
                         Label("Copy", systemImage: "doc.on.doc")
                             .font(.caption)
                     }
                     .buttonStyle(.bordered)
+                    .accessibilityLabel("Copy transcript")
+                    .accessibilityHint("Copies the full transcript to the clipboard")
+                    .sensoryFeedback(.success, trigger: didCopy)
                 }
 
                 Divider()
@@ -62,6 +70,7 @@ struct TranscriptView: View {
                     .font(.body)
                     .textSelection(.enabled)
                     .lineSpacing(4)
+                    .accessibilityLabel("Transcript text")
             }
             .padding()
         }
@@ -74,6 +83,7 @@ struct TranscriptView: View {
             Image(systemName: "text.alignleft")
                 .font(.system(size: 48))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
 
             Text("No Transcript Available")
                 .font(.headline)
@@ -94,6 +104,8 @@ struct TranscriptView: View {
                     .font(.headline)
             }
             .buttonStyle(.borderedProminent)
+            .accessibilityLabel("Generate transcript")
+            .accessibilityHint("Transcribes the audio recording to text")
 
             Spacer()
         }

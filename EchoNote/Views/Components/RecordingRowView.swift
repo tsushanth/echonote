@@ -11,6 +11,7 @@ struct RecordingRowView: View {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundStyle(isSelected ? .accent : .secondary)
                     .font(.title3)
+                    .accessibilityLabel(isSelected ? "Selected" : "Not selected")
             }
 
             VStack(alignment: .leading, spacing: 4) {
@@ -23,12 +24,14 @@ struct RecordingRowView: View {
                         Image(systemName: "star.fill")
                             .font(.caption)
                             .foregroundStyle(.yellow)
+                            .accessibilityLabel("Favorite")
                     }
 
                     if recording.isEnhanced {
                         Image(systemName: "wand.and.stars")
                             .font(.caption)
                             .foregroundStyle(.purple)
+                            .accessibilityLabel("Enhanced")
                     }
                 }
 
@@ -84,9 +87,22 @@ struct RecordingRowView: View {
                 Image(systemName: "chevron.right")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
             }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(recordingAccessibilityLabel)
+    }
+
+    private var recordingAccessibilityLabel: String {
+        var parts = [recording.title]
+        parts.append(recording.formattedDuration)
+        parts.append(recording.dateCreated.shortFormatted)
+        if recording.isFavorite { parts.append("Favorite") }
+        if recording.isEnhanced { parts.append("Enhanced") }
+        if let location = recording.locationName { parts.append(location) }
+        return parts.joined(separator: ", ")
     }
 }

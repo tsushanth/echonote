@@ -32,8 +32,8 @@ enum AppConstants {
     enum Colors {
         static let recordingRed = Color(red: 1.0, green: 0.23, blue: 0.19)
         static let waveformBlue = Color(red: 0.0, green: 0.48, blue: 1.0)
-        static let waveformGray = Color(red: 0.7, green: 0.7, blue: 0.7)
-        static let playheadColor = Color.white
+        static let waveformGray = Color(.systemGray3)
+        static let playheadColor = Color(.label)
         static let backgroundPrimary = Color(.systemBackground)
         static let backgroundSecondary = Color(.secondarySystemBackground)
         static let backgroundTertiary = Color(.tertiarySystemBackground)

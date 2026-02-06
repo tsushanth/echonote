@@ -24,16 +24,24 @@ struct SettingsView: View {
                     Text(format.displayName).tag(format)
                 }
             }
+            .accessibilityLabel("Default audio format")
+            .accessibilityValue(defaultFormat.displayName)
 
             Picker("Audio Quality", selection: $defaultQuality) {
                 ForEach(RecordingQuality.allCases, id: \.self) { quality in
                     Text(quality.displayName).tag(quality)
                 }
             }
+            .accessibilityLabel("Default audio quality")
+            .accessibilityValue(defaultQuality.displayName)
 
             Toggle("Stereo Recording", isOn: $defaultStereo)
+                .accessibilityLabel("Default stereo recording")
+                .accessibilityHint("Enable to record in stereo by default")
 
             Toggle("Auto Location Naming", isOn: $autoLocationNaming)
+                .accessibilityLabel("Automatic location naming")
+                .accessibilityHint("Automatically names recordings based on your location")
         }
     }
 
@@ -51,6 +59,7 @@ struct SettingsView: View {
             NavigationLink("Acknowledgments") {
                 AcknowledgmentsView()
             }
+            .accessibilityLabel("View acknowledgments")
         }
     }
 
@@ -71,6 +80,8 @@ struct StorageInfoRow: View {
             .task {
                 usedStorage = calculateStorageUsed()
             }
+            .accessibilityLabel("Recordings storage usage")
+            .accessibilityValue(usedStorage)
     }
 
     private func calculateStorageUsed() -> String {
@@ -133,5 +144,6 @@ struct AcknowledgmentsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
+        .accessibilityElement(children: .combine)
     }
 }
