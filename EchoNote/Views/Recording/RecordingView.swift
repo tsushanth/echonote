@@ -6,7 +6,7 @@ struct RecordingView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var showPaywall = false
-    private var premiumManager = PremiumManager.shared
+    private var premiumManager: PremiumManager { PremiumManager.shared }
 
     var body: some View {
         NavigationStack {

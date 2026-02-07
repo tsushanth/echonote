@@ -1,0 +1,18 @@
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/RecordingsListViewModel.swift":
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.d"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.swiftconstvalues"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.o"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.swiftdeps"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.dia"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/FolderViewModel.swift":
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.swiftconstvalues"
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.d"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.swiftdeps"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.o"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.dia"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/EditorViewModel.swift":
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.o"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.dia"
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.d"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.swiftdeps"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.swiftconstvalues"

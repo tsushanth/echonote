@@ -7,7 +7,7 @@ struct SettingsView: View {
     @AppStorage("autoLocationNaming") private var autoLocationNaming: Bool = true
 
     @State private var showPaywall = false
-    private var premiumManager = PremiumManager.shared
+    private var premiumManager: PremiumManager { PremiumManager.shared }
 
     var body: some View {
         NavigationStack {
@@ -86,6 +86,7 @@ struct SettingsView: View {
         } header: {
             Text("Premium")
         }
+    }
 
     private var recordingSection: some View {
         Section("Recording Defaults") {

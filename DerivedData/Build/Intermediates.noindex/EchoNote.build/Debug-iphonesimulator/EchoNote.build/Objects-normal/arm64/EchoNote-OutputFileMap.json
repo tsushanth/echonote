@@ -1,0 +1,318 @@
+{
+  "" : {
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNote-master.dia",
+    "emit-module-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNote-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNote-master-emit-module.dia",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNote-master.swiftdeps"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/App/ContentView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/App/EchoNoteApp.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Extensions/Color+Hex.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Color+Hex~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Extensions/Date+Formatting.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Date+Formatting~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Extensions/TimeInterval+Formatting.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TimeInterval+Formatting~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/Bookmark.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/Recording.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/RecordingFolder.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Services/AudioEditorService.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioEditorService~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Services/AudioPlayerService.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioPlayerService~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Services/AudioRecorderService.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/AudioRecorderService~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Services/LocationService.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/LocationService~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Services/TranscriptionService.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptionService~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Utilities/Constants.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Constants~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/EditorViewModel.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorViewModel~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/FolderViewModel.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FolderViewModel~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/PlayerViewModel.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/RecordingViewModel.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/RecordingsListViewModel.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListViewModel~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Components/RecordingRowView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingRowView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Components/WaveformView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/WaveformView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Editing/EditorView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EditorView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Editing/TranscriptView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/TranscriptView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Organization/FavoritesView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FavoritesView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Organization/FoldersView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/FoldersView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Organization/MoveToFolderView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/MoveToFolderView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Organization/RecordingsListView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingsListView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Playback/PlaybackView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlaybackView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Recording/RecordingView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingView~partial.swiftmodule"
+  },
+  "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Views/Settings/SettingsView.swift" : {
+    "const-values" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  }
+}

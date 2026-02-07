@@ -72,7 +72,7 @@ final class StoreKitManager {
     private(set) var isPurchasing: Bool = false
 
     /// Transaction listener task
-    private var transactionListenerTask: Task<Void, Never>?
+    private nonisolated(unsafe) var transactionListenerTask: Task<Void, Never>?
 
     // MARK: - Initialization
 

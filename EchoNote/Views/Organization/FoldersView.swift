@@ -9,7 +9,7 @@ struct FoldersView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \RecordingFolder.dateCreated, order: .reverse) private var folders: [RecordingFolder]
     @State private var showPaywall = false
-    private var premiumManager = PremiumManager.shared
+    private var premiumManager: PremiumManager { PremiumManager.shared }
 
     var body: some View {
         NavigationStack {

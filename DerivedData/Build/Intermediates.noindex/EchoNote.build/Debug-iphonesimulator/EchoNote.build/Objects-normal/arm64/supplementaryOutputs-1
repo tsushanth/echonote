@@ -1,0 +1,24 @@
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/App/ContentView.swift":
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.d"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.o"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.dia"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/ContentView.swiftdeps"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/App/EchoNoteApp.swift":
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.d"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.swiftdeps"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.swiftconstvalues"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.o"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/EchoNoteApp.dia"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/Recording.swift":
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.d"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.swiftdeps"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.o"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.swiftconstvalues"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Recording.dia"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/RecordingFolder.swift":
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.o"
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.d"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.swiftconstvalues"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.swiftdeps"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingFolder.dia"

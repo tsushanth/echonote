@@ -1,0 +1,18 @@
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/PlayerViewModel.swift":
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.swiftdeps"
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.d"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.dia"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.swiftconstvalues"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/PlayerViewModel.o"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/Models/Bookmark.swift":
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.d"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.swiftconstvalues"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.dia"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.swiftdeps"
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/Bookmark.o"
+"/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/EchoNote/ViewModels/RecordingViewModel.swift":
+  object: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.o"
+  swift-dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.swiftdeps"
+  diagnostics: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.dia"
+  const-values: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.swiftconstvalues"
+  dependencies: "/Users/sushanthtiruvaipati/Documents/GitHub/EchoNote/DerivedData/Build/Intermediates.noindex/EchoNote.build/Debug-iphonesimulator/EchoNote.build/Objects-normal/arm64/RecordingViewModel.d"
