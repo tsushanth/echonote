@@ -7,6 +7,8 @@ struct EditorView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var playerVM = PlayerViewModel()
+    @State private var showPaywall = false
+    private var premiumManager = PremiumManager.shared
 
     var body: some View {
         NavigationStack {
@@ -46,6 +48,9 @@ struct EditorView: View {
             }
             .sheet(isPresented: $editorVM.showSaveAsSheet) {
                 saveAsSheet
+            }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
             }
             .onAppear {
                 editorVM.loadRecording(recording)
@@ -161,25 +166,45 @@ struct EditorView: View {
                 .accessibilityLabel("Save as new recording")
 
                 Button {
-                    Task {
-                        await editorVM.enhanceRecording(modelContext: modelContext)
+                    if premiumManager.hasAccess(to: .enhancedAudio) {
+                        Task {
+                            await editorVM.enhanceRecording(modelContext: modelContext)
+                        }
+                    } else {
+                        showPaywall = true
                     }
                 } label: {
-                    Label("Enhance Recording", systemImage: "wand.and.stars")
+                    HStack {
+                        Label("Enhance Recording", systemImage: "wand.and.stars")
+                        Spacer()
+                        if !premiumManager.hasAccess(to: .enhancedAudio) {
+                            PremiumBadge(compact: true)
+                        }
+                    }
                 }
-                .disabled(recording.isEnhanced)
+                .disabled(recording.isEnhanced && premiumManager.hasAccess(to: .enhancedAudio))
                 .accessibilityLabel("Enhance recording")
-                .accessibilityHint(recording.isEnhanced ? "Already enhanced" : "Improves audio quality")
+                .accessibilityHint(recording.isEnhanced ? "Already enhanced" : (premiumManager.hasAccess(to: .enhancedAudio) ? "Improves audio quality" : "Premium feature"))
 
                 Button {
-                    Task {
-                        await editorVM.transcribeRecording(modelContext: modelContext)
+                    if premiumManager.hasAccess(to: .transcription) {
+                        Task {
+                            await editorVM.transcribeRecording(modelContext: modelContext)
+                        }
+                    } else {
+                        showPaywall = true
                     }
                 } label: {
-                    Label("Generate Transcript", systemImage: "text.alignleft")
+                    HStack {
+                        Label("Generate Transcript", systemImage: "text.alignleft")
+                        Spacer()
+                        if !premiumManager.hasAccess(to: .transcription) {
+                            PremiumBadge(compact: true)
+                        }
+                    }
                 }
                 .accessibilityLabel("Generate transcript")
-                .accessibilityHint("Creates a text transcript from the audio")
+                .accessibilityHint(premiumManager.hasAccess(to: .transcription) ? "Creates a text transcript from the audio" : "Premium feature")
             }
         }
         .listStyle(.insetGrouped)

@@ -8,6 +8,8 @@ struct FoldersView: View {
     @Bindable var editorVM: EditorViewModel
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \RecordingFolder.dateCreated, order: .reverse) private var folders: [RecordingFolder]
+    @State private var showPaywall = false
+    private var premiumManager = PremiumManager.shared
 
     var body: some View {
         NavigationStack {
@@ -22,13 +24,25 @@ struct FoldersView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        folderVM.newFolderName = ""
-                        folderVM.showCreateFolder = true
+                        if premiumManager.hasReachedFolderLimit(currentCount: folders.count) {
+                            showPaywall = true
+                        } else {
+                            folderVM.newFolderName = ""
+                            folderVM.showCreateFolder = true
+                        }
                     } label: {
-                        Image(systemName: "folder.badge.plus")
+                        HStack(spacing: 4) {
+                            Image(systemName: "folder.badge.plus")
+                            if !premiumManager.isPremium && folders.count >= PremiumManager.freeFolderLimit - 1 {
+                                PremiumBadge(compact: true)
+                            }
+                        }
                     }
                     .accessibilityLabel("Create new folder")
                 }
+            }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
             }
             .alert("New Folder", isPresented: $folderVM.showCreateFolder) {
                 TextField("Folder name", text: $folderVM.newFolderName)
@@ -81,8 +95,12 @@ struct FoldersView: View {
                 .padding(.horizontal, 40)
 
             Button {
-                folderVM.newFolderName = ""
-                folderVM.showCreateFolder = true
+                if premiumManager.hasReachedFolderLimit(currentCount: folders.count) {
+                    showPaywall = true
+                } else {
+                    folderVM.newFolderName = ""
+                    folderVM.showCreateFolder = true
+                }
             } label: {
                 Label("Create Folder", systemImage: "folder.badge.plus")
             }
@@ -93,6 +111,25 @@ struct FoldersView: View {
 
     private var foldersList: some View {
         List {
+            if !premiumManager.isPremium {
+                Section {
+                    HStack {
+                        Image(systemName: "folder")
+                            .foregroundStyle(.secondary)
+                        Text("\(folders.count)/\(PremiumManager.freeFolderLimit) folders used")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        if folders.count >= PremiumManager.freeFolderLimit {
+                            Button("Upgrade") {
+                                showPaywall = true
+                            }
+                            .font(.subheadline)
+                        }
+                    }
+                }
+            }
+
             ForEach(folders) { folder in
                 NavigationLink {
                     FolderDetailView(

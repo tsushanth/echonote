@@ -5,6 +5,39 @@ enum AppConstants {
     static let appName = "EchoNote"
     static let recordingsDirectoryName = "Recordings"
 
+    enum StoreKit {
+        static let bundleIdentifier = "com.yourcompany.echonote"
+
+        enum Subscriptions {
+            static let weekly = "com.yourcompany.echonote.subscription.weekly"
+            static let monthly = "com.yourcompany.echonote.subscription.monthly"
+            static let yearly = "com.yourcompany.echonote.subscription.yearly"
+            static let lifetime = "com.yourcompany.echonote.subscription.lifetime"
+        }
+
+        enum InAppPurchases {
+            static let removeAds = "com.yourcompany.echonote.remove_ads"
+        }
+
+        static var allProductIDs: [String] {
+            [
+                Subscriptions.weekly,
+                Subscriptions.monthly,
+                Subscriptions.yearly,
+                Subscriptions.lifetime,
+                InAppPurchases.removeAds
+            ]
+        }
+    }
+
+    enum Premium {
+        static let freeRecordingLimit = 10
+        static let freeFolderLimit = 3
+        static let freeBookmarkLimit = 5
+        static let termsOfServiceURL = "https://yourcompany.com/terms"
+        static let privacyPolicyURL = "https://yourcompany.com/privacy"
+    }
+
     enum Audio {
         static let defaultSampleRate: Double = 44100
         static let defaultChannels: Int = 1

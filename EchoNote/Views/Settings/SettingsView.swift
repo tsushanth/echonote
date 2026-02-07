@@ -6,38 +6,161 @@ struct SettingsView: View {
     @AppStorage("defaultStereo") private var defaultStereo: Bool = false
     @AppStorage("autoLocationNaming") private var autoLocationNaming: Bool = true
 
+    @State private var showPaywall = false
+    private var premiumManager = PremiumManager.shared
+
     var body: some View {
         NavigationStack {
             Form {
+                premiumSection
                 recordingSection
                 storageSection
                 aboutSection
             }
             .navigationTitle("Settings")
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
+            }
         }
     }
 
+    private var premiumSection: some View {
+        Section {
+            if premiumManager.isPremium {
+                HStack {
+                    Image(systemName: "crown.fill")
+                        .foregroundStyle(.yellow)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(premiumManager.isLifetime ? "Lifetime Premium" : "Premium Active")
+                            .font(.headline)
+
+                        if let days = premiumManager.remainingSubscriptionDays(), !premiumManager.isLifetime {
+                            Text("\(days) days remaining")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
+                    Spacer()
+
+                    PremiumBadge()
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(premiumManager.isLifetime ? "Lifetime premium member" : "Premium subscription active")
+
+                Button("Manage Subscription") {
+                    if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                .accessibilityLabel("Manage subscription in App Store")
+            } else {
+                Button {
+                    showPaywall = true
+                } label: {
+                    HStack {
+                        Image(systemName: "crown.fill")
+                            .foregroundStyle(.yellow)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Upgrade to Premium")
+                                .font(.headline)
+                                .foregroundStyle(.primary)
+
+                            Text("Unlock all features")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .accessibilityLabel("Upgrade to premium")
+                .accessibilityHint("Opens subscription options")
+            }
+        } header: {
+            Text("Premium")
+        }
+
     private var recordingSection: some View {
         Section("Recording Defaults") {
-            Picker("Audio Format", selection: $defaultFormat) {
-                ForEach(AudioFormat.allCases, id: \.self) { format in
-                    Text(format.displayName).tag(format)
+            HStack {
+                Picker("Audio Format", selection: Binding(
+                    get: { defaultFormat },
+                    set: { newValue in
+                        if newValue == .uncompressed && !premiumManager.hasAccess(to: .wavFormat) {
+                            showPaywall = true
+                        } else {
+                            defaultFormat = newValue
+                        }
+                    }
+                )) {
+                    ForEach(AudioFormat.allCases, id: \.self) { format in
+                        HStack {
+                            Text(format.displayName)
+                            if format == .uncompressed && !premiumManager.hasAccess(to: .wavFormat) {
+                                PremiumBadge(compact: true)
+                            }
+                        }
+                        .tag(format)
+                    }
                 }
+                .accessibilityLabel("Default audio format")
+                .accessibilityValue(defaultFormat.displayName)
             }
-            .accessibilityLabel("Default audio format")
-            .accessibilityValue(defaultFormat.displayName)
 
-            Picker("Audio Quality", selection: $defaultQuality) {
-                ForEach(RecordingQuality.allCases, id: \.self) { quality in
-                    Text(quality.displayName).tag(quality)
+            HStack {
+                Picker("Audio Quality", selection: Binding(
+                    get: { defaultQuality },
+                    set: { newValue in
+                        let isPremiumQuality = newValue == .high || newValue == .maximum
+                        if isPremiumQuality && !premiumManager.hasAccess(to: .highQualityRecording) {
+                            showPaywall = true
+                        } else {
+                            defaultQuality = newValue
+                        }
+                    }
+                )) {
+                    ForEach(RecordingQuality.allCases, id: \.self) { quality in
+                        HStack {
+                            Text(quality.displayName)
+                            if (quality == .high || quality == .maximum) && !premiumManager.hasAccess(to: .highQualityRecording) {
+                                PremiumBadge(compact: true)
+                            }
+                        }
+                        .tag(quality)
+                    }
                 }
+                .accessibilityLabel("Default audio quality")
+                .accessibilityValue(defaultQuality.displayName)
             }
-            .accessibilityLabel("Default audio quality")
-            .accessibilityValue(defaultQuality.displayName)
 
-            Toggle("Stereo Recording", isOn: $defaultStereo)
+            HStack {
+                Toggle(isOn: Binding(
+                    get: { defaultStereo },
+                    set: { newValue in
+                        if newValue && !premiumManager.hasAccess(to: .stereoRecording) {
+                            showPaywall = true
+                        } else {
+                            defaultStereo = newValue
+                        }
+                    }
+                )) {
+                    HStack {
+                        Text("Stereo Recording")
+                        if !premiumManager.hasAccess(to: .stereoRecording) {
+                            PremiumBadge(compact: true)
+                        }
+                    }
+                }
                 .accessibilityLabel("Default stereo recording")
-                .accessibilityHint("Enable to record in stereo by default")
+                .accessibilityHint(premiumManager.hasAccess(to: .stereoRecording) ? "Enable to record in stereo by default" : "Premium feature")
+            }
 
             Toggle("Auto Location Naming", isOn: $autoLocationNaming)
                 .accessibilityLabel("Automatic location naming")

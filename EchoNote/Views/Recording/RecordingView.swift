@@ -5,6 +5,8 @@ struct RecordingView: View {
     @Bindable var recordingVM: RecordingViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @State private var showPaywall = false
+    private var premiumManager = PremiumManager.shared
 
     var body: some View {
         NavigationStack {
@@ -47,6 +49,9 @@ struct RecordingView: View {
                 Button("OK") { recordingVM.showError = false }
             } message: {
                 Text(recordingVM.errorMessage ?? "An unknown error occurred.")
+            }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
             }
         }
     }
@@ -133,9 +138,26 @@ struct RecordingView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     Spacer()
-                    Picker("Format", selection: $recordingVM.selectedFormat) {
+                    Picker("Format", selection: Binding(
+                        get: { recordingVM.selectedFormat },
+                        set: { newValue in
+                            if newValue == .uncompressed && !premiumManager.hasAccess(to: .wavFormat) {
+                                showPaywall = true
+                            } else {
+                                recordingVM.selectedFormat = newValue
+                            }
+                        }
+                    )) {
                         ForEach(AudioFormat.allCases, id: \.self) { format in
-                            Text(format.displayName).tag(format)
+                            HStack {
+                                Text(format.displayName)
+                                if format == .uncompressed && !premiumManager.hasAccess(to: .wavFormat) {
+                                    Text("PRO")
+                                        .font(.caption2)
+                                        .fontWeight(.bold)
+                                }
+                            }
+                            .tag(format)
                         }
                     }
                     .pickerStyle(.menu)
@@ -148,9 +170,27 @@ struct RecordingView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     Spacer()
-                    Picker("Quality", selection: $recordingVM.selectedQuality) {
+                    Picker("Quality", selection: Binding(
+                        get: { recordingVM.selectedQuality },
+                        set: { newValue in
+                            let isPremiumQuality = newValue == .high || newValue == .maximum
+                            if isPremiumQuality && !premiumManager.hasAccess(to: .highQualityRecording) {
+                                showPaywall = true
+                            } else {
+                                recordingVM.selectedQuality = newValue
+                            }
+                        }
+                    )) {
                         ForEach(RecordingQuality.allCases, id: \.self) { quality in
-                            Text(quality.displayName).tag(quality)
+                            HStack {
+                                Text(quality.displayName)
+                                if (quality == .high || quality == .maximum) && !premiumManager.hasAccess(to: .highQualityRecording) {
+                                    Text("PRO")
+                                        .font(.caption2)
+                                        .fontWeight(.bold)
+                                }
+                            }
+                            .tag(quality)
                         }
                     }
                     .pickerStyle(.menu)
@@ -158,11 +198,29 @@ struct RecordingView: View {
                     .accessibilityValue(recordingVM.selectedQuality.displayName)
                 }
 
-                Toggle("Stereo Recording", isOn: $recordingVM.isStereo)
+                HStack {
+                    Toggle(isOn: Binding(
+                        get: { recordingVM.isStereo },
+                        set: { newValue in
+                            if newValue && !premiumManager.hasAccess(to: .stereoRecording) {
+                                showPaywall = true
+                            } else {
+                                recordingVM.isStereo = newValue
+                            }
+                        }
+                    )) {
+                        HStack {
+                            Text("Stereo Recording")
+                            if !premiumManager.hasAccess(to: .stereoRecording) {
+                                PremiumBadge(compact: true)
+                            }
+                        }
+                    }
                     .font(.subheadline)
                     .tint(.accentColor)
                     .accessibilityLabel("Stereo recording")
-                    .accessibilityHint("Enable to record in stereo")
+                    .accessibilityHint(premiumManager.hasAccess(to: .stereoRecording) ? "Enable to record in stereo" : "Premium feature")
+                }
             }
         }
         .padding(.horizontal)
