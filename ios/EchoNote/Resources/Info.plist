@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>CFBundleDisplayName</key>
+	<string>ClearVoice</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>EchoNote uses the microphone to capture your voice recordings. For example, you can record lectures, meetings, interviews, or personal voice memos that are saved to your library for later playback.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>EchoNote uses your location to automatically tag recordings with where they were made. For example, a recording made at a coffee shop will include that location in its details.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>EchoNote uses speech recognition to transcribe your recordings into text, so you can read and search through what was said.</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+		<string>microphone</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>ClearVoice uses this identifier to deliver personalized ads and measure ad performance. You can opt out at any time.</string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<!-- TikTok / Bytedance -->
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>22mmun2rn5.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>238da6jt44.skadnetwork</string>
+		</dict>
+	</array>
+</dict>
+</plist>

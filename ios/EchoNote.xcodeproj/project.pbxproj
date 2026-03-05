@@ -1,0 +1,859 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7BF588F56F01582B480E34E1 /* EchoNoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2166A80F48CA24D893FA370 /* EchoNoteViewModelTests.swift */; };
+		8651BA87FB7E5A2A1DA7B5B1 /* EchoNoteNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E912D7B8A0B006DA41BE5F /* EchoNoteNavigationTests.swift */; };
+		999B699F16C7B24C853C9C26 /* EchoNoteActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A84977A16353B49DA7DAC9 /* EchoNoteActionTests.swift */; };
+		A10000000000000000000001 /* EchoNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000001 /* EchoNoteApp.swift */; };
+		A10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000002 /* ContentView.swift */; };
+		A10000000000000000000003 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000003 /* Recording.swift */; };
+		A10000000000000000000004 /* RecordingFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000004 /* RecordingFolder.swift */; };
+		A10000000000000000000005 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000005 /* Bookmark.swift */; };
+		A10000000000000000000006 /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000006 /* RecordingViewModel.swift */; };
+		A10000000000000000000007 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000007 /* PlayerViewModel.swift */; };
+		A10000000000000000000008 /* RecordingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000008 /* RecordingsListViewModel.swift */; };
+		A10000000000000000000009 /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000009 /* FolderViewModel.swift */; };
+		A1000000000000000000000A /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000A /* EditorViewModel.swift */; };
+		A1000000000000000000000B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000B /* WaveformView.swift */; };
+		A1000000000000000000000C /* RecordingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000C /* RecordingRowView.swift */; };
+		A1000000000000000000000D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000D /* RecordingView.swift */; };
+		A1000000000000000000000E /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000E /* PlaybackView.swift */; };
+		A1000000000000000000000F /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000F /* EditorView.swift */; };
+		A10000000000000000000010 /* TranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000010 /* TranscriptView.swift */; };
+		A10000000000000000000011 /* RecordingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000011 /* RecordingsListView.swift */; };
+		A10000000000000000000012 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000012 /* FoldersView.swift */; };
+		A10000000000000000000013 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000013 /* FavoritesView.swift */; };
+		A10000000000000000000014 /* MoveToFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000014 /* MoveToFolderView.swift */; };
+		A10000000000000000000015 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000015 /* SettingsView.swift */; };
+		A10000000000000000000016 /* AudioRecorderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000016 /* AudioRecorderService.swift */; };
+		A10000000000000000000017 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000017 /* AudioPlayerService.swift */; };
+		A10000000000000000000018 /* AudioEditorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000018 /* AudioEditorService.swift */; };
+		A10000000000000000000019 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000019 /* LocationService.swift */; };
+		A1000000000000000000001A /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001A /* TranscriptionService.swift */; };
+		A1000000000000000000001B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001B /* Constants.swift */; };
+		A1000000000000000000001C /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001C /* Color+Hex.swift */; };
+		A1000000000000000000001D /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001D /* Date+Formatting.swift */; };
+		A1000000000000000000001E /* TimeInterval+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001E /* TimeInterval+Formatting.swift */; };
+		A1000000000000000000001F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000001F /* Assets.xcassets */; };
+		A10000000000000000000021 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000021 /* StoreKitManager.swift */; };
+		A10000000000000000000022 /* PremiumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000022 /* PremiumManager.swift */; };
+		A10000000000000000000023 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* PaywallView.swift */; };
+		A10000000000000000000024 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* ReviewManager.swift */; };
+		A10000000000000000000025 /* TikTokHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* TikTokHelper.swift */; };
+		A10000000000000000000027 /* TranscriptIntelligenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000027 /* TranscriptIntelligenceService.swift */; };
+		A10000000000000000000026 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* GoogleService-Info.plist */; };
+		TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */ = {isa = PBXBuildFile; productRef = TT_REF_001 /* TikTokBusinessSDK */; };
+		FB_BUILD_001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB_REF_001 /* FirebaseAnalytics */; };
+		RC_BUILD_001 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = RC_REF_001 /* RevenueCat */; };
+		BBF56F736C937337B1BB380B /* EchoNoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */; };
+		BC9E9B137E5351CA4B918EC3 /* EchoNoteDataFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CBC927743339CB59D64CB9 /* EchoNoteDataFlowTests.swift */; };
+		BD84FA2B427409FCB1794E45 /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17894B27F5E12EED15D2092 /* MockServices.swift */; };
+		C10000000000000000000001 /* StoreKitManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000001 /* StoreKitManagerTests.swift */; };
+		C10000000000000000000002 /* PremiumManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000002 /* PremiumManagerTests.swift */; };
+		C10000000000000000000003 /* PaywallViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000003 /* PaywallViewTests.swift */; };
+		C10000000000000000000004 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000004 /* ModelTests.swift */; };
+		C10000000000000000000005 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000005 /* ViewModelTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C30000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000007 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000002;
+			remoteInfo = EchoNote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A2747D7AB51B42E2BBAAA7DC /* VocalSeparationModel.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = VocalSeparationModel.mlpackage; sourceTree = "<group>"; };
+		A421571BB63740F2BA3FB314 /* EchoNoteProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = EchoNoteProducts.storekit; sourceTree = "<group>"; };
+		000000000000000000000008 /* EchoNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EchoNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32A84977A16353B49DA7DAC9 /* EchoNoteActionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteActionTests.swift; sourceTree = "<group>"; };
+		90E912D7B8A0B006DA41BE5F /* EchoNoteNavigationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteNavigationTests.swift; sourceTree = "<group>"; };
+		A2166A80F48CA24D893FA370 /* EchoNoteViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteViewModelTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000001 /* EchoNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoNoteApp.swift; sourceTree = "<group>"; };
+		B10000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B10000000000000000000003 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		B10000000000000000000004 /* RecordingFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingFolder.swift; sourceTree = "<group>"; };
+		B10000000000000000000005 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		B10000000000000000000006 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000007 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000008 /* RecordingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListViewModel.swift; sourceTree = "<group>"; };
+		B10000000000000000000009 /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
+		B1000000000000000000000A /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		B1000000000000000000000B /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		B1000000000000000000000C /* RecordingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRowView.swift; sourceTree = "<group>"; };
+		B1000000000000000000000D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		B1000000000000000000000E /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
+		B1000000000000000000000F /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		B10000000000000000000010 /* TranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptView.swift; sourceTree = "<group>"; };
+		B10000000000000000000011 /* RecordingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListView.swift; sourceTree = "<group>"; };
+		B10000000000000000000012 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
+		B10000000000000000000013 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		B10000000000000000000014 /* MoveToFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolderView.swift; sourceTree = "<group>"; };
+		B10000000000000000000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B10000000000000000000016 /* AudioRecorderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderService.swift; sourceTree = "<group>"; };
+		B10000000000000000000017 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
+		B10000000000000000000018 /* AudioEditorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEditorService.swift; sourceTree = "<group>"; };
+		B10000000000000000000019 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		B1000000000000000000001A /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		B1000000000000000000001B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B1000000000000000000001C /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		B1000000000000000000001D /* Date+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
+		B1000000000000000000001E /* TimeInterval+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Formatting.swift"; sourceTree = "<group>"; };
+		B1000000000000000000001F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B10000000000000000000020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10000000000000000000021 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		B10000000000000000000022 /* PremiumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManager.swift; sourceTree = "<group>"; };
+		B10000000000000000000023 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		B10000000000000000000024 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		B10000000000000000000025 /* TikTokHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokHelper.swift; sourceTree = "<group>"; };
+		B10000000000000000000027 /* TranscriptIntelligenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptIntelligenceService.swift; sourceTree = "<group>"; };
+		B10000000000000000000026 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C20000000000000000000001 /* StoreKitManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManagerTests.swift; sourceTree = "<group>"; };
+		C20000000000000000000002 /* PremiumManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManagerTests.swift; sourceTree = "<group>"; };
+		C20000000000000000000003 /* PaywallViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewTests.swift; sourceTree = "<group>"; };
+		C20000000000000000000004 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		C20000000000000000000005 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		C40000000000000000000001 /* EchoNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EchoNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteServiceTests.swift; sourceTree = "<group>"; };
+		D4CBC927743339CB59D64CB9 /* EchoNoteDataFlowTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteDataFlowTests.swift; sourceTree = "<group>"; };
+		F17894B27F5E12EED15D2092 /* MockServices.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockServices.swift; path = Mocks/MockServices.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */,
+				FB_BUILD_001 /* FirebaseAnalytics in Frameworks */,
+				RC_BUILD_001 /* RevenueCat in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C50000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000A /* EchoNote */,
+				C60000000000000000000001 /* EchoNoteTests */,
+				000000000000000000000009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000008 /* EchoNote.app */,
+				C40000000000000000000001 /* EchoNoteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000A /* EchoNote */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000B /* App */,
+				00000000000000000000000C /* Models */,
+				00000000000000000000000D /* ViewModels */,
+				00000000000000000000000E /* Views */,
+				00000000000000000000000F /* Services */,
+				000000000000000000000010 /* Utilities */,
+				000000000000000000000011 /* Extensions */,
+				000000000000000000000012 /* Resources */,
+			);
+			path = EchoNote;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000001 /* EchoNoteApp.swift */,
+				B10000000000000000000002 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000003 /* Recording.swift */,
+				B10000000000000000000004 /* RecordingFolder.swift */,
+				B10000000000000000000005 /* Bookmark.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000006 /* RecordingViewModel.swift */,
+				B10000000000000000000007 /* PlayerViewModel.swift */,
+				B10000000000000000000008 /* RecordingsListViewModel.swift */,
+				B10000000000000000000009 /* FolderViewModel.swift */,
+				B1000000000000000000000A /* EditorViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D10000000000000000000001 /* Components */,
+				D10000000000000000000002 /* Recording */,
+				D10000000000000000000003 /* Playback */,
+				D10000000000000000000004 /* Editing */,
+				D10000000000000000000005 /* Organization */,
+				D10000000000000000000006 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000016 /* AudioRecorderService.swift */,
+				B10000000000000000000017 /* AudioPlayerService.swift */,
+				B10000000000000000000018 /* AudioEditorService.swift */,
+				B10000000000000000000019 /* LocationService.swift */,
+				B1000000000000000000001A /* TranscriptionService.swift */,
+				B10000000000000000000021 /* StoreKitManager.swift */,
+				B10000000000000000000022 /* PremiumManager.swift */,
+				B10000000000000000000024 /* ReviewManager.swift */,
+				B10000000000000000000025 /* TikTokHelper.swift */,
+				B10000000000000000000027 /* TranscriptIntelligenceService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		000000000000000000000010 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000001B /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		000000000000000000000011 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000001C /* Color+Hex.swift */,
+				B1000000000000000000001D /* Date+Formatting.swift */,
+				B1000000000000000000001E /* TimeInterval+Formatting.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		000000000000000000000012 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000001F /* Assets.xcassets */,
+				B10000000000000000000020 /* Info.plist */,
+				A421571BB63740F2BA3FB314 /* EchoNoteProducts.storekit */,
+				A2747D7AB51B42E2BBAAA7DC /* VocalSeparationModel.mlpackage */,
+				B10000000000000000000026 /* GoogleService-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C60000000000000000000001 /* EchoNoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				C20000000000000000000001 /* StoreKitManagerTests.swift */,
+				C20000000000000000000002 /* PremiumManagerTests.swift */,
+				C20000000000000000000003 /* PaywallViewTests.swift */,
+				C20000000000000000000004 /* ModelTests.swift */,
+				C20000000000000000000005 /* ViewModelTests.swift */,
+				F0B519494CA06ADF6E868F08 /* Mocks */,
+				A2166A80F48CA24D893FA370 /* EchoNoteViewModelTests.swift */,
+				32A84977A16353B49DA7DAC9 /* EchoNoteActionTests.swift */,
+				CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */,
+				D4CBC927743339CB59D64CB9 /* EchoNoteDataFlowTests.swift */,
+				90E912D7B8A0B006DA41BE5F /* EchoNoteNavigationTests.swift */,
+			);
+			path = EchoNoteTests;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000000B /* WaveformView.swift */,
+				B1000000000000000000000C /* RecordingRowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000002 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000000D /* RecordingView.swift */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000003 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000000E /* PlaybackView.swift */,
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000004 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				B1000000000000000000000F /* EditorView.swift */,
+				B10000000000000000000010 /* TranscriptView.swift */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000005 /* Organization */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000011 /* RecordingsListView.swift */,
+				B10000000000000000000012 /* FoldersView.swift */,
+				B10000000000000000000013 /* FavoritesView.swift */,
+				B10000000000000000000014 /* MoveToFolderView.swift */,
+			);
+			path = Organization;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000006 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000015 /* SettingsView.swift */,
+				B10000000000000000000023 /* PaywallView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F0B519494CA06ADF6E868F08 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F17894B27F5E12EED15D2092 /* MockServices.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000000002 /* EchoNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000006 /* Build configuration list for PBXNativeTarget "EchoNote" */;
+			buildPhases = (
+				000000000000000000000003 /* Sources */,
+				000000000000000000000004 /* Frameworks */,
+				000000000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EchoNote;
+			packageProductDependencies = (
+				TT_REF_001 /* TikTokBusinessSDK */,
+				FB_REF_001 /* FirebaseAnalytics */,
+				RC_REF_001 /* RevenueCat */,
+			);
+			productName = EchoNote;
+			productReference = 000000000000000000000008 /* EchoNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C70000000000000000000001 /* EchoNoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C80000000000000000000001 /* Build configuration list for PBXNativeTarget "EchoNoteTests" */;
+			buildPhases = (
+				C90000000000000000000001 /* Sources */,
+				C50000000000000000000001 /* Frameworks */,
+				CA0000000000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB0000000000000000000001 /* PBXTargetDependency */,
+			);
+			name = EchoNoteTests;
+			productName = EchoNoteTests;
+			productReference = C40000000000000000000001 /* EchoNoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000007 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					000000000000000000000002 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					C70000000000000000000001 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 000000000000000000000002;
+					};
+				};
+			};
+			buildConfigurationList = 000000000000000000000013 /* Build configuration list for PBXProject "EchoNote" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000001;
+			packageReferences = (
+				TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */,
+				FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */,
+			);
+			productRefGroup = 000000000000000000000009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000000002 /* EchoNote */,
+				C70000000000000000000001 /* EchoNoteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		000000000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000001F /* Assets.xcassets in Resources */,
+				A10000000000000000000026 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA0000000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		000000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* EchoNoteApp.swift in Sources */,
+				A10000000000000000000002 /* ContentView.swift in Sources */,
+				A10000000000000000000003 /* Recording.swift in Sources */,
+				A10000000000000000000004 /* RecordingFolder.swift in Sources */,
+				A10000000000000000000005 /* Bookmark.swift in Sources */,
+				A10000000000000000000006 /* RecordingViewModel.swift in Sources */,
+				A10000000000000000000007 /* PlayerViewModel.swift in Sources */,
+				A10000000000000000000008 /* RecordingsListViewModel.swift in Sources */,
+				A10000000000000000000009 /* FolderViewModel.swift in Sources */,
+				A1000000000000000000000A /* EditorViewModel.swift in Sources */,
+				A1000000000000000000000B /* WaveformView.swift in Sources */,
+				A1000000000000000000000C /* RecordingRowView.swift in Sources */,
+				A1000000000000000000000D /* RecordingView.swift in Sources */,
+				A1000000000000000000000E /* PlaybackView.swift in Sources */,
+				A1000000000000000000000F /* EditorView.swift in Sources */,
+				A10000000000000000000010 /* TranscriptView.swift in Sources */,
+				A10000000000000000000011 /* RecordingsListView.swift in Sources */,
+				A10000000000000000000012 /* FoldersView.swift in Sources */,
+				A10000000000000000000013 /* FavoritesView.swift in Sources */,
+				A10000000000000000000014 /* MoveToFolderView.swift in Sources */,
+				A10000000000000000000015 /* SettingsView.swift in Sources */,
+				A10000000000000000000016 /* AudioRecorderService.swift in Sources */,
+				A10000000000000000000017 /* AudioPlayerService.swift in Sources */,
+				A10000000000000000000018 /* AudioEditorService.swift in Sources */,
+				A10000000000000000000019 /* LocationService.swift in Sources */,
+				A1000000000000000000001A /* TranscriptionService.swift in Sources */,
+				A1000000000000000000001B /* Constants.swift in Sources */,
+				A1000000000000000000001C /* Color+Hex.swift in Sources */,
+				A1000000000000000000001D /* Date+Formatting.swift in Sources */,
+				A1000000000000000000001E /* TimeInterval+Formatting.swift in Sources */,
+				A10000000000000000000021 /* StoreKitManager.swift in Sources */,
+				A10000000000000000000022 /* PremiumManager.swift in Sources */,
+				A10000000000000000000023 /* PaywallView.swift in Sources */,
+				A10000000000000000000024 /* ReviewManager.swift in Sources */,
+				A10000000000000000000025 /* TikTokHelper.swift in Sources */,
+				A10000000000000000000027 /* TranscriptIntelligenceService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C90000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10000000000000000000001 /* StoreKitManagerTests.swift in Sources */,
+				C10000000000000000000002 /* PremiumManagerTests.swift in Sources */,
+				C10000000000000000000003 /* PaywallViewTests.swift in Sources */,
+				C10000000000000000000004 /* ModelTests.swift in Sources */,
+				C10000000000000000000005 /* ViewModelTests.swift in Sources */,
+				7BF588F56F01582B480E34E1 /* EchoNoteViewModelTests.swift in Sources */,
+				999B699F16C7B24C853C9C26 /* EchoNoteActionTests.swift in Sources */,
+				BBF56F736C937337B1BB380B /* EchoNoteServiceTests.swift in Sources */,
+				BC9E9B137E5351CA4B918EC3 /* EchoNoteDataFlowTests.swift in Sources */,
+				8651BA87FB7E5A2A1DA7B5B1 /* EchoNoteNavigationTests.swift in Sources */,
+				BD84FA2B427409FCB1794E45 /* MockServices.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB0000000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000002 /* EchoNote */;
+			targetProxy = C30000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		000000000000000000000014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		000000000000000000000015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		000000000000000000000016 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 13;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 7RS696YC75;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EchoNote/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClearVoice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EchoNote uses your location to automatically tag recordings with where they were made. For example, a recording made at a coffee shop will include that location in its details.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "EchoNote uses the microphone to capture your voice recordings. For example, you can record lectures, meetings, interviews, or personal voice memos that are saved to your library for later playback.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "EchoNote uses speech recognition to transcribe your recordings into text, so you can read and search through what was said.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		000000000000000000000017 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 13;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 7RS696YC75;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EchoNote/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClearVoice;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "EchoNote uses your location to automatically tag recordings with where they were made. For example, a recording made at a coffee shop will include that location in its details.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "EchoNote uses the microphone to capture your voice recordings. For example, you can record lectures, meetings, interviews, or personal voice memos that are saved to your library for later playback.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "EchoNote uses speech recognition to transcribe your recordings into text, so you can read and search through what was said.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CC0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 13;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EchoNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EchoNote";
+			};
+			name = Debug;
+		};
+		CC0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 13;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 3.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EchoNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EchoNote";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		000000000000000000000006 /* Build configuration list for PBXNativeTarget "EchoNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000016 /* Debug */,
+				000000000000000000000017 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000013 /* Build configuration list for PBXProject "EchoNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000014 /* Debug */,
+				000000000000000000000015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C80000000000000000000001 /* Build configuration list for PBXNativeTarget "EchoNoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0000000000000000000001 /* Debug */,
+				CC0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tiktok/tiktok-business-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+		RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		TT_REF_001 /* TikTokBusinessSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */;
+			productName = TikTokBusinessSDK;
+		};
+		FB_REF_001 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		RC_REF_001 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 000000000000000000000007 /* Project object */;
+}

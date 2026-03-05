@@ -1,0 +1,57 @@
+# === macOS ===
+.DS_Store
+*.swp
+*~
+
+# === iOS / Xcode ===
+DerivedData/
+ios/DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+**/*.xcuserstate
+
+# === Android / Gradle ===
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+
+# === Python (model-conversion) ===
+model-conversion/venv/
+model-conversion/__pycache__/
+model-conversion/*.pyc
+*.mlmodel
+*.tflite
+
+# === Large ML model weights ===
+*.bin
+*.mlpackage/
+model-conversion/**/*.mlpackage/
+model-conversion/**/weight.bin
+
+# === IDE ===
+.idea/
+.vscode/
+*.code-workspace
+
+# === General ===
+*.log
+*.tmp
+*.pid
+
+# Xcode SPM & Build caches
+SourcePackages/
+*.noindex/
+*.noindex
+SDKStatCaches.noindex/
+ModuleCache.noindex/
+Index.noindex/
