@@ -1,0 +1,77 @@
+package com.kreativekoala.echonote.di
+
+import android.content.Context
+import com.kreativekoala.echonote.data.repository.SettingsRepository
+import com.kreativekoala.echonote.service.AudioRecorderService
+import com.kreativekoala.echonote.service.AudioPlayerService
+import com.kreativekoala.echonote.service.AudioEditorService
+import com.kreativekoala.echonote.service.TranscriptionService
+import com.kreativekoala.echonote.service.LocationService
+import com.kreativekoala.echonote.service.BillingService
+import com.kreativekoala.echonote.service.PremiumManager
+import com.kreativekoala.echonote.service.ReviewManager
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object ServiceModule {
+
+    @Provides
+    @Singleton
+    fun provideAudioRecorderService(@ApplicationContext context: Context): AudioRecorderService {
+        return AudioRecorderService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAudioPlayerService(@ApplicationContext context: Context): AudioPlayerService {
+        return AudioPlayerService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAudioEditorService(@ApplicationContext context: Context): AudioEditorService {
+        return AudioEditorService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTranscriptionService(@ApplicationContext context: Context): TranscriptionService {
+        return TranscriptionService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationService(@ApplicationContext context: Context): LocationService {
+        return LocationService(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBillingService(): BillingService {
+        return BillingService()
+    }
+
+    @Provides
+    @Singleton
+    fun providePremiumManager(billingService: BillingService): PremiumManager {
+        return PremiumManager(billingService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReviewManager(@ApplicationContext context: Context): ReviewManager {
+        return ReviewManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(@ApplicationContext context: Context): SettingsRepository {
+        return SettingsRepository(context)
+    }
+}

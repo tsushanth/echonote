@@ -1,0 +1,51 @@
+ClearVoice Recorder is a professional voice recorder with offline transcription, audio editing, and smart organization features.
+
+RECORD IN HIGH QUALITY
+
+Choose between M4A (compressed) and WAV (lossless) formats
+Adjustable quality: Low, Medium, High, or Maximum
+Mono and stereo recording support
+Real-time waveform visualization while recording
+Auto-name recordings by location
+PLAYBACK WITH PRECISION
+
+Visual waveform display with tap-to-seek
+Skip forward and backward controls
+Adjustable playback speed (0.5x to 2.0x)
+Skip silence to breeze through pauses
+Share recordings with any app
+TRANSCRIBE SPEECH TO TEXT
+
+Convert recordings to text with offline transcription
+No internet connection required for privacy
+Copy transcripts to clipboard instantly
+Transcripts saved alongside your recordings
+TRIM AND EDIT
+
+Visual trim editor with precise range selection
+Cut unwanted sections from recordings
+Non-destructive editing workflow
+STAY ORGANIZED
+
+Create folders with custom colors to group recordings
+Mark favorites for quick access
+Search recordings by name
+Sort by date, name, duration, or file size
+Swipe to delete with batch selection support
+FREE FEATURES
+
+Record up to 10 recordings
+Create up to 3 folders
+Full playback with waveform visualization
+Share and organize recordings
+PREMIUM FEATURES
+
+Unlimited recordings and folders
+Offline speech-to-text transcription
+Audio trimming and editing tools
+Adjustable playback speed controls
+Skip silence mode
+Unlimited bookmarks
+Whether you're a student recording lectures, a journalist capturing interviews, a musician saving ideas, or anyone who needs a reliable voice recorder - ClearVoice Recorder delivers crystal-clear audio with powerful tools to manage it all.
+
+Privacy first: All recordings and transcriptions stay on your device. No data is uploaded to any server.

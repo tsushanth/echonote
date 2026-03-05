@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "437737902648",
+    "project_id": "echonote-app",
+    "storage_bucket": "echonote-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437737902648:android:529dcac564724090208ccd",
+        "android_client_info": {
+          "package_name": "com.kreativekoala.echonote"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7hDn-dw1QKEIJUQYTnwVo2Qp-AYwuCb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
