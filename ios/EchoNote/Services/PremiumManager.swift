@@ -346,7 +346,7 @@ struct PremiumFeatureModifier: ViewModifier {
                 }
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView()
+                RemotePaywallView()
             }
     }
 }

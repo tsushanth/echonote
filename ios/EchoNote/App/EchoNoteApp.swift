@@ -7,6 +7,8 @@ import TikTokBusinessSDK
 @main
 struct EchoNoteApp: App {
     @State private var storeKitManager = StoreKitManager()
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var hasRequestedTracking = false
 
     init() {
         // Configure Firebase Analytics
@@ -16,8 +18,7 @@ struct EchoNoteApp: App {
         Purchases.logLevel = .warn
         Purchases.configure(withAPIKey: "appl_diGoASyegBRlFeGrsuFxIPMldWa")
 
-        // Configure TikTok Events SDK
-        TikTokHelper.shared.initialize()
+        // Note: TikTok SDK is initialized after ATT consent via scenePhase below
 
         // Validate subscription state on app launch (queries RevenueCat directly)
         Task { @MainActor in
@@ -30,9 +31,17 @@ struct EchoNoteApp: App {
         WindowGroup {
             ContentView()
                 .environment(storeKitManager)
-                .task {
-                    TikTokHelper.shared.requestTrackingPermission()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active && !hasRequestedTracking {
+                hasRequestedTracking = true
+                TikTokHelper.shared.requestTrackingPermission { granted in
+                    // Initialize TikTok SDK only after ATT consent is determined
+                    if granted {
+                        TikTokHelper.shared.initialize()
+                    }
                 }
+            }
         }
         .modelContainer(for: [Recording.self, RecordingFolder.self, Bookmark.self])
     }

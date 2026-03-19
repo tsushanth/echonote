@@ -42,7 +42,7 @@ struct FoldersView: View {
                 }
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView()
+                RemotePaywallView()
             }
             .alert("New Folder", isPresented: $folderVM.showCreateFolder) {
                 TextField("Folder name", text: $folderVM.newFolderName)

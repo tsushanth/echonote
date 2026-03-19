@@ -51,7 +51,7 @@ struct RecordingView: View {
                 Text(recordingVM.errorMessage ?? "An unknown error occurred.")
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView()
+                RemotePaywallView()
             }
         }
     }

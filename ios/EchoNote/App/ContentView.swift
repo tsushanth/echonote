@@ -8,6 +8,8 @@ struct ContentView: View {
     @State private var listVM = RecordingsListViewModel()
     @State private var folderVM = FolderViewModel()
     @State private var editorVM = EditorViewModel()
+    @StateObject private var paywallCoordinator = PaywallCoordinator.shared
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -54,6 +56,14 @@ struct ContentView: View {
         .sheet(isPresented: $playerVM.showPlaybackSheet) {
             PlaybackView(playerVM: playerVM, editorVM: editorVM)
                 .presentationDetents([.large])
+        }
+        .sheet(isPresented: $paywallCoordinator.showWinbackOffer) {
+            WinbackOfferView()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                paywallCoordinator.checkWinbackEligibility()
+            }
         }
         .onAppear {
             recordingVM.requestPermissions()
