@@ -56,7 +56,7 @@ struct TranscriptView: View {
                 }
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView()
+                RemotePaywallView()
             }
         }
     }

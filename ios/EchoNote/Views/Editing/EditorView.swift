@@ -51,7 +51,7 @@ struct EditorView: View {
                 saveAsSheet
             }
             .sheet(isPresented: $showPaywall) {
-                PaywallView()
+                RemotePaywallView()
             }
             .alert("Beta Feature", isPresented: $showBetaAlert) {
                 Button("Cancel", role: .cancel) { }

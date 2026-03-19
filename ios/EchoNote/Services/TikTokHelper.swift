@@ -17,9 +17,11 @@ final class TikTokHelper {
         }
     }
 
-    func requestTrackingPermission() {
+    func requestTrackingPermission(completion: @escaping (Bool) -> Void = { _ in }) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            ATTrackingManager.requestTrackingAuthorization { _ in }
+            ATTrackingManager.requestTrackingAuthorization { status in
+                completion(status == .authorized)
+            }
         }
     }
 
