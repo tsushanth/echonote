@@ -10,6 +10,11 @@ struct ContentView: View {
     @State private var editorVM = EditorViewModel()
     @StateObject private var paywallCoordinator = PaywallCoordinator.shared
     @Environment(\.scenePhase) private var scenePhase
+    @State private var showAppOpenPaywall = false
+
+    // Show paywall on 2nd, 4th, 7th app open (then every 5th after)
+    private static let paywallTriggerOpens: Set<Int> = [2, 4, 7]
+    private static let paywallRecurringInterval = 5
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -60,6 +65,9 @@ struct ContentView: View {
         .sheet(isPresented: $paywallCoordinator.showWinbackOffer) {
             WinbackOfferView()
         }
+        .fullScreenCover(isPresented: $showAppOpenPaywall) {
+            RemotePaywallView(triggerSource: "app_open")
+        }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 paywallCoordinator.checkWinbackEligibility()
@@ -67,6 +75,27 @@ struct ContentView: View {
         }
         .onAppear {
             recordingVM.requestPermissions()
+            checkAppOpenPaywall()
+        }
+    }
+
+    private func checkAppOpenPaywall() {
+        // Don't show to premium users
+        guard !PremiumManager.shared.isPremium else { return }
+
+        let key = "com.clearvoice.appOpenCount"
+        let count = UserDefaults.standard.integer(forKey: key) + 1
+        UserDefaults.standard.set(count, forKey: key)
+
+        // Trigger on specific opens, then recurring
+        let shouldShow = Self.paywallTriggerOpens.contains(count)
+            || (count > 7 && (count - 7) % Self.paywallRecurringInterval == 0)
+
+        if shouldShow {
+            // Small delay so the app loads first
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showAppOpenPaywall = true
+            }
         }
     }
 }
