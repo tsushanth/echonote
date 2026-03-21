@@ -51,8 +51,6 @@
 		A10000000000000000000026 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* GoogleService-Info.plist */; };
 		TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */ = {isa = PBXBuildFile; productRef = TT_REF_001 /* TikTokBusinessSDK */; };
 		FB_BUILD_001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB_REF_001 /* FirebaseAnalytics */; };
-		RC_BUILD_001 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = RC_REF_001 /* RevenueCat */; };
-		RC_BUILD_002 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = RC_REF_002 /* RevenueCatUI */; };
 		BBF56F736C937337B1BB380B /* EchoNoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */; };
 		BC9E9B137E5351CA4B918EC3 /* EchoNoteDataFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CBC927743339CB59D64CB9 /* EchoNoteDataFlowTests.swift */; };
 		BD84FA2B427409FCB1794E45 /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17894B27F5E12EED15D2092 /* MockServices.swift */; };
@@ -143,8 +141,6 @@
 			files = (
 				TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */,
 				FB_BUILD_001 /* FirebaseAnalytics in Frameworks */,
-				RC_BUILD_001 /* RevenueCat in Frameworks */,
-				RC_BUILD_002 /* RevenueCatUI in Frameworks */,
 				PCV000000000003 /* PaywallKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,8 +381,6 @@
 			packageProductDependencies = (
 				TT_REF_001 /* TikTokBusinessSDK */,
 				FB_REF_001 /* FirebaseAnalytics */,
-				RC_REF_001 /* RevenueCat */,
-				RC_REF_002 /* RevenueCatUI */,
 				PCV000000000002 /* PaywallKit */,
 			);
 			productName = EchoNote;
@@ -442,7 +436,6 @@
 			packageReferences = (
 				TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */,
 				FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				PCV000000000001 /* XCLocalSwiftPackageReference "PaywallKit" */,
 			);
 			productRefGroup = 000000000000000000000009 /* Products */;
@@ -846,15 +839,7 @@
 				minimumVersion = 11.0.0;
 			};
 		};
-		RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
+	/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCLocalSwiftPackageReference section */
 		PCV000000000001 /* XCLocalSwiftPackageReference "PaywallKit" */ = {
@@ -874,17 +859,7 @@
 			package = FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		RC_REF_001 /* RevenueCat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = RevenueCat;
-		};
-		RC_REF_002 /* RevenueCatUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = RC_PACKAGE /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = RevenueCatUI;
-		};
-		PCV000000000002 /* PaywallKit */ = {
+			PCV000000000002 /* PaywallKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PaywallKit;
 		};

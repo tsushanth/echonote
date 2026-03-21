@@ -1,12 +1,11 @@
 import SwiftData
 import SwiftUI
 import FirebaseCore
-import RevenueCat
+import PaywallKit
 import TikTokBusinessSDK
 
 @main
 struct EchoNoteApp: App {
-    @State private var storeKitManager = StoreKitManager()
     @Environment(\.scenePhase) private var scenePhase
     @State private var hasRequestedTracking = false
 
@@ -14,13 +13,12 @@ struct EchoNoteApp: App {
         // Configure Firebase Analytics
         FirebaseApp.configure()
 
-        // Configure RevenueCat
-        Purchases.logLevel = .warn
-        Purchases.configure(withAPIKey: "appl_diGoASyegBRlFeGrsuFxIPMldWa")
+        // Configure StoreKit 2 via PaywallKit (replaces RevenueCat)
+        StoreManager.shared.configure(productIds: ProductID.allIDs)
 
         // Note: TikTok SDK is initialized after ATT consent via scenePhase below
 
-        // Validate subscription state on app launch (queries RevenueCat directly)
+        // Validate subscription state on app launch
         Task { @MainActor in
             await PremiumManager.shared.validateSubscriptionState()
             ReviewManager.shared.recordAppLaunch()
@@ -30,7 +28,6 @@ struct EchoNoteApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(storeKitManager)
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active && !hasRequestedTracking {
