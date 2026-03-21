@@ -1,4 +1,7 @@
 import SwiftUI
+#if DEBUG
+import PaywallKit
+#endif
 
 struct SettingsView: View {
     @AppStorage("defaultFormat") private var defaultFormat: AudioFormat = .compressed
@@ -18,6 +21,20 @@ struct SettingsView: View {
                 recordingSection
                 transcriptionSection
                 storageSection
+                #if DEBUG
+                PaywallDebugView(
+                    appId: "clearvoice",
+                    appName: "ClearVoice Pro",
+                    features: [
+                        PaywallFeature(icon: "🎙️", title: "Unlimited Recordings", description: "No storage limits"),
+                        PaywallFeature(icon: "✨", title: "AI Noise Reduction", description: "Crystal clear audio"),
+                        PaywallFeature(icon: "📝", title: "Transcription", description: "Speech to text in 90+ languages"),
+                        PaywallFeature(icon: "🎧", title: "High Quality Audio", description: "48kHz stereo recording"),
+                        PaywallFeature(icon: "📁", title: "Unlimited Folders", description: "Organize your recordings"),
+                    ],
+                    theme: PaywallTheme(accent: Color(red: 0.0, green: 0.48, blue: 1.0), accent2: Color(red: 0.5, green: 0.3, blue: 0.9))
+                )
+                #endif
                 aboutSection
             }
             .navigationTitle("Settings")
@@ -257,6 +274,7 @@ struct SettingsView: View {
     private var buildNumber: String {
         Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
     }
+
 }
 
 struct StorageInfoRow: View {

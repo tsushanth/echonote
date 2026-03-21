@@ -1,5 +1,5 @@
 import Foundation
-import RevenueCat
+import PaywallKit
 
 /// Premium feature categories in EchoNote
 enum PremiumFeature: String, CaseIterable {
@@ -149,10 +149,7 @@ final class PremiumManager {
         currentTier == .lifetime
     }
 
-    /// StoreKit manager reference (used only by PaywallView for purchase flow)
-    private var storeKitManager: StoreKitManager?
-
-    private static let entitlementID = "premium"
+    private let store = StoreManager.shared
 
     // MARK: - UserDefaults Keys
 
@@ -181,32 +178,20 @@ final class PremiumManager {
 
     // MARK: - Public Methods
 
-    /// Configure with StoreKit manager
-    func configure(with storeKitManager: StoreKitManager) {
-        self.storeKitManager = storeKitManager
-    }
-
-    /// Validate and update subscription state by querying RevenueCat directly
+    /// Validate and update subscription state via StoreKit 2
     func validateSubscriptionState() async {
-        do {
-            let customerInfo = try await Purchases.shared.customerInfo()
-            let entitlement = customerInfo.entitlements[Self.entitlementID]
+        await store.refreshSubscriptionStatus()
 
-            if entitlement?.isActive == true {
-                currentTier = .premium
-                subscriptionExpirationDate = entitlement?.expirationDate
-            } else {
-                currentTier = .free
-                subscriptionExpirationDate = nil
-            }
-
-            persistState()
-        } catch {
-            // If we can't reach RevenueCat, keep previously persisted state
-            #if DEBUG
-            print("PremiumManager: Failed to validate subscription: \(error.localizedDescription)")
-            #endif
+        if store.isLifetime {
+            currentTier = .lifetime
+        } else if store.isPremium {
+            currentTier = .premium
+        } else {
+            currentTier = .free
         }
+        subscriptionExpirationDate = store.subscriptionExpirationDate
+
+        persistState()
     }
 
     /// Check if a specific feature is available
