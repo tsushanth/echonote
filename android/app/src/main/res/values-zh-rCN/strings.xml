@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">录音</string>
+    <string name="tab_folders">文件夹</string>
+    <string name="tab_favorites">收藏</string>
+    <string name="tab_settings">设置</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder需要麦克风权限来录制音频。</string>
+    <string name="permission_location_rationale">ClearVoice Recorder使用您的位置来自动命名录音。</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder需要语音识别来转录录音。</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">录音</string>
+    <string name="recording_save_title">保存录音</string>
+    <string name="recording_name_label">录音名称</string>
+    <string name="recording_save">保存</string>
+    <string name="recording_discard">丢弃</string>
+    <string name="recording_close">关闭</string>
+    <string name="recording_stop">停止</string>
+    <string name="recording_resume">继续</string>
+    <string name="recording_pause">暂停</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">立体声</string>
+    <string name="recording_new_default_title">新录音</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">返回</string>
+    <string name="playback_share">分享</string>
+    <string name="playback_share_recording">分享录音</string>
+    <string name="playback_drag_trim">拖动以设置裁剪范围</string>
+    <string name="playback_skip_back">后退15秒</string>
+    <string name="playback_pause">暂停</string>
+    <string name="playback_play">播放</string>
+    <string name="playback_skip_forward">前进15秒</string>
+    <string name="playback_decrease_speed">降低速度</string>
+    <string name="playback_increase_speed">提高速度</string>
+    <string name="playback_premium_feature">高级功能</string>
+    <string name="playback_skip_silence">跳过静音</string>
+    <string name="playback_transcribing">正在转录\u2026</string>
+    <string name="playback_retranscribe">重新转录</string>
+    <string name="playback_transcribe">转录</string>
+    <string name="playback_trimming">正在裁剪\u2026</string>
+    <string name="playback_apply_trim">应用裁剪</string>
+    <string name="playback_trim">裁剪</string>
+    <string name="playback_cancel_trim">取消裁剪</string>
+    <string name="playback_transcription_failed">转录失败</string>
+    <string name="playback_dismiss">关闭</string>
+    <string name="playback_transcript">转录文本</string>
+    <string name="playback_transcript_copied">转录文本已复制</string>
+    <string name="playback_copy_transcript">复制转录文本</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">录音</string>
+    <string name="recordings_cancel_selection">取消选择</string>
+    <string name="recordings_delete_selected">删除所选</string>
+    <string name="recordings_sort">排序</string>
+    <string name="recordings_record">录音</string>
+    <string name="recordings_search_placeholder">搜索录音</string>
+    <string name="recordings_clear">清除</string>
+    <string name="recordings_no_results">未找到结果</string>
+    <string name="recordings_no_recordings">没有录音</string>
+    <string name="recordings_try_different_search">请尝试其他搜索词</string>
+    <string name="recordings_tap_to_start">点击录音按钮开始</string>
+    <string name="recordings_delete">删除</string>
+    <string name="recordings_selected_count">已选择%1$d项</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">重命名</string>
+    <string name="context_share">分享</string>
+    <string name="context_move_to_folder">移动到文件夹</string>
+    <string name="context_select">选择</string>
+    <string name="context_delete">删除</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">重命名录音</string>
+    <string name="rename_label">名称</string>
+    <string name="rename_confirm">重命名</string>
+    <string name="rename_cancel">取消</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">日期</string>
+    <string name="sort_name">名称</string>
+    <string name="sort_duration">时长</string>
+    <string name="sort_size">大小</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">文件夹</string>
+    <string name="folders_new_folder">新建文件夹</string>
+    <string name="folders_folder_name_label">文件夹名称</string>
+    <string name="folders_create">创建</string>
+    <string name="folders_cancel">取消</string>
+    <string name="folders_new_folder_fab">新建文件夹</string>
+    <string name="folders_no_folders">没有文件夹</string>
+    <string name="folders_empty_message">创建文件夹来整理您的录音</string>
+    <string name="folders_delete">删除</string>
+    <string name="folders_limit_format">%1$d/%2$d个文件夹</string>
+    <string name="folders_recording_count_singular">%1$d个录音</string>
+    <string name="folders_recording_count_plural">%1$d个录音</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">返回</string>
+    <string name="folder_detail_empty">空文件夹</string>
+    <string name="folder_detail_empty_message">从录音列表中将录音移动到这里</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">移动到文件夹</string>
+    <string name="move_to_folder_no_folder">无文件夹</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">收藏</string>
+    <string name="favorites_search_placeholder">搜索收藏</string>
+    <string name="favorites_clear">清除</string>
+    <string name="favorites_no_results">未找到结果</string>
+    <string name="favorites_no_favorites">没有收藏</string>
+    <string name="favorites_try_different_search">请尝试其他搜索词</string>
+    <string name="favorites_empty_message">点击录音上的心形图标将其添加到这里</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">取消收藏</string>
+    <string name="recording_row_favorite">收藏</string>
+    <string name="recording_row_stereo">立体声</string>
+    <string name="recording_row_transcript">转录文本</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">时长：%1$s</string>
+    <string name="editor_trim_range">裁剪范围</string>
+    <string name="editor_processing">正在处理\u2026</string>
+    <string name="editor_trim">裁剪</string>
+    <string name="editor_enhance">增强</string>
+    <string name="editor_vocals">人声</string>
+    <string name="editor_transcribing">正在转录\u2026</string>
+    <string name="editor_transcribe">转录</string>
+    <string name="editor_transcription_failed">转录失败</string>
+    <string name="editor_dismiss">关闭</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">转录文本</string>
+    <string name="transcript_copied">转录文本已复制</string>
+    <string name="transcript_copy">复制转录文本</string>
+    <string name="transcript_share">分享转录文本</string>
+    <string name="transcript_share_chooser">分享转录文本</string>
+    <string name="transcript_empty">没有可用的转录文本</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">设置</string>
+    <string name="settings_go_premium">升级高级版</string>
+    <string name="settings_premium_subtitle">无限录音、转录等更多功能</string>
+    <string name="settings_section_recording_defaults">录音默认设置</string>
+    <string name="settings_default_format">默认格式</string>
+    <string name="settings_default_quality">默认质量</string>
+    <string name="settings_stereo_recording">立体声录音</string>
+    <string name="settings_stereo_subtitle">可用时以立体声录音</string>
+    <string name="settings_auto_tag_location">自动标记位置</string>
+    <string name="settings_auto_tag_subtitle">根据位置自动命名录音</string>
+    <string name="settings_section_storage">存储</string>
+    <string name="settings_recordings_storage">录音存储</string>
+    <string name="settings_section_about">关于</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">版本 1.0.0</string>
+    <string name="settings_privacy_policy">隐私政策</string>
+    <string name="settings_terms_of_service">服务条款</string>
+    <string name="settings_acknowledgments">致谢</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">致谢</string>
+    <string name="acknowledgments_back">返回</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">使用Jetpack Compose、Media3、Room和Vosk构建。</string>
+    <string name="acknowledgments_frameworks_title">使用的框架</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">现代声明式UI工具包</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">音频播放引擎</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLite数据库持久化</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">依赖注入框架</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">偏好设置持久化</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">离线语音识别</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">基于位置的命名</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">音频解码和编辑</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">正在计算\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - 人声</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">录音裁剪失败</string>
+    <string name="editor_error_enhance_failed">录音增强失败</string>
+    <string name="editor_error_vocals_failed">人声分离失败</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">录音</string>
+    <string name="nav_folders">文件夹</string>
+    <string name="nav_favorites">收藏</string>
+    <string name="nav_settings">设置</string>
+</resources>

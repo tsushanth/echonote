@@ -10,8 +10,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.RecordingFolder
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,7 +31,7 @@ fun MoveToFolderSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                text = "Move to Folder",
+                text = stringResource(R.string.move_to_folder_title),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
@@ -55,7 +57,7 @@ fun MoveToFolderSheet(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    text = "No Folder",
+                    text = stringResource(R.string.move_to_folder_no_folder),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.weight(1f)
                 )

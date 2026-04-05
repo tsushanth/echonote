@@ -13,10 +13,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.RecordingFolder
 import com.kreativekoala.echonote.util.Constants
 import com.kreativekoala.echonote.util.TimeFormatting
@@ -44,12 +46,12 @@ fun FoldersScreen(
                 showCreateDialog = false
                 newFolderName = ""
             },
-            title = { Text("New Folder") },
+            title = { Text(stringResource(R.string.folders_new_folder)) },
             text = {
                 OutlinedTextField(
                     value = newFolderName,
                     onValueChange = { newFolderName = it },
-                    label = { Text("Folder Name") },
+                    label = { Text(stringResource(R.string.folders_folder_name_label)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -65,7 +67,7 @@ fun FoldersScreen(
                     },
                     enabled = newFolderName.isNotBlank()
                 ) {
-                    Text("Create")
+                    Text(stringResource(R.string.folders_create))
                 }
             },
             dismissButton = {
@@ -73,7 +75,7 @@ fun FoldersScreen(
                     showCreateDialog = false
                     newFolderName = ""
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.folders_cancel))
                 }
             }
         )
@@ -81,14 +83,14 @@ fun FoldersScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Folders") })
+            TopAppBar(title = { Text(stringResource(R.string.folders_title)) })
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 if (viewModel.canCreateFolder()) showCreateDialog = true
                 else showPaywall = true
             }) {
-                Icon(Icons.Default.CreateNewFolder, contentDescription = "New Folder")
+                Icon(Icons.Default.CreateNewFolder, contentDescription = stringResource(R.string.folders_new_folder_fab))
             }
         }
     ) { padding ->
@@ -109,13 +111,13 @@ fun FoldersScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "No Folders",
+                        text = stringResource(R.string.folders_no_folders),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Create folders to organize your recordings",
+                        text = stringResource(R.string.folders_empty_message),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                         textAlign = TextAlign.Center
@@ -139,7 +141,7 @@ fun FoldersScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "${folders.size}/$limit folders",
+                                text = stringResource(R.string.folders_limit_format, folders.size, limit),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -185,7 +187,7 @@ fun FoldersScreen(
                             ) {
                                 Icon(
                                     Icons.Default.Delete,
-                                    contentDescription = "Delete",
+                                    contentDescription = stringResource(R.string.folders_delete),
                                     tint = Color.White
                                 )
                             }
@@ -220,12 +222,13 @@ fun FoldersScreen(
                                 )
                                 val count by viewModel.getRecordingCount(folder.id).collectAsState()
                                 val totalDuration by viewModel.getTotalDuration(folder.id).collectAsState()
+                                val countText = if (count == 1) stringResource(R.string.folders_recording_count_singular, count)
+                                    else stringResource(R.string.folders_recording_count_plural, count)
                                 Text(
                                     text = buildString {
-                                        append("$count recording")
-                                        if (count != 1) append("s")
+                                        append(countText)
                                         if (totalDuration > 0) {
-                                            append(" • ")
+                                            append(" \u2022 ")
                                             append(TimeFormatting.formatDuration(totalDuration))
                                         }
                                     },

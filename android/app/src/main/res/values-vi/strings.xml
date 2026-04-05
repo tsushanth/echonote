@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">Bản ghi</string>
+    <string name="tab_folders">Thư mục</string>
+    <string name="tab_favorites">Yêu thích</string>
+    <string name="tab_settings">Cài đặt</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder cần quyền truy cập micro để ghi âm.</string>
+    <string name="permission_location_rationale">ClearVoice Recorder sử dụng vị trí của bạn để tự động đặt tên bản ghi.</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder cần nhận dạng giọng nói để phiên âm bản ghi.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">Ghi âm</string>
+    <string name="recording_save_title">Lưu bản ghi</string>
+    <string name="recording_name_label">Tên bản ghi</string>
+    <string name="recording_save">Lưu</string>
+    <string name="recording_discard">Hủy bỏ</string>
+    <string name="recording_close">Đóng</string>
+    <string name="recording_stop">Dừng</string>
+    <string name="recording_resume">Tiếp tục</string>
+    <string name="recording_pause">Tạm dừng</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">Stereo</string>
+    <string name="recording_new_default_title">Bản ghi mới</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">Quay lại</string>
+    <string name="playback_share">Chia sẻ</string>
+    <string name="playback_share_recording">Chia sẻ bản ghi</string>
+    <string name="playback_drag_trim">Kéo để đặt phạm vi cắt</string>
+    <string name="playback_skip_back">Lùi 15 giây</string>
+    <string name="playback_pause">Tạm dừng</string>
+    <string name="playback_play">Phát</string>
+    <string name="playback_skip_forward">Tiến 15 giây</string>
+    <string name="playback_decrease_speed">Giảm tốc độ</string>
+    <string name="playback_increase_speed">Tăng tốc độ</string>
+    <string name="playback_premium_feature">Tính năng Premium</string>
+    <string name="playback_skip_silence">Bỏ qua im lặng</string>
+    <string name="playback_transcribing">Đang phiên âm\u2026</string>
+    <string name="playback_retranscribe">Phiên âm lại</string>
+    <string name="playback_transcribe">Phiên âm</string>
+    <string name="playback_trimming">Đang cắt\u2026</string>
+    <string name="playback_apply_trim">Áp dụng cắt</string>
+    <string name="playback_trim">Cắt</string>
+    <string name="playback_cancel_trim">Hủy cắt</string>
+    <string name="playback_transcription_failed">Phiên âm thất bại</string>
+    <string name="playback_dismiss">Đóng</string>
+    <string name="playback_transcript">Bản phiên âm</string>
+    <string name="playback_transcript_copied">Đã sao chép bản phiên âm</string>
+    <string name="playback_copy_transcript">Sao chép bản phiên âm</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">Bản ghi</string>
+    <string name="recordings_cancel_selection">Hủy chọn</string>
+    <string name="recordings_delete_selected">Xóa đã chọn</string>
+    <string name="recordings_sort">Sắp xếp</string>
+    <string name="recordings_record">Ghi âm</string>
+    <string name="recordings_search_placeholder">Tìm kiếm bản ghi</string>
+    <string name="recordings_clear">Xóa</string>
+    <string name="recordings_no_results">Không tìm thấy kết quả</string>
+    <string name="recordings_no_recordings">Không có bản ghi</string>
+    <string name="recordings_try_different_search">Thử từ khóa tìm kiếm khác</string>
+    <string name="recordings_tap_to_start">Nhấn nút ghi âm để bắt đầu</string>
+    <string name="recordings_delete">Xóa</string>
+    <string name="recordings_selected_count">Đã chọn %1$d</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">Đổi tên</string>
+    <string name="context_share">Chia sẻ</string>
+    <string name="context_move_to_folder">Chuyển vào thư mục</string>
+    <string name="context_select">Chọn</string>
+    <string name="context_delete">Xóa</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">Đổi tên bản ghi</string>
+    <string name="rename_label">Tên</string>
+    <string name="rename_confirm">Đổi tên</string>
+    <string name="rename_cancel">Hủy</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">Ngày</string>
+    <string name="sort_name">Tên</string>
+    <string name="sort_duration">Thời lượng</string>
+    <string name="sort_size">Kích thước</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">Thư mục</string>
+    <string name="folders_new_folder">Thư mục mới</string>
+    <string name="folders_folder_name_label">Tên thư mục</string>
+    <string name="folders_create">Tạo</string>
+    <string name="folders_cancel">Hủy</string>
+    <string name="folders_new_folder_fab">Thư mục mới</string>
+    <string name="folders_no_folders">Không có thư mục</string>
+    <string name="folders_empty_message">Tạo thư mục để sắp xếp bản ghi của bạn</string>
+    <string name="folders_delete">Xóa</string>
+    <string name="folders_limit_format">%1$d/%2$d thư mục</string>
+    <string name="folders_recording_count_singular">%1$d bản ghi</string>
+    <string name="folders_recording_count_plural">%1$d bản ghi</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">Quay lại</string>
+    <string name="folder_detail_empty">Thư mục trống</string>
+    <string name="folder_detail_empty_message">Di chuyển bản ghi vào đây từ danh sách bản ghi</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">Chuyển vào thư mục</string>
+    <string name="move_to_folder_no_folder">Không có thư mục</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Yêu thích</string>
+    <string name="favorites_search_placeholder">Tìm kiếm yêu thích</string>
+    <string name="favorites_clear">Xóa</string>
+    <string name="favorites_no_results">Không tìm thấy kết quả</string>
+    <string name="favorites_no_favorites">Không có mục yêu thích</string>
+    <string name="favorites_try_different_search">Thử từ khóa tìm kiếm khác</string>
+    <string name="favorites_empty_message">Nhấn vào trái tim trên bản ghi để thêm vào đây</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">Bỏ yêu thích</string>
+    <string name="recording_row_favorite">Yêu thích</string>
+    <string name="recording_row_stereo">Stereo</string>
+    <string name="recording_row_transcript">Bản phiên âm</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">Thời lượng: %1$s</string>
+    <string name="editor_trim_range">Phạm vi cắt</string>
+    <string name="editor_processing">Đang xử lý\u2026</string>
+    <string name="editor_trim">Cắt</string>
+    <string name="editor_enhance">Nâng cao</string>
+    <string name="editor_vocals">Giọng hát</string>
+    <string name="editor_transcribing">Đang phiên âm\u2026</string>
+    <string name="editor_transcribe">Phiên âm</string>
+    <string name="editor_transcription_failed">Phiên âm thất bại</string>
+    <string name="editor_dismiss">Đóng</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">Bản phiên âm</string>
+    <string name="transcript_copied">Đã sao chép bản phiên âm</string>
+    <string name="transcript_copy">Sao chép bản phiên âm</string>
+    <string name="transcript_share">Chia sẻ bản phiên âm</string>
+    <string name="transcript_share_chooser">Chia sẻ bản phiên âm</string>
+    <string name="transcript_empty">Không có bản phiên âm</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_go_premium">Nâng cấp Premium</string>
+    <string name="settings_premium_subtitle">Ghi âm không giới hạn, phiên âm &amp; nhiều hơn</string>
+    <string name="settings_section_recording_defaults">Mặc định ghi âm</string>
+    <string name="settings_default_format">Định dạng mặc định</string>
+    <string name="settings_default_quality">Chất lượng mặc định</string>
+    <string name="settings_stereo_recording">Ghi âm Stereo</string>
+    <string name="settings_stereo_subtitle">Ghi âm stereo khi có sẵn</string>
+    <string name="settings_auto_tag_location">Gắn thẻ vị trí tự động</string>
+    <string name="settings_auto_tag_subtitle">Tự động đặt tên bản ghi theo vị trí</string>
+    <string name="settings_section_storage">Bộ nhớ</string>
+    <string name="settings_recordings_storage">Bộ nhớ bản ghi</string>
+    <string name="settings_section_about">Giới thiệu</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">Phiên bản 1.0.0</string>
+    <string name="settings_privacy_policy">Chính sách bảo mật</string>
+    <string name="settings_terms_of_service">Điều khoản dịch vụ</string>
+    <string name="settings_acknowledgments">Lời cảm ơn</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">Lời cảm ơn</string>
+    <string name="acknowledgments_back">Quay lại</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Được xây dựng với Jetpack Compose, Media3, Room và Vosk.</string>
+    <string name="acknowledgments_frameworks_title">Framework được sử dụng</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">Bộ công cụ UI khai báo hiện đại</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">Công cụ phát âm thanh</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">Lưu trữ cơ sở dữ liệu SQLite</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">Framework tiêm phụ thuộc</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">Lưu trữ tùy chọn</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">Nhận dạng giọng nói ngoại tuyến</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">Đặt tên theo vị trí</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">Giải mã và chỉnh sửa âm thanh</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">Đang tính\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - Giọng hát</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">Không thể cắt bản ghi</string>
+    <string name="editor_error_enhance_failed">Không thể nâng cao bản ghi</string>
+    <string name="editor_error_vocals_failed">Không thể tách giọng hát</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">Bản ghi</string>
+    <string name="nav_folders">Thư mục</string>
+    <string name="nav_favorites">Yêu thích</string>
+    <string name="nav_settings">Cài đặt</string>
+</resources>

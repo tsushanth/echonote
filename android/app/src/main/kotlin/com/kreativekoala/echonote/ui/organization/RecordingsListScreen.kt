@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingFolder
 import com.kreativekoala.echonote.ui.components.RecordingRowItem
@@ -64,12 +66,12 @@ fun RecordingsListScreen(
                 recordingToRename = null
                 renameText = ""
             },
-            title = { Text("Rename Recording") },
+            title = { Text(stringResource(R.string.rename_title)) },
             text = {
                 OutlinedTextField(
                     value = renameText,
                     onValueChange = { renameText = it },
-                    label = { Text("Name") },
+                    label = { Text(stringResource(R.string.rename_label)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -85,7 +87,7 @@ fun RecordingsListScreen(
                     },
                     enabled = renameText.isNotBlank()
                 ) {
-                    Text("Rename")
+                    Text(stringResource(R.string.rename_confirm))
                 }
             },
             dismissButton = {
@@ -93,7 +95,7 @@ fun RecordingsListScreen(
                     recordingToRename = null
                     renameText = ""
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.rename_cancel))
                 }
             }
         )
@@ -119,17 +121,17 @@ fun RecordingsListScreen(
         topBar = {
             if (isSelectionMode) {
                 TopAppBar(
-                    title = { Text("${selectedIds.size} selected") },
+                    title = { Text(stringResource(R.string.recordings_selected_count, selectedIds.size)) },
                     navigationIcon = {
                         IconButton(onClick = { viewModel.clearSelection() }) {
-                            Icon(Icons.Default.Close, contentDescription = "Cancel selection")
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.recordings_cancel_selection))
                         }
                     },
                     actions = {
                         IconButton(onClick = { viewModel.deleteSelected() }) {
                             Icon(
                                 Icons.Default.Delete,
-                                contentDescription = "Delete selected",
+                                contentDescription = stringResource(R.string.recordings_delete_selected),
                                 tint = MaterialTheme.colorScheme.error
                             )
                         }
@@ -137,11 +139,11 @@ fun RecordingsListScreen(
                 )
             } else {
                 TopAppBar(
-                    title = { Text("Recordings") },
+                    title = { Text(stringResource(R.string.recordings_title)) },
                     actions = {
                         Box {
                             IconButton(onClick = { showSortMenu = true }) {
-                                Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = "Sort")
+                                Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = stringResource(R.string.recordings_sort))
                             }
                             DropdownMenu(
                                 expanded = showSortMenu,
@@ -152,10 +154,10 @@ fun RecordingsListScreen(
                                         text = {
                                             Text(
                                                 when (option) {
-                                                    SortOption.DATE -> "Date"
-                                                    SortOption.NAME -> "Name"
-                                                    SortOption.DURATION -> "Duration"
-                                                    SortOption.SIZE -> "Size"
+                                                    SortOption.DATE -> stringResource(R.string.sort_date)
+                                                    SortOption.NAME -> stringResource(R.string.sort_name)
+                                                    SortOption.DURATION -> stringResource(R.string.sort_duration)
+                                                    SortOption.SIZE -> stringResource(R.string.sort_size)
                                                 }
                                             )
                                         },
@@ -190,7 +192,7 @@ fun RecordingsListScreen(
                     containerColor = RecordingRed,
                     contentColor = Color.White
                 ) {
-                    Icon(Icons.Default.Mic, contentDescription = "Record")
+                    Icon(Icons.Default.Mic, contentDescription = stringResource(R.string.recordings_record))
                 }
             }
         }
@@ -205,12 +207,12 @@ fun RecordingsListScreen(
                 OutlinedTextField(
                     value = searchQuery,
                     onValueChange = { viewModel.setSearchQuery(it) },
-                    placeholder = { Text("Search recordings") },
+                    placeholder = { Text(stringResource(R.string.recordings_search_placeholder)) },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                     trailingIcon = {
                         if (searchQuery.isNotEmpty()) {
                             IconButton(onClick = { viewModel.setSearchQuery("") }) {
-                                Icon(Icons.Default.Clear, contentDescription = "Clear")
+                                Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.recordings_clear))
                             }
                         }
                     },
@@ -238,15 +240,15 @@ fun RecordingsListScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = if (searchQuery.isNotEmpty()) "No results found"
-                            else "No Recordings",
+                            text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_no_results)
+                            else stringResource(R.string.recordings_no_recordings),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = if (searchQuery.isNotEmpty()) "Try a different search term"
-                            else "Tap the record button to get started",
+                            text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_try_different_search)
+                            else stringResource(R.string.recordings_tap_to_start),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                             textAlign = TextAlign.Center
@@ -316,7 +318,7 @@ fun RecordingsListScreen(
                                     ) {
                                         Icon(
                                             Icons.Default.Delete,
-                                            contentDescription = "Delete",
+                                            contentDescription = stringResource(R.string.recordings_delete),
                                             tint = Color.White
                                         )
                                     }
@@ -337,7 +339,7 @@ fun RecordingsListScreen(
                                         offset = DpOffset(16.dp, 0.dp)
                                     ) {
                                         DropdownMenuItem(
-                                            text = { Text("Rename") },
+                                            text = { Text(stringResource(R.string.context_rename)) },
                                             onClick = {
                                                 showContextMenu = false
                                                 renameText = recording.title
@@ -348,7 +350,7 @@ fun RecordingsListScreen(
                                             }
                                         )
                                         DropdownMenuItem(
-                                            text = { Text("Share") },
+                                            text = { Text(stringResource(R.string.context_share)) },
                                             onClick = {
                                                 showContextMenu = false
                                                 try {
@@ -363,7 +365,7 @@ fun RecordingsListScreen(
                                                         putExtra(Intent.EXTRA_STREAM, uri)
                                                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                                     }
-                                                    context.startActivity(Intent.createChooser(intent, "Share Recording"))
+                                                    context.startActivity(Intent.createChooser(intent, context.getString(R.string.playback_share_recording)))
                                                 } catch (_: Exception) { }
                                             },
                                             leadingIcon = {
@@ -371,7 +373,7 @@ fun RecordingsListScreen(
                                             }
                                         )
                                         DropdownMenuItem(
-                                            text = { Text("Move to Folder") },
+                                            text = { Text(stringResource(R.string.context_move_to_folder)) },
                                             onClick = {
                                                 showContextMenu = false
                                                 recordingToMove = recording
@@ -382,7 +384,7 @@ fun RecordingsListScreen(
                                             }
                                         )
                                         DropdownMenuItem(
-                                            text = { Text("Select") },
+                                            text = { Text(stringResource(R.string.context_select)) },
                                             onClick = {
                                                 showContextMenu = false
                                                 viewModel.toggleSelection(recording.id)
@@ -392,7 +394,7 @@ fun RecordingsListScreen(
                                             }
                                         )
                                         DropdownMenuItem(
-                                            text = { Text("Delete") },
+                                            text = { Text(stringResource(R.string.context_delete)) },
                                             onClick = {
                                                 showContextMenu = false
                                                 viewModel.deleteRecording(recording)

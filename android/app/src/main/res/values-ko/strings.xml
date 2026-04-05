@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">녹음</string>
+    <string name="tab_folders">폴더</string>
+    <string name="tab_favorites">즐겨찾기</string>
+    <string name="tab_settings">설정</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder가 오디오를 녹음하려면 마이크 접근 권한이 필요합니다.</string>
+    <string name="permission_location_rationale">ClearVoice Recorder는 녹음에 자동으로 이름을 지정하기 위해 위치를 사용합니다.</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder가 녹음을 전사하려면 음성 인식이 필요합니다.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">녹음</string>
+    <string name="recording_save_title">녹음 저장</string>
+    <string name="recording_name_label">녹음 이름</string>
+    <string name="recording_save">저장</string>
+    <string name="recording_discard">삭제</string>
+    <string name="recording_close">닫기</string>
+    <string name="recording_stop">중지</string>
+    <string name="recording_resume">재개</string>
+    <string name="recording_pause">일시정지</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">스테레오</string>
+    <string name="recording_new_default_title">새 녹음</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">뒤로</string>
+    <string name="playback_share">공유</string>
+    <string name="playback_share_recording">녹음 공유</string>
+    <string name="playback_drag_trim">드래그하여 자르기 범위 설정</string>
+    <string name="playback_skip_back">15초 뒤로</string>
+    <string name="playback_pause">일시정지</string>
+    <string name="playback_play">재생</string>
+    <string name="playback_skip_forward">15초 앞으로</string>
+    <string name="playback_decrease_speed">속도 줄이기</string>
+    <string name="playback_increase_speed">속도 높이기</string>
+    <string name="playback_premium_feature">프리미엄 기능</string>
+    <string name="playback_skip_silence">무음 건너뛰기</string>
+    <string name="playback_transcribing">전사 중\u2026</string>
+    <string name="playback_retranscribe">다시 전사</string>
+    <string name="playback_transcribe">전사</string>
+    <string name="playback_trimming">자르는 중\u2026</string>
+    <string name="playback_apply_trim">자르기 적용</string>
+    <string name="playback_trim">자르기</string>
+    <string name="playback_cancel_trim">자르기 취소</string>
+    <string name="playback_transcription_failed">전사 실패</string>
+    <string name="playback_dismiss">닫기</string>
+    <string name="playback_transcript">전사본</string>
+    <string name="playback_transcript_copied">전사본이 복사되었습니다</string>
+    <string name="playback_copy_transcript">전사본 복사</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">녹음</string>
+    <string name="recordings_cancel_selection">선택 취소</string>
+    <string name="recordings_delete_selected">선택 항목 삭제</string>
+    <string name="recordings_sort">정렬</string>
+    <string name="recordings_record">녹음</string>
+    <string name="recordings_search_placeholder">녹음 검색</string>
+    <string name="recordings_clear">지우기</string>
+    <string name="recordings_no_results">결과를 찾을 수 없습니다</string>
+    <string name="recordings_no_recordings">녹음 없음</string>
+    <string name="recordings_try_different_search">다른 검색어를 시도해 보세요</string>
+    <string name="recordings_tap_to_start">녹음 버튼을 탭하여 시작하세요</string>
+    <string name="recordings_delete">삭제</string>
+    <string name="recordings_selected_count">%1$d개 선택됨</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">이름 변경</string>
+    <string name="context_share">공유</string>
+    <string name="context_move_to_folder">폴더로 이동</string>
+    <string name="context_select">선택</string>
+    <string name="context_delete">삭제</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">녹음 이름 변경</string>
+    <string name="rename_label">이름</string>
+    <string name="rename_confirm">이름 변경</string>
+    <string name="rename_cancel">취소</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">날짜</string>
+    <string name="sort_name">이름</string>
+    <string name="sort_duration">길이</string>
+    <string name="sort_size">크기</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">폴더</string>
+    <string name="folders_new_folder">새 폴더</string>
+    <string name="folders_folder_name_label">폴더 이름</string>
+    <string name="folders_create">만들기</string>
+    <string name="folders_cancel">취소</string>
+    <string name="folders_new_folder_fab">새 폴더</string>
+    <string name="folders_no_folders">폴더 없음</string>
+    <string name="folders_empty_message">폴더를 만들어 녹음을 정리하세요</string>
+    <string name="folders_delete">삭제</string>
+    <string name="folders_limit_format">%1$d/%2$d 폴더</string>
+    <string name="folders_recording_count_singular">%1$d개 녹음</string>
+    <string name="folders_recording_count_plural">%1$d개 녹음</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">뒤로</string>
+    <string name="folder_detail_empty">빈 폴더</string>
+    <string name="folder_detail_empty_message">녹음 목록에서 녹음을 여기로 이동하세요</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">폴더로 이동</string>
+    <string name="move_to_folder_no_folder">폴더 없음</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">즐겨찾기</string>
+    <string name="favorites_search_placeholder">즐겨찾기 검색</string>
+    <string name="favorites_clear">지우기</string>
+    <string name="favorites_no_results">결과를 찾을 수 없습니다</string>
+    <string name="favorites_no_favorites">즐겨찾기 없음</string>
+    <string name="favorites_try_different_search">다른 검색어를 시도해 보세요</string>
+    <string name="favorites_empty_message">녹음의 하트를 탭하여 여기에 추가하세요</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">즐겨찾기 해제</string>
+    <string name="recording_row_favorite">즐겨찾기</string>
+    <string name="recording_row_stereo">스테레오</string>
+    <string name="recording_row_transcript">전사본</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">길이: %1$s</string>
+    <string name="editor_trim_range">자르기 범위</string>
+    <string name="editor_processing">처리 중\u2026</string>
+    <string name="editor_trim">자르기</string>
+    <string name="editor_enhance">향상</string>
+    <string name="editor_vocals">보컬</string>
+    <string name="editor_transcribing">전사 중\u2026</string>
+    <string name="editor_transcribe">전사</string>
+    <string name="editor_transcription_failed">전사 실패</string>
+    <string name="editor_dismiss">닫기</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">전사본</string>
+    <string name="transcript_copied">전사본이 복사되었습니다</string>
+    <string name="transcript_copy">전사본 복사</string>
+    <string name="transcript_share">전사본 공유</string>
+    <string name="transcript_share_chooser">전사본 공유</string>
+    <string name="transcript_empty">사용 가능한 전사본이 없습니다</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">설정</string>
+    <string name="settings_go_premium">프리미엄으로 업그레이드</string>
+    <string name="settings_premium_subtitle">무제한 녹음, 전사 등</string>
+    <string name="settings_section_recording_defaults">녹음 기본 설정</string>
+    <string name="settings_default_format">기본 형식</string>
+    <string name="settings_default_quality">기본 품질</string>
+    <string name="settings_stereo_recording">스테레오 녹음</string>
+    <string name="settings_stereo_subtitle">가능한 경우 스테레오로 녹음</string>
+    <string name="settings_auto_tag_location">위치 자동 태그</string>
+    <string name="settings_auto_tag_subtitle">위치에 따라 녹음에 자동으로 이름 지정</string>
+    <string name="settings_section_storage">저장공간</string>
+    <string name="settings_recordings_storage">녹음 저장공간</string>
+    <string name="settings_section_about">정보</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">버전 1.0.0</string>
+    <string name="settings_privacy_policy">개인정보 처리방침</string>
+    <string name="settings_terms_of_service">서비스 이용약관</string>
+    <string name="settings_acknowledgments">감사의 말</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">감사의 말</string>
+    <string name="acknowledgments_back">뒤로</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Jetpack Compose, Media3, Room, Vosk로 제작되었습니다.</string>
+    <string name="acknowledgments_frameworks_title">사용된 프레임워크</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">모던 선언형 UI 툴킷</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">오디오 재생 엔진</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLite 데이터베이스 지속성</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">의존성 주입 프레임워크</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">환경설정 지속성</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">오프라인 음성 인식</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">위치 기반 이름 지정</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">오디오 디코딩 및 편집</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">계산 중\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - 보컬</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">녹음 자르기에 실패했습니다</string>
+    <string name="editor_error_enhance_failed">녹음 향상에 실패했습니다</string>
+    <string name="editor_error_vocals_failed">보컬 분리에 실패했습니다</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">녹음</string>
+    <string name="nav_folders">폴더</string>
+    <string name="nav_favorites">즐겨찾기</string>
+    <string name="nav_settings">설정</string>
+</resources>

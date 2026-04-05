@@ -1,0 +1,58 @@
+ClearVoice Recorder ist ein professioneller Sprachrekorder mit Offline-Transkription, Audiobearbeitung und intelligenten Organisationsfunktionen.
+
+AUFNAHME IN HOHER QUALITÄT
+
+Wähle zwischen M4A- (komprimiert) und WAV-Formaten (verlustfrei)
+Einstellbare Qualität: Niedrig, Mittel, Hoch oder Maximum
+Unterstützung für Mono- und Stereoaufnahmen
+Echtzeit-Wellenformvisualisierung während der Aufnahme
+Automatische Benennung der Aufnahmen nach Standort
+
+PRÄZISE WIEDERGABE
+
+Visuelle Wellenformanzeige mit Tippen zum Spulen
+Steuerung zum Vor- und Zurückspringen
+Einstellbare Wiedergabegeschwindigkeit (0,5x bis 2,0x)
+Stille überspringen für schnelles Durchhören
+Aufnahmen mit jeder App teilen
+
+SPRACHE ZU TEXT TRANSKRIBIEREN
+
+Aufnahmen offline in Text umwandeln
+Keine Internetverbindung erforderlich für deine Privatsphäre
+Transkriptionen sofort in die Zwischenablage kopieren
+Transkriptionen werden neben deinen Aufnahmen gespeichert
+
+SCHNEIDEN UND BEARBEITEN
+
+Visueller Schnitteditor mit präziser Bereichsauswahl
+Unerwünschte Abschnitte aus Aufnahmen entfernen
+Nicht-destruktiver Bearbeitungsablauf
+
+ÜBERSICHTLICH ORGANISIEREN
+
+Erstelle Ordner mit benutzerdefinierten Farben zum Gruppieren von Aufnahmen
+Markiere Favoriten für schnellen Zugriff
+Aufnahmen nach Name durchsuchen
+Sortiere nach Datum, Name, Dauer oder Dateigröße
+Wische zum Löschen mit Stapelauswahl
+
+KOSTENLOSE FUNKTIONEN
+
+Bis zu 10 Aufnahmen erstellen
+Bis zu 3 Ordner erstellen
+Vollständige Wiedergabe mit Wellenformvisualisierung
+Aufnahmen teilen und organisieren
+
+PREMIUM-FUNKTIONEN
+
+Unbegrenzte Aufnahmen und Ordner
+Offline-Sprache-zu-Text-Transkription
+Audio-Schnitt- und Bearbeitungswerkzeuge
+Einstellbare Wiedergabegeschwindigkeit
+Stille-überspringen-Modus
+Unbegrenzte Lesezeichen
+
+Ob du Student bist und Vorlesungen aufnimmst, Journalist und Interviews festhältst, Musiker und Ideen speicherst oder einfach jemand, der einen zuverlässigen Sprachrekorder braucht – ClearVoice Recorder liefert kristallklares Audio mit leistungsstarken Werkzeugen, um alles zu verwalten.
+
+Datenschutz an erster Stelle: Alle Aufnahmen und Transkriptionen bleiben auf deinem Gerät. Es werden keine Daten an Server übertragen.

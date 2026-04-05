@@ -10,6 +10,11 @@ struct EchoNoteApp: App {
     @State private var hasRequestedTracking = false
 
     init() {
+        // Skip paywalls and onboarding for Fastlane screenshots
+        if ProcessInfo.processInfo.arguments.contains("-FASTLANE_SNAPSHOT") {
+            UserDefaults.standard.set(true, forKey: "has_seen_first_paywall")
+        }
+
         // Configure Firebase Analytics
         FirebaseApp.configure()
 

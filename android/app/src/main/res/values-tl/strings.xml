@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">Mga Recording</string>
+    <string name="tab_folders">Mga Folder</string>
+    <string name="tab_favorites">Mga Paborito</string>
+    <string name="tab_settings">Mga Setting</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">Kailangan ng ClearVoice Recorder ang access sa mikropono para mag-record ng audio.</string>
+    <string name="permission_location_rationale">Ginagamit ng ClearVoice Recorder ang iyong lokasyon para awtomatikong pangalanan ang mga recording.</string>
+    <string name="permission_speech_rationale">Kailangan ng ClearVoice Recorder ang speech recognition para ma-transcribe ang mga recording.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">Mag-record</string>
+    <string name="recording_save_title">I-save ang Recording</string>
+    <string name="recording_name_label">Pangalan ng Recording</string>
+    <string name="recording_save">I-save</string>
+    <string name="recording_discard">Itapon</string>
+    <string name="recording_close">Isara</string>
+    <string name="recording_stop">Itigil</string>
+    <string name="recording_resume">Ituloy</string>
+    <string name="recording_pause">I-pause</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">Stereo</string>
+    <string name="recording_new_default_title">Bagong Recording</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">Bumalik</string>
+    <string name="playback_share">Ibahagi</string>
+    <string name="playback_share_recording">Ibahagi ang Recording</string>
+    <string name="playback_drag_trim">I-drag para itakda ang trim range</string>
+    <string name="playback_skip_back">Bumalik ng 15s</string>
+    <string name="playback_pause">I-pause</string>
+    <string name="playback_play">I-play</string>
+    <string name="playback_skip_forward">Sumulong ng 15s</string>
+    <string name="playback_decrease_speed">Babaan ang bilis</string>
+    <string name="playback_increase_speed">Bilisan</string>
+    <string name="playback_premium_feature">Premium na feature</string>
+    <string name="playback_skip_silence">Laktawan ang Katahimikan</string>
+    <string name="playback_transcribing">Nagta-transcribe\u2026</string>
+    <string name="playback_retranscribe">I-transcribe muli</string>
+    <string name="playback_transcribe">I-transcribe</string>
+    <string name="playback_trimming">Nagti-trim\u2026</string>
+    <string name="playback_apply_trim">Ilapat ang Trim</string>
+    <string name="playback_trim">I-trim</string>
+    <string name="playback_cancel_trim">Kanselahin ang Trim</string>
+    <string name="playback_transcription_failed">Nabigo ang Transcription</string>
+    <string name="playback_dismiss">Isara</string>
+    <string name="playback_transcript">Transcript</string>
+    <string name="playback_transcript_copied">Nakopya ang transcript</string>
+    <string name="playback_copy_transcript">Kopyahin ang transcript</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">Mga Recording</string>
+    <string name="recordings_cancel_selection">Kanselahin ang pagpili</string>
+    <string name="recordings_delete_selected">I-delete ang napili</string>
+    <string name="recordings_sort">Ayusin</string>
+    <string name="recordings_record">Mag-record</string>
+    <string name="recordings_search_placeholder">Maghanap ng mga recording</string>
+    <string name="recordings_clear">I-clear</string>
+    <string name="recordings_no_results">Walang nahanap na resulta</string>
+    <string name="recordings_no_recordings">Walang Mga Recording</string>
+    <string name="recordings_try_different_search">Subukan ang ibang termino sa paghahanap</string>
+    <string name="recordings_tap_to_start">I-tap ang record button para magsimula</string>
+    <string name="recordings_delete">I-delete</string>
+    <string name="recordings_selected_count">%1$d ang napili</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">Palitan ang Pangalan</string>
+    <string name="context_share">Ibahagi</string>
+    <string name="context_move_to_folder">Ilipat sa Folder</string>
+    <string name="context_select">Piliin</string>
+    <string name="context_delete">I-delete</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">Palitan ang Pangalan ng Recording</string>
+    <string name="rename_label">Pangalan</string>
+    <string name="rename_confirm">Palitan ang Pangalan</string>
+    <string name="rename_cancel">Kanselahin</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">Petsa</string>
+    <string name="sort_name">Pangalan</string>
+    <string name="sort_duration">Tagal</string>
+    <string name="sort_size">Laki</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">Mga Folder</string>
+    <string name="folders_new_folder">Bagong Folder</string>
+    <string name="folders_folder_name_label">Pangalan ng Folder</string>
+    <string name="folders_create">Gumawa</string>
+    <string name="folders_cancel">Kanselahin</string>
+    <string name="folders_new_folder_fab">Bagong Folder</string>
+    <string name="folders_no_folders">Walang Mga Folder</string>
+    <string name="folders_empty_message">Gumawa ng mga folder para ayusin ang mga recording</string>
+    <string name="folders_delete">I-delete</string>
+    <string name="folders_limit_format">%1$d/%2$d na folder</string>
+    <string name="folders_recording_count_singular">%1$d recording</string>
+    <string name="folders_recording_count_plural">%1$d na recording</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">Bumalik</string>
+    <string name="folder_detail_empty">Walang Laman ang Folder</string>
+    <string name="folder_detail_empty_message">Ilipat ang mga recording dito mula sa listahan ng mga recording</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">Ilipat sa Folder</string>
+    <string name="move_to_folder_no_folder">Walang Folder</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Mga Paborito</string>
+    <string name="favorites_search_placeholder">Maghanap sa mga paborito</string>
+    <string name="favorites_clear">I-clear</string>
+    <string name="favorites_no_results">Walang nahanap na resulta</string>
+    <string name="favorites_no_favorites">Walang Mga Paborito</string>
+    <string name="favorites_try_different_search">Subukan ang ibang termino sa paghahanap</string>
+    <string name="favorites_empty_message">I-tap ang puso sa isang recording para idagdag dito</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">Alisin sa Paborito</string>
+    <string name="recording_row_favorite">Idagdag sa Paborito</string>
+    <string name="recording_row_stereo">Stereo</string>
+    <string name="recording_row_transcript">Transcript</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">Tagal: %1$s</string>
+    <string name="editor_trim_range">Trim Range</string>
+    <string name="editor_processing">Nagpo-proseso\u2026</string>
+    <string name="editor_trim">I-trim</string>
+    <string name="editor_enhance">I-enhance</string>
+    <string name="editor_vocals">Vocals</string>
+    <string name="editor_transcribing">Nagta-transcribe\u2026</string>
+    <string name="editor_transcribe">I-transcribe</string>
+    <string name="editor_transcription_failed">Nabigo ang Transcription</string>
+    <string name="editor_dismiss">Isara</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">Transcript</string>
+    <string name="transcript_copied">Nakopya ang transcript</string>
+    <string name="transcript_copy">Kopyahin ang transcript</string>
+    <string name="transcript_share">Ibahagi ang transcript</string>
+    <string name="transcript_share_chooser">Ibahagi ang Transcript</string>
+    <string name="transcript_empty">Walang available na transcript</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Mga Setting</string>
+    <string name="settings_go_premium">Mag-upgrade sa Premium</string>
+    <string name="settings_premium_subtitle">Walang limitasyong recording, transcription at higit pa</string>
+    <string name="settings_section_recording_defaults">Mga Default sa Recording</string>
+    <string name="settings_default_format">Default na Format</string>
+    <string name="settings_default_quality">Default na Kalidad</string>
+    <string name="settings_stereo_recording">Stereo Recording</string>
+    <string name="settings_stereo_subtitle">Mag-record sa stereo kapag available</string>
+    <string name="settings_auto_tag_location">Auto-tag ng Lokasyon</string>
+    <string name="settings_auto_tag_subtitle">Awtomatikong pangalanan ang mga recording ayon sa lokasyon</string>
+    <string name="settings_section_storage">Storage</string>
+    <string name="settings_recordings_storage">Storage ng Mga Recording</string>
+    <string name="settings_section_about">Tungkol</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">Bersyon 1.0.0</string>
+    <string name="settings_privacy_policy">Patakaran sa Privacy</string>
+    <string name="settings_terms_of_service">Mga Tuntunin ng Serbisyo</string>
+    <string name="settings_acknowledgments">Mga Pasasalamat</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">Mga Pasasalamat</string>
+    <string name="acknowledgments_back">Bumalik</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Ginawa gamit ang Jetpack Compose, Media3, Room, at Vosk.</string>
+    <string name="acknowledgments_frameworks_title">Mga Framework na Ginamit</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">Modernong declarative UI toolkit</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">Audio playback engine</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLite database persistence</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">Dependency injection framework</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">Preferences persistence</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">Offline speech recognition</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">Location-based naming</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">Audio decoding at editing</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">Kinakalkula\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - Vocals</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">Hindi na-trim ang recording</string>
+    <string name="editor_error_enhance_failed">Hindi na-enhance ang recording</string>
+    <string name="editor_error_vocals_failed">Hindi nahiwalay ang vocals</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">Mga Recording</string>
+    <string name="nav_folders">Mga Folder</string>
+    <string name="nav_favorites">Mga Paborito</string>
+    <string name="nav_settings">Mga Setting</string>
+</resources>

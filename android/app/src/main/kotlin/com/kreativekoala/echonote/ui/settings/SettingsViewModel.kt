@@ -3,6 +3,7 @@ package com.kreativekoala.echonote.ui.settings
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.repository.SettingsRepository
@@ -41,7 +42,7 @@ class SettingsViewModel @Inject constructor(
     val autoLocation: StateFlow<Boolean> = settingsRepository.autoLocation
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
-    private val _storageUsed = MutableStateFlow("Calculating...")
+    private val _storageUsed = MutableStateFlow(context.getString(R.string.settings_calculating))
     val storageUsed: StateFlow<String> = _storageUsed
 
     init {
@@ -68,7 +69,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val recordingsDir = File(context.filesDir, Constants.RECORDINGS_DIRECTORY)
             if (!recordingsDir.exists()) {
-                _storageUsed.value = "0 B"
+                _storageUsed.value = context.getString(R.string.settings_zero_storage)
                 return@launch
             }
             val totalBytes = recordingsDir.walkTopDown()

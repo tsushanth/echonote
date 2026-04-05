@@ -11,10 +11,12 @@ struct ContentView: View {
     @StateObject private var paywallCoordinator = PaywallCoordinator.shared
     @Environment(\.scenePhase) private var scenePhase
     @State private var showAppOpenPaywall = false
+    @AppStorage("has_seen_first_paywall") private var hasSeenFirstPaywall = false
+    @State private var showFirstLaunchPaywall = false
 
-    // Show paywall on 2nd, 4th, 7th app open (then every 5th after)
-    private static let paywallTriggerOpens: Set<Int> = [2, 4, 7]
-    private static let paywallRecurringInterval = 5
+    // Show paywall on 1st, 2nd, 4th app open (then every 2nd after)
+    private static let paywallTriggerOpens: Set<Int> = [1, 2, 4]
+    private static let paywallRecurringInterval = 2
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -65,6 +67,11 @@ struct ContentView: View {
         .sheet(isPresented: $paywallCoordinator.showWinbackOffer) {
             WinbackOfferView()
         }
+        .fullScreenCover(isPresented: $showFirstLaunchPaywall, onDismiss: {
+            hasSeenFirstPaywall = true
+        }) {
+            RemotePaywallView(triggerSource: "first_launch")
+        }
         .fullScreenCover(isPresented: $showAppOpenPaywall) {
             RemotePaywallView(triggerSource: "app_open")
         }
@@ -75,7 +82,13 @@ struct ContentView: View {
         }
         .onAppear {
             recordingVM.requestPermissions()
-            checkAppOpenPaywall()
+            if !hasSeenFirstPaywall && !PremiumManager.shared.isPremium {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    showFirstLaunchPaywall = true
+                }
+            } else {
+                checkAppOpenPaywall()
+            }
         }
     }
 
@@ -89,7 +102,7 @@ struct ContentView: View {
 
         // Trigger on specific opens, then recurring
         let shouldShow = Self.paywallTriggerOpens.contains(count)
-            || (count > 7 && (count - 7) % Self.paywallRecurringInterval == 0)
+            || (count > 4 && (count - 4) % Self.paywallRecurringInterval == 0)
 
         if shouldShow {
             // Small delay so the app loads first

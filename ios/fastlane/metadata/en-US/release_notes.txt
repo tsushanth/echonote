@@ -1,0 +1,2 @@
+Remote paywall — pricing and design now controlled from dashboard, no app update needed.
+Bug fixes and performance improvements.

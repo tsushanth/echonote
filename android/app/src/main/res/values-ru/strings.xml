@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">Записи</string>
+    <string name="tab_folders">Папки</string>
+    <string name="tab_favorites">Избранное</string>
+    <string name="tab_settings">Настройки</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder нужен доступ к микрофону для записи звука.</string>
+    <string name="permission_location_rationale">ClearVoice Recorder использует ваше местоположение для автоматического именования записей.</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder нужно распознавание речи для расшифровки записей.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">Запись</string>
+    <string name="recording_save_title">Сохранить запись</string>
+    <string name="recording_name_label">Название записи</string>
+    <string name="recording_save">Сохранить</string>
+    <string name="recording_discard">Удалить</string>
+    <string name="recording_close">Закрыть</string>
+    <string name="recording_stop">Стоп</string>
+    <string name="recording_resume">Возобновить</string>
+    <string name="recording_pause">Пауза</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">Стерео</string>
+    <string name="recording_new_default_title">Новая запись</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">Назад</string>
+    <string name="playback_share">Поделиться</string>
+    <string name="playback_share_recording">Поделиться записью</string>
+    <string name="playback_drag_trim">Перетащите для установки диапазона обрезки</string>
+    <string name="playback_skip_back">Назад на 15 сек</string>
+    <string name="playback_pause">Пауза</string>
+    <string name="playback_play">Воспроизвести</string>
+    <string name="playback_skip_forward">Вперёд на 15 сек</string>
+    <string name="playback_decrease_speed">Уменьшить скорость</string>
+    <string name="playback_increase_speed">Увеличить скорость</string>
+    <string name="playback_premium_feature">Премиум-функция</string>
+    <string name="playback_skip_silence">Пропуск тишины</string>
+    <string name="playback_transcribing">Расшифровка\u2026</string>
+    <string name="playback_retranscribe">Расшифровать заново</string>
+    <string name="playback_transcribe">Расшифровать</string>
+    <string name="playback_trimming">Обрезка\u2026</string>
+    <string name="playback_apply_trim">Применить обрезку</string>
+    <string name="playback_trim">Обрезать</string>
+    <string name="playback_cancel_trim">Отменить обрезку</string>
+    <string name="playback_transcription_failed">Ошибка расшифровки</string>
+    <string name="playback_dismiss">Закрыть</string>
+    <string name="playback_transcript">Расшифровка</string>
+    <string name="playback_transcript_copied">Расшифровка скопирована</string>
+    <string name="playback_copy_transcript">Копировать расшифровку</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">Записи</string>
+    <string name="recordings_cancel_selection">Отменить выбор</string>
+    <string name="recordings_delete_selected">Удалить выбранные</string>
+    <string name="recordings_sort">Сортировка</string>
+    <string name="recordings_record">Запись</string>
+    <string name="recordings_search_placeholder">Поиск записей</string>
+    <string name="recordings_clear">Очистить</string>
+    <string name="recordings_no_results">Ничего не найдено</string>
+    <string name="recordings_no_recordings">Нет записей</string>
+    <string name="recordings_try_different_search">Попробуйте другой запрос</string>
+    <string name="recordings_tap_to_start">Нажмите кнопку записи, чтобы начать</string>
+    <string name="recordings_delete">Удалить</string>
+    <string name="recordings_selected_count">Выбрано: %1$d</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">Переименовать</string>
+    <string name="context_share">Поделиться</string>
+    <string name="context_move_to_folder">Переместить в папку</string>
+    <string name="context_select">Выбрать</string>
+    <string name="context_delete">Удалить</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">Переименовать запись</string>
+    <string name="rename_label">Название</string>
+    <string name="rename_confirm">Переименовать</string>
+    <string name="rename_cancel">Отмена</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">Дата</string>
+    <string name="sort_name">Название</string>
+    <string name="sort_duration">Длительность</string>
+    <string name="sort_size">Размер</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">Папки</string>
+    <string name="folders_new_folder">Новая папка</string>
+    <string name="folders_folder_name_label">Название папки</string>
+    <string name="folders_create">Создать</string>
+    <string name="folders_cancel">Отмена</string>
+    <string name="folders_new_folder_fab">Новая папка</string>
+    <string name="folders_no_folders">Нет папок</string>
+    <string name="folders_empty_message">Создайте папки для организации записей</string>
+    <string name="folders_delete">Удалить</string>
+    <string name="folders_limit_format">%1$d/%2$d папок</string>
+    <string name="folders_recording_count_singular">%1$d запись</string>
+    <string name="folders_recording_count_plural">%1$d записей</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">Назад</string>
+    <string name="folder_detail_empty">Пустая папка</string>
+    <string name="folder_detail_empty_message">Переместите сюда записи из списка записей</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">Переместить в папку</string>
+    <string name="move_to_folder_no_folder">Без папки</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Избранное</string>
+    <string name="favorites_search_placeholder">Поиск в избранном</string>
+    <string name="favorites_clear">Очистить</string>
+    <string name="favorites_no_results">Ничего не найдено</string>
+    <string name="favorites_no_favorites">Нет избранного</string>
+    <string name="favorites_try_different_search">Попробуйте другой запрос</string>
+    <string name="favorites_empty_message">Нажмите на сердечко у записи, чтобы добавить её сюда</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">Убрать из избранного</string>
+    <string name="recording_row_favorite">В избранное</string>
+    <string name="recording_row_stereo">Стерео</string>
+    <string name="recording_row_transcript">Расшифровка</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">Длительность: %1$s</string>
+    <string name="editor_trim_range">Диапазон обрезки</string>
+    <string name="editor_processing">Обработка\u2026</string>
+    <string name="editor_trim">Обрезать</string>
+    <string name="editor_enhance">Улучшить</string>
+    <string name="editor_vocals">Вокал</string>
+    <string name="editor_transcribing">Расшифровка\u2026</string>
+    <string name="editor_transcribe">Расшифровать</string>
+    <string name="editor_transcription_failed">Ошибка расшифровки</string>
+    <string name="editor_dismiss">Закрыть</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">Расшифровка</string>
+    <string name="transcript_copied">Расшифровка скопирована</string>
+    <string name="transcript_copy">Копировать расшифровку</string>
+    <string name="transcript_share">Поделиться расшифровкой</string>
+    <string name="transcript_share_chooser">Поделиться расшифровкой</string>
+    <string name="transcript_empty">Расшифровка недоступна</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_go_premium">Перейти на Премиум</string>
+    <string name="settings_premium_subtitle">Безлимитные записи, расшифровка и другое</string>
+    <string name="settings_section_recording_defaults">Настройки записи по умолчанию</string>
+    <string name="settings_default_format">Формат по умолчанию</string>
+    <string name="settings_default_quality">Качество по умолчанию</string>
+    <string name="settings_stereo_recording">Стереозапись</string>
+    <string name="settings_stereo_subtitle">Записывать в стерео при возможности</string>
+    <string name="settings_auto_tag_location">Автопометка местоположения</string>
+    <string name="settings_auto_tag_subtitle">Автоматически называть записи по местоположению</string>
+    <string name="settings_section_storage">Хранилище</string>
+    <string name="settings_recordings_storage">Хранилище записей</string>
+    <string name="settings_section_about">О приложении</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">Версия 1.0.0</string>
+    <string name="settings_privacy_policy">Политика конфиденциальности</string>
+    <string name="settings_terms_of_service">Условия использования</string>
+    <string name="settings_acknowledgments">Благодарности</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">Благодарности</string>
+    <string name="acknowledgments_back">Назад</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Создано с помощью Jetpack Compose, Media3, Room и Vosk.</string>
+    <string name="acknowledgments_frameworks_title">Используемые фреймворки</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">Современный декларативный UI-инструментарий</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">Движок воспроизведения аудио</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">Хранение данных в SQLite</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">Фреймворк внедрения зависимостей</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">Хранение настроек</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">Офлайн-распознавание речи</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">Именование по местоположению</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">Декодирование и редактирование аудио</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">Подсчёт\u2026</string>
+    <string name="settings_zero_storage">0 Б</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - Вокал</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">Не удалось обрезать запись</string>
+    <string name="editor_error_enhance_failed">Не удалось улучшить запись</string>
+    <string name="editor_error_vocals_failed">Не удалось выделить вокал</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">Записи</string>
+    <string name="nav_folders">Папки</string>
+    <string name="nav_favorites">Избранное</string>
+    <string name="nav_settings">Настройки</string>
+</resources>

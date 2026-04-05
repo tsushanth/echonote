@@ -123,6 +123,10 @@ class PlayerViewModel @Inject constructor(
     }
 
     // Transcription
+    fun refreshPremiumStatus() {
+        premiumManager.refreshPremiumStatus()
+    }
+
     fun transcribe() {
         val rec = _currentRecording.value ?: return
         if (transcriptionService.isTranscribing.value) return

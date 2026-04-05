@@ -1,0 +1,310 @@
+/* Localizable.strings - Italian (it)
+   ClearVoice Recorder iOS App */
+
+/* ========================
+   MARK: - Tab Bar
+   ======================== */
+"Recordings" = "Registrazioni";
+"Folders" = "Cartelle";
+"Favorites" = "Preferiti";
+"Settings" = "Impostazioni";
+
+/* ========================
+   MARK: - Recording View
+   ======================== */
+"Record" = "Registra";
+"Cancel" = "Annulla";
+"Close" = "Chiudi";
+"Error" = "Errore";
+"OK" = "OK";
+"An unknown error occurred." = "Si e verificato un errore sconosciuto.";
+"Format" = "Formato";
+"Quality" = "Qualita";
+"PRO" = "PRO";
+"Stereo Recording" = "Registrazione stereo";
+
+/* ========================
+   MARK: - Save Recording Sheet
+   ======================== */
+"Recording Name" = "Nome registrazione";
+"Enter name (or use location)" = "Inserisci nome (o usa posizione)";
+"Save Recording" = "Salva registrazione";
+"Discard" = "Elimina";
+
+/* ========================
+   MARK: - Recordings List
+   ======================== */
+"Search recordings" = "Cerca registrazioni";
+"Done" = "Fine";
+"Select" = "Seleziona";
+"No Recordings" = "Nessuna registrazione";
+"Tap the record button to create your first recording." = "Tocca il pulsante di registrazione per creare la tua prima registrazione.";
+"Rename Recording" = "Rinomina registrazione";
+"Name" = "Nome";
+"Save" = "Salva";
+"Delete Recording?" = "Eliminare la registrazione?";
+"Delete" = "Elimina";
+"This action cannot be undone." = "Questa azione non puo essere annullata.";
+"Unfavorite" = "Rimuovi dai preferiti";
+"Favorite" = "Preferito";
+"Rename" = "Rinomina";
+"Play" = "Riproduci";
+"Remove from Favorites" = "Rimuovi dai preferiti";
+"Add to Favorites" = "Aggiungi ai preferiti";
+"Edit" = "Modifica";
+"Move to Folder" = "Sposta in cartella";
+"Share" = "Condividi";
+"Deselect All" = "Deseleziona tutto";
+"Select All" = "Seleziona tutto";
+"%lld selected" = "%lld selezionati";
+
+/* ========================
+   MARK: - Playback View
+   ======================== */
+"Now Playing" = "In riproduzione";
+"Skip Silence" = "Salta silenzio";
+"Transcript" = "Trascrizione";
+
+/* ========================
+   MARK: - Folders View
+   ======================== */
+"New Folder" = "Nuova cartella";
+"Folder name" = "Nome cartella";
+"Create" = "Crea";
+"Rename Folder" = "Rinomina cartella";
+"Delete Folder?" = "Eliminare la cartella?";
+"Recordings in this folder will not be deleted." = "Le registrazioni in questa cartella non verranno eliminate.";
+"No Folders" = "Nessuna cartella";
+"Create folders to organize your recordings." = "Crea cartelle per organizzare le tue registrazioni.";
+"Create Folder" = "Crea cartella";
+"Upgrade" = "Aggiorna";
+"%lld/%lld folders used" = "%lld/%lld cartelle utilizzate";
+
+/* ========================
+   MARK: - Folder Detail View
+   ======================== */
+"Empty Folder" = "Cartella vuota";
+"Move recordings here to organize them." = "Sposta le registrazioni qui per organizzarle.";
+"Remove" = "Rimuovi";
+"Search in folder" = "Cerca nella cartella";
+
+/* ========================
+   MARK: - Favorites View
+   ======================== */
+"No Favorites" = "Nessun preferito";
+"Mark recordings as favorites to quickly access them here." = "Segna le registrazioni come preferite per accedervi rapidamente qui.";
+"Search favorites" = "Cerca preferiti";
+
+/* ========================
+   MARK: - Move to Folder View
+   ======================== */
+"No Folder" = "Nessuna cartella";
+"Create New Folder" = "Crea nuova cartella";
+
+/* ========================
+   MARK: - Editor View
+   ======================== */
+"Edit Recording" = "Modifica registrazione";
+"Beta Feature" = "Funzione beta";
+"Try It" = "Prova";
+"Vocal separation is currently in beta. The feature works but uses an untrained AI model, so results may not be accurate. We're working on improving this in future updates!" = "La separazione vocale e attualmente in beta. La funzione funziona ma utilizza un modello AI non addestrato, quindi i risultati potrebbero non essere accurati. Stiamo lavorando per migliorare questo nelle future versioni!";
+"Trim Range" = "Intervallo di taglio";
+"Start" = "Inizio";
+"End" = "Fine";
+"Preview" = "Anteprima";
+"Stop" = "Ferma";
+"Actions" = "Azioni";
+"Trim Recording" = "Taglia registrazione";
+"Save As..." = "Salva come...";
+"Enhance Recording" = "Migliora registrazione";
+"Generate Transcript" = "Genera trascrizione";
+"Remove Silence" = "Rimuovi silenzio";
+"Export to WAV" = "Esporta in WAV";
+"Separate Vocals" = "Separa voci";
+"BETA" = "BETA";
+"Processing..." = "Elaborazione...";
+
+/* ========================
+   MARK: - Save As Sheet
+   ======================== */
+"New Name" = "Nuovo nome";
+"Recording name" = "Nome registrazione";
+"Save Copy" = "Salva copia";
+"Save As" = "Salva come";
+
+/* ========================
+   MARK: - Transcript View
+   ======================== */
+"Cleaned" = "Pulita";
+"Summary" = "Riepilogo";
+"No Transcript Available" = "Nessuna trascrizione disponibile";
+"Generate a transcript from your recording." = "Genera una trascrizione dalla tua registrazione.";
+"Copy" = "Copia";
+"Downloading transcription model..." = "Download del modello di trascrizione...";
+"Transcribing audio..." = "Trascrizione audio in corso...";
+"Processing with AI..." = "Elaborazione con IA...";
+"Clean Transcript" = "Pulisci trascrizione";
+"Remove filler words and fix grammar." = "Rimuovi le parole inutili e correggi la grammatica.";
+"Generate Summary" = "Genera riepilogo";
+"Create a concise summary of this recording." = "Crea un riepilogo conciso di questa registrazione.";
+"Extract Action Items" = "Estrai elementi di azione";
+"Find action items mentioned in this recording." = "Trova gli elementi di azione menzionati in questa registrazione.";
+
+/* ========================
+   MARK: - Recording Row View
+   ======================== */
+"Stereo" = "Stereo";
+"Layered" = "A strati";
+
+/* ========================
+   MARK: - Settings View
+   ======================== */
+"Premium" = "Premium";
+"Lifetime Premium" = "Premium a vita";
+"Premium Active" = "Premium attivo";
+"%lld days remaining" = "%lld giorni rimanenti";
+"Manage Subscription" = "Gestisci abbonamento";
+"Upgrade to Premium" = "Passa a Premium";
+"Unlock all features" = "Sblocca tutte le funzionalita";
+"Recording Defaults" = "Impostazioni predefinite registrazione";
+"Audio Format" = "Formato audio";
+"Audio Quality" = "Qualita audio";
+"Auto Location Naming" = "Nome automatico per posizione";
+"Transcription" = "Trascrizione";
+"Engine" = "Motore";
+"Language" = "Lingua";
+"Storage" = "Archivio";
+"About" = "Informazioni";
+"Version" = "Versione";
+"Build" = "Build";
+"Acknowledgments" = "Ringraziamenti";
+"Terms of Use (EULA)" = "Termini di utilizzo (EULA)";
+"Privacy Policy" = "Informativa sulla privacy";
+"Recordings Storage" = "Spazio registrazioni";
+"Calculating..." = "Calcolo in corso...";
+
+/* ========================
+   MARK: - Acknowledgments View
+   ======================== */
+"EchoNote" = "EchoNote";
+"Built with SwiftUI, AVFoundation, and Speech framework." = "Sviluppato con SwiftUI, AVFoundation e il framework Speech.";
+"Frameworks Used" = "Framework utilizzati";
+"Modern declarative UI framework" = "Framework UI dichiarativo moderno";
+"Data persistence framework" = "Framework di persistenza dei dati";
+"Audio recording and playback" = "Registrazione e riproduzione audio";
+"Speech recognition and transcription" = "Riconoscimento vocale e trascrizione";
+"Location-based naming" = "Denominazione basata sulla posizione";
+
+/* ========================
+   MARK: - Paywall View
+   ======================== */
+"Unlock Premium" = "Sblocca Premium";
+"Get access to all features and enhance your recording experience" = "Accedi a tutte le funzionalita e migliora la tua esperienza di registrazione";
+"Premium Features" = "Funzionalita Premium";
+"Choose Your Plan" = "Scegli il tuo piano";
+"Unable to load products" = "Impossibile caricare i prodotti";
+"Please check your internet connection and try again." = "Controlla la tua connessione Internet e riprova.";
+"Retry" = "Riprova";
+"Subscribe Now" = "Abbonati ora";
+"Restore Purchases" = "Ripristina acquisti";
+"Your purchases have been restored successfully!" = "I tuoi acquisti sono stati ripristinati con successo!";
+"No previous purchases found." = "Nessun acquisto precedente trovato.";
+"Your purchase is pending approval. It will be activated once approved." = "Il tuo acquisto e in attesa di approvazione. Verra attivato una volta approvato.";
+"Subscription automatically renews unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in Settings." = "L'abbonamento si rinnova automaticamente a meno che non venga annullato almeno 24 ore prima della fine del periodo corrente. Gestisci gli abbonamenti nelle Impostazioni.";
+"Terms of Service" = "Termini di servizio";
+"Best Value" = "Miglior rapporto qualita-prezzo";
+"Popular" = "Popolare";
+
+/* ========================
+   MARK: - Premium Feature Names
+   ======================== */
+"Audio Enhancement" = "Miglioramento audio";
+"Vocal Layer Separation (Beta)" = "Separazione strati vocali (Beta)";
+"High Quality Recording" = "Registrazione alta qualita";
+"WAV Format Export" = "Esportazione formato WAV";
+"Unlimited Recordings" = "Registrazioni illimitate";
+"Cloud Backup" = "Backup cloud";
+"Unlimited Folders" = "Cartelle illimitate";
+"Unlimited Bookmarks" = "Segnalibri illimitati";
+"Multilingual Transcription" = "Trascrizione multilingue";
+"AI Transcript Intelligence" = "Intelligenza IA trascrizione";
+
+/* ========================
+   MARK: - Premium Feature Descriptions
+   ======================== */
+"AI-powered noise reduction and audio clarity" = "Riduzione del rumore con IA e chiarezza audio";
+"Separate vocals from background (Beta feature)" = "Separa le voci dallo sfondo (Funzione Beta)";
+"Convert speech to text with high accuracy" = "Converti la voce in testo con alta precisione";
+"Record in maximum quality up to 48kHz" = "Registra in qualita massima fino a 48kHz";
+"Capture immersive stereo audio" = "Cattura audio stereo immersivo";
+"Export in uncompressed WAV format" = "Esporta in formato WAV non compresso";
+"No limits on recording storage" = "Nessun limite di archiviazione registrazioni";
+"Automatic backup to iCloud" = "Backup automatico su iCloud";
+"Organize with unlimited folders" = "Organizza con cartelle illimitate";
+"Add unlimited bookmarks to recordings" = "Aggiungi segnalibri illimitati alle registrazioni";
+"Transcribe in 90+ languages with WhisperKit" = "Trascrivi in oltre 90 lingue con WhisperKit";
+"Clean up, summarize, and extract action items from transcripts" = "Pulisci, riassumi ed estrai elementi di azione dalle trascrizioni";
+
+/* ========================
+   MARK: - Audio Format & Quality
+   ======================== */
+"Uncompressed (WAV)" = "Non compresso (WAV)";
+"Compressed (M4A)" = "Compresso (M4A)";
+"Low" = "Bassa";
+"Medium" = "Media";
+"High" = "Alta";
+"Maximum" = "Massima";
+
+/* ========================
+   MARK: - Transcription Engine
+   ======================== */
+"Apple Speech" = "Apple Speech";
+"WhisperKit (Multilingual)" = "WhisperKit (Multilingue)";
+"Auto-Detect" = "Rilevamento automatico";
+
+/* ========================
+   MARK: - Subscription Tiers
+   ======================== */
+"Free" = "Gratuito";
+"Lifetime" = "A vita";
+
+/* ========================
+   MARK: - Sort Options
+   ======================== */
+"Date (Newest)" = "Data (piu recente)";
+"Date (Oldest)" = "Data (piu vecchia)";
+"Title (A-Z)" = "Titolo (A-Z)";
+"Title (Z-A)" = "Titolo (Z-A)";
+"Duration (Longest)" = "Durata (piu lunga)";
+"Duration (Shortest)" = "Durata (piu corta)";
+
+/* ========================
+   MARK: - Subscription Period Labels
+   ======================== */
+"Weekly" = "Settimanale";
+"Monthly" = "Mensile";
+"Yearly" = "Annuale";
+
+/* ========================
+   MARK: - StoreKit Error Messages
+   ======================== */
+"Network connection unavailable. Please check your internet connection and try again." = "Connessione di rete non disponibile. Controlla la tua connessione Internet e riprova.";
+"There was a problem with the App Store. Please try again later." = "Si e verificato un problema con l'App Store. Riprova piu tardi.";
+
+/* ========================
+   MARK: - Transcription Errors
+   ======================== */
+"Speech recognition permission not granted." = "Autorizzazione al riconoscimento vocale non concessa.";
+"Speech recognizer is not available." = "Il riconoscitore vocale non e disponibile.";
+"No transcription result available." = "Nessun risultato di trascrizione disponibile.";
+"Failed to download the transcription model. Please check your internet connection and try again." = "Download del modello di trascrizione fallito. Controlla la tua connessione Internet e riprova.";
+"Not enough storage to download the transcription model. Please free up space and try again." = "Spazio di archiviazione insufficiente per scaricare il modello di trascrizione. Libera spazio e riprova.";
+"The transcription engine is still loading. Please wait and try again." = "Il motore di trascrizione si sta ancora caricando. Attendi e riprova.";
+
+/* ========================
+   MARK: - Recording Count (Pluralized)
+   ======================== */
+"%lld Recording" = "%lld registrazione";
+"%lld Recordings" = "%lld registrazioni";
+"%lld recording" = "%lld registrazione";
+"%lld recordings" = "%lld registrazioni";

@@ -93,7 +93,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.kreativekoala.echonote.subscription.weekly",
+          "productID" : "com.kreativekoala.clearvoice.subscription.weekly",
           "recurringSubscriptionPeriod" : "P1W",
           "referenceName" : "Weekly Premium",
           "subscriptionGroupID" : "21349287",
@@ -118,7 +118,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.kreativekoala.echonote.subscription.monthly",
+          "productID" : "com.kreativekoala.clearvoice.subscription.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly Premium",
           "subscriptionGroupID" : "21349287",
@@ -143,7 +143,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "com.kreativekoala.echonote.subscription.yearly",
+          "productID" : "com.kreativekoala.clearvoice.subscription.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Yearly Premium",
           "subscriptionGroupID" : "21349287",

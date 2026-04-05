@@ -16,12 +16,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.util.Constants
+import androidx.compose.ui.graphics.Color
+import com.kreativekoala.paywallkit.models.PaywallFeature
+import com.kreativekoala.paywallkit.models.PaywallTheme
+import com.kreativekoala.paywallkit.view.PaywallPreview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,6 +43,25 @@ fun SettingsScreen(
     val context = LocalContext.current
     var showAcknowledgments by remember { mutableStateOf(false) }
     var showPaywall by remember { mutableStateOf(false) }
+    var tapCount by remember { mutableIntStateOf(0) }
+    var showPaywallPreview by remember { mutableStateOf(false) }
+
+    if (showPaywallPreview) {
+        PaywallPreview(
+            appId = "clearvoice",
+            appName = "ClearVoice",
+            features = listOf(
+                PaywallFeature("\uD83C\uDFA4", "Unlimited Recordings", "Record without limits"),
+                PaywallFeature("\uD83D\uDCDD", "Transcription", "Convert speech to text"),
+                PaywallFeature("✂\uFE0F", "Audio Editing", "Trim and enhance recordings"),
+                PaywallFeature("⚡", "Playback Controls", "Speed adjustment & skip silence"),
+                PaywallFeature("\uD83D\uDCC1", "Unlimited Folders", "Organize everything")
+            ),
+            theme = PaywallTheme(accent = Color(0xFF6C63FF), accent2 = Color(0xFF9C27B0)),
+            onDone = { showPaywallPreview = false }
+        )
+        return
+    }
 
     if (showPaywall) {
         PaywallScreen(onDismiss = { showPaywall = false })
@@ -50,7 +75,7 @@ fun SettingsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Settings") })
+            TopAppBar(title = { Text(stringResource(R.string.settings_title)) })
         }
     ) { padding ->
         Column(
@@ -86,13 +111,13 @@ fun SettingsScreen(
                         Spacer(modifier = Modifier.width(16.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                "Go Premium",
+                                stringResource(R.string.settings_go_premium),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                             Text(
-                                "Unlimited recordings, transcription & more",
+                                stringResource(R.string.settings_premium_subtitle),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                             )
@@ -108,11 +133,11 @@ fun SettingsScreen(
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            SettingsSectionHeader("Recording Defaults")
+            SettingsSectionHeader(stringResource(R.string.settings_section_recording_defaults))
 
             SettingsRow(
                 icon = Icons.Default.AudioFile,
-                title = "Default Format",
+                title = stringResource(R.string.settings_default_format),
                 subtitle = selectedFormat.displayName
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -130,7 +155,7 @@ fun SettingsScreen(
 
             SettingsRow(
                 icon = Icons.Default.HighQuality,
-                title = "Default Quality",
+                title = stringResource(R.string.settings_default_quality),
                 subtitle = selectedQuality.displayName
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -161,9 +186,9 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Stereo Recording", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_stereo_recording), style = MaterialTheme.typography.bodyLarge)
                     Text(
-                        "Record in stereo when available",
+                        stringResource(R.string.settings_stereo_subtitle),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -188,9 +213,9 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Auto-tag Location", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_auto_tag_location), style = MaterialTheme.typography.bodyLarge)
                     Text(
-                        "Automatically name recordings by location",
+                        stringResource(R.string.settings_auto_tag_subtitle),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -200,7 +225,7 @@ fun SettingsScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            SettingsSectionHeader("Storage")
+            SettingsSectionHeader(stringResource(R.string.settings_section_storage))
 
             Row(
                 modifier = Modifier
@@ -216,7 +241,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Recordings Storage", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_recordings_storage), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         storageUsed,
                         style = MaterialTheme.typography.bodySmall,
@@ -227,11 +252,12 @@ fun SettingsScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            SettingsSectionHeader("About")
+            SettingsSectionHeader(stringResource(R.string.settings_section_about))
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable { tapCount++ }
                     .padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -243,12 +269,23 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("ClearVoice Recorder", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_app_name), style = MaterialTheme.typography.bodyLarge)
                     Text(
-                        "Version 1.0.0",
+                        stringResource(R.string.settings_version),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
+                }
+            }
+
+            if (tapCount >= 5) {
+                Button(
+                    onClick = { showPaywallPreview = true },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                ) {
+                    Text("Preview Paywalls")
                 }
             }
 
@@ -270,7 +307,7 @@ fun SettingsScreen(
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
-                Text("Privacy Policy", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.settings_privacy_policy), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 Icon(
                     Icons.AutoMirrored.Filled.OpenInNew,
                     contentDescription = null,
@@ -297,7 +334,7 @@ fun SettingsScreen(
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
-                Text("Terms of Service", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.settings_terms_of_service), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 Icon(
                     Icons.AutoMirrored.Filled.OpenInNew,
                     contentDescription = null,
@@ -322,7 +359,7 @@ fun SettingsScreen(
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
-                Text("Acknowledgments", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                Text(stringResource(R.string.settings_acknowledgments), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 Icon(
                     Icons.Default.ChevronRight,
                     contentDescription = null,
@@ -341,10 +378,10 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Acknowledgments") },
+                title = { Text(stringResource(R.string.acknowledgments_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.acknowledgments_back))
                     }
                 }
             )
@@ -358,13 +395,13 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = "ClearVoice Recorder",
+                text = stringResource(R.string.acknowledgments_app_name),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Built with Jetpack Compose, Media3, Room, and Vosk.",
+                text = stringResource(R.string.acknowledgments_built_with),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -373,20 +410,20 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Frameworks Used",
+                text = stringResource(R.string.acknowledgments_frameworks_title),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-            FrameworkRow("Jetpack Compose", "Modern declarative UI toolkit")
-            FrameworkRow("Media3 ExoPlayer", "Audio playback engine")
-            FrameworkRow("Room", "SQLite database persistence")
-            FrameworkRow("Hilt", "Dependency injection framework")
-            FrameworkRow("DataStore", "Preferences persistence")
-            FrameworkRow("Vosk", "Offline speech recognition")
-            FrameworkRow("Google Play Location", "Location-based naming")
-            FrameworkRow("MediaCodec", "Audio decoding and editing")
+            FrameworkRow(stringResource(R.string.acknowledgments_jetpack_compose), stringResource(R.string.acknowledgments_jetpack_compose_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_media3), stringResource(R.string.acknowledgments_media3_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_room), stringResource(R.string.acknowledgments_room_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_hilt), stringResource(R.string.acknowledgments_hilt_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_datastore), stringResource(R.string.acknowledgments_datastore_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_vosk), stringResource(R.string.acknowledgments_vosk_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_location), stringResource(R.string.acknowledgments_location_desc))
+            FrameworkRow(stringResource(R.string.acknowledgments_mediacodec), stringResource(R.string.acknowledgments_mediacodec_desc))
         }
     }
 }

@@ -9,6 +9,7 @@ import com.revenuecat.purchases.PurchaseParams
 import com.revenuecat.purchases.PurchasesError
 import com.revenuecat.purchases.getOfferingsWith
 import com.revenuecat.purchases.interfaces.ReceiveCustomerInfoCallback
+import com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener
 import com.revenuecat.purchases.purchaseWith
 import com.revenuecat.purchases.restorePurchasesWith
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,6 +44,13 @@ class BillingService @Inject constructor() {
     fun initialize() {
         loadOfferings()
         queryExistingPurchases()
+
+        // Listen for customer info changes from any purchase path (including RC Paywall)
+        Purchases.sharedInstance.updatedCustomerInfoListener =
+            UpdatedCustomerInfoListener { customerInfo ->
+                _isSubscribed.value =
+                    customerInfo.entitlements[ENTITLEMENT_ID]?.isActive == true
+            }
     }
 
     private fun loadOfferings() {
@@ -81,8 +89,9 @@ class BillingService @Inject constructor() {
         Purchases.sharedInstance.getCustomerInfo(
             object : ReceiveCustomerInfoCallback {
                 override fun onReceived(customerInfo: CustomerInfo) {
-                    _isSubscribed.value =
-                        customerInfo.entitlements[ENTITLEMENT_ID]?.isActive == true
+                    val entitlement = customerInfo.entitlements[ENTITLEMENT_ID]
+                    Log.d(TAG, "Customer info received. Entitlement '$ENTITLEMENT_ID': ${entitlement?.isActive}, all entitlements: ${customerInfo.entitlements.all.keys}, active subs: ${customerInfo.activeSubscriptions}")
+                    _isSubscribed.value = entitlement?.isActive == true
                 }
 
                 override fun onError(error: PurchasesError) {
