@@ -34,8 +34,8 @@ enum AppConstants {
         static let freeRecordingLimit = 10
         static let freeFolderLimit = 3
         static let freeBookmarkLimit = 5
-        static let termsOfServiceURL = "https://kreativekoala.com/echonote/terms"
-        static let privacyPolicyURL = "https://kreativekoala.com/echonote/privacy"
+        static let termsOfServiceURL = "https://kreativekoala.llc/echonote/terms"
+        static let privacyPolicyURL = "https://kreativekoala.llc/echonote/privacy"
     }
 
     enum Audio {
