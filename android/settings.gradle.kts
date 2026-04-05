@@ -17,3 +17,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ClearVoice Recorder"
 include(":app")
+include(":paywallkit")
+project(":paywallkit").projectDir = file("/Users/sushanthtiruvaipati/Documents/GitHub/PaywallKit-Android/paywallkit")

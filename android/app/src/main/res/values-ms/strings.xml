@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">Rakaman</string>
+    <string name="tab_folders">Folder</string>
+    <string name="tab_favorites">Kegemaran</string>
+    <string name="tab_settings">Tetapan</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder memerlukan akses mikrofon untuk merakam audio.</string>
+    <string name="permission_location_rationale">ClearVoice Recorder menggunakan lokasi anda untuk menamakan rakaman secara automatik.</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder memerlukan pengecaman pertuturan untuk mentranskrip rakaman.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">Rakam</string>
+    <string name="recording_save_title">Simpan Rakaman</string>
+    <string name="recording_name_label">Nama Rakaman</string>
+    <string name="recording_save">Simpan</string>
+    <string name="recording_discard">Buang</string>
+    <string name="recording_close">Tutup</string>
+    <string name="recording_stop">Berhenti</string>
+    <string name="recording_resume">Sambung</string>
+    <string name="recording_pause">Jeda</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">Stereo</string>
+    <string name="recording_new_default_title">Rakaman Baharu</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">Kembali</string>
+    <string name="playback_share">Kongsi</string>
+    <string name="playback_share_recording">Kongsi Rakaman</string>
+    <string name="playback_drag_trim">Seret untuk menetapkan julat potong</string>
+    <string name="playback_skip_back">Undur 15s</string>
+    <string name="playback_pause">Jeda</string>
+    <string name="playback_play">Main</string>
+    <string name="playback_skip_forward">Maju 15s</string>
+    <string name="playback_decrease_speed">Kurangkan kelajuan</string>
+    <string name="playback_increase_speed">Tingkatkan kelajuan</string>
+    <string name="playback_premium_feature">Ciri premium</string>
+    <string name="playback_skip_silence">Langkau Senyap</string>
+    <string name="playback_transcribing">Mentranskrip\u2026</string>
+    <string name="playback_retranscribe">Transkrip semula</string>
+    <string name="playback_transcribe">Transkrip</string>
+    <string name="playback_trimming">Memotong\u2026</string>
+    <string name="playback_apply_trim">Gunakan Potongan</string>
+    <string name="playback_trim">Potong</string>
+    <string name="playback_cancel_trim">Batal Potong</string>
+    <string name="playback_transcription_failed">Transkripsi Gagal</string>
+    <string name="playback_dismiss">Tutup</string>
+    <string name="playback_transcript">Transkrip</string>
+    <string name="playback_transcript_copied">Transkrip disalin</string>
+    <string name="playback_copy_transcript">Salin transkrip</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">Rakaman</string>
+    <string name="recordings_cancel_selection">Batal pilihan</string>
+    <string name="recordings_delete_selected">Padam yang dipilih</string>
+    <string name="recordings_sort">Isih</string>
+    <string name="recordings_record">Rakam</string>
+    <string name="recordings_search_placeholder">Cari rakaman</string>
+    <string name="recordings_clear">Kosongkan</string>
+    <string name="recordings_no_results">Tiada hasil ditemui</string>
+    <string name="recordings_no_recordings">Tiada Rakaman</string>
+    <string name="recordings_try_different_search">Cuba istilah carian yang berbeza</string>
+    <string name="recordings_tap_to_start">Ketik butang rakam untuk bermula</string>
+    <string name="recordings_delete">Padam</string>
+    <string name="recordings_selected_count">%1$d dipilih</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">Namakan Semula</string>
+    <string name="context_share">Kongsi</string>
+    <string name="context_move_to_folder">Pindah ke Folder</string>
+    <string name="context_select">Pilih</string>
+    <string name="context_delete">Padam</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">Namakan Semula Rakaman</string>
+    <string name="rename_label">Nama</string>
+    <string name="rename_confirm">Namakan Semula</string>
+    <string name="rename_cancel">Batal</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">Tarikh</string>
+    <string name="sort_name">Nama</string>
+    <string name="sort_duration">Tempoh</string>
+    <string name="sort_size">Saiz</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">Folder</string>
+    <string name="folders_new_folder">Folder Baharu</string>
+    <string name="folders_folder_name_label">Nama Folder</string>
+    <string name="folders_create">Cipta</string>
+    <string name="folders_cancel">Batal</string>
+    <string name="folders_new_folder_fab">Folder Baharu</string>
+    <string name="folders_no_folders">Tiada Folder</string>
+    <string name="folders_empty_message">Cipta folder untuk mengatur rakaman anda</string>
+    <string name="folders_delete">Padam</string>
+    <string name="folders_limit_format">%1$d/%2$d folder</string>
+    <string name="folders_recording_count_singular">%1$d rakaman</string>
+    <string name="folders_recording_count_plural">%1$d rakaman</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">Kembali</string>
+    <string name="folder_detail_empty">Folder Kosong</string>
+    <string name="folder_detail_empty_message">Pindahkan rakaman ke sini dari senarai rakaman</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">Pindah ke Folder</string>
+    <string name="move_to_folder_no_folder">Tiada Folder</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Kegemaran</string>
+    <string name="favorites_search_placeholder">Cari kegemaran</string>
+    <string name="favorites_clear">Kosongkan</string>
+    <string name="favorites_no_results">Tiada hasil ditemui</string>
+    <string name="favorites_no_favorites">Tiada Kegemaran</string>
+    <string name="favorites_try_different_search">Cuba istilah carian yang berbeza</string>
+    <string name="favorites_empty_message">Ketik hati pada rakaman untuk menambahkannya di sini</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">Nyahgemari</string>
+    <string name="recording_row_favorite">Gemari</string>
+    <string name="recording_row_stereo">Stereo</string>
+    <string name="recording_row_transcript">Transkrip</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">Tempoh: %1$s</string>
+    <string name="editor_trim_range">Julat Potong</string>
+    <string name="editor_processing">Memproses\u2026</string>
+    <string name="editor_trim">Potong</string>
+    <string name="editor_enhance">Tingkatkan</string>
+    <string name="editor_vocals">Vokal</string>
+    <string name="editor_transcribing">Mentranskrip\u2026</string>
+    <string name="editor_transcribe">Transkrip</string>
+    <string name="editor_transcription_failed">Transkripsi Gagal</string>
+    <string name="editor_dismiss">Tutup</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">Transkrip</string>
+    <string name="transcript_copied">Transkrip disalin</string>
+    <string name="transcript_copy">Salin transkrip</string>
+    <string name="transcript_share">Kongsi transkrip</string>
+    <string name="transcript_share_chooser">Kongsi Transkrip</string>
+    <string name="transcript_empty">Tiada transkrip tersedia</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Tetapan</string>
+    <string name="settings_go_premium">Naik Taraf Premium</string>
+    <string name="settings_premium_subtitle">Rakaman tanpa had, transkripsi &amp; lagi</string>
+    <string name="settings_section_recording_defaults">Lalai Rakaman</string>
+    <string name="settings_default_format">Format Lalai</string>
+    <string name="settings_default_quality">Kualiti Lalai</string>
+    <string name="settings_stereo_recording">Rakaman Stereo</string>
+    <string name="settings_stereo_subtitle">Rakam dalam stereo apabila tersedia</string>
+    <string name="settings_auto_tag_location">Tag Lokasi Automatik</string>
+    <string name="settings_auto_tag_subtitle">Namakan rakaman secara automatik mengikut lokasi</string>
+    <string name="settings_section_storage">Storan</string>
+    <string name="settings_recordings_storage">Storan Rakaman</string>
+    <string name="settings_section_about">Perihal</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">Versi 1.0.0</string>
+    <string name="settings_privacy_policy">Dasar Privasi</string>
+    <string name="settings_terms_of_service">Syarat Perkhidmatan</string>
+    <string name="settings_acknowledgments">Penghargaan</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">Penghargaan</string>
+    <string name="acknowledgments_back">Kembali</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Dibina dengan Jetpack Compose, Media3, Room, dan Vosk.</string>
+    <string name="acknowledgments_frameworks_title">Rangka Kerja yang Digunakan</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">Kit alat UI deklaratif moden</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">Enjin main balik audio</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">Keterusan pangkalan data SQLite</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">Rangka kerja suntikan kebergantungan</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">Keterusan keutamaan</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">Pengecaman pertuturan luar talian</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">Penamaan berdasarkan lokasi</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">Penyahkodan dan penyuntingan audio</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">Mengira\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - Vokal</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">Gagal memotong rakaman</string>
+    <string name="editor_error_enhance_failed">Gagal meningkatkan rakaman</string>
+    <string name="editor_error_vocals_failed">Gagal mengasingkan vokal</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">Rakaman</string>
+    <string name="nav_folders">Folder</string>
+    <string name="nav_favorites">Kegemaran</string>
+    <string name="nav_settings">Tetapan</string>
+</resources>

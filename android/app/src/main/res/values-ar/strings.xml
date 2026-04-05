@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">التسجيلات</string>
+    <string name="tab_folders">المجلدات</string>
+    <string name="tab_favorites">المفضلة</string>
+    <string name="tab_settings">الإعدادات</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">يحتاج ClearVoice Recorder إلى إذن الميكروفون لتسجيل الصوت.</string>
+    <string name="permission_location_rationale">يستخدم ClearVoice Recorder موقعك لتسمية التسجيلات تلقائياً.</string>
+    <string name="permission_speech_rationale">يحتاج ClearVoice Recorder إلى التعرف على الكلام لنسخ التسجيلات.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">تسجيل</string>
+    <string name="recording_save_title">حفظ التسجيل</string>
+    <string name="recording_name_label">اسم التسجيل</string>
+    <string name="recording_save">حفظ</string>
+    <string name="recording_discard">تجاهل</string>
+    <string name="recording_close">إغلاق</string>
+    <string name="recording_stop">إيقاف</string>
+    <string name="recording_resume">استئناف</string>
+    <string name="recording_pause">إيقاف مؤقت</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">ستيريو</string>
+    <string name="recording_new_default_title">تسجيل جديد</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">رجوع</string>
+    <string name="playback_share">مشاركة</string>
+    <string name="playback_share_recording">مشاركة التسجيل</string>
+    <string name="playback_drag_trim">اسحب لتحديد نطاق القص</string>
+    <string name="playback_skip_back">تخطي 15 ثانية للخلف</string>
+    <string name="playback_pause">إيقاف مؤقت</string>
+    <string name="playback_play">تشغيل</string>
+    <string name="playback_skip_forward">تخطي 15 ثانية للأمام</string>
+    <string name="playback_decrease_speed">تقليل السرعة</string>
+    <string name="playback_increase_speed">زيادة السرعة</string>
+    <string name="playback_premium_feature">ميزة مميزة</string>
+    <string name="playback_skip_silence">تخطي الصمت</string>
+    <string name="playback_transcribing">جارٍ النسخ\u2026</string>
+    <string name="playback_retranscribe">إعادة النسخ</string>
+    <string name="playback_transcribe">نسخ</string>
+    <string name="playback_trimming">جارٍ القص\u2026</string>
+    <string name="playback_apply_trim">تطبيق القص</string>
+    <string name="playback_trim">قص</string>
+    <string name="playback_cancel_trim">إلغاء القص</string>
+    <string name="playback_transcription_failed">فشل النسخ</string>
+    <string name="playback_dismiss">إغلاق</string>
+    <string name="playback_transcript">النص المكتوب</string>
+    <string name="playback_transcript_copied">تم نسخ النص</string>
+    <string name="playback_copy_transcript">نسخ النص المكتوب</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">التسجيلات</string>
+    <string name="recordings_cancel_selection">إلغاء التحديد</string>
+    <string name="recordings_delete_selected">حذف المحدد</string>
+    <string name="recordings_sort">ترتيب</string>
+    <string name="recordings_record">تسجيل</string>
+    <string name="recordings_search_placeholder">البحث في التسجيلات</string>
+    <string name="recordings_clear">مسح</string>
+    <string name="recordings_no_results">لم يتم العثور على نتائج</string>
+    <string name="recordings_no_recordings">لا توجد تسجيلات</string>
+    <string name="recordings_try_different_search">جرب مصطلح بحث مختلف</string>
+    <string name="recordings_tap_to_start">اضغط على زر التسجيل للبدء</string>
+    <string name="recordings_delete">حذف</string>
+    <string name="recordings_selected_count">%1$d محدد</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">إعادة تسمية</string>
+    <string name="context_share">مشاركة</string>
+    <string name="context_move_to_folder">نقل إلى مجلد</string>
+    <string name="context_select">تحديد</string>
+    <string name="context_delete">حذف</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">إعادة تسمية التسجيل</string>
+    <string name="rename_label">الاسم</string>
+    <string name="rename_confirm">إعادة تسمية</string>
+    <string name="rename_cancel">إلغاء</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">التاريخ</string>
+    <string name="sort_name">الاسم</string>
+    <string name="sort_duration">المدة</string>
+    <string name="sort_size">الحجم</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">المجلدات</string>
+    <string name="folders_new_folder">مجلد جديد</string>
+    <string name="folders_folder_name_label">اسم المجلد</string>
+    <string name="folders_create">إنشاء</string>
+    <string name="folders_cancel">إلغاء</string>
+    <string name="folders_new_folder_fab">مجلد جديد</string>
+    <string name="folders_no_folders">لا توجد مجلدات</string>
+    <string name="folders_empty_message">أنشئ مجلدات لتنظيم تسجيلاتك</string>
+    <string name="folders_delete">حذف</string>
+    <string name="folders_limit_format">%1$d/%2$d مجلدات</string>
+    <string name="folders_recording_count_singular">%1$d تسجيل</string>
+    <string name="folders_recording_count_plural">%1$d تسجيلات</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">رجوع</string>
+    <string name="folder_detail_empty">مجلد فارغ</string>
+    <string name="folder_detail_empty_message">انقل التسجيلات هنا من قائمة التسجيلات</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">نقل إلى مجلد</string>
+    <string name="move_to_folder_no_folder">بدون مجلد</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">المفضلة</string>
+    <string name="favorites_search_placeholder">البحث في المفضلة</string>
+    <string name="favorites_clear">مسح</string>
+    <string name="favorites_no_results">لم يتم العثور على نتائج</string>
+    <string name="favorites_no_favorites">لا توجد مفضلة</string>
+    <string name="favorites_try_different_search">جرب مصطلح بحث مختلف</string>
+    <string name="favorites_empty_message">اضغط على القلب على تسجيل لإضافته هنا</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">إزالة من المفضلة</string>
+    <string name="recording_row_favorite">إضافة إلى المفضلة</string>
+    <string name="recording_row_stereo">ستيريو</string>
+    <string name="recording_row_transcript">نص مكتوب</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">المدة: %1$s</string>
+    <string name="editor_trim_range">نطاق القص</string>
+    <string name="editor_processing">جارٍ المعالجة\u2026</string>
+    <string name="editor_trim">قص</string>
+    <string name="editor_enhance">تحسين</string>
+    <string name="editor_vocals">أصوات</string>
+    <string name="editor_transcribing">جارٍ النسخ\u2026</string>
+    <string name="editor_transcribe">نسخ</string>
+    <string name="editor_transcription_failed">فشل النسخ</string>
+    <string name="editor_dismiss">إغلاق</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">النص المكتوب</string>
+    <string name="transcript_copied">تم نسخ النص</string>
+    <string name="transcript_copy">نسخ النص المكتوب</string>
+    <string name="transcript_share">مشاركة النص المكتوب</string>
+    <string name="transcript_share_chooser">مشاركة النص المكتوب</string>
+    <string name="transcript_empty">لا يوجد نص مكتوب متاح</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_go_premium">الترقية إلى Premium</string>
+    <string name="settings_premium_subtitle">تسجيلات غير محدودة، نسخ والمزيد</string>
+    <string name="settings_section_recording_defaults">إعدادات التسجيل الافتراضية</string>
+    <string name="settings_default_format">التنسيق الافتراضي</string>
+    <string name="settings_default_quality">الجودة الافتراضية</string>
+    <string name="settings_stereo_recording">تسجيل ستيريو</string>
+    <string name="settings_stereo_subtitle">التسجيل بالستيريو عند توفره</string>
+    <string name="settings_auto_tag_location">وسم الموقع تلقائياً</string>
+    <string name="settings_auto_tag_subtitle">تسمية التسجيلات تلقائياً حسب الموقع</string>
+    <string name="settings_section_storage">التخزين</string>
+    <string name="settings_recordings_storage">تخزين التسجيلات</string>
+    <string name="settings_section_about">حول</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">الإصدار 1.0.0</string>
+    <string name="settings_privacy_policy">سياسة الخصوصية</string>
+    <string name="settings_terms_of_service">شروط الخدمة</string>
+    <string name="settings_acknowledgments">شكر وتقدير</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">شكر وتقدير</string>
+    <string name="acknowledgments_back">رجوع</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">تم بناؤه باستخدام Jetpack Compose وMedia3 وRoom وVosk.</string>
+    <string name="acknowledgments_frameworks_title">الأطر المستخدمة</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">مجموعة أدوات واجهة المستخدم التصريحية الحديثة</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">محرك تشغيل الصوت</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">تخزين قاعدة بيانات SQLite</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">إطار حقن التبعيات</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">تخزين التفضيلات</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">التعرف على الكلام بدون إنترنت</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">التسمية المستندة إلى الموقع</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">فك تشفير الصوت وتحريره</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">جارٍ الحساب\u2026</string>
+    <string name="settings_zero_storage">0 بايت</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - أصوات</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">فشل قص التسجيل</string>
+    <string name="editor_error_enhance_failed">فشل تحسين التسجيل</string>
+    <string name="editor_error_vocals_failed">فشل فصل الأصوات</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">التسجيلات</string>
+    <string name="nav_folders">المجلدات</string>
+    <string name="nav_favorites">المفضلة</string>
+    <string name="nav_settings">الإعدادات</string>
+</resources>

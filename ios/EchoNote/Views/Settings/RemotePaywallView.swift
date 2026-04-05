@@ -28,7 +28,9 @@ struct RemotePaywallView: View {
                     didPurchaseOrRestore = true
                     await PremiumManager.shared.validateSubscriptionState()
                     await MainActor.run { dismiss() }
+                    return true
                 }
+                return false
             },
             onRestore: {
                 await store.restore()

@@ -19,11 +19,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.ui.components.WaveformView
 import com.kreativekoala.echonote.ui.settings.PaywallScreen
 import com.kreativekoala.echonote.util.DateFormatting
@@ -58,7 +60,10 @@ fun PlaybackScreen(
     val rec = recording ?: return
 
     if (showPaywall) {
-        PaywallScreen(onDismiss = { showPaywall = false })
+        PaywallScreen(onDismiss = {
+            showPaywall = false
+            viewModel.refreshPremiumStatus()
+        })
         return
     }
 
@@ -73,7 +78,7 @@ fun PlaybackScreen(
                         viewModel.dismiss()
                         onDismiss()
                     }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.playback_back))
                     }
                 },
                 actions = {
@@ -90,10 +95,10 @@ fun PlaybackScreen(
                                 putExtra(Intent.EXTRA_STREAM, uri)
                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                             }
-                            context.startActivity(Intent.createChooser(intent, "Share Recording"))
+                            context.startActivity(Intent.createChooser(intent, context.getString(R.string.playback_share_recording)))
                         } catch (_: Exception) { }
                     }) {
-                        Icon(Icons.Default.Share, contentDescription = "Share")
+                        Icon(Icons.Default.Share, contentDescription = stringResource(R.string.playback_share))
                     }
                 }
             )
@@ -140,7 +145,7 @@ fun PlaybackScreen(
             if (showTrimMode) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Drag to set trim range",
+                    text = stringResource(R.string.playback_drag_trim),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -208,7 +213,7 @@ fun PlaybackScreen(
                 IconButton(onClick = { viewModel.skipBackward() }) {
                     Icon(
                         Icons.Default.Replay,
-                        contentDescription = "Skip back 15s",
+                        contentDescription = stringResource(R.string.playback_skip_back),
                         modifier = Modifier.size(32.dp)
                     )
                 }
@@ -220,7 +225,7 @@ fun PlaybackScreen(
                 ) {
                     Icon(
                         if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                        contentDescription = if (isPlaying) "Pause" else "Play",
+                        contentDescription = if (isPlaying) stringResource(R.string.playback_pause) else stringResource(R.string.playback_play),
                         modifier = Modifier.size(36.dp)
                     )
                 }
@@ -228,7 +233,7 @@ fun PlaybackScreen(
                 IconButton(onClick = { viewModel.skipForward() }) {
                     Icon(
                         Icons.Default.Forward30,
-                        contentDescription = "Skip forward 15s",
+                        contentDescription = stringResource(R.string.playback_skip_forward),
                         modifier = Modifier.size(32.dp)
                     )
                 }
@@ -246,9 +251,9 @@ fun PlaybackScreen(
                         if (isPremium) viewModel.decreaseSpeed()
                         else showPaywall = true
                     },
-                    enabled = isPremium && playbackSpeed > 0.5f
+                    enabled = playbackSpeed > 0.5f
                 ) {
-                    Icon(Icons.Default.Remove, contentDescription = "Decrease speed")
+                    Icon(Icons.Default.Remove, contentDescription = stringResource(R.string.playback_decrease_speed))
                 }
                 Text(
                     text = String.format("%.2fx", playbackSpeed),
@@ -262,14 +267,14 @@ fun PlaybackScreen(
                         if (isPremium) viewModel.increaseSpeed()
                         else showPaywall = true
                     },
-                    enabled = isPremium && playbackSpeed < 2.0f
+                    enabled = playbackSpeed < 2.0f
                 ) {
-                    Icon(Icons.Default.Add, contentDescription = "Increase speed")
+                    Icon(Icons.Default.Add, contentDescription = stringResource(R.string.playback_increase_speed))
                 }
                 if (!isPremium) {
                     Icon(
                         Icons.Default.Lock,
-                        contentDescription = "Premium feature",
+                        contentDescription = stringResource(R.string.playback_premium_feature),
                         modifier = Modifier.size(16.dp),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                     )
@@ -290,7 +295,7 @@ fun PlaybackScreen(
                         if (isPremium) viewModel.toggleSkipSilence()
                         else showPaywall = true
                     },
-                    label = { Text("Skip Silence") },
+                    label = { Text(stringResource(R.string.playback_skip_silence)) },
                     leadingIcon = if (!isPremium) {
                         { Icon(Icons.Default.Lock, contentDescription = null, modifier = Modifier.size(16.dp)) }
                     } else if (skipSilence) {
@@ -311,7 +316,7 @@ fun PlaybackScreen(
                         if (isPremium) viewModel.transcribe()
                         else showPaywall = true
                     },
-                    enabled = isPremium && !isTranscribing,
+                    enabled = !isTranscribing,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(12.dp)
                 ) {
@@ -321,7 +326,7 @@ fun PlaybackScreen(
                             strokeWidth = 2.dp
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(transcriptionStatus ?: "Transcribing...")
+                        Text(transcriptionStatus ?: stringResource(R.string.playback_transcribing))
                     } else {
                         Icon(
                             if (!isPremium) Icons.Default.Lock else Icons.Default.TextFields,
@@ -329,7 +334,7 @@ fun PlaybackScreen(
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(if (transcriptionResult != null) "Re-transcribe" else "Transcribe")
+                        Text(if (transcriptionResult != null) stringResource(R.string.playback_retranscribe) else stringResource(R.string.playback_transcribe))
                     }
                 }
 
@@ -347,7 +352,7 @@ fun PlaybackScreen(
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Trimming...")
+                            Text(stringResource(R.string.playback_trimming))
                         } else {
                             Icon(
                                 Icons.Default.ContentCut,
@@ -355,7 +360,7 @@ fun PlaybackScreen(
                                 modifier = Modifier.size(18.dp)
                             )
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Apply Trim")
+                            Text(stringResource(R.string.playback_apply_trim))
                         }
                     }
                 } else {
@@ -364,7 +369,7 @@ fun PlaybackScreen(
                             if (isPremium) viewModel.toggleTrimMode()
                             else showPaywall = true
                         },
-                        enabled = isPremium,
+                        enabled = true,
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -374,7 +379,7 @@ fun PlaybackScreen(
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Trim")
+                        Text(stringResource(R.string.playback_trim))
                     }
                 }
             }
@@ -382,7 +387,7 @@ fun PlaybackScreen(
             if (showTrimMode) {
                 Spacer(modifier = Modifier.height(4.dp))
                 TextButton(onClick = { viewModel.toggleTrimMode() }) {
-                    Text("Cancel Trim")
+                    Text(stringResource(R.string.playback_cancel_trim))
                 }
             }
 
@@ -409,7 +414,7 @@ fun PlaybackScreen(
                         Spacer(modifier = Modifier.width(8.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Transcription Failed",
+                                text = stringResource(R.string.playback_transcription_failed),
                                 style = MaterialTheme.typography.labelMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onErrorContainer
@@ -427,7 +432,7 @@ fun PlaybackScreen(
                         ) {
                             Icon(
                                 Icons.Default.Close,
-                                contentDescription = "Dismiss",
+                                contentDescription = stringResource(R.string.playback_dismiss),
                                 modifier = Modifier.size(16.dp),
                                 tint = MaterialTheme.colorScheme.onErrorContainer
                             )
@@ -450,7 +455,7 @@ fun PlaybackScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Transcript",
+                                text = stringResource(R.string.playback_transcript),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold
                             )
@@ -459,13 +464,13 @@ fun PlaybackScreen(
                                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                     val clip = ClipData.newPlainText("Transcript", transcriptionResult)
                                     clipboard.setPrimaryClip(clip)
-                                    Toast.makeText(context, "Transcript copied", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, context.getString(R.string.playback_transcript_copied), Toast.LENGTH_SHORT).show()
                                 },
                                 modifier = Modifier.size(32.dp)
                             ) {
                                 Icon(
                                     Icons.Default.ContentCopy,
-                                    contentDescription = "Copy transcript",
+                                    contentDescription = stringResource(R.string.playback_copy_transcript),
                                     modifier = Modifier.size(18.dp),
                                     tint = MaterialTheme.colorScheme.primary
                                 )

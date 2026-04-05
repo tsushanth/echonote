@@ -11,8 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.util.DateFormatting
 import com.kreativekoala.echonote.util.TimeFormatting
@@ -108,14 +110,14 @@ fun RecordingRowItem(
                 )
                 if (recording.isStereo) {
                     Text(
-                        text = "Stereo",
+                        text = stringResource(R.string.recording_row_stereo),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.outline
                     )
                 }
                 if (recording.transcript != null) {
                     Text(
-                        text = "Transcript",
+                        text = stringResource(R.string.recording_row_transcript),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.outline
                     )
@@ -127,7 +129,7 @@ fun RecordingRowItem(
             Icon(
                 imageVector = if (recording.isFavorite) Icons.Default.Favorite
                 else Icons.Default.FavoriteBorder,
-                contentDescription = if (recording.isFavorite) "Unfavorite" else "Favorite",
+                contentDescription = if (recording.isFavorite) stringResource(R.string.recording_row_unfavorite) else stringResource(R.string.recording_row_favorite),
                 tint = if (recording.isFavorite) Color(0xFFFF3B30)
                 else MaterialTheme.colorScheme.onSurfaceVariant
             )

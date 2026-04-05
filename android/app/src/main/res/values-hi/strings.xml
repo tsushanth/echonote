@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">रिकॉर्डिंग</string>
+    <string name="tab_folders">फ़ोल्डर</string>
+    <string name="tab_favorites">पसंदीदा</string>
+    <string name="tab_settings">सेटिंग्स</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder को ऑडियो रिकॉर्ड करने के लिए माइक्रोफ़ोन एक्सेस की आवश्यकता है।</string>
+    <string name="permission_location_rationale">ClearVoice Recorder रिकॉर्डिंग को स्वचालित रूप से नाम देने के लिए आपकी लोकेशन का उपयोग करता है।</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder को रिकॉर्डिंग ट्रांसक्राइब करने के लिए स्पीच रिकग्निशन की आवश्यकता है।</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">रिकॉर्ड</string>
+    <string name="recording_save_title">रिकॉर्डिंग सहेजें</string>
+    <string name="recording_name_label">रिकॉर्डिंग का नाम</string>
+    <string name="recording_save">सहेजें</string>
+    <string name="recording_discard">हटाएं</string>
+    <string name="recording_close">बंद करें</string>
+    <string name="recording_stop">रोकें</string>
+    <string name="recording_resume">जारी रखें</string>
+    <string name="recording_pause">रुकें</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">स्टीरियो</string>
+    <string name="recording_new_default_title">नई रिकॉर्डिंग</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">वापस</string>
+    <string name="playback_share">शेयर करें</string>
+    <string name="playback_share_recording">रिकॉर्डिंग शेयर करें</string>
+    <string name="playback_drag_trim">ट्रिम रेंज सेट करने के लिए ड्रैग करें</string>
+    <string name="playback_skip_back">15 सेकंड पीछे</string>
+    <string name="playback_pause">रुकें</string>
+    <string name="playback_play">चलाएं</string>
+    <string name="playback_skip_forward">15 सेकंड आगे</string>
+    <string name="playback_decrease_speed">गति कम करें</string>
+    <string name="playback_increase_speed">गति बढ़ाएं</string>
+    <string name="playback_premium_feature">प्रीमियम सुविधा</string>
+    <string name="playback_skip_silence">मौन छोड़ें</string>
+    <string name="playback_transcribing">ट्रांसक्राइब हो रहा है\u2026</string>
+    <string name="playback_retranscribe">पुनः ट्रांसक्राइब करें</string>
+    <string name="playback_transcribe">ट्रांसक्राइब करें</string>
+    <string name="playback_trimming">ट्रिम हो रहा है\u2026</string>
+    <string name="playback_apply_trim">ट्रिम लागू करें</string>
+    <string name="playback_trim">ट्रिम</string>
+    <string name="playback_cancel_trim">ट्रिम रद्द करें</string>
+    <string name="playback_transcription_failed">ट्रांसक्रिप्शन विफल</string>
+    <string name="playback_dismiss">बंद करें</string>
+    <string name="playback_transcript">ट्रांसक्रिप्ट</string>
+    <string name="playback_transcript_copied">ट्रांसक्रिप्ट कॉपी हो गया</string>
+    <string name="playback_copy_transcript">ट्रांसक्रिप्ट कॉपी करें</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">रिकॉर्डिंग</string>
+    <string name="recordings_cancel_selection">चयन रद्द करें</string>
+    <string name="recordings_delete_selected">चयनित हटाएं</string>
+    <string name="recordings_sort">क्रमबद्ध करें</string>
+    <string name="recordings_record">रिकॉर्ड</string>
+    <string name="recordings_search_placeholder">रिकॉर्डिंग खोजें</string>
+    <string name="recordings_clear">साफ़ करें</string>
+    <string name="recordings_no_results">कोई परिणाम नहीं मिला</string>
+    <string name="recordings_no_recordings">कोई रिकॉर्डिंग नहीं</string>
+    <string name="recordings_try_different_search">कोई अलग खोज शब्द आज़माएं</string>
+    <string name="recordings_tap_to_start">शुरू करने के लिए रिकॉर्ड बटन पर टैप करें</string>
+    <string name="recordings_delete">हटाएं</string>
+    <string name="recordings_selected_count">%1$d चयनित</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">नाम बदलें</string>
+    <string name="context_share">शेयर करें</string>
+    <string name="context_move_to_folder">फ़ोल्डर में ले जाएं</string>
+    <string name="context_select">चुनें</string>
+    <string name="context_delete">हटाएं</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">रिकॉर्डिंग का नाम बदलें</string>
+    <string name="rename_label">नाम</string>
+    <string name="rename_confirm">नाम बदलें</string>
+    <string name="rename_cancel">रद्द करें</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">तारीख</string>
+    <string name="sort_name">नाम</string>
+    <string name="sort_duration">अवधि</string>
+    <string name="sort_size">आकार</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">फ़ोल्डर</string>
+    <string name="folders_new_folder">नया फ़ोल्डर</string>
+    <string name="folders_folder_name_label">फ़ोल्डर का नाम</string>
+    <string name="folders_create">बनाएं</string>
+    <string name="folders_cancel">रद्द करें</string>
+    <string name="folders_new_folder_fab">नया फ़ोल्डर</string>
+    <string name="folders_no_folders">कोई फ़ोल्डर नहीं</string>
+    <string name="folders_empty_message">अपनी रिकॉर्डिंग व्यवस्थित करने के लिए फ़ोल्डर बनाएं</string>
+    <string name="folders_delete">हटाएं</string>
+    <string name="folders_limit_format">%1$d/%2$d फ़ोल्डर</string>
+    <string name="folders_recording_count_singular">%1$d रिकॉर्डिंग</string>
+    <string name="folders_recording_count_plural">%1$d रिकॉर्डिंग</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">वापस</string>
+    <string name="folder_detail_empty">खाली फ़ोल्डर</string>
+    <string name="folder_detail_empty_message">रिकॉर्डिंग सूची से रिकॉर्डिंग यहां ले जाएं</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">फ़ोल्डर में ले जाएं</string>
+    <string name="move_to_folder_no_folder">कोई फ़ोल्डर नहीं</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">पसंदीदा</string>
+    <string name="favorites_search_placeholder">पसंदीदा खोजें</string>
+    <string name="favorites_clear">साफ़ करें</string>
+    <string name="favorites_no_results">कोई परिणाम नहीं मिला</string>
+    <string name="favorites_no_favorites">कोई पसंदीदा नहीं</string>
+    <string name="favorites_try_different_search">कोई अलग खोज शब्द आज़माएं</string>
+    <string name="favorites_empty_message">रिकॉर्डिंग पर दिल पर टैप करके उसे यहां जोड़ें</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">पसंदीदा से हटाएं</string>
+    <string name="recording_row_favorite">पसंदीदा</string>
+    <string name="recording_row_stereo">स्टीरियो</string>
+    <string name="recording_row_transcript">ट्रांसक्रिप्ट</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">अवधि: %1$s</string>
+    <string name="editor_trim_range">ट्रिम रेंज</string>
+    <string name="editor_processing">प्रोसेसिंग\u2026</string>
+    <string name="editor_trim">ट्रिम</string>
+    <string name="editor_enhance">बेहतर करें</string>
+    <string name="editor_vocals">वोकल</string>
+    <string name="editor_transcribing">ट्रांसक्राइब हो रहा है\u2026</string>
+    <string name="editor_transcribe">ट्रांसक्राइब करें</string>
+    <string name="editor_transcription_failed">ट्रांसक्रिप्शन विफल</string>
+    <string name="editor_dismiss">बंद करें</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">ट्रांसक्रिप्ट</string>
+    <string name="transcript_copied">ट्रांसक्रिप्ट कॉपी हो गया</string>
+    <string name="transcript_copy">ट्रांसक्रिप्ट कॉपी करें</string>
+    <string name="transcript_share">ट्रांसक्रिप्ट शेयर करें</string>
+    <string name="transcript_share_chooser">ट्रांसक्रिप्ट शेयर करें</string>
+    <string name="transcript_empty">कोई ट्रांसक्रिप्ट उपलब्ध नहीं</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_go_premium">प्रीमियम लें</string>
+    <string name="settings_premium_subtitle">असीमित रिकॉर्डिंग, ट्रांसक्रिप्शन और भी बहुत कुछ</string>
+    <string name="settings_section_recording_defaults">रिकॉर्डिंग डिफ़ॉल्ट</string>
+    <string name="settings_default_format">डिफ़ॉल्ट फ़ॉर्मैट</string>
+    <string name="settings_default_quality">डिफ़ॉल्ट गुणवत्ता</string>
+    <string name="settings_stereo_recording">स्टीरियो रिकॉर्डिंग</string>
+    <string name="settings_stereo_subtitle">उपलब्ध होने पर स्टीरियो में रिकॉर्ड करें</string>
+    <string name="settings_auto_tag_location">स्वचालित लोकेशन टैग</string>
+    <string name="settings_auto_tag_subtitle">लोकेशन के अनुसार रिकॉर्डिंग को स्वचालित रूप से नाम दें</string>
+    <string name="settings_section_storage">स्टोरेज</string>
+    <string name="settings_recordings_storage">रिकॉर्डिंग स्टोरेज</string>
+    <string name="settings_section_about">जानकारी</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">संस्करण 1.0.0</string>
+    <string name="settings_privacy_policy">गोपनीयता नीति</string>
+    <string name="settings_terms_of_service">सेवा की शर्तें</string>
+    <string name="settings_acknowledgments">आभार</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">आभार</string>
+    <string name="acknowledgments_back">वापस</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Jetpack Compose, Media3, Room और Vosk के साथ निर्मित।</string>
+    <string name="acknowledgments_frameworks_title">उपयोग किए गए फ़्रेमवर्क</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">आधुनिक डिक्लेरेटिव UI टूलकिट</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">ऑडियो प्लेबैक इंजन</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLite डेटाबेस पर्सिस्टेंस</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">डिपेंडेंसी इंजेक्शन फ़्रेमवर्क</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">प्राथमिकता पर्सिस्टेंस</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">ऑफ़लाइन स्पीच रिकग्निशन</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">लोकेशन-आधारित नामकरण</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">ऑडियो डिकोडिंग और संपादन</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">गणना हो रही है\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - वोकल</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">रिकॉर्डिंग ट्रिम करने में विफल</string>
+    <string name="editor_error_enhance_failed">रिकॉर्डिंग बेहतर करने में विफल</string>
+    <string name="editor_error_vocals_failed">वोकल अलग करने में विफल</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">रिकॉर्डिंग</string>
+    <string name="nav_folders">फ़ोल्डर</string>
+    <string name="nav_favorites">पसंदीदा</string>
+    <string name="nav_settings">सेटिंग्स</string>
+</resources>

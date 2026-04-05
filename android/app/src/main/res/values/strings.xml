@@ -1,11 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App -->
     <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
     <string name="tab_recordings">Recordings</string>
     <string name="tab_folders">Folders</string>
     <string name="tab_favorites">Favorites</string>
     <string name="tab_settings">Settings</string>
+
+    <!-- Permissions -->
     <string name="permission_microphone_rationale">ClearVoice Recorder needs microphone access to record audio.</string>
     <string name="permission_location_rationale">ClearVoice Recorder uses your location to automatically name recordings.</string>
     <string name="permission_speech_rationale">ClearVoice Recorder needs speech recognition to transcribe recordings.</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">Record</string>
+    <string name="recording_save_title">Save Recording</string>
+    <string name="recording_name_label">Recording Name</string>
+    <string name="recording_save">Save</string>
+    <string name="recording_discard">Discard</string>
+    <string name="recording_close">Close</string>
+    <string name="recording_stop">Stop</string>
+    <string name="recording_resume">Resume</string>
+    <string name="recording_pause">Pause</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">Stereo</string>
+    <string name="recording_new_default_title">New Recording</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">Back</string>
+    <string name="playback_share">Share</string>
+    <string name="playback_share_recording">Share Recording</string>
+    <string name="playback_drag_trim">Drag to set trim range</string>
+    <string name="playback_skip_back">Skip back 15s</string>
+    <string name="playback_pause">Pause</string>
+    <string name="playback_play">Play</string>
+    <string name="playback_skip_forward">Skip forward 15s</string>
+    <string name="playback_decrease_speed">Decrease speed</string>
+    <string name="playback_increase_speed">Increase speed</string>
+    <string name="playback_premium_feature">Premium feature</string>
+    <string name="playback_skip_silence">Skip Silence</string>
+    <string name="playback_transcribing">Transcribing\u2026</string>
+    <string name="playback_retranscribe">Re-transcribe</string>
+    <string name="playback_transcribe">Transcribe</string>
+    <string name="playback_trimming">Trimming\u2026</string>
+    <string name="playback_apply_trim">Apply Trim</string>
+    <string name="playback_trim">Trim</string>
+    <string name="playback_cancel_trim">Cancel Trim</string>
+    <string name="playback_transcription_failed">Transcription Failed</string>
+    <string name="playback_dismiss">Dismiss</string>
+    <string name="playback_transcript">Transcript</string>
+    <string name="playback_transcript_copied">Transcript copied</string>
+    <string name="playback_copy_transcript">Copy transcript</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">Recordings</string>
+    <string name="recordings_cancel_selection">Cancel selection</string>
+    <string name="recordings_delete_selected">Delete selected</string>
+    <string name="recordings_sort">Sort</string>
+    <string name="recordings_record">Record</string>
+    <string name="recordings_search_placeholder">Search recordings</string>
+    <string name="recordings_clear">Clear</string>
+    <string name="recordings_no_results">No results found</string>
+    <string name="recordings_no_recordings">No Recordings</string>
+    <string name="recordings_try_different_search">Try a different search term</string>
+    <string name="recordings_tap_to_start">Tap the record button to get started</string>
+    <string name="recordings_delete">Delete</string>
+    <string name="recordings_selected_count">%1$d selected</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">Rename</string>
+    <string name="context_share">Share</string>
+    <string name="context_move_to_folder">Move to Folder</string>
+    <string name="context_select">Select</string>
+    <string name="context_delete">Delete</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">Rename Recording</string>
+    <string name="rename_label">Name</string>
+    <string name="rename_confirm">Rename</string>
+    <string name="rename_cancel">Cancel</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">Date</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_duration">Duration</string>
+    <string name="sort_size">Size</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">Folders</string>
+    <string name="folders_new_folder">New Folder</string>
+    <string name="folders_folder_name_label">Folder Name</string>
+    <string name="folders_create">Create</string>
+    <string name="folders_cancel">Cancel</string>
+    <string name="folders_new_folder_fab">New Folder</string>
+    <string name="folders_no_folders">No Folders</string>
+    <string name="folders_empty_message">Create folders to organize your recordings</string>
+    <string name="folders_delete">Delete</string>
+    <string name="folders_limit_format">%1$d/%2$d folders</string>
+    <string name="folders_recording_count_singular">%1$d recording</string>
+    <string name="folders_recording_count_plural">%1$d recordings</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">Back</string>
+    <string name="folder_detail_empty">Empty Folder</string>
+    <string name="folder_detail_empty_message">Move recordings here from the recordings list</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">Move to Folder</string>
+    <string name="move_to_folder_no_folder">No Folder</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_search_placeholder">Search favorites</string>
+    <string name="favorites_clear">Clear</string>
+    <string name="favorites_no_results">No results found</string>
+    <string name="favorites_no_favorites">No Favorites</string>
+    <string name="favorites_try_different_search">Try a different search term</string>
+    <string name="favorites_empty_message">Tap the heart on a recording to add it here</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">Unfavorite</string>
+    <string name="recording_row_favorite">Favorite</string>
+    <string name="recording_row_stereo">Stereo</string>
+    <string name="recording_row_transcript">Transcript</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">Duration: %1$s</string>
+    <string name="editor_trim_range">Trim Range</string>
+    <string name="editor_processing">Processing\u2026</string>
+    <string name="editor_trim">Trim</string>
+    <string name="editor_enhance">Enhance</string>
+    <string name="editor_vocals">Vocals</string>
+    <string name="editor_transcribing">Transcribing\u2026</string>
+    <string name="editor_transcribe">Transcribe</string>
+    <string name="editor_transcription_failed">Transcription Failed</string>
+    <string name="editor_dismiss">Dismiss</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">Transcript</string>
+    <string name="transcript_copied">Transcript copied</string>
+    <string name="transcript_copy">Copy transcript</string>
+    <string name="transcript_share">Share transcript</string>
+    <string name="transcript_share_chooser">Share Transcript</string>
+    <string name="transcript_empty">No transcript available</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_go_premium">Go Premium</string>
+    <string name="settings_premium_subtitle">Unlimited recordings, transcription &amp; more</string>
+    <string name="settings_section_recording_defaults">Recording Defaults</string>
+    <string name="settings_default_format">Default Format</string>
+    <string name="settings_default_quality">Default Quality</string>
+    <string name="settings_stereo_recording">Stereo Recording</string>
+    <string name="settings_stereo_subtitle">Record in stereo when available</string>
+    <string name="settings_auto_tag_location">Auto-tag Location</string>
+    <string name="settings_auto_tag_subtitle">Automatically name recordings by location</string>
+    <string name="settings_section_storage">Storage</string>
+    <string name="settings_recordings_storage">Recordings Storage</string>
+    <string name="settings_section_about">About</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">Version 1.0.0</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_terms_of_service">Terms of Service</string>
+    <string name="settings_acknowledgments">Acknowledgments</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">Acknowledgments</string>
+    <string name="acknowledgments_back">Back</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Built with Jetpack Compose, Media3, Room, and Vosk.</string>
+    <string name="acknowledgments_frameworks_title">Frameworks Used</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">Modern declarative UI toolkit</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">Audio playback engine</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLite database persistence</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">Dependency injection framework</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">Preferences persistence</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">Offline speech recognition</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">Location-based naming</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">Audio decoding and editing</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">Calculating\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - Vocals</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">Failed to trim recording</string>
+    <string name="editor_error_enhance_failed">Failed to enhance recording</string>
+    <string name="editor_error_vocals_failed">Failed to separate vocals</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">Recordings</string>
+    <string name="nav_folders">Folders</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_settings">Settings</string>
 </resources>

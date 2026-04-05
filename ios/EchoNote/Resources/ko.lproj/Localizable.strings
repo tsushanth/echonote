@@ -1,0 +1,310 @@
+/* Localizable.strings - Korean (ko)
+   ClearVoice Recorder iOS App */
+
+/* ========================
+   MARK: - Tab Bar
+   ======================== */
+"Recordings" = "녹음";
+"Folders" = "폴더";
+"Favorites" = "즐겨찾기";
+"Settings" = "설정";
+
+/* ========================
+   MARK: - Recording View
+   ======================== */
+"Record" = "녹음";
+"Cancel" = "취소";
+"Close" = "닫기";
+"Error" = "오류";
+"OK" = "확인";
+"An unknown error occurred." = "알 수 없는 오류가 발생했습니다.";
+"Format" = "형식";
+"Quality" = "품질";
+"PRO" = "PRO";
+"Stereo Recording" = "스테레오 녹음";
+
+/* ========================
+   MARK: - Save Recording Sheet
+   ======================== */
+"Recording Name" = "녹음 이름";
+"Enter name (or use location)" = "이름 입력 (또는 위치 사용)";
+"Save Recording" = "녹음 저장";
+"Discard" = "삭제";
+
+/* ========================
+   MARK: - Recordings List
+   ======================== */
+"Search recordings" = "녹음 검색";
+"Done" = "완료";
+"Select" = "선택";
+"No Recordings" = "녹음 없음";
+"Tap the record button to create your first recording." = "녹음 버튼을 탭하여 첫 번째 녹음을 만드세요.";
+"Rename Recording" = "녹음 이름 변경";
+"Name" = "이름";
+"Save" = "저장";
+"Delete Recording?" = "녹음을 삭제하시겠습니까?";
+"Delete" = "삭제";
+"This action cannot be undone." = "이 작업은 취소할 수 없습니다.";
+"Unfavorite" = "즐겨찾기 해제";
+"Favorite" = "즐겨찾기";
+"Rename" = "이름 변경";
+"Play" = "재생";
+"Remove from Favorites" = "즐겨찾기에서 제거";
+"Add to Favorites" = "즐겨찾기에 추가";
+"Edit" = "편집";
+"Move to Folder" = "폴더로 이동";
+"Share" = "공유";
+"Deselect All" = "모두 선택 해제";
+"Select All" = "모두 선택";
+"%lld selected" = "%lld개 선택됨";
+
+/* ========================
+   MARK: - Playback View
+   ======================== */
+"Now Playing" = "재생 중";
+"Skip Silence" = "무음 건너뛰기";
+"Transcript" = "텍스트 변환";
+
+/* ========================
+   MARK: - Folders View
+   ======================== */
+"New Folder" = "새 폴더";
+"Folder name" = "폴더 이름";
+"Create" = "생성";
+"Rename Folder" = "폴더 이름 변경";
+"Delete Folder?" = "폴더를 삭제하시겠습니까?";
+"Recordings in this folder will not be deleted." = "이 폴더의 녹음은 삭제되지 않습니다.";
+"No Folders" = "폴더 없음";
+"Create folders to organize your recordings." = "폴더를 만들어 녹음을 정리하세요.";
+"Create Folder" = "폴더 생성";
+"Upgrade" = "업그레이드";
+"%lld/%lld folders used" = "%lld/%lld 폴더 사용 중";
+
+/* ========================
+   MARK: - Folder Detail View
+   ======================== */
+"Empty Folder" = "빈 폴더";
+"Move recordings here to organize them." = "녹음을 여기로 이동하여 정리하세요.";
+"Remove" = "제거";
+"Search in folder" = "폴더에서 검색";
+
+/* ========================
+   MARK: - Favorites View
+   ======================== */
+"No Favorites" = "즐겨찾기 없음";
+"Mark recordings as favorites to quickly access them here." = "녹음을 즐겨찾기로 표시하여 빠르게 접근하세요.";
+"Search favorites" = "즐겨찾기 검색";
+
+/* ========================
+   MARK: - Move to Folder View
+   ======================== */
+"No Folder" = "폴더 없음";
+"Create New Folder" = "새 폴더 만들기";
+
+/* ========================
+   MARK: - Editor View
+   ======================== */
+"Edit Recording" = "녹음 편집";
+"Beta Feature" = "베타 기능";
+"Try It" = "사용해보기";
+"Vocal separation is currently in beta. The feature works but uses an untrained AI model, so results may not be accurate. We're working on improving this in future updates!" = "보컬 분리는 현재 베타 단계입니다. 기능은 작동하지만 훈련되지 않은 AI 모델을 사용하므로 결과가 정확하지 않을 수 있습니다. 향후 업데이트에서 개선할 예정입니다!";
+"Trim Range" = "자르기 범위";
+"Start" = "시작";
+"End" = "끝";
+"Preview" = "미리보기";
+"Stop" = "정지";
+"Actions" = "작업";
+"Trim Recording" = "녹음 자르기";
+"Save As..." = "다른 이름으로 저장...";
+"Enhance Recording" = "녹음 향상";
+"Generate Transcript" = "텍스트 변환 생성";
+"Remove Silence" = "무음 제거";
+"Export to WAV" = "WAV로 내보내기";
+"Separate Vocals" = "보컬 분리";
+"BETA" = "베타";
+"Processing..." = "처리 중...";
+
+/* ========================
+   MARK: - Save As Sheet
+   ======================== */
+"New Name" = "새 이름";
+"Recording name" = "녹음 이름";
+"Save Copy" = "사본 저장";
+"Save As" = "다른 이름으로 저장";
+
+/* ========================
+   MARK: - Transcript View
+   ======================== */
+"Cleaned" = "정리됨";
+"Summary" = "요약";
+"No Transcript Available" = "사용 가능한 텍스트 변환 없음";
+"Generate a transcript from your recording." = "녹음에서 텍스트 변환을 생성합니다.";
+"Copy" = "복사";
+"Downloading transcription model..." = "텍스트 변환 모델 다운로드 중...";
+"Transcribing audio..." = "오디오 텍스트 변환 중...";
+"Processing with AI..." = "AI로 처리 중...";
+"Clean Transcript" = "텍스트 정리";
+"Remove filler words and fix grammar." = "불필요한 단어를 제거하고 문법을 수정합니다.";
+"Generate Summary" = "요약 생성";
+"Create a concise summary of this recording." = "이 녹음의 간결한 요약을 만듭니다.";
+"Extract Action Items" = "실행 항목 추출";
+"Find action items mentioned in this recording." = "이 녹음에서 언급된 실행 항목을 찾습니다.";
+
+/* ========================
+   MARK: - Recording Row View
+   ======================== */
+"Stereo" = "스테레오";
+"Layered" = "레이어";
+
+/* ========================
+   MARK: - Settings View
+   ======================== */
+"Premium" = "프리미엄";
+"Lifetime Premium" = "평생 프리미엄";
+"Premium Active" = "프리미엄 활성";
+"%lld days remaining" = "%lld일 남음";
+"Manage Subscription" = "구독 관리";
+"Upgrade to Premium" = "프리미엄으로 업그레이드";
+"Unlock all features" = "모든 기능 잠금 해제";
+"Recording Defaults" = "녹음 기본 설정";
+"Audio Format" = "오디오 형식";
+"Audio Quality" = "오디오 품질";
+"Auto Location Naming" = "자동 위치 이름 지정";
+"Transcription" = "텍스트 변환";
+"Engine" = "엔진";
+"Language" = "언어";
+"Storage" = "저장공간";
+"About" = "정보";
+"Version" = "버전";
+"Build" = "빌드";
+"Acknowledgments" = "감사의 글";
+"Terms of Use (EULA)" = "이용 약관 (EULA)";
+"Privacy Policy" = "개인정보 처리방침";
+"Recordings Storage" = "녹음 저장공간";
+"Calculating..." = "계산 중...";
+
+/* ========================
+   MARK: - Acknowledgments View
+   ======================== */
+"EchoNote" = "EchoNote";
+"Built with SwiftUI, AVFoundation, and Speech framework." = "SwiftUI, AVFoundation 및 Speech 프레임워크로 제작.";
+"Frameworks Used" = "사용된 프레임워크";
+"Modern declarative UI framework" = "현대적인 선언형 UI 프레임워크";
+"Data persistence framework" = "데이터 지속성 프레임워크";
+"Audio recording and playback" = "오디오 녹음 및 재생";
+"Speech recognition and transcription" = "음성 인식 및 텍스트 변환";
+"Location-based naming" = "위치 기반 이름 지정";
+
+/* ========================
+   MARK: - Paywall View
+   ======================== */
+"Unlock Premium" = "프리미엄 잠금 해제";
+"Get access to all features and enhance your recording experience" = "모든 기능에 접근하고 녹음 경험을 향상시키세요";
+"Premium Features" = "프리미엄 기능";
+"Choose Your Plan" = "플랜 선택";
+"Unable to load products" = "제품을 불러올 수 없습니다";
+"Please check your internet connection and try again." = "인터넷 연결을 확인하고 다시 시도하세요.";
+"Retry" = "다시 시도";
+"Subscribe Now" = "지금 구독";
+"Restore Purchases" = "구매 복원";
+"Your purchases have been restored successfully!" = "구매가 성공적으로 복원되었습니다!";
+"No previous purchases found." = "이전 구매를 찾을 수 없습니다.";
+"Your purchase is pending approval. It will be activated once approved." = "구매가 승인 대기 중입니다. 승인되면 활성화됩니다.";
+"Subscription automatically renews unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in Settings." = "구독은 현재 기간 종료 최소 24시간 전에 취소하지 않으면 자동 갱신됩니다. 설정에서 구독을 관리하세요.";
+"Terms of Service" = "서비스 약관";
+"Best Value" = "최고의 가치";
+"Popular" = "인기";
+
+/* ========================
+   MARK: - Premium Feature Names
+   ======================== */
+"Audio Enhancement" = "오디오 향상";
+"Vocal Layer Separation (Beta)" = "보컬 레이어 분리 (베타)";
+"High Quality Recording" = "고품질 녹음";
+"WAV Format Export" = "WAV 형식 내보내기";
+"Unlimited Recordings" = "무제한 녹음";
+"Cloud Backup" = "클라우드 백업";
+"Unlimited Folders" = "무제한 폴더";
+"Unlimited Bookmarks" = "무제한 북마크";
+"Multilingual Transcription" = "다국어 텍스트 변환";
+"AI Transcript Intelligence" = "AI 텍스트 변환 인텔리전스";
+
+/* ========================
+   MARK: - Premium Feature Descriptions
+   ======================== */
+"AI-powered noise reduction and audio clarity" = "AI 기반 노이즈 감소 및 오디오 선명도";
+"Separate vocals from background (Beta feature)" = "배경에서 보컬 분리 (베타 기능)";
+"Convert speech to text with high accuracy" = "높은 정확도로 음성을 텍스트로 변환";
+"Record in maximum quality up to 48kHz" = "최대 48kHz의 최고 품질로 녹음";
+"Capture immersive stereo audio" = "몰입감 있는 스테레오 오디오 캡처";
+"Export in uncompressed WAV format" = "비압축 WAV 형식으로 내보내기";
+"No limits on recording storage" = "녹음 저장 제한 없음";
+"Automatic backup to iCloud" = "iCloud 자동 백업";
+"Organize with unlimited folders" = "무제한 폴더로 정리";
+"Add unlimited bookmarks to recordings" = "녹음에 무제한 북마크 추가";
+"Transcribe in 90+ languages with WhisperKit" = "WhisperKit으로 90개 이상 언어 텍스트 변환";
+"Clean up, summarize, and extract action items from transcripts" = "텍스트 변환 정리, 요약 및 실행 항목 추출";
+
+/* ========================
+   MARK: - Audio Format & Quality
+   ======================== */
+"Uncompressed (WAV)" = "비압축 (WAV)";
+"Compressed (M4A)" = "압축 (M4A)";
+"Low" = "낮음";
+"Medium" = "보통";
+"High" = "높음";
+"Maximum" = "최고";
+
+/* ========================
+   MARK: - Transcription Engine
+   ======================== */
+"Apple Speech" = "Apple Speech";
+"WhisperKit (Multilingual)" = "WhisperKit (다국어)";
+"Auto-Detect" = "자동 감지";
+
+/* ========================
+   MARK: - Subscription Tiers
+   ======================== */
+"Free" = "무료";
+"Lifetime" = "평생";
+
+/* ========================
+   MARK: - Sort Options
+   ======================== */
+"Date (Newest)" = "날짜 (최신순)";
+"Date (Oldest)" = "날짜 (오래된 순)";
+"Title (A-Z)" = "제목 (A-Z)";
+"Title (Z-A)" = "제목 (Z-A)";
+"Duration (Longest)" = "길이 (긴 순)";
+"Duration (Shortest)" = "길이 (짧은 순)";
+
+/* ========================
+   MARK: - Subscription Period Labels
+   ======================== */
+"Weekly" = "주간";
+"Monthly" = "월간";
+"Yearly" = "연간";
+
+/* ========================
+   MARK: - StoreKit Error Messages
+   ======================== */
+"Network connection unavailable. Please check your internet connection and try again." = "네트워크 연결을 사용할 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요.";
+"There was a problem with the App Store. Please try again later." = "App Store에 문제가 발생했습니다. 나중에 다시 시도하세요.";
+
+/* ========================
+   MARK: - Transcription Errors
+   ======================== */
+"Speech recognition permission not granted." = "음성 인식 권한이 부여되지 않았습니다.";
+"Speech recognizer is not available." = "음성 인식기를 사용할 수 없습니다.";
+"No transcription result available." = "사용 가능한 텍스트 변환 결과가 없습니다.";
+"Failed to download the transcription model. Please check your internet connection and try again." = "텍스트 변환 모델 다운로드에 실패했습니다. 인터넷 연결을 확인하고 다시 시도하세요.";
+"Not enough storage to download the transcription model. Please free up space and try again." = "텍스트 변환 모델을 다운로드할 저장 공간이 부족합니다. 공간을 확보하고 다시 시도하세요.";
+"The transcription engine is still loading. Please wait and try again." = "텍스트 변환 엔진이 아직 로딩 중입니다. 잠시 기다린 후 다시 시도하세요.";
+
+/* ========================
+   MARK: - Recording Count (Pluralized)
+   ======================== */
+"%lld Recording" = "녹음 %lld개";
+"%lld Recordings" = "녹음 %lld개";
+"%lld recording" = "녹음 %lld개";
+"%lld recordings" = "녹음 %lld개";

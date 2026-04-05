@@ -1,0 +1,310 @@
+/* Localizable.strings - Japanese (ja)
+   ClearVoice Recorder iOS App */
+
+/* ========================
+   MARK: - Tab Bar
+   ======================== */
+"Recordings" = "録音";
+"Folders" = "フォルダ";
+"Favorites" = "お気に入り";
+"Settings" = "設定";
+
+/* ========================
+   MARK: - Recording View
+   ======================== */
+"Record" = "録音";
+"Cancel" = "キャンセル";
+"Close" = "閉じる";
+"Error" = "エラー";
+"OK" = "OK";
+"An unknown error occurred." = "不明なエラーが発生しました。";
+"Format" = "フォーマット";
+"Quality" = "品質";
+"PRO" = "PRO";
+"Stereo Recording" = "ステレオ録音";
+
+/* ========================
+   MARK: - Save Recording Sheet
+   ======================== */
+"Recording Name" = "録音名";
+"Enter name (or use location)" = "名前を入力（または位置情報を使用）";
+"Save Recording" = "録音を保存";
+"Discard" = "破棄";
+
+/* ========================
+   MARK: - Recordings List
+   ======================== */
+"Search recordings" = "録音を検索";
+"Done" = "完了";
+"Select" = "選択";
+"No Recordings" = "録音なし";
+"Tap the record button to create your first recording." = "録音ボタンをタップして最初の録音を作成しましょう。";
+"Rename Recording" = "録音の名前を変更";
+"Name" = "名前";
+"Save" = "保存";
+"Delete Recording?" = "録音を削除しますか？";
+"Delete" = "削除";
+"This action cannot be undone." = "この操作は取り消せません。";
+"Unfavorite" = "お気に入り解除";
+"Favorite" = "お気に入り";
+"Rename" = "名前変更";
+"Play" = "再生";
+"Remove from Favorites" = "お気に入りから削除";
+"Add to Favorites" = "お気に入りに追加";
+"Edit" = "編集";
+"Move to Folder" = "フォルダに移動";
+"Share" = "共有";
+"Deselect All" = "すべて選択解除";
+"Select All" = "すべて選択";
+"%lld selected" = "%lld件選択中";
+
+/* ========================
+   MARK: - Playback View
+   ======================== */
+"Now Playing" = "再生中";
+"Skip Silence" = "無音をスキップ";
+"Transcript" = "文字起こし";
+
+/* ========================
+   MARK: - Folders View
+   ======================== */
+"New Folder" = "新規フォルダ";
+"Folder name" = "フォルダ名";
+"Create" = "作成";
+"Rename Folder" = "フォルダ名を変更";
+"Delete Folder?" = "フォルダを削除しますか？";
+"Recordings in this folder will not be deleted." = "このフォルダ内の録音は削除されません。";
+"No Folders" = "フォルダなし";
+"Create folders to organize your recordings." = "フォルダを作成して録音を整理しましょう。";
+"Create Folder" = "フォルダを作成";
+"Upgrade" = "アップグレード";
+"%lld/%lld folders used" = "%lld/%lldフォルダ使用中";
+
+/* ========================
+   MARK: - Folder Detail View
+   ======================== */
+"Empty Folder" = "空のフォルダ";
+"Move recordings here to organize them." = "録音をここに移動して整理しましょう。";
+"Remove" = "削除";
+"Search in folder" = "フォルダ内を検索";
+
+/* ========================
+   MARK: - Favorites View
+   ======================== */
+"No Favorites" = "お気に入りなし";
+"Mark recordings as favorites to quickly access them here." = "録音をお気に入りに登録して素早くアクセスしましょう。";
+"Search favorites" = "お気に入りを検索";
+
+/* ========================
+   MARK: - Move to Folder View
+   ======================== */
+"No Folder" = "フォルダなし";
+"Create New Folder" = "新規フォルダを作成";
+
+/* ========================
+   MARK: - Editor View
+   ======================== */
+"Edit Recording" = "録音を編集";
+"Beta Feature" = "ベータ機能";
+"Try It" = "試す";
+"Vocal separation is currently in beta. The feature works but uses an untrained AI model, so results may not be accurate. We're working on improving this in future updates!" = "ボーカル分離は現在ベータ版です。機能は動作しますが、未訓練のAIモデルを使用しているため、結果が正確でない場合があります。今後のアップデートで改善に取り組んでいます！";
+"Trim Range" = "トリミング範囲";
+"Start" = "開始";
+"End" = "終了";
+"Preview" = "プレビュー";
+"Stop" = "停止";
+"Actions" = "アクション";
+"Trim Recording" = "録音をトリミング";
+"Save As..." = "名前を付けて保存...";
+"Enhance Recording" = "録音を向上";
+"Generate Transcript" = "文字起こしを生成";
+"Remove Silence" = "無音を削除";
+"Export to WAV" = "WAVにエクスポート";
+"Separate Vocals" = "ボーカルを分離";
+"BETA" = "ベータ";
+"Processing..." = "処理中...";
+
+/* ========================
+   MARK: - Save As Sheet
+   ======================== */
+"New Name" = "新しい名前";
+"Recording name" = "録音名";
+"Save Copy" = "コピーを保存";
+"Save As" = "名前を付けて保存";
+
+/* ========================
+   MARK: - Transcript View
+   ======================== */
+"Cleaned" = "修正済み";
+"Summary" = "要約";
+"No Transcript Available" = "文字起こしがありません";
+"Generate a transcript from your recording." = "録音から文字起こしを生成します。";
+"Copy" = "コピー";
+"Downloading transcription model..." = "文字起こしモデルをダウンロード中...";
+"Transcribing audio..." = "音声を文字起こし中...";
+"Processing with AI..." = "AIで処理中...";
+"Clean Transcript" = "文字起こしを修正";
+"Remove filler words and fix grammar." = "フィラーワードを削除し文法を修正します。";
+"Generate Summary" = "要約を生成";
+"Create a concise summary of this recording." = "この録音の簡潔な要約を作成します。";
+"Extract Action Items" = "アクション項目を抽出";
+"Find action items mentioned in this recording." = "この録音で言及されたアクション項目を見つけます。";
+
+/* ========================
+   MARK: - Recording Row View
+   ======================== */
+"Stereo" = "ステレオ";
+"Layered" = "レイヤー";
+
+/* ========================
+   MARK: - Settings View
+   ======================== */
+"Premium" = "プレミアム";
+"Lifetime Premium" = "永久プレミアム";
+"Premium Active" = "プレミアム有効";
+"%lld days remaining" = "残り%lld日";
+"Manage Subscription" = "サブスクリプションを管理";
+"Upgrade to Premium" = "プレミアムにアップグレード";
+"Unlock all features" = "すべての機能をアンロック";
+"Recording Defaults" = "録音のデフォルト設定";
+"Audio Format" = "オーディオフォーマット";
+"Audio Quality" = "オーディオ品質";
+"Auto Location Naming" = "位置情報自動命名";
+"Transcription" = "文字起こし";
+"Engine" = "エンジン";
+"Language" = "言語";
+"Storage" = "ストレージ";
+"About" = "このアプリについて";
+"Version" = "バージョン";
+"Build" = "ビルド";
+"Acknowledgments" = "謝辞";
+"Terms of Use (EULA)" = "利用規約（EULA）";
+"Privacy Policy" = "プライバシーポリシー";
+"Recordings Storage" = "録音ストレージ";
+"Calculating..." = "計算中...";
+
+/* ========================
+   MARK: - Acknowledgments View
+   ======================== */
+"EchoNote" = "EchoNote";
+"Built with SwiftUI, AVFoundation, and Speech framework." = "SwiftUI、AVFoundation、Speechフレームワークで構築。";
+"Frameworks Used" = "使用フレームワーク";
+"Modern declarative UI framework" = "モダンな宣言型UIフレームワーク";
+"Data persistence framework" = "データ永続化フレームワーク";
+"Audio recording and playback" = "オーディオ録音と再生";
+"Speech recognition and transcription" = "音声認識と文字起こし";
+"Location-based naming" = "位置情報に基づく命名";
+
+/* ========================
+   MARK: - Paywall View
+   ======================== */
+"Unlock Premium" = "プレミアムをアンロック";
+"Get access to all features and enhance your recording experience" = "すべての機能にアクセスし、録音体験を向上させましょう";
+"Premium Features" = "プレミアム機能";
+"Choose Your Plan" = "プランを選択";
+"Unable to load products" = "製品を読み込めません";
+"Please check your internet connection and try again." = "インターネット接続を確認して再度お試しください。";
+"Retry" = "再試行";
+"Subscribe Now" = "今すぐ登録";
+"Restore Purchases" = "購入を復元";
+"Your purchases have been restored successfully!" = "購入が正常に復元されました！";
+"No previous purchases found." = "以前の購入が見つかりません。";
+"Your purchase is pending approval. It will be activated once approved." = "購入は承認待ちです。承認されると有効になります。";
+"Subscription automatically renews unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in Settings." = "サブスクリプションは現在の期間終了の少なくとも24時間前にキャンセルしない限り自動更新されます。設定でサブスクリプションを管理できます。";
+"Terms of Service" = "利用規約";
+"Best Value" = "最もお得";
+"Popular" = "人気";
+
+/* ========================
+   MARK: - Premium Feature Names
+   ======================== */
+"Audio Enhancement" = "オーディオ強化";
+"Vocal Layer Separation (Beta)" = "ボーカルレイヤー分離（ベータ）";
+"High Quality Recording" = "高品質録音";
+"WAV Format Export" = "WAVフォーマットエクスポート";
+"Unlimited Recordings" = "無制限録音";
+"Cloud Backup" = "クラウドバックアップ";
+"Unlimited Folders" = "無制限フォルダ";
+"Unlimited Bookmarks" = "無制限ブックマーク";
+"Multilingual Transcription" = "多言語文字起こし";
+"AI Transcript Intelligence" = "AI文字起こしインテリジェンス";
+
+/* ========================
+   MARK: - Premium Feature Descriptions
+   ======================== */
+"AI-powered noise reduction and audio clarity" = "AI搭載のノイズ低減とオーディオクリアリティ";
+"Separate vocals from background (Beta feature)" = "背景からボーカルを分離（ベータ機能）";
+"Convert speech to text with high accuracy" = "高精度で音声をテキストに変換";
+"Record in maximum quality up to 48kHz" = "最大48kHzの最高品質で録音";
+"Capture immersive stereo audio" = "没入感のあるステレオオーディオをキャプチャ";
+"Export in uncompressed WAV format" = "非圧縮WAVフォーマットでエクスポート";
+"No limits on recording storage" = "録音ストレージの制限なし";
+"Automatic backup to iCloud" = "iCloudへの自動バックアップ";
+"Organize with unlimited folders" = "無制限のフォルダで整理";
+"Add unlimited bookmarks to recordings" = "録音に無制限のブックマークを追加";
+"Transcribe in 90+ languages with WhisperKit" = "WhisperKitで90以上の言語を文字起こし";
+"Clean up, summarize, and extract action items from transcripts" = "文字起こしの修正、要約、アクション項目の抽出";
+
+/* ========================
+   MARK: - Audio Format & Quality
+   ======================== */
+"Uncompressed (WAV)" = "非圧縮 (WAV)";
+"Compressed (M4A)" = "圧縮 (M4A)";
+"Low" = "低";
+"Medium" = "中";
+"High" = "高";
+"Maximum" = "最高";
+
+/* ========================
+   MARK: - Transcription Engine
+   ======================== */
+"Apple Speech" = "Apple Speech";
+"WhisperKit (Multilingual)" = "WhisperKit（多言語）";
+"Auto-Detect" = "自動検出";
+
+/* ========================
+   MARK: - Subscription Tiers
+   ======================== */
+"Free" = "無料";
+"Lifetime" = "永久";
+
+/* ========================
+   MARK: - Sort Options
+   ======================== */
+"Date (Newest)" = "日付（新しい順）";
+"Date (Oldest)" = "日付（古い順）";
+"Title (A-Z)" = "タイトル（A-Z）";
+"Title (Z-A)" = "タイトル（Z-A）";
+"Duration (Longest)" = "長さ（長い順）";
+"Duration (Shortest)" = "長さ（短い順）";
+
+/* ========================
+   MARK: - Subscription Period Labels
+   ======================== */
+"Weekly" = "週間";
+"Monthly" = "月間";
+"Yearly" = "年間";
+
+/* ========================
+   MARK: - StoreKit Error Messages
+   ======================== */
+"Network connection unavailable. Please check your internet connection and try again." = "ネットワーク接続が利用できません。インターネット接続を確認して再度お試しください。";
+"There was a problem with the App Store. Please try again later." = "App Storeに問題が発生しました。後でもう一度お試しください。";
+
+/* ========================
+   MARK: - Transcription Errors
+   ======================== */
+"Speech recognition permission not granted." = "音声認識の許可が付与されていません。";
+"Speech recognizer is not available." = "音声認識が利用できません。";
+"No transcription result available." = "文字起こし結果がありません。";
+"Failed to download the transcription model. Please check your internet connection and try again." = "文字起こしモデルのダウンロードに失敗しました。インターネット接続を確認して再度お試しください。";
+"Not enough storage to download the transcription model. Please free up space and try again." = "文字起こしモデルをダウンロードするのに十分なストレージがありません。空き容量を確保して再度お試しください。";
+"The transcription engine is still loading. Please wait and try again." = "文字起こしエンジンはまだ読み込み中です。お待ちいただき再度お試しください。";
+
+/* ========================
+   MARK: - Recording Count (Pluralized)
+   ======================== */
+"%lld Recording" = "%lld件の録音";
+"%lld Recordings" = "%lld件の録音";
+"%lld recording" = "%lld件の録音";
+"%lld recordings" = "%lld件の録音";

@@ -10,10 +10,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.util.TimeFormatting
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +48,7 @@ fun EditorScreen(
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "Duration: ${rec.formattedDuration}",
+            text = stringResource(R.string.editor_duration_label, rec.formattedDuration),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -60,7 +62,7 @@ fun EditorScreen(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "Trim Range",
+                    text = stringResource(R.string.editor_trim_range),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -102,7 +104,7 @@ fun EditorScreen(
             LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Processing...",
+                text = stringResource(R.string.editor_processing),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -126,7 +128,7 @@ fun EditorScreen(
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Trim")
+                Text(stringResource(R.string.editor_trim))
             }
 
             OutlinedButton(
@@ -141,7 +143,7 @@ fun EditorScreen(
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Enhance")
+                Text(stringResource(R.string.editor_enhance))
             }
         }
 
@@ -163,7 +165,7 @@ fun EditorScreen(
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Vocals")
+                Text(stringResource(R.string.editor_vocals))
             }
 
             OutlinedButton(
@@ -178,7 +180,7 @@ fun EditorScreen(
                         strokeWidth = 2.dp
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Transcribing...")
+                    Text(stringResource(R.string.editor_transcribing))
                 } else {
                     Icon(
                         Icons.Default.TextFields,
@@ -186,7 +188,7 @@ fun EditorScreen(
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text("Transcribe")
+                    Text(stringResource(R.string.editor_transcribe))
                 }
             }
         }
@@ -224,7 +226,7 @@ fun EditorScreen(
                     ) {
                         Icon(
                             Icons.Default.Close,
-                            contentDescription = "Dismiss",
+                            contentDescription = stringResource(R.string.editor_dismiss),
                             modifier = Modifier.size(16.dp),
                             tint = MaterialTheme.colorScheme.onErrorContainer
                         )
@@ -256,7 +258,7 @@ fun EditorScreen(
                     Spacer(modifier = Modifier.width(8.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Transcription Failed",
+                            text = stringResource(R.string.editor_transcription_failed),
                             style = MaterialTheme.typography.labelMedium,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onErrorContainer
@@ -274,7 +276,7 @@ fun EditorScreen(
                     ) {
                         Icon(
                             Icons.Default.Close,
-                            contentDescription = "Dismiss",
+                            contentDescription = stringResource(R.string.editor_dismiss),
                             modifier = Modifier.size(16.dp),
                             tint = MaterialTheme.colorScheme.onErrorContainer
                         )

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">録音</string>
+    <string name="tab_folders">フォルダ</string>
+    <string name="tab_favorites">お気に入り</string>
+    <string name="tab_settings">設定</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorderは音声を録音するためにマイクへのアクセスが必要です。</string>
+    <string name="permission_location_rationale">ClearVoice Recorderは録音に自動的に名前を付けるために位置情報を使用します。</string>
+    <string name="permission_speech_rationale">ClearVoice Recorderは録音を文字起こしするために音声認識が必要です。</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">録音</string>
+    <string name="recording_save_title">録音を保存</string>
+    <string name="recording_name_label">録音名</string>
+    <string name="recording_save">保存</string>
+    <string name="recording_discard">破棄</string>
+    <string name="recording_close">閉じる</string>
+    <string name="recording_stop">停止</string>
+    <string name="recording_resume">再開</string>
+    <string name="recording_pause">一時停止</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">ステレオ</string>
+    <string name="recording_new_default_title">新しい録音</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">戻る</string>
+    <string name="playback_share">共有</string>
+    <string name="playback_share_recording">録音を共有</string>
+    <string name="playback_drag_trim">ドラッグしてトリミング範囲を設定</string>
+    <string name="playback_skip_back">15秒戻る</string>
+    <string name="playback_pause">一時停止</string>
+    <string name="playback_play">再生</string>
+    <string name="playback_skip_forward">15秒進む</string>
+    <string name="playback_decrease_speed">速度を下げる</string>
+    <string name="playback_increase_speed">速度を上げる</string>
+    <string name="playback_premium_feature">プレミアム機能</string>
+    <string name="playback_skip_silence">無音をスキップ</string>
+    <string name="playback_transcribing">文字起こし中\u2026</string>
+    <string name="playback_retranscribe">再文字起こし</string>
+    <string name="playback_transcribe">文字起こし</string>
+    <string name="playback_trimming">トリミング中\u2026</string>
+    <string name="playback_apply_trim">トリミングを適用</string>
+    <string name="playback_trim">トリミング</string>
+    <string name="playback_cancel_trim">トリミングをキャンセル</string>
+    <string name="playback_transcription_failed">文字起こしに失敗しました</string>
+    <string name="playback_dismiss">閉じる</string>
+    <string name="playback_transcript">トランスクリプト</string>
+    <string name="playback_transcript_copied">トランスクリプトをコピーしました</string>
+    <string name="playback_copy_transcript">トランスクリプトをコピー</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">録音</string>
+    <string name="recordings_cancel_selection">選択を解除</string>
+    <string name="recordings_delete_selected">選択した項目を削除</string>
+    <string name="recordings_sort">並べ替え</string>
+    <string name="recordings_record">録音</string>
+    <string name="recordings_search_placeholder">録音を検索</string>
+    <string name="recordings_clear">クリア</string>
+    <string name="recordings_no_results">結果が見つかりません</string>
+    <string name="recordings_no_recordings">録音なし</string>
+    <string name="recordings_try_different_search">別の検索語をお試しください</string>
+    <string name="recordings_tap_to_start">録音ボタンをタップして開始</string>
+    <string name="recordings_delete">削除</string>
+    <string name="recordings_selected_count">%1$d件選択中</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">名前を変更</string>
+    <string name="context_share">共有</string>
+    <string name="context_move_to_folder">フォルダに移動</string>
+    <string name="context_select">選択</string>
+    <string name="context_delete">削除</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">録音の名前を変更</string>
+    <string name="rename_label">名前</string>
+    <string name="rename_confirm">名前を変更</string>
+    <string name="rename_cancel">キャンセル</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">日付</string>
+    <string name="sort_name">名前</string>
+    <string name="sort_duration">長さ</string>
+    <string name="sort_size">サイズ</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">フォルダ</string>
+    <string name="folders_new_folder">新しいフォルダ</string>
+    <string name="folders_folder_name_label">フォルダ名</string>
+    <string name="folders_create">作成</string>
+    <string name="folders_cancel">キャンセル</string>
+    <string name="folders_new_folder_fab">新しいフォルダ</string>
+    <string name="folders_no_folders">フォルダなし</string>
+    <string name="folders_empty_message">フォルダを作成して録音を整理しましょう</string>
+    <string name="folders_delete">削除</string>
+    <string name="folders_limit_format">%1$d/%2$d フォルダ</string>
+    <string name="folders_recording_count_singular">%1$d件の録音</string>
+    <string name="folders_recording_count_plural">%1$d件の録音</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">戻る</string>
+    <string name="folder_detail_empty">空のフォルダ</string>
+    <string name="folder_detail_empty_message">録音一覧から録音をここに移動してください</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">フォルダに移動</string>
+    <string name="move_to_folder_no_folder">フォルダなし</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">お気に入り</string>
+    <string name="favorites_search_placeholder">お気に入りを検索</string>
+    <string name="favorites_clear">クリア</string>
+    <string name="favorites_no_results">結果が見つかりません</string>
+    <string name="favorites_no_favorites">お気に入りなし</string>
+    <string name="favorites_try_different_search">別の検索語をお試しください</string>
+    <string name="favorites_empty_message">録音のハートをタップしてここに追加</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">お気に入りを解除</string>
+    <string name="recording_row_favorite">お気に入り</string>
+    <string name="recording_row_stereo">ステレオ</string>
+    <string name="recording_row_transcript">トランスクリプト</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">長さ: %1$s</string>
+    <string name="editor_trim_range">トリミング範囲</string>
+    <string name="editor_processing">処理中\u2026</string>
+    <string name="editor_trim">トリミング</string>
+    <string name="editor_enhance">補正</string>
+    <string name="editor_vocals">ボーカル</string>
+    <string name="editor_transcribing">文字起こし中\u2026</string>
+    <string name="editor_transcribe">文字起こし</string>
+    <string name="editor_transcription_failed">文字起こしに失敗しました</string>
+    <string name="editor_dismiss">閉じる</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">トランスクリプト</string>
+    <string name="transcript_copied">トランスクリプトをコピーしました</string>
+    <string name="transcript_copy">トランスクリプトをコピー</string>
+    <string name="transcript_share">トランスクリプトを共有</string>
+    <string name="transcript_share_chooser">トランスクリプトを共有</string>
+    <string name="transcript_empty">トランスクリプトがありません</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">設定</string>
+    <string name="settings_go_premium">プレミアムにアップグレード</string>
+    <string name="settings_premium_subtitle">無制限の録音、文字起こしなど</string>
+    <string name="settings_section_recording_defaults">録音のデフォルト設定</string>
+    <string name="settings_default_format">デフォルト形式</string>
+    <string name="settings_default_quality">デフォルト品質</string>
+    <string name="settings_stereo_recording">ステレオ録音</string>
+    <string name="settings_stereo_subtitle">利用可能な場合はステレオで録音</string>
+    <string name="settings_auto_tag_location">位置情報の自動タグ付け</string>
+    <string name="settings_auto_tag_subtitle">位置情報に基づいて録音に自動的に名前を付ける</string>
+    <string name="settings_section_storage">ストレージ</string>
+    <string name="settings_recordings_storage">録音のストレージ</string>
+    <string name="settings_section_about">アプリについて</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">バージョン 1.0.0</string>
+    <string name="settings_privacy_policy">プライバシーポリシー</string>
+    <string name="settings_terms_of_service">利用規約</string>
+    <string name="settings_acknowledgments">謝辞</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">謝辞</string>
+    <string name="acknowledgments_back">戻る</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">Jetpack Compose、Media3、Room、Voskで構築されています。</string>
+    <string name="acknowledgments_frameworks_title">使用フレームワーク</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">モダンな宣言型UIツールキット</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">音声再生エンジン</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">SQLiteデータベースの永続化</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">依存性注入フレームワーク</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">設定の永続化</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">オフライン音声認識</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">位置情報に基づく命名</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">音声デコードと編集</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">計算中\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - ボーカル</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">録音のトリミングに失敗しました</string>
+    <string name="editor_error_enhance_failed">録音の補正に失敗しました</string>
+    <string name="editor_error_vocals_failed">ボーカルの分離に失敗しました</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">録音</string>
+    <string name="nav_folders">フォルダ</string>
+    <string name="nav_favorites">お気に入り</string>
+    <string name="nav_settings">設定</string>
+</resources>

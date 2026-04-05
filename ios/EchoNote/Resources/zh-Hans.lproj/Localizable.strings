@@ -1,0 +1,310 @@
+/* Localizable.strings - Simplified Chinese (zh-Hans)
+   ClearVoice Recorder iOS App */
+
+/* ========================
+   MARK: - Tab Bar
+   ======================== */
+"Recordings" = "录音";
+"Folders" = "文件夹";
+"Favorites" = "收藏";
+"Settings" = "设置";
+
+/* ========================
+   MARK: - Recording View
+   ======================== */
+"Record" = "录音";
+"Cancel" = "取消";
+"Close" = "关闭";
+"Error" = "错误";
+"OK" = "好";
+"An unknown error occurred." = "发生了未知错误。";
+"Format" = "格式";
+"Quality" = "质量";
+"PRO" = "PRO";
+"Stereo Recording" = "立体声录音";
+
+/* ========================
+   MARK: - Save Recording Sheet
+   ======================== */
+"Recording Name" = "录音名称";
+"Enter name (or use location)" = "输入名称（或使用位置）";
+"Save Recording" = "保存录音";
+"Discard" = "丢弃";
+
+/* ========================
+   MARK: - Recordings List
+   ======================== */
+"Search recordings" = "搜索录音";
+"Done" = "完成";
+"Select" = "选择";
+"No Recordings" = "没有录音";
+"Tap the record button to create your first recording." = "点击录音按钮创建您的第一条录音。";
+"Rename Recording" = "重命名录音";
+"Name" = "名称";
+"Save" = "保存";
+"Delete Recording?" = "删除录音？";
+"Delete" = "删除";
+"This action cannot be undone." = "此操作无法撤销。";
+"Unfavorite" = "取消收藏";
+"Favorite" = "收藏";
+"Rename" = "重命名";
+"Play" = "播放";
+"Remove from Favorites" = "从收藏中移除";
+"Add to Favorites" = "添加到收藏";
+"Edit" = "编辑";
+"Move to Folder" = "移动到文件夹";
+"Share" = "分享";
+"Deselect All" = "取消全选";
+"Select All" = "全选";
+"%lld selected" = "已选择%lld项";
+
+/* ========================
+   MARK: - Playback View
+   ======================== */
+"Now Playing" = "正在播放";
+"Skip Silence" = "跳过静音";
+"Transcript" = "文字转录";
+
+/* ========================
+   MARK: - Folders View
+   ======================== */
+"New Folder" = "新建文件夹";
+"Folder name" = "文件夹名称";
+"Create" = "创建";
+"Rename Folder" = "重命名文件夹";
+"Delete Folder?" = "删除文件夹？";
+"Recordings in this folder will not be deleted." = "此文件夹中的录音不会被删除。";
+"No Folders" = "没有文件夹";
+"Create folders to organize your recordings." = "创建文件夹来整理您的录音。";
+"Create Folder" = "创建文件夹";
+"Upgrade" = "升级";
+"%lld/%lld folders used" = "已使用%lld/%lld个文件夹";
+
+/* ========================
+   MARK: - Folder Detail View
+   ======================== */
+"Empty Folder" = "空文件夹";
+"Move recordings here to organize them." = "将录音移到此处进行整理。";
+"Remove" = "移除";
+"Search in folder" = "在文件夹中搜索";
+
+/* ========================
+   MARK: - Favorites View
+   ======================== */
+"No Favorites" = "没有收藏";
+"Mark recordings as favorites to quickly access them here." = "将录音标记为收藏以便快速访问。";
+"Search favorites" = "搜索收藏";
+
+/* ========================
+   MARK: - Move to Folder View
+   ======================== */
+"No Folder" = "无文件夹";
+"Create New Folder" = "新建文件夹";
+
+/* ========================
+   MARK: - Editor View
+   ======================== */
+"Edit Recording" = "编辑录音";
+"Beta Feature" = "测试版功能";
+"Try It" = "试试看";
+"Vocal separation is currently in beta. The feature works but uses an untrained AI model, so results may not be accurate. We're working on improving this in future updates!" = "人声分离目前处于测试阶段。该功能可以使用，但使用了未经训练的AI模型，因此结果可能不够准确。我们正在努力在未来的更新中改进它！";
+"Trim Range" = "裁剪范围";
+"Start" = "开始";
+"End" = "结束";
+"Preview" = "预览";
+"Stop" = "停止";
+"Actions" = "操作";
+"Trim Recording" = "裁剪录音";
+"Save As..." = "另存为...";
+"Enhance Recording" = "增强录音";
+"Generate Transcript" = "生成文字转录";
+"Remove Silence" = "移除静音";
+"Export to WAV" = "导出为WAV";
+"Separate Vocals" = "分离人声";
+"BETA" = "测试版";
+"Processing..." = "处理中...";
+
+/* ========================
+   MARK: - Save As Sheet
+   ======================== */
+"New Name" = "新名称";
+"Recording name" = "录音名称";
+"Save Copy" = "保存副本";
+"Save As" = "另存为";
+
+/* ========================
+   MARK: - Transcript View
+   ======================== */
+"Cleaned" = "已清理";
+"Summary" = "摘要";
+"No Transcript Available" = "无可用文字转录";
+"Generate a transcript from your recording." = "从录音生成文字转录。";
+"Copy" = "复制";
+"Downloading transcription model..." = "正在下载转录模型...";
+"Transcribing audio..." = "正在转录音频...";
+"Processing with AI..." = "AI处理中...";
+"Clean Transcript" = "清理文字转录";
+"Remove filler words and fix grammar." = "移除填充词并修正语法。";
+"Generate Summary" = "生成摘要";
+"Create a concise summary of this recording." = "为此录音创建简洁的摘要。";
+"Extract Action Items" = "提取待办事项";
+"Find action items mentioned in this recording." = "查找录音中提到的待办事项。";
+
+/* ========================
+   MARK: - Recording Row View
+   ======================== */
+"Stereo" = "立体声";
+"Layered" = "分层";
+
+/* ========================
+   MARK: - Settings View
+   ======================== */
+"Premium" = "高级版";
+"Lifetime Premium" = "终身高级版";
+"Premium Active" = "高级版已激活";
+"%lld days remaining" = "剩余%lld天";
+"Manage Subscription" = "管理订阅";
+"Upgrade to Premium" = "升级到高级版";
+"Unlock all features" = "解锁所有功能";
+"Recording Defaults" = "录音默认设置";
+"Audio Format" = "音频格式";
+"Audio Quality" = "音频质量";
+"Auto Location Naming" = "自动位置命名";
+"Transcription" = "文字转录";
+"Engine" = "引擎";
+"Language" = "语言";
+"Storage" = "存储";
+"About" = "关于";
+"Version" = "版本";
+"Build" = "构建号";
+"Acknowledgments" = "致谢";
+"Terms of Use (EULA)" = "使用条款（EULA）";
+"Privacy Policy" = "隐私政策";
+"Recordings Storage" = "录音存储空间";
+"Calculating..." = "计算中...";
+
+/* ========================
+   MARK: - Acknowledgments View
+   ======================== */
+"EchoNote" = "EchoNote";
+"Built with SwiftUI, AVFoundation, and Speech framework." = "使用SwiftUI、AVFoundation和Speech框架构建。";
+"Frameworks Used" = "使用的框架";
+"Modern declarative UI framework" = "现代声明式UI框架";
+"Data persistence framework" = "数据持久化框架";
+"Audio recording and playback" = "音频录制和播放";
+"Speech recognition and transcription" = "语音识别和转录";
+"Location-based naming" = "基于位置的命名";
+
+/* ========================
+   MARK: - Paywall View
+   ======================== */
+"Unlock Premium" = "解锁高级版";
+"Get access to all features and enhance your recording experience" = "获取所有功能并提升您的录音体验";
+"Premium Features" = "高级功能";
+"Choose Your Plan" = "选择您的计划";
+"Unable to load products" = "无法加载产品";
+"Please check your internet connection and try again." = "请检查您的网络连接并重试。";
+"Retry" = "重试";
+"Subscribe Now" = "立即订阅";
+"Restore Purchases" = "恢复购买";
+"Your purchases have been restored successfully!" = "您的购买已成功恢复！";
+"No previous purchases found." = "未找到之前的购买记录。";
+"Your purchase is pending approval. It will be activated once approved." = "您的购买正在等待审批。审批通过后将被激活。";
+"Subscription automatically renews unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in Settings." = "订阅将自动续期，除非在当前周期结束前至少24小时取消。在设置中管理订阅。";
+"Terms of Service" = "服务条款";
+"Best Value" = "最超值";
+"Popular" = "热门";
+
+/* ========================
+   MARK: - Premium Feature Names
+   ======================== */
+"Audio Enhancement" = "音频增强";
+"Vocal Layer Separation (Beta)" = "人声分层分离（测试版）";
+"High Quality Recording" = "高品质录音";
+"WAV Format Export" = "WAV格式导出";
+"Unlimited Recordings" = "无限录音";
+"Cloud Backup" = "云备份";
+"Unlimited Folders" = "无限文件夹";
+"Unlimited Bookmarks" = "无限书签";
+"Multilingual Transcription" = "多语言转录";
+"AI Transcript Intelligence" = "AI文字转录智能";
+
+/* ========================
+   MARK: - Premium Feature Descriptions
+   ======================== */
+"AI-powered noise reduction and audio clarity" = "AI驱动的降噪和音频清晰度";
+"Separate vocals from background (Beta feature)" = "从背景中分离人声（测试版功能）";
+"Convert speech to text with high accuracy" = "高精度语音转文字";
+"Record in maximum quality up to 48kHz" = "以最高48kHz的最佳质量录制";
+"Capture immersive stereo audio" = "捕获沉浸式立体声音频";
+"Export in uncompressed WAV format" = "以未压缩的WAV格式导出";
+"No limits on recording storage" = "录音存储无限制";
+"Automatic backup to iCloud" = "自动备份到iCloud";
+"Organize with unlimited folders" = "使用无限文件夹进行整理";
+"Add unlimited bookmarks to recordings" = "为录音添加无限书签";
+"Transcribe in 90+ languages with WhisperKit" = "使用WhisperKit转录90多种语言";
+"Clean up, summarize, and extract action items from transcripts" = "清理、总结和提取文字转录中的待办事项";
+
+/* ========================
+   MARK: - Audio Format & Quality
+   ======================== */
+"Uncompressed (WAV)" = "未压缩 (WAV)";
+"Compressed (M4A)" = "压缩 (M4A)";
+"Low" = "低";
+"Medium" = "中";
+"High" = "高";
+"Maximum" = "最高";
+
+/* ========================
+   MARK: - Transcription Engine
+   ======================== */
+"Apple Speech" = "Apple Speech";
+"WhisperKit (Multilingual)" = "WhisperKit（多语言）";
+"Auto-Detect" = "自动检测";
+
+/* ========================
+   MARK: - Subscription Tiers
+   ======================== */
+"Free" = "免费";
+"Lifetime" = "终身";
+
+/* ========================
+   MARK: - Sort Options
+   ======================== */
+"Date (Newest)" = "日期（最新）";
+"Date (Oldest)" = "日期（最旧）";
+"Title (A-Z)" = "标题（A-Z）";
+"Title (Z-A)" = "标题（Z-A）";
+"Duration (Longest)" = "时长（最长）";
+"Duration (Shortest)" = "时长（最短）";
+
+/* ========================
+   MARK: - Subscription Period Labels
+   ======================== */
+"Weekly" = "每周";
+"Monthly" = "每月";
+"Yearly" = "每年";
+
+/* ========================
+   MARK: - StoreKit Error Messages
+   ======================== */
+"Network connection unavailable. Please check your internet connection and try again." = "网络连接不可用。请检查您的网络连接并重试。";
+"There was a problem with the App Store. Please try again later." = "App Store出现问题。请稍后重试。";
+
+/* ========================
+   MARK: - Transcription Errors
+   ======================== */
+"Speech recognition permission not granted." = "未授予语音识别权限。";
+"Speech recognizer is not available." = "语音识别不可用。";
+"No transcription result available." = "没有可用的转录结果。";
+"Failed to download the transcription model. Please check your internet connection and try again." = "下载转录模型失败。请检查您的网络连接并重试。";
+"Not enough storage to download the transcription model. Please free up space and try again." = "存储空间不足，无法下载转录模型。请释放空间后重试。";
+"The transcription engine is still loading. Please wait and try again." = "转录引擎仍在加载中。请稍候重试。";
+
+/* ========================
+   MARK: - Recording Count (Pluralized)
+   ======================== */
+"%lld Recording" = "%lld条录音";
+"%lld Recordings" = "%lld条录音";
+"%lld recording" = "%lld条录音";
+"%lld recordings" = "%lld条录音";

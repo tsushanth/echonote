@@ -1,13 +1,16 @@
 package com.kreativekoala.echonote.ui.editing
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditorViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val editorService: AudioEditorService,
     private val transcriptionService: TranscriptionService,
     private val recordingRepository: RecordingRepository
@@ -102,7 +106,7 @@ class EditorViewModel @Inject constructor(
                 _trimStartMs.value = 0L
                 _trimEndMs.value = newDuration
             } else {
-                _errorMessage.value = "Failed to trim recording"
+                _errorMessage.value = context.getString(R.string.editor_error_trim_failed)
             }
 
             _isProcessing.value = false
@@ -144,7 +148,7 @@ class EditorViewModel @Inject constructor(
                 }
                 _recording.value = updated
             } else {
-                _errorMessage.value = "Failed to enhance recording"
+                _errorMessage.value = context.getString(R.string.editor_error_enhance_failed)
             }
 
             _isProcessing.value = false
@@ -177,7 +181,7 @@ class EditorViewModel @Inject constructor(
 
                 val vocalsRecording = rec.copy(
                     id = java.util.UUID.randomUUID().toString(),
-                    title = "${rec.title} - Vocals",
+                    title = context.getString(R.string.editor_vocals_suffix, rec.title),
                     fileUri = outputFile.absolutePath,
                     duration = newDuration,
                     fileSize = newSize,
@@ -189,7 +193,7 @@ class EditorViewModel @Inject constructor(
                     recordingRepository.insertRecording(vocalsRecording)
                 }
             } else {
-                _errorMessage.value = "Failed to separate vocals"
+                _errorMessage.value = context.getString(R.string.editor_error_vocals_failed)
             }
 
             _isProcessing.value = false

@@ -162,7 +162,7 @@ final class PremiumManager {
     // MARK: - Free Tier Limits
 
     /// Maximum recordings for free tier
-    static let freeRecordingLimit = 10
+    static let freeRecordingLimit = 3
 
     /// Maximum folders for free tier
     static let freeFolderLimit = 3

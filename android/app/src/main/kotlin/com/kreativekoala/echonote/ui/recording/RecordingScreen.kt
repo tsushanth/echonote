@@ -16,9 +16,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.ui.components.LiveWaveformView
 import com.kreativekoala.echonote.ui.theme.RecordingRed
 
@@ -41,13 +43,13 @@ fun RecordingScreen(
     if (showSaveDialog) {
         AlertDialog(
             onDismissRequest = { },
-            title = { Text("Save Recording") },
+            title = { Text(stringResource(R.string.recording_save_title)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedTextField(
                         value = recordingTitle,
                         onValueChange = { viewModel.setTitle(it) },
-                        label = { Text("Recording Name") },
+                        label = { Text(stringResource(R.string.recording_name_label)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -63,7 +65,7 @@ fun RecordingScreen(
                     viewModel.saveRecording()
                     onDismiss()
                 }) {
-                    Text("Save")
+                    Text(stringResource(R.string.recording_save))
                 }
             },
             dismissButton = {
@@ -71,7 +73,7 @@ fun RecordingScreen(
                     viewModel.discardRecording()
                     onDismiss()
                 }) {
-                    Text("Discard", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.recording_discard), color = MaterialTheme.colorScheme.error)
                 }
             }
         )
@@ -80,13 +82,13 @@ fun RecordingScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Record") },
+                title = { Text(stringResource(R.string.recording_title_record)) },
                 navigationIcon = {
                     IconButton(onClick = {
                         if (isRecording) viewModel.cancelRecording()
                         onDismiss()
                     }) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
+                        Icon(Icons.Default.Close, contentDescription = stringResource(R.string.recording_close))
                     }
                 }
             )
@@ -152,7 +154,7 @@ fun RecordingScreen(
                     ) {
                         Icon(
                             Icons.Default.Stop,
-                            contentDescription = "Stop",
+                            contentDescription = stringResource(R.string.recording_stop),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.size(32.dp)
                         )
@@ -172,7 +174,7 @@ fun RecordingScreen(
                     ) {
                         Icon(
                             if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
-                            contentDescription = if (isPaused) "Resume" else "Pause",
+                            contentDescription = if (isPaused) stringResource(R.string.recording_resume) else stringResource(R.string.recording_pause),
                             tint = Color.White,
                             modifier = Modifier.size(40.dp)
                         )
@@ -211,12 +213,12 @@ fun RecordingScreen(
                         FilterChip(
                             selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED,
                             onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED) },
-                            label = { Text("M4A") }
+                            label = { Text(stringResource(R.string.recording_format_m4a)) }
                         )
                         FilterChip(
                             selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED,
                             onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED) },
-                            label = { Text("WAV") }
+                            label = { Text(stringResource(R.string.recording_format_wav)) }
                         )
                     }
                     Row(
@@ -238,7 +240,7 @@ fun RecordingScreen(
                         FilterChip(
                             selected = isStereo,
                             onClick = { viewModel.setStereo(!isStereo) },
-                            label = { Text("Stereo") }
+                            label = { Text(stringResource(R.string.recording_stereo)) }
                         )
                     }
                 }

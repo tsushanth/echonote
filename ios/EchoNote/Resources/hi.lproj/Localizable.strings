@@ -1,0 +1,310 @@
+/* Localizable.strings - Hindi (hi)
+   ClearVoice Recorder iOS App */
+
+/* ========================
+   MARK: - Tab Bar
+   ======================== */
+"Recordings" = "रिकॉर्डिंग";
+"Folders" = "फोल्डर";
+"Favorites" = "पसंदीदा";
+"Settings" = "सेटिंग्स";
+
+/* ========================
+   MARK: - Recording View
+   ======================== */
+"Record" = "रिकॉर्ड";
+"Cancel" = "रद्द करें";
+"Close" = "बंद करें";
+"Error" = "त्रुटि";
+"OK" = "ठीक";
+"An unknown error occurred." = "एक अज्ञात त्रुटि हुई।";
+"Format" = "प्रारूप";
+"Quality" = "गुणवत्ता";
+"PRO" = "PRO";
+"Stereo Recording" = "स्टीरियो रिकॉर्डिंग";
+
+/* ========================
+   MARK: - Save Recording Sheet
+   ======================== */
+"Recording Name" = "रिकॉर्डिंग का नाम";
+"Enter name (or use location)" = "नाम दर्ज करें (या स्थान का उपयोग करें)";
+"Save Recording" = "रिकॉर्डिंग सहेजें";
+"Discard" = "हटाएं";
+
+/* ========================
+   MARK: - Recordings List
+   ======================== */
+"Search recordings" = "रिकॉर्डिंग खोजें";
+"Done" = "पूर्ण";
+"Select" = "चुनें";
+"No Recordings" = "कोई रिकॉर्डिंग नहीं";
+"Tap the record button to create your first recording." = "अपनी पहली रिकॉर्डिंग बनाने के लिए रिकॉर्ड बटन पर टैप करें।";
+"Rename Recording" = "रिकॉर्डिंग का नाम बदलें";
+"Name" = "नाम";
+"Save" = "सहेजें";
+"Delete Recording?" = "रिकॉर्डिंग हटाएं?";
+"Delete" = "हटाएं";
+"This action cannot be undone." = "यह क्रिया पूर्ववत नहीं की जा सकती।";
+"Unfavorite" = "पसंदीदा हटाएं";
+"Favorite" = "पसंदीदा";
+"Rename" = "नाम बदलें";
+"Play" = "चलाएं";
+"Remove from Favorites" = "पसंदीदा से हटाएं";
+"Add to Favorites" = "पसंदीदा में जोड़ें";
+"Edit" = "संपादित करें";
+"Move to Folder" = "फोल्डर में ले जाएं";
+"Share" = "साझा करें";
+"Deselect All" = "सभी अचयनित करें";
+"Select All" = "सभी चुनें";
+"%lld selected" = "%lld चयनित";
+
+/* ========================
+   MARK: - Playback View
+   ======================== */
+"Now Playing" = "अभी चल रहा है";
+"Skip Silence" = "मौन छोड़ें";
+"Transcript" = "प्रतिलेख";
+
+/* ========================
+   MARK: - Folders View
+   ======================== */
+"New Folder" = "नया फोल्डर";
+"Folder name" = "फोल्डर का नाम";
+"Create" = "बनाएं";
+"Rename Folder" = "फोल्डर का नाम बदलें";
+"Delete Folder?" = "फोल्डर हटाएं?";
+"Recordings in this folder will not be deleted." = "इस फोल्डर की रिकॉर्डिंग हटाई नहीं जाएंगी।";
+"No Folders" = "कोई फोल्डर नहीं";
+"Create folders to organize your recordings." = "अपनी रिकॉर्डिंग व्यवस्थित करने के लिए फोल्डर बनाएं।";
+"Create Folder" = "फोल्डर बनाएं";
+"Upgrade" = "अपग्रेड";
+"%lld/%lld folders used" = "%lld/%lld फोल्डर उपयोग में";
+
+/* ========================
+   MARK: - Folder Detail View
+   ======================== */
+"Empty Folder" = "खाली फोल्डर";
+"Move recordings here to organize them." = "रिकॉर्डिंग को व्यवस्थित करने के लिए यहां ले जाएं।";
+"Remove" = "हटाएं";
+"Search in folder" = "फोल्डर में खोजें";
+
+/* ========================
+   MARK: - Favorites View
+   ======================== */
+"No Favorites" = "कोई पसंदीदा नहीं";
+"Mark recordings as favorites to quickly access them here." = "रिकॉर्डिंग को पसंदीदा के रूप में चिह्नित करें ताकि यहां जल्दी पहुंचा जा सके।";
+"Search favorites" = "पसंदीदा खोजें";
+
+/* ========================
+   MARK: - Move to Folder View
+   ======================== */
+"No Folder" = "कोई फोल्डर नहीं";
+"Create New Folder" = "नया फोल्डर बनाएं";
+
+/* ========================
+   MARK: - Editor View
+   ======================== */
+"Edit Recording" = "रिकॉर्डिंग संपादित करें";
+"Beta Feature" = "बीटा सुविधा";
+"Try It" = "आज़माएं";
+"Vocal separation is currently in beta. The feature works but uses an untrained AI model, so results may not be accurate. We're working on improving this in future updates!" = "वोकल पृथक्करण वर्तमान में बीटा में है। सुविधा काम करती है लेकिन एक अप्रशिक्षित AI मॉडल का उपयोग करती है, इसलिए परिणाम सटीक नहीं हो सकते। हम भविष्य के अपडेट में इसे बेहतर बनाने पर काम कर रहे हैं!";
+"Trim Range" = "ट्रिम रेंज";
+"Start" = "शुरू";
+"End" = "अंत";
+"Preview" = "पूर्वावलोकन";
+"Stop" = "रुकें";
+"Actions" = "कार्य";
+"Trim Recording" = "रिकॉर्डिंग ट्रिम करें";
+"Save As..." = "इस रूप में सहेजें...";
+"Enhance Recording" = "रिकॉर्डिंग बेहतर करें";
+"Generate Transcript" = "प्रतिलेख बनाएं";
+"Remove Silence" = "मौन हटाएं";
+"Export to WAV" = "WAV में निर्यात करें";
+"Separate Vocals" = "वोकल अलग करें";
+"BETA" = "बीटा";
+"Processing..." = "प्रोसेसिंग...";
+
+/* ========================
+   MARK: - Save As Sheet
+   ======================== */
+"New Name" = "नया नाम";
+"Recording name" = "रिकॉर्डिंग का नाम";
+"Save Copy" = "प्रतिलिपि सहेजें";
+"Save As" = "इस रूप में सहेजें";
+
+/* ========================
+   MARK: - Transcript View
+   ======================== */
+"Cleaned" = "साफ किया गया";
+"Summary" = "सारांश";
+"No Transcript Available" = "कोई प्रतिलेख उपलब्ध नहीं";
+"Generate a transcript from your recording." = "अपनी रिकॉर्डिंग से प्रतिलेख बनाएं।";
+"Copy" = "कॉपी करें";
+"Downloading transcription model..." = "ट्रांसक्रिप्शन मॉडल डाउनलोड हो रहा है...";
+"Transcribing audio..." = "ऑडियो ट्रांसक्राइब हो रहा है...";
+"Processing with AI..." = "AI से प्रोसेसिंग...";
+"Clean Transcript" = "प्रतिलेख साफ करें";
+"Remove filler words and fix grammar." = "अनावश्यक शब्द हटाएं और व्याकरण ठीक करें।";
+"Generate Summary" = "सारांश बनाएं";
+"Create a concise summary of this recording." = "इस रिकॉर्डिंग का संक्षिप्त सारांश बनाएं।";
+"Extract Action Items" = "कार्य बिंदु निकालें";
+"Find action items mentioned in this recording." = "इस रिकॉर्डिंग में उल्लिखित कार्य बिंदु खोजें।";
+
+/* ========================
+   MARK: - Recording Row View
+   ======================== */
+"Stereo" = "स्टीरियो";
+"Layered" = "स्तरित";
+
+/* ========================
+   MARK: - Settings View
+   ======================== */
+"Premium" = "प्रीमियम";
+"Lifetime Premium" = "आजीवन प्रीमियम";
+"Premium Active" = "प्रीमियम सक्रिय";
+"%lld days remaining" = "%lld दिन शेष";
+"Manage Subscription" = "सदस्यता प्रबंधित करें";
+"Upgrade to Premium" = "प्रीमियम में अपग्रेड करें";
+"Unlock all features" = "सभी सुविधाएं अनलॉक करें";
+"Recording Defaults" = "रिकॉर्डिंग डिफ़ॉल्ट";
+"Audio Format" = "ऑडियो प्रारूप";
+"Audio Quality" = "ऑडियो गुणवत्ता";
+"Auto Location Naming" = "स्वचालित स्थान नामकरण";
+"Transcription" = "ट्रांसक्रिप्शन";
+"Engine" = "इंजन";
+"Language" = "भाषा";
+"Storage" = "स्टोरेज";
+"About" = "के बारे में";
+"Version" = "संस्करण";
+"Build" = "बिल्ड";
+"Acknowledgments" = "आभार";
+"Terms of Use (EULA)" = "उपयोग की शर्तें (EULA)";
+"Privacy Policy" = "गोपनीयता नीति";
+"Recordings Storage" = "रिकॉर्डिंग स्टोरेज";
+"Calculating..." = "गणना हो रही है...";
+
+/* ========================
+   MARK: - Acknowledgments View
+   ======================== */
+"EchoNote" = "EchoNote";
+"Built with SwiftUI, AVFoundation, and Speech framework." = "SwiftUI, AVFoundation और Speech फ्रेमवर्क से निर्मित।";
+"Frameworks Used" = "उपयोग किए गए फ्रेमवर्क";
+"Modern declarative UI framework" = "आधुनिक डिक्लेरेटिव UI फ्रेमवर्क";
+"Data persistence framework" = "डेटा पर्सिस्टेंस फ्रेमवर्क";
+"Audio recording and playback" = "ऑडियो रिकॉर्डिंग और प्लेबैक";
+"Speech recognition and transcription" = "वाक् पहचान और ट्रांसक्रिप्शन";
+"Location-based naming" = "स्थान-आधारित नामकरण";
+
+/* ========================
+   MARK: - Paywall View
+   ======================== */
+"Unlock Premium" = "प्रीमियम अनलॉक करें";
+"Get access to all features and enhance your recording experience" = "सभी सुविधाओं तक पहुंच प्राप्त करें और अपने रिकॉर्डिंग अनुभव को बेहतर बनाएं";
+"Premium Features" = "प्रीमियम सुविधाएं";
+"Choose Your Plan" = "अपना प्लान चुनें";
+"Unable to load products" = "उत्पाद लोड नहीं हो सके";
+"Please check your internet connection and try again." = "कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।";
+"Retry" = "पुनः प्रयास";
+"Subscribe Now" = "अभी सदस्यता लें";
+"Restore Purchases" = "खरीदारी पुनर्स्थापित करें";
+"Your purchases have been restored successfully!" = "आपकी खरीदारी सफलतापूर्वक पुनर्स्थापित हो गई!";
+"No previous purchases found." = "कोई पिछली खरीदारी नहीं मिली।";
+"Your purchase is pending approval. It will be activated once approved." = "आपकी खरीदारी स्वीकृति की प्रतीक्षा में है। स्वीकृत होने पर यह सक्रिय हो जाएगी।";
+"Subscription automatically renews unless cancelled at least 24 hours before the end of the current period. Manage subscriptions in Settings." = "सदस्यता स्वचालित रूप से नवीनीकृत होती है जब तक कि वर्तमान अवधि समाप्त होने से कम से कम 24 घंटे पहले रद्द न कर दी जाए। सेटिंग्स में सदस्यता प्रबंधित करें।";
+"Terms of Service" = "सेवा की शर्तें";
+"Best Value" = "सर्वोत्तम मूल्य";
+"Popular" = "लोकप्रिय";
+
+/* ========================
+   MARK: - Premium Feature Names
+   ======================== */
+"Audio Enhancement" = "ऑडियो सुधार";
+"Vocal Layer Separation (Beta)" = "वोकल लेयर पृथक्करण (बीटा)";
+"High Quality Recording" = "उच्च गुणवत्ता रिकॉर्डिंग";
+"WAV Format Export" = "WAV प्रारूप निर्यात";
+"Unlimited Recordings" = "असीमित रिकॉर्डिंग";
+"Cloud Backup" = "क्लाउड बैकअप";
+"Unlimited Folders" = "असीमित फोल्डर";
+"Unlimited Bookmarks" = "असीमित बुकमार्क";
+"Multilingual Transcription" = "बहुभाषी ट्रांसक्रिप्शन";
+"AI Transcript Intelligence" = "AI प्रतिलेख बुद्धिमत्ता";
+
+/* ========================
+   MARK: - Premium Feature Descriptions
+   ======================== */
+"AI-powered noise reduction and audio clarity" = "AI-संचालित शोर में कमी और ऑडियो स्पष्टता";
+"Separate vocals from background (Beta feature)" = "पृष्ठभूमि से वोकल अलग करें (बीटा सुविधा)";
+"Convert speech to text with high accuracy" = "उच्च सटीकता से बोली को टेक्स्ट में बदलें";
+"Record in maximum quality up to 48kHz" = "48kHz तक अधिकतम गुणवत्ता में रिकॉर्ड करें";
+"Capture immersive stereo audio" = "इमर्सिव स्टीरियो ऑडियो कैप्चर करें";
+"Export in uncompressed WAV format" = "असंपीड़ित WAV प्रारूप में निर्यात करें";
+"No limits on recording storage" = "रिकॉर्डिंग स्टोरेज पर कोई सीमा नहीं";
+"Automatic backup to iCloud" = "iCloud पर स्वचालित बैकअप";
+"Organize with unlimited folders" = "असीमित फोल्डर से व्यवस्थित करें";
+"Add unlimited bookmarks to recordings" = "रिकॉर्डिंग में असीमित बुकमार्क जोड़ें";
+"Transcribe in 90+ languages with WhisperKit" = "WhisperKit से 90+ भाषाओं में ट्रांसक्राइब करें";
+"Clean up, summarize, and extract action items from transcripts" = "प्रतिलेख से सफाई, सारांश और कार्य बिंदु निकालें";
+
+/* ========================
+   MARK: - Audio Format & Quality
+   ======================== */
+"Uncompressed (WAV)" = "असंपीड़ित (WAV)";
+"Compressed (M4A)" = "संपीड़ित (M4A)";
+"Low" = "कम";
+"Medium" = "मध्यम";
+"High" = "उच्च";
+"Maximum" = "अधिकतम";
+
+/* ========================
+   MARK: - Transcription Engine
+   ======================== */
+"Apple Speech" = "Apple Speech";
+"WhisperKit (Multilingual)" = "WhisperKit (बहुभाषी)";
+"Auto-Detect" = "स्वतः पहचान";
+
+/* ========================
+   MARK: - Subscription Tiers
+   ======================== */
+"Free" = "मुफ्त";
+"Lifetime" = "आजीवन";
+
+/* ========================
+   MARK: - Sort Options
+   ======================== */
+"Date (Newest)" = "तारीख (नवीनतम)";
+"Date (Oldest)" = "तारीख (सबसे पुरानी)";
+"Title (A-Z)" = "शीर्षक (A-Z)";
+"Title (Z-A)" = "शीर्षक (Z-A)";
+"Duration (Longest)" = "अवधि (सबसे लंबी)";
+"Duration (Shortest)" = "अवधि (सबसे छोटी)";
+
+/* ========================
+   MARK: - Subscription Period Labels
+   ======================== */
+"Weekly" = "साप्ताहिक";
+"Monthly" = "मासिक";
+"Yearly" = "वार्षिक";
+
+/* ========================
+   MARK: - StoreKit Error Messages
+   ======================== */
+"Network connection unavailable. Please check your internet connection and try again." = "नेटवर्क कनेक्शन उपलब्ध नहीं है। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।";
+"There was a problem with the App Store. Please try again later." = "App Store में कोई समस्या हुई। कृपया बाद में पुनः प्रयास करें।";
+
+/* ========================
+   MARK: - Transcription Errors
+   ======================== */
+"Speech recognition permission not granted." = "वाक् पहचान अनुमति नहीं दी गई।";
+"Speech recognizer is not available." = "वाक् पहचानकर्ता उपलब्ध नहीं है।";
+"No transcription result available." = "कोई ट्रांसक्रिप्शन परिणाम उपलब्ध नहीं।";
+"Failed to download the transcription model. Please check your internet connection and try again." = "ट्रांसक्रिप्शन मॉडल डाउनलोड करने में विफल। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।";
+"Not enough storage to download the transcription model. Please free up space and try again." = "ट्रांसक्रिप्शन मॉडल डाउनलोड करने के लिए पर्याप्त स्टोरेज नहीं है। कृपया स्थान खाली करें और पुनः प्रयास करें।";
+"The transcription engine is still loading. Please wait and try again." = "ट्रांसक्रिप्शन इंजन अभी भी लोड हो रहा है। कृपया प्रतीक्षा करें और पुनः प्रयास करें।";
+
+/* ========================
+   MARK: - Recording Count (Pluralized)
+   ======================== */
+"%lld Recording" = "%lld रिकॉर्डिंग";
+"%lld Recordings" = "%lld रिकॉर्डिंग";
+"%lld recording" = "%lld रिकॉर्डिंग";
+"%lld recordings" = "%lld रिकॉर्डिंग";

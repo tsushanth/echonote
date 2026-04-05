@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">ClearVoice Recorder</string>
+
+    <!-- Bottom Navigation Tabs -->
+    <string name="tab_recordings">การบันทึก</string>
+    <string name="tab_folders">โฟลเดอร์</string>
+    <string name="tab_favorites">รายการโปรด</string>
+    <string name="tab_settings">การตั้งค่า</string>
+
+    <!-- Permissions -->
+    <string name="permission_microphone_rationale">ClearVoice Recorder ต้องการสิทธิ์เข้าถึงไมโครโฟนเพื่อบันทึกเสียง</string>
+    <string name="permission_location_rationale">ClearVoice Recorder ใช้ตำแหน่งของคุณเพื่อตั้งชื่อการบันทึกโดยอัตโนมัติ</string>
+    <string name="permission_speech_rationale">ClearVoice Recorder ต้องการการรู้จำเสียงพูดเพื่อถอดความการบันทึก</string>
+
+    <!-- Recording Screen -->
+    <string name="recording_title_record">บันทึก</string>
+    <string name="recording_save_title">บันทึกการอัด</string>
+    <string name="recording_name_label">ชื่อการบันทึก</string>
+    <string name="recording_save">บันทึก</string>
+    <string name="recording_discard">ทิ้ง</string>
+    <string name="recording_close">ปิด</string>
+    <string name="recording_stop">หยุด</string>
+    <string name="recording_resume">ดำเนินการต่อ</string>
+    <string name="recording_pause">หยุดชั่วคราว</string>
+    <string name="recording_format_m4a">M4A</string>
+    <string name="recording_format_wav">WAV</string>
+    <string name="recording_stereo">สเตอริโอ</string>
+    <string name="recording_new_default_title">การบันทึกใหม่</string>
+
+    <!-- Playback Screen -->
+    <string name="playback_back">ย้อนกลับ</string>
+    <string name="playback_share">แชร์</string>
+    <string name="playback_share_recording">แชร์การบันทึก</string>
+    <string name="playback_drag_trim">ลากเพื่อกำหนดช่วงตัด</string>
+    <string name="playback_skip_back">ย้อนกลับ 15 วินาที</string>
+    <string name="playback_pause">หยุดชั่วคราว</string>
+    <string name="playback_play">เล่น</string>
+    <string name="playback_skip_forward">ข้ามไป 15 วินาที</string>
+    <string name="playback_decrease_speed">ลดความเร็ว</string>
+    <string name="playback_increase_speed">เพิ่มความเร็ว</string>
+    <string name="playback_premium_feature">ฟีเจอร์พรีเมียม</string>
+    <string name="playback_skip_silence">ข้ามช่วงเงียบ</string>
+    <string name="playback_transcribing">กำลังถอดความ\u2026</string>
+    <string name="playback_retranscribe">ถอดความใหม่</string>
+    <string name="playback_transcribe">ถอดความ</string>
+    <string name="playback_trimming">กำลังตัด\u2026</string>
+    <string name="playback_apply_trim">ใช้การตัด</string>
+    <string name="playback_trim">ตัด</string>
+    <string name="playback_cancel_trim">ยกเลิกการตัด</string>
+    <string name="playback_transcription_failed">การถอดความล้มเหลว</string>
+    <string name="playback_dismiss">ปิด</string>
+    <string name="playback_transcript">บทถอดความ</string>
+    <string name="playback_transcript_copied">คัดลอกบทถอดความแล้ว</string>
+    <string name="playback_copy_transcript">คัดลอกบทถอดความ</string>
+
+    <!-- Recordings List Screen -->
+    <string name="recordings_title">การบันทึก</string>
+    <string name="recordings_cancel_selection">ยกเลิกการเลือก</string>
+    <string name="recordings_delete_selected">ลบที่เลือก</string>
+    <string name="recordings_sort">เรียงลำดับ</string>
+    <string name="recordings_record">บันทึก</string>
+    <string name="recordings_search_placeholder">ค้นหาการบันทึก</string>
+    <string name="recordings_clear">ล้าง</string>
+    <string name="recordings_no_results">ไม่พบผลลัพธ์</string>
+    <string name="recordings_no_recordings">ไม่มีการบันทึก</string>
+    <string name="recordings_try_different_search">ลองคำค้นหาอื่น</string>
+    <string name="recordings_tap_to_start">แตะปุ่มบันทึกเพื่อเริ่มต้น</string>
+    <string name="recordings_delete">ลบ</string>
+    <string name="recordings_selected_count">เลือก %1$d รายการ</string>
+
+    <!-- Recordings List Context Menu -->
+    <string name="context_rename">เปลี่ยนชื่อ</string>
+    <string name="context_share">แชร์</string>
+    <string name="context_move_to_folder">ย้ายไปโฟลเดอร์</string>
+    <string name="context_select">เลือก</string>
+    <string name="context_delete">ลบ</string>
+
+    <!-- Rename Dialog -->
+    <string name="rename_title">เปลี่ยนชื่อการบันทึก</string>
+    <string name="rename_label">ชื่อ</string>
+    <string name="rename_confirm">เปลี่ยนชื่อ</string>
+    <string name="rename_cancel">ยกเลิก</string>
+
+    <!-- Sort Options -->
+    <string name="sort_date">วันที่</string>
+    <string name="sort_name">ชื่อ</string>
+    <string name="sort_duration">ระยะเวลา</string>
+    <string name="sort_size">ขนาด</string>
+
+    <!-- Folders Screen -->
+    <string name="folders_title">โฟลเดอร์</string>
+    <string name="folders_new_folder">โฟลเดอร์ใหม่</string>
+    <string name="folders_folder_name_label">ชื่อโฟลเดอร์</string>
+    <string name="folders_create">สร้าง</string>
+    <string name="folders_cancel">ยกเลิก</string>
+    <string name="folders_new_folder_fab">โฟลเดอร์ใหม่</string>
+    <string name="folders_no_folders">ไม่มีโฟลเดอร์</string>
+    <string name="folders_empty_message">สร้างโฟลเดอร์เพื่อจัดระเบียบการบันทึกของคุณ</string>
+    <string name="folders_delete">ลบ</string>
+    <string name="folders_limit_format">%1$d/%2$d โฟลเดอร์</string>
+    <string name="folders_recording_count_singular">%1$d การบันทึก</string>
+    <string name="folders_recording_count_plural">%1$d การบันทึก</string>
+
+    <!-- Folder Detail Screen -->
+    <string name="folder_detail_back">ย้อนกลับ</string>
+    <string name="folder_detail_empty">โฟลเดอร์ว่าง</string>
+    <string name="folder_detail_empty_message">ย้ายการบันทึกมาที่นี่จากรายการการบันทึก</string>
+
+    <!-- Move to Folder Sheet -->
+    <string name="move_to_folder_title">ย้ายไปโฟลเดอร์</string>
+    <string name="move_to_folder_no_folder">ไม่มีโฟลเดอร์</string>
+
+    <!-- Favorites Screen -->
+    <string name="favorites_title">รายการโปรด</string>
+    <string name="favorites_search_placeholder">ค้นหารายการโปรด</string>
+    <string name="favorites_clear">ล้าง</string>
+    <string name="favorites_no_results">ไม่พบผลลัพธ์</string>
+    <string name="favorites_no_favorites">ไม่มีรายการโปรด</string>
+    <string name="favorites_try_different_search">ลองคำค้นหาอื่น</string>
+    <string name="favorites_empty_message">แตะรูปหัวใจบนการบันทึกเพื่อเพิ่มที่นี่</string>
+
+    <!-- Recording Row Item -->
+    <string name="recording_row_unfavorite">นำออกจากรายการโปรด</string>
+    <string name="recording_row_favorite">เพิ่มในรายการโปรด</string>
+    <string name="recording_row_stereo">สเตอริโอ</string>
+    <string name="recording_row_transcript">บทถอดความ</string>
+
+    <!-- Editor Screen -->
+    <string name="editor_duration_label">ระยะเวลา: %1$s</string>
+    <string name="editor_trim_range">ช่วงตัด</string>
+    <string name="editor_processing">กำลังประมวลผล\u2026</string>
+    <string name="editor_trim">ตัด</string>
+    <string name="editor_enhance">ปรับปรุง</string>
+    <string name="editor_vocals">เสียงร้อง</string>
+    <string name="editor_transcribing">กำลังถอดความ\u2026</string>
+    <string name="editor_transcribe">ถอดความ</string>
+    <string name="editor_transcription_failed">การถอดความล้มเหลว</string>
+    <string name="editor_dismiss">ปิด</string>
+
+    <!-- Transcript Screen -->
+    <string name="transcript_title">บทถอดความ</string>
+    <string name="transcript_copied">คัดลอกบทถอดความแล้ว</string>
+    <string name="transcript_copy">คัดลอกบทถอดความ</string>
+    <string name="transcript_share">แชร์บทถอดความ</string>
+    <string name="transcript_share_chooser">แชร์บทถอดความ</string>
+    <string name="transcript_empty">ไม่มีบทถอดความ</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">การตั้งค่า</string>
+    <string name="settings_go_premium">อัปเกรดเป็น Premium</string>
+    <string name="settings_premium_subtitle">บันทึกไม่จำกัด, ถอดความ และอื่นๆ</string>
+    <string name="settings_section_recording_defaults">ค่าเริ่มต้นการบันทึก</string>
+    <string name="settings_default_format">รูปแบบเริ่มต้น</string>
+    <string name="settings_default_quality">คุณภาพเริ่มต้น</string>
+    <string name="settings_stereo_recording">การบันทึกสเตอริโอ</string>
+    <string name="settings_stereo_subtitle">บันทึกเป็นสเตอริโอเมื่อพร้อมใช้งาน</string>
+    <string name="settings_auto_tag_location">แท็กตำแหน่งอัตโนมัติ</string>
+    <string name="settings_auto_tag_subtitle">ตั้งชื่อการบันทึกตามตำแหน่งโดยอัตโนมัติ</string>
+    <string name="settings_section_storage">พื้นที่จัดเก็บ</string>
+    <string name="settings_recordings_storage">พื้นที่จัดเก็บการบันทึก</string>
+    <string name="settings_section_about">เกี่ยวกับ</string>
+    <string name="settings_app_name">ClearVoice Recorder</string>
+    <string name="settings_version">เวอร์ชัน 1.0.0</string>
+    <string name="settings_privacy_policy">นโยบายความเป็นส่วนตัว</string>
+    <string name="settings_terms_of_service">ข้อกำหนดการให้บริการ</string>
+    <string name="settings_acknowledgments">กิตติกรรมประกาศ</string>
+
+    <!-- Acknowledgments Screen -->
+    <string name="acknowledgments_title">กิตติกรรมประกาศ</string>
+    <string name="acknowledgments_back">ย้อนกลับ</string>
+    <string name="acknowledgments_app_name">ClearVoice Recorder</string>
+    <string name="acknowledgments_built_with">สร้างด้วย Jetpack Compose, Media3, Room และ Vosk</string>
+    <string name="acknowledgments_frameworks_title">เฟรมเวิร์กที่ใช้</string>
+    <string name="acknowledgments_jetpack_compose">Jetpack Compose</string>
+    <string name="acknowledgments_jetpack_compose_desc">ชุดเครื่องมือ UI แบบประกาศสมัยใหม่</string>
+    <string name="acknowledgments_media3">Media3 ExoPlayer</string>
+    <string name="acknowledgments_media3_desc">เครื่องยนต์เล่นเสียง</string>
+    <string name="acknowledgments_room">Room</string>
+    <string name="acknowledgments_room_desc">การจัดเก็บฐานข้อมูล SQLite</string>
+    <string name="acknowledgments_hilt">Hilt</string>
+    <string name="acknowledgments_hilt_desc">เฟรมเวิร์กการฉีดการพึ่งพา</string>
+    <string name="acknowledgments_datastore">DataStore</string>
+    <string name="acknowledgments_datastore_desc">การจัดเก็บค่าตั้งค่า</string>
+    <string name="acknowledgments_vosk">Vosk</string>
+    <string name="acknowledgments_vosk_desc">การรู้จำเสียงพูดแบบออฟไลน์</string>
+    <string name="acknowledgments_location">Google Play Location</string>
+    <string name="acknowledgments_location_desc">การตั้งชื่อตามตำแหน่ง</string>
+    <string name="acknowledgments_mediacodec">MediaCodec</string>
+    <string name="acknowledgments_mediacodec_desc">การถอดรหัสและแก้ไขเสียง</string>
+
+    <!-- Settings ViewModel -->
+    <string name="settings_calculating">กำลังคำนวณ\u2026</string>
+    <string name="settings_zero_storage">0 B</string>
+
+    <!-- Editor ViewModel -->
+    <string name="editor_vocals_suffix">%1$s - เสียงร้อง</string>
+
+    <!-- Editor ViewModel Errors -->
+    <string name="editor_error_trim_failed">ไม่สามารถตัดการบันทึกได้</string>
+    <string name="editor_error_enhance_failed">ไม่สามารถปรับปรุงการบันทึกได้</string>
+    <string name="editor_error_vocals_failed">ไม่สามารถแยกเสียงร้องได้</string>
+
+    <!-- Navigation Labels -->
+    <string name="nav_recordings">การบันทึก</string>
+    <string name="nav_folders">โฟลเดอร์</string>
+    <string name="nav_favorites">รายการโปรด</string>
+    <string name="nav_settings">การตั้งค่า</string>
+</resources>

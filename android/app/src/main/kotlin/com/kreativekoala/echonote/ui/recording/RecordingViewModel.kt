@@ -2,6 +2,8 @@ package com.kreativekoala.echonote.ui.recording
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.content.Context
+import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingQuality
@@ -10,6 +12,7 @@ import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioRecorderService
 import com.kreativekoala.echonote.service.LocationService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -21,6 +24,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordingViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val recorderService: AudioRecorderService,
     private val locationService: LocationService,
     private val recordingRepository: RecordingRepository,
@@ -98,7 +102,7 @@ class RecordingViewModel @Inject constructor(
 
     fun saveRecording() {
         val result = pendingResult ?: return
-        val title = _recordingTitle.value.ifBlank { "New Recording" }
+        val title = _recordingTitle.value.ifBlank { context.getString(R.string.recording_new_default_title) }
 
         viewModelScope.launch {
             val recording = Recording(

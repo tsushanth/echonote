@@ -15,8 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.kreativekoala.echonote.R
 
 @Composable
 fun TranscriptScreen(
@@ -35,7 +37,7 @@ fun TranscriptScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Transcript",
+                    text = stringResource(R.string.transcript_title),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -45,13 +47,13 @@ fun TranscriptScreen(
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                             val clip = ClipData.newPlainText("Transcript", transcript)
                             clipboard.setPrimaryClip(clip)
-                            Toast.makeText(context, "Transcript copied", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.transcript_copied), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.size(32.dp)
                     ) {
                         Icon(
                             Icons.Default.ContentCopy,
-                            contentDescription = "Copy transcript",
+                            contentDescription = stringResource(R.string.transcript_copy),
                             modifier = Modifier.size(18.dp),
                             tint = MaterialTheme.colorScheme.primary
                         )
@@ -63,13 +65,13 @@ fun TranscriptScreen(
                                 type = "text/plain"
                                 putExtra(Intent.EXTRA_TEXT, transcript)
                             }
-                            context.startActivity(Intent.createChooser(intent, "Share Transcript"))
+                            context.startActivity(Intent.createChooser(intent, context.getString(R.string.transcript_share_chooser)))
                         },
                         modifier = Modifier.size(32.dp)
                     ) {
                         Icon(
                             Icons.Default.Share,
-                            contentDescription = "Share transcript",
+                            contentDescription = stringResource(R.string.transcript_share),
                             modifier = Modifier.size(18.dp),
                             tint = MaterialTheme.colorScheme.primary
                         )
@@ -78,7 +80,7 @@ fun TranscriptScreen(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = transcript.ifEmpty { "No transcript available" },
+                text = transcript.ifEmpty { stringResource(R.string.transcript_empty) },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

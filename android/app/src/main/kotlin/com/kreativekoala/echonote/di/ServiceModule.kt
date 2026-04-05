@@ -7,6 +7,7 @@ import com.kreativekoala.echonote.service.AudioPlayerService
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.TranscriptionService
 import com.kreativekoala.echonote.service.LocationService
+import com.kreativekoala.echonote.service.AppOpenTracker
 import com.kreativekoala.echonote.service.BillingService
 import com.kreativekoala.echonote.service.PremiumManager
 import com.kreativekoala.echonote.service.ReviewManager
@@ -54,7 +55,7 @@ object ServiceModule {
     @Provides
     @Singleton
     fun provideBillingService(): BillingService {
-        return BillingService()
+        return BillingService().also { it.initialize() }
     }
 
     @Provides
@@ -73,5 +74,11 @@ object ServiceModule {
     @Singleton
     fun provideSettingsRepository(@ApplicationContext context: Context): SettingsRepository {
         return SettingsRepository(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppOpenTracker(@ApplicationContext context: Context): AppOpenTracker {
+        return AppOpenTracker(context)
     }
 }
