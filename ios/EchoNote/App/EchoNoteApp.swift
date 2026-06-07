@@ -18,6 +18,9 @@ struct EchoNoteApp: App {
         // Configure Firebase Analytics
         FirebaseApp.configure()
 
+        // Apple Search Ads attribution (AdServices.framework, iOS 14.3+)
+        AttributionService.shared.trackAttribution()
+
         // Configure StoreKit 2 via PaywallKit (replaces RevenueCat)
         StoreManager.shared.configure(productIds: ProductID.allIDs)
 

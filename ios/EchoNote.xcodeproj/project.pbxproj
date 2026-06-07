@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32DE1C58F211B4627B47B133 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB588125EDEFECC4DCE0FE02 /* AdServices.framework */; };
 		5CF057E57C464F66A2FCF397 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658E0442E0D78F6CF34E7AF4 /* ScreenshotTests.swift */; };
 		7BF588F56F01582B480E34E1 /* EchoNoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2166A80F48CA24D893FA370 /* EchoNoteViewModelTests.swift */; };
 		8651BA87FB7E5A2A1DA7B5B1 /* EchoNoteNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E912D7B8A0B006DA41BE5F /* EchoNoteNavigationTests.swift */; };
+		965F02708384BD44AB57A798 /* AttributionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B756A8E78C4416A7B99CC811 /* AttributionService.swift */; };
 		999B699F16C7B24C853C9C26 /* EchoNoteActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A84977A16353B49DA7DAC9 /* EchoNoteActionTests.swift */; };
 		A10000000000000000000001 /* EchoNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000001 /* EchoNoteApp.swift */; };
 		A10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000002 /* ContentView.swift */; };
@@ -45,13 +47,15 @@
 		A10000000000000000000021 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000021 /* StoreKitManager.swift */; };
 		A10000000000000000000022 /* PremiumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000022 /* PremiumManager.swift */; };
 		A10000000000000000000023 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* PaywallView.swift */; };
-		A10000000000000000000024 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* ReviewManager.swift */; };
 		A10000000000000000000025 /* TikTokHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* TikTokHelper.swift */; };
 		A10000000000000000000026 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* GoogleService-Info.plist */; };
 		A10000000000000000000027 /* TranscriptIntelligenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000027 /* TranscriptIntelligenceService.swift */; };
 		A10000000000000000000030 /* RemotePaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000030 /* RemotePaywallView.swift */; };
 		A10000000000000000000031 /* PaywallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000031 /* PaywallCoordinator.swift */; };
 		A10000000000000000000032 /* WinbackOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000032 /* WinbackOfferView.swift */; };
+		A10000000000000000000040 /* RecycleBinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000040 /* RecycleBinView.swift */; };
+		A10000000000000000000041 /* RecycleBinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000041 /* RecycleBinViewModel.swift */; };
+		AA000000000000000000000C /* CrossPromoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000000B /* CrossPromoBanner.swift */; };
 		AC01DDF180026ABF90DD5A5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F62F6B34A5306F0EDDC5E5 /* Foundation.framework */; };
 		BB8D2E607A476E0BF744BB0B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69725E4BC9CBCDABD2EE6DE6 /* SnapshotHelper.swift */; };
 		BBF56F736C937337B1BB380B /* EchoNoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */; };
@@ -62,9 +66,16 @@
 		C10000000000000000000003 /* PaywallViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000003 /* PaywallViewTests.swift */; };
 		C10000000000000000000004 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000004 /* ModelTests.swift */; };
 		C10000000000000000000005 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000000000000000000005 /* ViewModelTests.swift */; };
+		FAD0000000000000000003 /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = FAD0000000000000000002 /* FluidAudio */; };
 		FB_BUILD_001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FB_REF_001 /* FirebaseAnalytics */; };
+		KOKORO_BUILD_001 /* KokoroTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = KOKORO_FILE_001 /* KokoroTTSService.swift */; };
+		KOKORO_BUILD_002 /* ReadAloudSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = KOKORO_FILE_002 /* ReadAloudSheet.swift */; };
+		META_BUILD_001 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = META_REF_001 /* FacebookCore */; };
+		META_BUILD_002 /* FacebookSDKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = META_FILE_001 /* FacebookSDKHelper.swift */; };
 		PCV000000000003 /* PaywallKit in Frameworks */ = {isa = PBXBuildFile; productRef = PCV000000000002 /* PaywallKit */; };
+		RK_BUILD_001 /* RatingKit in Frameworks */ = {isa = PBXBuildFile; productRef = RK_REF_001 /* RatingKit */; };
 		TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */ = {isa = PBXBuildFile; productRef = TT_REF_001 /* TikTokBusinessSDK */; };
+		WK_BUILD_001 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = WK_REF_001 /* WhisperKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +106,7 @@
 		A2166A80F48CA24D893FA370 /* EchoNoteViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteViewModelTests.swift; sourceTree = "<group>"; };
 		A2747D7AB51B42E2BBAAA7DC /* VocalSeparationModel.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = VocalSeparationModel.mlpackage; sourceTree = "<group>"; };
 		A421571BB63740F2BA3FB314 /* EchoNoteProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = EchoNoteProducts.storekit; sourceTree = "<group>"; };
+		AA000000000000000000000B /* CrossPromoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPromoBanner.swift; sourceTree = "<group>"; };
 		B10000000000000000000001 /* EchoNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoNoteApp.swift; sourceTree = "<group>"; };
 		B10000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B10000000000000000000003 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
@@ -130,13 +142,16 @@
 		B10000000000000000000021 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
 		B10000000000000000000022 /* PremiumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManager.swift; sourceTree = "<group>"; };
 		B10000000000000000000023 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
-		B10000000000000000000024 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		B10000000000000000000025 /* TikTokHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokHelper.swift; sourceTree = "<group>"; };
 		B10000000000000000000026 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B10000000000000000000027 /* TranscriptIntelligenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptIntelligenceService.swift; sourceTree = "<group>"; };
 		B10000000000000000000030 /* RemotePaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePaywallView.swift; sourceTree = "<group>"; };
 		B10000000000000000000031 /* PaywallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallCoordinator.swift; sourceTree = "<group>"; };
 		B10000000000000000000032 /* WinbackOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinbackOfferView.swift; sourceTree = "<group>"; };
+		B10000000000000000000040 /* RecycleBinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinView.swift; sourceTree = "<group>"; };
+		B10000000000000000000041 /* RecycleBinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinViewModel.swift; sourceTree = "<group>"; };
+		B756A8E78C4416A7B99CC811 /* AttributionService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AttributionService.swift; sourceTree = "<group>"; };
+		BB588125EDEFECC4DCE0FE02 /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
 		C20000000000000000000001 /* StoreKitManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManagerTests.swift; sourceTree = "<group>"; };
 		C20000000000000000000002 /* PremiumManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManagerTests.swift; sourceTree = "<group>"; };
 		C20000000000000000000003 /* PaywallViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewTests.swift; sourceTree = "<group>"; };
@@ -146,6 +161,9 @@
 		CA8D21F1809848F5B44B9C83 /* EchoNoteServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteServiceTests.swift; sourceTree = "<group>"; };
 		D4CBC927743339CB59D64CB9 /* EchoNoteDataFlowTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EchoNoteDataFlowTests.swift; sourceTree = "<group>"; };
 		F17894B27F5E12EED15D2092 /* MockServices.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockServices.swift; path = Mocks/MockServices.swift; sourceTree = "<group>"; };
+		KOKORO_FILE_001 /* KokoroTTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KokoroTTSService.swift; sourceTree = "<group>"; };
+		KOKORO_FILE_002 /* ReadAloudSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAloudSheet.swift; sourceTree = "<group>"; };
+		META_FILE_001 /* FacebookSDKHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookSDKHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +174,11 @@
 				TT_BUILD_001 /* TikTokBusinessSDK in Frameworks */,
 				FB_BUILD_001 /* FirebaseAnalytics in Frameworks */,
 				PCV000000000003 /* PaywallKit in Frameworks */,
+				RK_BUILD_001 /* RatingKit in Frameworks */,
+				META_BUILD_001 /* FacebookCore in Frameworks */,
+				WK_BUILD_001 /* WhisperKit in Frameworks */,
+				FAD0000000000000000003 /* FluidAudio in Frameworks */,
+				32DE1C58F211B4627B47B133 /* AdServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +263,7 @@
 				B10000000000000000000008 /* RecordingsListViewModel.swift */,
 				B10000000000000000000009 /* FolderViewModel.swift */,
 				B1000000000000000000000A /* EditorViewModel.swift */,
+				B10000000000000000000041 /* RecycleBinViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -267,10 +291,12 @@
 				B1000000000000000000001A /* TranscriptionService.swift */,
 				B10000000000000000000021 /* StoreKitManager.swift */,
 				B10000000000000000000022 /* PremiumManager.swift */,
-				B10000000000000000000024 /* ReviewManager.swift */,
 				B10000000000000000000025 /* TikTokHelper.swift */,
+				META_FILE_001 /* FacebookSDKHelper.swift */,
 				B10000000000000000000027 /* TranscriptIntelligenceService.swift */,
 				B10000000000000000000031 /* PaywallCoordinator.swift */,
+				KOKORO_FILE_001 /* KokoroTTSService.swift */,
+				B756A8E78C4416A7B99CC811 /* AttributionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -327,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				0A128EFE150A23BB6215B33D /* iOS */,
+				BB588125EDEFECC4DCE0FE02 /* AdServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -354,6 +381,7 @@
 			children = (
 				B1000000000000000000000B /* WaveformView.swift */,
 				B1000000000000000000000C /* RecordingRowView.swift */,
+				KOKORO_FILE_002 /* ReadAloudSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -390,6 +418,7 @@
 				B10000000000000000000012 /* FoldersView.swift */,
 				B10000000000000000000013 /* FavoritesView.swift */,
 				B10000000000000000000014 /* MoveToFolderView.swift */,
+				B10000000000000000000040 /* RecycleBinView.swift */,
 			);
 			path = Organization;
 			sourceTree = "<group>";
@@ -398,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				B10000000000000000000015 /* SettingsView.swift */,
+				AA000000000000000000000B /* CrossPromoBanner.swift */,
 				B10000000000000000000023 /* PaywallView.swift */,
 				B10000000000000000000030 /* RemotePaywallView.swift */,
 				B10000000000000000000032 /* WinbackOfferView.swift */,
@@ -433,6 +463,10 @@
 				TT_REF_001 /* TikTokBusinessSDK */,
 				FB_REF_001 /* FirebaseAnalytics */,
 				PCV000000000002 /* PaywallKit */,
+				RK_REF_001 /* RatingKit */,
+				META_REF_001 /* FacebookCore */,
+				WK_REF_001 /* WhisperKit */,
+				FAD0000000000000000002 /* FluidAudio */,
 			);
 			productName = EchoNote;
 			productReference = 000000000000000000000008 /* EchoNote.app */;
@@ -506,6 +540,10 @@
 				TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */,
 				FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				PCV000000000001 /* XCLocalSwiftPackageReference "PaywallKit" */,
+				RK_PACKAGE /* XCRemoteSwiftPackageReference "RatingKit" */,
+				META_PACKAGE /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				WK_PACKAGE /* XCRemoteSwiftPackageReference "WhisperKit" */,
+				FAD0000000000000000001 /* XCRemoteSwiftPackageReference "FluidAudio" */,
 			);
 			productRefGroup = 000000000000000000000009 /* Products */;
 			projectDirPath = "";
@@ -570,6 +608,7 @@
 				A10000000000000000000013 /* FavoritesView.swift in Sources */,
 				A10000000000000000000014 /* MoveToFolderView.swift in Sources */,
 				A10000000000000000000015 /* SettingsView.swift in Sources */,
+				AA000000000000000000000C /* CrossPromoBanner.swift in Sources */,
 				A10000000000000000000016 /* AudioRecorderService.swift in Sources */,
 				A10000000000000000000017 /* AudioPlayerService.swift in Sources */,
 				A10000000000000000000018 /* AudioEditorService.swift in Sources */,
@@ -583,11 +622,16 @@
 				A10000000000000000000022 /* PremiumManager.swift in Sources */,
 				A10000000000000000000023 /* PaywallView.swift in Sources */,
 				A10000000000000000000030 /* RemotePaywallView.swift in Sources */,
-				A10000000000000000000024 /* ReviewManager.swift in Sources */,
 				A10000000000000000000025 /* TikTokHelper.swift in Sources */,
+				META_BUILD_002 /* FacebookSDKHelper.swift in Sources */,
 				A10000000000000000000027 /* TranscriptIntelligenceService.swift in Sources */,
 				A10000000000000000000031 /* PaywallCoordinator.swift in Sources */,
 				A10000000000000000000032 /* WinbackOfferView.swift in Sources */,
+				A10000000000000000000040 /* RecycleBinView.swift in Sources */,
+				A10000000000000000000041 /* RecycleBinViewModel.swift in Sources */,
+				KOKORO_BUILD_001 /* KokoroTTSService.swift in Sources */,
+				KOKORO_BUILD_002 /* ReadAloudSheet.swift in Sources */,
+				965F02708384BD44AB57A798 /* AttributionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,7 +804,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7RS696YC75;
 				ENABLE_PREVIEWS = YES;
@@ -780,7 +824,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6;
+				MARKETING_VERSION = 4.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -798,7 +842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7RS696YC75;
 				ENABLE_PREVIEWS = YES;
@@ -818,7 +862,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6;
+				MARKETING_VERSION = 4.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -850,7 +894,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 56;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -858,7 +902,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6;
+				MARKETING_VERSION = 4.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -876,7 +920,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 56;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -884,7 +928,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.6;
+				MARKETING_VERSION = 4.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kreativekoala.echonote.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -962,12 +1006,36 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FAD0000000000000000001 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.4;
+			};
+		};
 		FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.0.0;
+			};
+		};
+		META_PACKAGE /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.0.0;
+			};
+		};
+		RK_PACKAGE /* XCRemoteSwiftPackageReference "RatingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tsushanth/RatingKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */ = {
@@ -978,22 +1046,50 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		WK_PACKAGE /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/WhisperKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FAD0000000000000000002 /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAD0000000000000000001 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
 		FB_REF_001 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB_PACKAGE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
+		META_REF_001 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = META_PACKAGE /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
 		PCV000000000002 /* PaywallKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PaywallKit;
+		};
+		RK_REF_001 /* RatingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = RK_PACKAGE /* XCRemoteSwiftPackageReference "RatingKit" */;
+			productName = RatingKit;
 		};
 		TT_REF_001 /* TikTokBusinessSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = TT_PACKAGE /* XCRemoteSwiftPackageReference "tiktok-business-ios-sdk" */;
 			productName = TikTokBusinessSDK;
+		};
+		WK_REF_001 /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = WK_PACKAGE /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = WhisperKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
