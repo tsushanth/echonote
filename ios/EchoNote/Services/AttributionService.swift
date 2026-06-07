@@ -1,0 +1,33 @@
+import Foundation
+#if canImport(AdServices)
+import AdServices
+#endif
+
+final class AttributionService {
+    static let shared = AttributionService()
+    private let sentKey = "asa.attribution.sent"
+    private init() {}
+
+    func trackAttribution() {
+        guard !UserDefaults.standard.bool(forKey: sentKey) else { return }
+        if #available(iOS 14.3, *) {
+            Task.detached(priority: .background) {
+                do {
+                    let token = try AAAttribution.attributionToken()
+                    try await Self.postToApple(token: token)
+                    UserDefaults.standard.set(true, forKey: self.sentKey)
+                } catch {
+                    // limited tracking / TestFlight / network — silent
+                }
+            }
+        }
+    }
+
+    private static func postToApple(token: String) async throws {
+        var req = URLRequest(url: URL(string: "https://api-adservices.apple.com/api/v1/")!)
+        req.httpMethod = "POST"
+        req.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        req.httpBody = token.data(using: .utf8)
+        _ = try await URLSession.shared.data(for: req)
+    }
+}
