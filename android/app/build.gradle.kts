@@ -9,14 +9,14 @@ plugins {
 
 android {
     namespace = "com.kreativekoala.echonote"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.kreativekoala.echonote"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 14
-        versionName = "1.5.5"
+        targetSdk = 36
+        versionCode = 35
+        versionName = "1.8.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -65,6 +66,10 @@ android {
 dependencies {
     // PaywallKit
     implementation(project(":paywallkit"))
+    implementation(project(":crosspromokit"))
+
+    // RatingKit
+    implementation(project(":ratingkit"))
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
@@ -102,9 +107,8 @@ dependencies {
     implementation("androidx.media3:media3-session:$media3Version")
     implementation("androidx.media3:media3-transformer:$media3Version")
 
-    // RevenueCat (wraps Google Play Billing)
-    implementation("com.revenuecat.purchases:purchases:9.22.2")
-    implementation("com.revenuecat.purchases:purchases-ui:9.22.2")
+    // Google Play Billing
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
 
     // Location
     implementation("com.google.android.gms:play-services-location:21.3.0")
@@ -133,4 +137,11 @@ dependencies {
 
     // TikTok Events SDK (install attribution & event tracking)
     implementation("com.github.tiktok:tiktok-business-android-sdk:1.6.0")
+
+    // Meta / Facebook SDK (app events for Meta Ads attribution)
+    implementation("com.facebook.android:facebook-android-sdk:17.0.1")
+
+    // Glance App Widget
+    implementation("androidx.glance:glance-appwidget:1.1.1")
+    implementation("androidx.glance:glance-material3:1.1.1")
 }

@@ -1,17 +1,24 @@
 package com.kreativekoala.echonote.ui.organization
 
+import android.content.Context
+import android.media.MediaMetadataRetriever
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.service.PremiumManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 
 enum class SortOption { DATE, NAME, DURATION, SIZE }
@@ -39,7 +46,10 @@ class RecordingsListViewModel @Inject constructor(
         _sortOption
     ) { recordings, query, sort ->
         val filtered = if (query.isBlank()) recordings
-        else recordings.filter { it.title.contains(query, ignoreCase = true) }
+        else recordings.filter {
+            it.title.contains(query, ignoreCase = true) ||
+            it.transcript?.contains(query, ignoreCase = true) == true
+        }
 
         when (sort) {
             SortOption.DATE -> filtered.sortedByDescending { it.dateCreated }
@@ -89,5 +99,46 @@ class RecordingsListViewModel @Inject constructor(
 
     fun canCreateRecording(): Boolean {
         return premiumManager.canCreateRecording(recordings.value.size)
+    }
+
+    fun importFile(context: Context, uri: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val recDir = File(context.filesDir, "Recordings").also { it.mkdirs() }
+                val mimeType = context.contentResolver.getType(uri) ?: "audio/mpeg"
+                val ext = when {
+                    mimeType.contains("mp4") || mimeType.contains("video") -> "mp4"
+                    mimeType.contains("mp3") -> "mp3"
+                    mimeType.contains("wav") -> "wav"
+                    mimeType.contains("ogg") -> "ogg"
+                    else -> "m4a"
+                }
+                val destFile = File(recDir, "Import_${System.currentTimeMillis()}.$ext")
+                context.contentResolver.openInputStream(uri)?.use { input ->
+                    FileOutputStream(destFile).use { output -> input.copyTo(output) }
+                }
+
+                val retriever = MediaMetadataRetriever()
+                var duration = 0L
+                var fileSize = destFile.length()
+                try {
+                    retriever.setDataSource(destFile.absolutePath)
+                    duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLongOrNull() ?: 0L
+                } finally {
+                    retriever.release()
+                }
+
+                val name = destFile.nameWithoutExtension
+                val recording = Recording(
+                    title = name,
+                    fileUri = destFile.absolutePath,
+                    duration = duration,
+                    fileSize = fileSize,
+                    dateCreated = System.currentTimeMillis(),
+                    dateModified = System.currentTimeMillis()
+                )
+                recordingRepository.insertRecording(recording)
+            } catch (_: Exception) {}
+        }
     }
 }

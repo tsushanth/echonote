@@ -1,0 +1,1 @@
+On-device Read Aloud: tap the speaker icon on any transcript to hear it spoken back, with no internet required. Works during long-audio transcription too — start listening to what's been transcribed so far while the rest is still processing.

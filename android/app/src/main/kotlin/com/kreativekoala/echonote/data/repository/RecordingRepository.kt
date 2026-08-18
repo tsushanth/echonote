@@ -31,16 +31,34 @@ class RecordingRepository @Inject constructor(
     suspend fun updateRecording(recording: Recording) = recordingDao.update(recording)
 
     suspend fun deleteRecording(recording: Recording) {
+        recordingDao.update(recording.copy(deletedAt = System.currentTimeMillis()))
+    }
+
+    suspend fun deleteRecordingsByIds(ids: List<String>) {
+        val now = System.currentTimeMillis()
+        val recordings = ids.mapNotNull { recordingDao.getRecordingById(it) }
+        recordings.forEach { rec ->
+            recordingDao.update(rec.copy(deletedAt = now))
+        }
+    }
+
+    fun getDeletedRecordings(): Flow<List<Recording>> = recordingDao.getDeletedRecordings()
+
+    suspend fun restoreRecording(recording: Recording) {
+        recordingDao.update(recording.copy(deletedAt = null))
+    }
+
+    suspend fun permanentlyDelete(recording: Recording) {
         try { File(recording.fileUri).delete() } catch (_: Exception) {}
         recordingDao.delete(recording)
     }
 
-    suspend fun deleteRecordingsByIds(ids: List<String>) {
-        val recordings = ids.mapNotNull { recordingDao.getRecordingById(it) }
-        recordings.forEach { rec ->
+    suspend fun emptyTrash() {
+        val deletedSnapshot = recordingDao.getDeletedRecordingsOnce()
+        deletedSnapshot.forEach { rec ->
             try { File(rec.fileUri).delete() } catch (_: Exception) {}
         }
-        recordingDao.deleteByIds(ids)
+        recordingDao.purgeOldDeleted(Long.MAX_VALUE)
     }
 
     fun getBookmarksForRecording(recordingId: String): Flow<List<Bookmark>> =
@@ -49,6 +67,8 @@ class RecordingRepository @Inject constructor(
     suspend fun addBookmark(bookmark: Bookmark) = bookmarkDao.insert(bookmark)
 
     suspend fun deleteBookmark(bookmark: Bookmark) = bookmarkDao.delete(bookmark)
+
+    suspend fun getAllRecordingsOnce(): List<Recording> = recordingDao.getAllRecordingsOnce()
 
     fun getRecordingCountForFolder(folderId: String): Flow<Int> =
         recordingDao.getRecordingCountForFolder(folderId)

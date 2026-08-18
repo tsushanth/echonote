@@ -1,0 +1,1 @@
+Added in-app rating prompt — you'll be asked to rate ClearVoice after a few successful transcriptions, right in the app without leaving.

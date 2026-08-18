@@ -197,7 +197,9 @@ class AudioEditorService @Inject constructor(
             codec.configure(format, null, null, 0)
             codec.start()
 
-            val allSamples = mutableListOf<Short>()
+            // Accumulate as ShortArray chunks (avoids boxing overhead of mutableListOf<Short>)
+            val chunks = ArrayList<ShortArray>()
+            var totalSamples = 0
             val bufferInfo = MediaCodec.BufferInfo()
             var inputDone = false
 
@@ -227,9 +229,10 @@ class AudioEditorService @Inject constructor(
                 if (outputIndex >= 0) {
                     val outputBuffer = codec.getOutputBuffer(outputIndex)!!
                     val shortBuffer = outputBuffer.order(ByteOrder.LITTLE_ENDIAN).asShortBuffer()
-                    while (shortBuffer.hasRemaining()) {
-                        allSamples.add(shortBuffer.get())
-                    }
+                    val chunk = ShortArray(shortBuffer.remaining())
+                    shortBuffer.get(chunk)
+                    chunks.add(chunk)
+                    totalSamples += chunk.size
                     codec.releaseOutputBuffer(outputIndex, false)
 
                     if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) {
@@ -244,7 +247,14 @@ class AudioEditorService @Inject constructor(
             codec.release()
             extractor.release()
 
-            return allSamples.toShortArray()
+            // Combine chunks into single ShortArray
+            val result = ShortArray(totalSamples)
+            var offset = 0
+            for (chunk in chunks) {
+                chunk.copyInto(result, offset)
+                offset += chunk.size
+            }
+            return result
         } catch (e: Exception) {
             extractor.release()
             return null

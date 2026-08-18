@@ -42,8 +42,12 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideTranscriptionService(@ApplicationContext context: Context): TranscriptionService {
-        return TranscriptionService(context)
+    fun provideTranscriptionService(
+        @ApplicationContext context: Context,
+        audioPlayerService: AudioPlayerService,
+        settingsRepository: SettingsRepository
+    ): TranscriptionService {
+        return TranscriptionService(context, audioPlayerService, settingsRepository)
     }
 
     @Provides
@@ -54,8 +58,8 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideBillingService(): BillingService {
-        return BillingService().also { it.initialize() }
+    fun provideBillingService(@ApplicationContext context: Context): BillingService {
+        return BillingService(context).also { it.initialize() }
     }
 
     @Provides

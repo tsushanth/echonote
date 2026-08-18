@@ -19,10 +19,10 @@ object Constants {
     }
 
     object Premium {
-        const val FREE_RECORDING_LIMIT = 10
-        const val FREE_FOLDER_LIMIT = 3
-        const val FREE_BOOKMARK_LIMIT = 5
-        const val FREE_OPEN_LIMIT = 3
+        const val FREE_RECORDING_LIMIT = 3
+        const val FREE_FOLDER_LIMIT = 1
+        const val FREE_BOOKMARK_LIMIT = 2
+        const val FREE_OPEN_LIMIT = 2
         const val TERMS_OF_SERVICE_URL = "https://kreativekoala.llc/terms"
         const val PRIVACY_POLICY_URL = "https://kreativekoala.llc/privacy"
     }

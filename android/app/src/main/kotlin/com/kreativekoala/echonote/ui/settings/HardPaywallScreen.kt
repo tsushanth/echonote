@@ -37,11 +37,11 @@ fun HardPaywallScreen(
 
     // Calculate per-week price from annual price
     val perWeekPrice = yearlyProduct?.let {
-        val rcPackage = it.rcPackage ?: return@let null
-        val yearlyMicros = rcPackage.product.price.amountMicros
+        val yearlyMicros = it.priceAmountMicros
+        if (yearlyMicros <= 0L) return@let null
         val weeklyMicros = yearlyMicros / 52
         val weeklyAmount = weeklyMicros / 1_000_000.0
-        val currencyCode = rcPackage.product.price.currencyCode
+        val currencyCode = it.currencyCode
         // Format with currency symbol
         val format = java.text.NumberFormat.getCurrencyInstance()
         format.currency = java.util.Currency.getInstance(currencyCode)

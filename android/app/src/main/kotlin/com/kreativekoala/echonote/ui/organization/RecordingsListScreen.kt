@@ -1,6 +1,8 @@
 package com.kreativekoala.echonote.ui.organization
 
 import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -38,6 +40,7 @@ fun RecordingsListScreen(
     onRecordingClick: (Recording) -> Unit,
     folders: List<RecordingFolder> = emptyList(),
     onMoveToFolder: (Recording, String?) -> Unit = { _, _ -> },
+    onRecycleBinClick: () -> Unit = {},
     viewModel: RecordingsListViewModel = hiltViewModel()
 ) {
     val recordings by viewModel.recordings.collectAsState()
@@ -53,6 +56,12 @@ fun RecordingsListScreen(
     val context = LocalContext.current
 
     val isSelectionMode = selectedIds.isNotEmpty()
+
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        uri?.let { viewModel.importFile(context, it) }
+    }
 
     if (showPaywall) {
         PaywallScreen(onDismiss = { showPaywall = false })
@@ -141,6 +150,9 @@ fun RecordingsListScreen(
                 TopAppBar(
                     title = { Text(stringResource(R.string.recordings_title)) },
                     actions = {
+                        IconButton(onClick = onRecycleBinClick) {
+                            Icon(Icons.Default.Delete, contentDescription = "Recycle Bin")
+                        }
                         Box {
                             IconButton(onClick = { showSortMenu = true }) {
                                 Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = stringResource(R.string.recordings_sort))
@@ -184,15 +196,27 @@ fun RecordingsListScreen(
         },
         floatingActionButton = {
             if (!isSelectionMode) {
-                FloatingActionButton(
-                    onClick = {
-                        if (viewModel.canCreateRecording()) onRecordClick()
-                        else showPaywall = true
-                    },
-                    containerColor = RecordingRed,
-                    contentColor = Color.White
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Icon(Icons.Default.Mic, contentDescription = stringResource(R.string.recordings_record))
+                    SmallFloatingActionButton(
+                        onClick = { importLauncher.launch(arrayOf("audio/*", "video/*")) },
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                    ) {
+                        Icon(Icons.Default.FileUpload, contentDescription = "Import audio/video")
+                    }
+                    FloatingActionButton(
+                        onClick = {
+                            if (viewModel.canCreateRecording()) onRecordClick()
+                            else showPaywall = true
+                        },
+                        containerColor = RecordingRed,
+                        contentColor = Color.White
+                    ) {
+                        Icon(Icons.Default.Mic, contentDescription = stringResource(R.string.recordings_record))
+                    }
                 }
             }
         }

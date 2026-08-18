@@ -6,8 +6,27 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.UUID
 
+enum class TranscriptionLanguage(
+    val displayName: String,
+    val modelFileName: String,
+    val modelDirName: String
+) {
+    ENGLISH("English", "vosk-model-small-en-us-0.15.zip", "vosk-model-en"),
+    SPANISH("Spanish", "vosk-model-small-es-0.42.zip", "vosk-model-es"),
+    FRENCH("French", "vosk-model-small-fr-0.22.zip", "vosk-model-fr"),
+    GERMAN("German", "vosk-model-small-de-0.15.zip", "vosk-model-de"),
+    PORTUGUESE("Portuguese", "vosk-model-small-pt-0.3.zip", "vosk-model-pt"),
+    CHINESE("Chinese", "vosk-model-small-cn-0.22.zip", "vosk-model-cn"),
+    ITALIAN("Italian", "vosk-model-small-it-0.22.zip", "vosk-model-it"),
+    HINDI("Hindi", "vosk-model-small-hi-0.22.zip", "vosk-model-hi"),
+    JAPANESE("Japanese", "vosk-model-small-ja-0.22.zip", "vosk-model-ja"),
+    KOREAN("Korean", "vosk-model-small-ko-0.22.zip", "vosk-model-ko");
+
+    val modelUrl: String get() = "https://alphacephei.com/vosk/models/$modelFileName"
+}
+
 enum class AudioFormat(val extension: String, val displayName: String) {
-    UNCOMPRESSED("wav", "Uncompressed (WAV)"),
+    UNCOMPRESSED("m4a", "Uncompressed (M4A)"),
     COMPRESSED("m4a", "Compressed (M4A)")
 }
 
@@ -50,8 +69,10 @@ data class Recording(
     val hasVocalLayer: Boolean = false,
     val locationName: String? = null,
     val transcript: String? = null,
+    val transcriptSegmentsJson: String? = null,
     val waveformData: ByteArray? = null,
-    val folderId: String? = null
+    val folderId: String? = null,
+    val deletedAt: Long? = null
 ) {
     val formattedDuration: String
         get() {
