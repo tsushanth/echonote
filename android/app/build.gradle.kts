@@ -15,8 +15,8 @@ android {
         applicationId = "com.kreativekoala.echonote"
         minSdk = 26
         targetSdk = 36
-        versionCode = 35
-        versionName = "1.8.9"
+        versionCode = 36
+        versionName = "1.9.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -108,7 +108,7 @@ dependencies {
     implementation("androidx.media3:media3-transformer:$media3Version")
 
     // Google Play Billing
-    implementation("com.android.billingclient:billing-ktx:7.1.1")
+    implementation("com.android.billingclient:billing-ktx:8.0.0")
 
     // Location
     implementation("com.google.android.gms:play-services-location:21.3.0")
