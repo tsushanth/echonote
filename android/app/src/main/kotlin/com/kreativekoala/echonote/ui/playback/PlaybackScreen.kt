@@ -1,11 +1,16 @@
 package com.kreativekoala.echonote.ui.playback
 
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import com.google.android.play.core.review.ReviewManagerFactory
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,9 +31,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
+import com.kreativekoala.echonote.tts.ReadAloudSheet
 import com.kreativekoala.echonote.ui.components.WaveformView
 import com.kreativekoala.echonote.ui.settings.PaywallScreen
 import com.kreativekoala.echonote.util.DateFormatting
+import com.kreativekoala.echonote.util.ExportFormat
 import com.kreativekoala.echonote.util.TimeFormatting
 import java.io.File
 
@@ -49,13 +56,29 @@ fun PlaybackScreen(
     val transcriptionResult by viewModel.transcriptionResult.collectAsState()
     val transcriptionError by viewModel.transcriptionError.collectAsState()
     val transcriptionStatus by viewModel.transcriptionStatus.collectAsState()
+    val transcriptionProgress by viewModel.transcriptionProgress.collectAsState()
+    val partialTranscript by viewModel.partialTranscript.collectAsState()
     val isTrimming by viewModel.isTrimming.collectAsState()
     val showTrimMode by viewModel.showTrimMode.collectAsState()
     val trimStart by viewModel.trimStart.collectAsState()
     val trimEnd by viewModel.trimEnd.collectAsState()
     val isPremium by viewModel.isPremium.collectAsState()
+    val transcriptSegments by viewModel.transcriptSegments.collectAsState()
+    val activeSegmentIndex by viewModel.activeSegmentIndex.collectAsState()
     val context = LocalContext.current
     var showPaywall by remember { mutableStateOf(false) }
+    var showExportMenu by remember { mutableStateOf(false) }
+    var showPartialReadAloud by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        viewModel.triggerReview.collect {
+            val activity = context as? Activity ?: return@collect
+            val manager = ReviewManagerFactory.create(context)
+            manager.requestReviewFlow().addOnSuccessListener { reviewInfo ->
+                manager.launchReviewFlow(activity, reviewInfo)
+            }
+        }
+    }
 
     val rec = recording ?: return
 
@@ -241,42 +264,32 @@ fun PlaybackScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Speed controls
+            // Speed controls — 6 preset chips
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(
-                    onClick = {
-                        if (isPremium) viewModel.decreaseSpeed()
-                        else showPaywall = true
-                    },
-                    enabled = playbackSpeed > 0.5f
-                ) {
-                    Icon(Icons.Default.Remove, contentDescription = stringResource(R.string.playback_decrease_speed))
-                }
-                Text(
-                    text = String.format("%.2fx", playbackSpeed),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontFamily = FontFamily.Monospace,
-                    modifier = Modifier.width(60.dp),
-                    textAlign = TextAlign.Center
-                )
-                IconButton(
-                    onClick = {
-                        if (isPremium) viewModel.increaseSpeed()
-                        else showPaywall = true
-                    },
-                    enabled = playbackSpeed < 2.0f
-                ) {
-                    Icon(Icons.Default.Add, contentDescription = stringResource(R.string.playback_increase_speed))
-                }
-                if (!isPremium) {
-                    Icon(
-                        Icons.Default.Lock,
-                        contentDescription = stringResource(R.string.playback_premium_feature),
-                        modifier = Modifier.size(16.dp),
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f).forEach { speed ->
+                    FilterChip(
+                        selected = playbackSpeed == speed,
+                        onClick = {
+                            if (isPremium || speed == 1f) viewModel.setSpeed(speed)
+                            else showPaywall = true
+                        },
+                        label = {
+                            val label = when (speed) {
+                                0.5f -> "0.5×"
+                                0.75f -> "0.75×"
+                                1f -> "1×"
+                                1.25f -> "1.25×"
+                                1.5f -> "1.5×"
+                                else -> "2×"
+                            }
+                            Text(text = label, style = MaterialTheme.typography.labelSmall)
+                        },
+                        leadingIcon = if (!isPremium && speed != 1f) {
+                            { Icon(Icons.Default.Lock, contentDescription = null, modifier = Modifier.size(12.dp)) }
+                        } else null
                     )
                 }
             }
@@ -391,6 +404,74 @@ fun PlaybackScreen(
                 }
             }
 
+            // Live transcription progress card
+            if (isTranscribing) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer
+                    )
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = transcriptionStatus ?: "Transcribing…",
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                            Text(
+                                text = "${(transcriptionProgress * 100).toInt()}%",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = { transcriptionProgress },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        if (partialTranscript.isNotBlank()) {
+                            Spacer(modifier = Modifier.height(10.dp))
+                            // Show the full accumulated transcript (scrollable, capped height)
+                            // so the user can follow along live and trigger Read Aloud on
+                            // what's been transcribed so far — same UX as SecureVox.
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(max = 220.dp)
+                                    .verticalScroll(rememberScrollState())
+                            ) {
+                                Text(
+                                    text = partialTranscript,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(10.dp))
+                            OutlinedButton(
+                                onClick = { showPartialReadAloud = true },
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                Icon(
+                                    Icons.Default.VolumeUp,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Text("Read Aloud (so far)")
+                            }
+                        }
+                    }
+                }
+            }
+
             // Transcription error display
             if (transcriptionError != null) {
                 Spacer(modifier = Modifier.height(12.dp))
@@ -459,34 +540,107 @@ fun PlaybackScreen(
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.SemiBold
                             )
-                            IconButton(
-                                onClick = {
-                                    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    val clip = ClipData.newPlainText("Transcript", transcriptionResult)
-                                    clipboard.setPrimaryClip(clip)
-                                    Toast.makeText(context, context.getString(R.string.playback_transcript_copied), Toast.LENGTH_SHORT).show()
-                                },
-                                modifier = Modifier.size(32.dp)
-                            ) {
-                                Icon(
-                                    Icons.Default.ContentCopy,
-                                    contentDescription = stringResource(R.string.playback_copy_transcript),
-                                    modifier = Modifier.size(18.dp),
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Box {
+                                    IconButton(
+                                        onClick = { showExportMenu = true },
+                                        modifier = Modifier.size(32.dp)
+                                    ) {
+                                        Icon(
+                                            Icons.Default.Share,
+                                            contentDescription = "Export transcript",
+                                            modifier = Modifier.size(18.dp),
+                                            tint = MaterialTheme.colorScheme.primary
+                                        )
+                                    }
+                                    DropdownMenu(
+                                        expanded = showExportMenu,
+                                        onDismissRequest = { showExportMenu = false }
+                                    ) {
+                                        DropdownMenuItem(
+                                            text = { Text("Export as TXT") },
+                                            onClick = {
+                                                showExportMenu = false
+                                                viewModel.exportTranscript(ExportFormat.TXT, context)
+                                            }
+                                        )
+                                        DropdownMenuItem(
+                                            text = { Text("Export as SRT") },
+                                            onClick = {
+                                                showExportMenu = false
+                                                viewModel.exportTranscript(ExportFormat.SRT, context)
+                                            }
+                                        )
+                                        DropdownMenuItem(
+                                            text = { Text("Export as VTT") },
+                                            onClick = {
+                                                showExportMenu = false
+                                                viewModel.exportTranscript(ExportFormat.VTT, context)
+                                            }
+                                        )
+                                    }
+                                }
+                                IconButton(
+                                    onClick = {
+                                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                        val clip = ClipData.newPlainText("Transcript", transcriptionResult)
+                                        clipboard.setPrimaryClip(clip)
+                                        Toast.makeText(context, context.getString(R.string.playback_transcript_copied), Toast.LENGTH_SHORT).show()
+                                    },
+                                    modifier = Modifier.size(32.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Default.ContentCopy,
+                                        contentDescription = stringResource(R.string.playback_copy_transcript),
+                                        modifier = Modifier.size(18.dp),
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                }
                             }
                         }
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = transcriptionResult!!,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        if (transcriptSegments.isNotEmpty()) {
+                            val wordListState = rememberLazyListState()
+                            LaunchedEffect(activeSegmentIndex) {
+                                if (activeSegmentIndex >= 0) {
+                                    wordListState.animateScrollToItem(activeSegmentIndex)
+                                }
+                            }
+                            LazyRow(
+                                state = wordListState,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                itemsIndexed(transcriptSegments) { idx, seg ->
+                                    val isActive = idx == activeSegmentIndex
+                                    Text(
+                                        text = seg.word,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = if (isActive) FontWeight.Bold else FontWeight.Normal,
+                                        color = if (isActive) MaterialTheme.colorScheme.primary
+                                                else MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        } else {
+                            Text(
+                                text = transcriptionResult!!,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 }
             }
 
             Spacer(modifier = Modifier.height(32.dp))
         }
+    }
+
+    if (showPartialReadAloud) {
+        ReadAloudSheet(
+            text = partialTranscript,
+            onDismiss = { showPartialReadAloud = false }
+        )
     }
 }

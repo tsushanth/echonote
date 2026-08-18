@@ -3,6 +3,10 @@
     <!-- App -->
     <string name="app_name">ClearVoice Recorder</string>
 
+    <!-- Meta / Facebook SDK -->
+    <string name="facebook_app_id">942682688640328</string>
+    <string name="facebook_client_token">9107b3baf06e3ba7dc3b5017f76ad225</string>
+
     <!-- Bottom Navigation Tabs -->
     <string name="tab_recordings">Recordings</string>
     <string name="tab_folders">Folders</string>
@@ -207,4 +211,28 @@
     <string name="nav_folders">Folders</string>
     <string name="nav_favorites">Favorites</string>
     <string name="nav_settings">Settings</string>
+
+    <!-- Recording Foreground Service Notification -->
+    <string name="recording_notification_title">Recording in progress</string>
+    <string name="recording_notification_text">ClearVoice is recording audio</string>
+    <string name="recording_notification_stop">Stop</string>
+    <string name="recording_channel_name">Recording</string>
+    <string name="recording_channel_description">Shows when a recording is in progress</string>
+
+    <!-- Review Prompt Card -->
+    <string name="review_prompt_title">Enjoying ClearVoice?</string>
+    <string name="review_prompt_subtitle">Your feedback helps us grow!</string>
+    <string name="review_prompt_yes">Yes, love it!</string>
+    <string name="review_prompt_no">No</string>
+
+    <!-- Battery Optimization Dialog (Xiaomi/MIUI) -->
+    <string name="battery_opt_title">Background Recording</string>
+    <string name="battery_opt_message">To keep recordings running when the screen is off, please disable battery optimization for ClearVoice. On MIUI devices, also enable Autostart in Security settings.</string>
+    <string name="battery_opt_open_settings">Open Settings</string>
+    <string name="battery_opt_dismiss">Later</string>
+
+    <!-- Recording Permission Error -->
+    <string name="recording_error_permission">Microphone permission is required to record audio.</string>
+    <!-- Widget -->
+    <string name="widget_description">ClearVoice Widget</string>
 </resources>

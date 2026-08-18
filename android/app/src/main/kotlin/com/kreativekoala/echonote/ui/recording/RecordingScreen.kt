@@ -1,8 +1,21 @@
 package com.kreativekoala.echonote.ui.recording
 
+import android.content.Context
+import android.content.Intent
+import android.media.AudioManager
+import android.media.ToneGenerator
+import android.net.Uri
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Pause
@@ -13,6 +26,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -23,6 +37,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.ui.components.LiveWaveformView
 import com.kreativekoala.echonote.ui.theme.RecordingRed
+import com.kreativekoala.ratingkit.RatingKit
+import android.app.Activity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,6 +55,74 @@ fun RecordingScreen(
     val selectedFormat by viewModel.selectedFormat.collectAsState()
     val selectedQuality by viewModel.selectedQuality.collectAsState()
     val isStereo by viewModel.isStereo.collectAsState()
+    val showPermissionError by viewModel.showPermissionError.collectAsState()
+    val showBatteryOptPrompt by viewModel.showBatteryOptPrompt.collectAsState()
+    val showReviewCard by viewModel.showReviewCard.collectAsState()
+    val gain by viewModel.gain.collectAsState()
+    val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
+    val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
+    val context = LocalContext.current
+    val vibrator = remember {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            (context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager).defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
+    }
+
+    fun buzz() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(60, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(60)
+            }
+        } catch (_: Exception) {}
+    }
+
+    fun beep(start: Boolean) {
+        try {
+            val tone = if (start) ToneGenerator.TONE_PROP_BEEP2 else ToneGenerator.TONE_PROP_BEEP
+            val tg = ToneGenerator(AudioManager.STREAM_MUSIC, 80)
+            tg.startTone(tone, 180)
+            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({ tg.release() }, 300)
+        } catch (_: Exception) {}
+    }
+
+    // Battery optimization dialog (Xiaomi/MIUI)
+    if (showBatteryOptPrompt) {
+        AlertDialog(
+            onDismissRequest = { viewModel.dismissBatteryOptPrompt() },
+            title = { Text(stringResource(R.string.battery_opt_title)) },
+            text = { Text(stringResource(R.string.battery_opt_message)) },
+            confirmButton = {
+                Button(onClick = { viewModel.openBatteryOptSettings() }) {
+                    Text(stringResource(R.string.battery_opt_open_settings))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { viewModel.dismissBatteryOptPrompt() }) {
+                    Text(stringResource(R.string.battery_opt_dismiss))
+                }
+            }
+        )
+    }
+
+    // Permission error dialog
+    if (showPermissionError) {
+        AlertDialog(
+            onDismissRequest = { viewModel.dismissPermissionError() },
+            title = { Text(stringResource(R.string.permission_microphone_rationale)) },
+            text = { Text(stringResource(R.string.recording_error_permission)) },
+            confirmButton = {
+                Button(onClick = { viewModel.dismissPermissionError() }) {
+                    Text(stringResource(android.R.string.ok))
+                }
+            }
+        )
+    }
 
     if (showSaveDialog) {
         AlertDialog(
@@ -63,6 +147,7 @@ fun RecordingScreen(
             confirmButton = {
                 Button(onClick = {
                     viewModel.saveRecording()
+                    (context as? Activity)?.let { RatingKit.trackAction(it) }
                     onDismiss()
                 }) {
                     Text(stringResource(R.string.recording_save))
@@ -94,159 +179,285 @@ fun RecordingScreen(
             )
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Timer display
-            val totalSeconds = elapsedTimeMs / 1000
-            val hours = totalSeconds / 3600
-            val minutes = (totalSeconds % 3600) / 60
-            val seconds = totalSeconds % 60
-            val timeText = if (hours > 0) {
-                String.format("%d:%02d:%02d", hours, minutes, seconds)
-            } else {
-                String.format("%02d:%02d", minutes, seconds)
-            }
-
-            Text(
-                text = timeText,
-                fontSize = 64.sp,
-                fontWeight = FontWeight.Light,
-                fontFamily = FontFamily.Monospace,
-                color = if (isRecording && !isPaused) RecordingRed
-                else MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Live waveform
-            if (isRecording) {
-                LiveWaveformView(
-                    levels = meterLevels,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                )
-            } else {
-                Spacer(modifier = Modifier.height(120.dp))
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // Controls
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(40.dp),
-                verticalAlignment = Alignment.CenterVertically
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-                if (isRecording) {
-                    // Stop button
-                    IconButton(
-                        onClick = { viewModel.stopRecording() },
-                        modifier = Modifier.size(56.dp)
-                    ) {
-                        Icon(
-                            Icons.Default.Stop,
-                            contentDescription = stringResource(R.string.recording_stop),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.size(32.dp)
-                        )
-                    }
+                Spacer(modifier = Modifier.weight(1f))
 
-                    // Pause/Resume button
-                    FilledIconButton(
-                        onClick = {
-                            if (isPaused) viewModel.resumeRecording()
-                            else viewModel.pauseRecording()
-                        },
-                        modifier = Modifier.size(80.dp),
-                        shape = CircleShape,
-                        colors = IconButtonDefaults.filledIconButtonColors(
-                            containerColor = RecordingRed
-                        )
-                    ) {
-                        Icon(
-                            if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
-                            contentDescription = if (isPaused) stringResource(R.string.recording_resume) else stringResource(R.string.recording_pause),
-                            tint = Color.White,
-                            modifier = Modifier.size(40.dp)
-                        )
-                    }
+                // Timer display
+                val totalSeconds = elapsedTimeMs / 1000
+                val hours = totalSeconds / 3600
+                val minutes = (totalSeconds % 3600) / 60
+                val seconds = totalSeconds % 60
+                val timeText = if (hours > 0) {
+                    String.format("%d:%02d:%02d", hours, minutes, seconds)
                 } else {
-                    // Record button
-                    FilledIconButton(
-                        onClick = { viewModel.startRecording() },
-                        modifier = Modifier.size(80.dp),
-                        shape = CircleShape,
-                        colors = IconButtonDefaults.filledIconButtonColors(
-                            containerColor = RecordingRed
-                        )
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .background(Color.White, CircleShape)
-                        )
-                    }
+                    String.format("%02d:%02d", minutes, seconds)
                 }
-            }
 
-            Spacer(modifier = Modifier.height(32.dp))
+                Text(
+                    text = timeText,
+                    fontSize = 64.sp,
+                    fontWeight = FontWeight.Light,
+                    fontFamily = FontFamily.Monospace,
+                    color = if (isRecording && !isPaused) RecordingRed
+                    else MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.Center
+                )
 
-            // Format/Quality selectors (only when not recording)
-            if (!isRecording) {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Live waveform
+                if (isRecording) {
+                    LiveWaveformView(
+                        levels = meterLevels,
+                        isStereo = isStereo,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                    )
+                } else {
+                    Spacer(modifier = Modifier.height(120.dp))
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Controls
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(40.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        FilterChip(
-                            selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED,
-                            onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED) },
-                            label = { Text(stringResource(R.string.recording_format_m4a)) }
-                        )
-                        FilterChip(
-                            selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED,
-                            onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED) },
-                            label = { Text(stringResource(R.string.recording_format_wav)) }
-                        )
-                    }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        com.kreativekoala.echonote.data.model.RecordingQuality.entries.forEach { q ->
-                            FilterChip(
-                                selected = selectedQuality == q,
-                                onClick = { viewModel.setQuality(q) },
-                                label = { Text(q.displayName) }
+                    if (isRecording) {
+                        // Stop button
+                        IconButton(
+                            onClick = {
+                                if (hapticFeedbackEnabled) buzz()
+                                if (soundEffectsEnabled) beep(false)
+                                viewModel.stopRecording()
+                            },
+                            modifier = Modifier.size(56.dp)
+                        ) {
+                            Icon(
+                                Icons.Default.Stop,
+                                contentDescription = stringResource(R.string.recording_stop),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(32.dp)
+                            )
+                        }
+
+                        // Pause/Resume button
+                        FilledIconButton(
+                            onClick = {
+                                if (isPaused) viewModel.resumeRecording()
+                                else viewModel.pauseRecording()
+                            },
+                            modifier = Modifier.size(80.dp),
+                            shape = CircleShape,
+                            colors = IconButtonDefaults.filledIconButtonColors(
+                                containerColor = RecordingRed
+                            )
+                        ) {
+                            Icon(
+                                if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
+                                contentDescription = if (isPaused) stringResource(R.string.recording_resume) else stringResource(R.string.recording_pause),
+                                tint = Color.White,
+                                modifier = Modifier.size(40.dp)
+                            )
+                        }
+                    } else {
+                        // Record button
+                        FilledIconButton(
+                            onClick = {
+                                if (hapticFeedbackEnabled) buzz()
+                                if (soundEffectsEnabled) beep(true)
+                                viewModel.startRecording()
+                            },
+                            modifier = Modifier.size(80.dp),
+                            shape = CircleShape,
+                            colors = IconButtonDefaults.filledIconButtonColors(
+                                containerColor = RecordingRed
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .background(Color.White, CircleShape)
                             )
                         }
                     }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Format/Quality selectors (only when not recording)
+                if (!isRecording) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        FilterChip(
-                            selected = isStereo,
-                            onClick = { viewModel.setStereo(!isStereo) },
-                            label = { Text(stringResource(R.string.recording_stereo)) }
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            FilterChip(
+                                selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED,
+                                onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED) },
+                                label = { Text(stringResource(R.string.recording_format_m4a)) }
+                            )
+                            FilterChip(
+                                selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED,
+                                onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED) },
+                                label = { Text(stringResource(R.string.recording_format_wav)) }
+                            )
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            com.kreativekoala.echonote.data.model.RecordingQuality.entries.forEach { q ->
+                                FilterChip(
+                                    selected = selectedQuality == q,
+                                    onClick = { viewModel.setQuality(q) },
+                                    label = { Text(q.displayName) }
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            FilterChip(
+                                selected = isStereo,
+                                onClick = { viewModel.setStereo(!isStereo) },
+                                label = { Text(stringResource(R.string.recording_stereo)) }
+                            )
+                        }
+
+                        // Mic Gain slider
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text("Mic Gain", style = MaterialTheme.typography.bodyMedium)
+                                Text(
+                                    text = "%.1f×".format(gain),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Slider(
+                                value = gain,
+                                onValueChange = { viewModel.setGain(it) },
+                                valueRange = 0.5f..2.0f,
+                                steps = 5,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
                     }
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            // Review prompt card — slides up from bottom
+            AnimatedVisibility(
+                visible = showReviewCard,
+                modifier = Modifier.align(Alignment.BottomCenter),
+                enter = slideInVertically { it },
+                exit = slideOutVertically { it }
+            ) {
+                ReviewPromptCard(
+                    onYes = {
+                        viewModel.dismissReviewCard()
+                        try {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.kreativekoala.echonote")).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            context.startActivity(intent)
+                        } catch (_: Exception) {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.kreativekoala.echonote")).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            context.startActivity(intent)
+                        }
+                    },
+                    onNo = {
+                        viewModel.dismissReviewCard()
+                        try {
+                            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@kreativekoala.com?subject=ClearVoice%20Feedback")).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            context.startActivity(intent)
+                        } catch (_: Exception) { }
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ReviewPromptCard(
+    onYes: () -> Unit,
+    onNo: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.review_prompt_title),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = stringResource(R.string.review_prompt_subtitle),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Button(
+                    onClick = onYes,
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Text("\uD83D\uDC4D ${stringResource(R.string.review_prompt_yes)}")
+                }
+                OutlinedButton(
+                    onClick = onNo,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("\uD83D\uDC4E ${stringResource(R.string.review_prompt_no)}")
+                }
+            }
         }
     }
 }

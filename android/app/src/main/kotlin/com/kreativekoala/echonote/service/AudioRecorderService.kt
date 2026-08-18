@@ -49,7 +49,8 @@ class AudioRecorderService @Inject constructor(
         fileName: String,
         format: AudioFormat = AudioFormat.COMPRESSED,
         quality: RecordingQuality = RecordingQuality.HIGH,
-        isStereo: Boolean = false
+        isStereo: Boolean = false,
+        gain: Float = 1.0f  // placeholder — applied post-recording in future implementation
     ): String? {
         try {
             val extension = format.extension
@@ -63,7 +64,22 @@ class AudioRecorderService @Inject constructor(
                 MediaRecorder()
             }
 
-            recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+            val audioSources = listOf(
+                MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                MediaRecorder.AudioSource.MIC,
+                MediaRecorder.AudioSource.DEFAULT
+            )
+            var sourceSet = false
+            for (source in audioSources) {
+                try {
+                    recorder.setAudioSource(source)
+                    sourceSet = true
+                    break
+                } catch (e: Exception) {
+                    // try next
+                }
+            }
+            if (!sourceSet) recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
 
             when (format) {
                 AudioFormat.COMPRESSED -> {
@@ -72,8 +88,11 @@ class AudioRecorderService @Inject constructor(
                     recorder.setAudioEncodingBitRate(quality.bitRate)
                 }
                 AudioFormat.UNCOMPRESSED -> {
-                    recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                    // High-quality AAC in MPEG-4 — universally decodable on all Android devices
+                    recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                    recorder.setAudioEncodingBitRate(320_000)
+                    recorder.setAudioSamplingRate(44100)
                 }
             }
 

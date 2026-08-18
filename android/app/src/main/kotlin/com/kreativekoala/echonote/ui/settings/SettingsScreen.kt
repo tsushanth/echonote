@@ -23,8 +23,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
+import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
 import androidx.compose.ui.graphics.Color
+import com.kreativekoala.crosspromokit.models.AppId
+import com.kreativekoala.crosspromokit.view.CrossPromoSection
 import com.kreativekoala.paywallkit.models.PaywallFeature
 import com.kreativekoala.paywallkit.models.PaywallTheme
 import com.kreativekoala.paywallkit.view.PaywallPreview
@@ -38,7 +41,15 @@ fun SettingsScreen(
     val selectedQuality by viewModel.defaultQuality.collectAsState()
     val autoLocation by viewModel.autoLocation.collectAsState()
     val stereoDefault by viewModel.stereoDefault.collectAsState()
+    val transcriptionLanguage by viewModel.transcriptionLanguage.collectAsState()
     val storageUsed by viewModel.storageUsed.collectAsState()
+    val totalRecordingsCount by viewModel.totalRecordingsCount.collectAsState()
+    val totalDuration by viewModel.totalDuration.collectAsState()
+    val availableSpace by viewModel.availableSpace.collectAsState()
+    val autoCopyTranscript by viewModel.autoCopyTranscript.collectAsState()
+    val autoDeleteAudio by viewModel.autoDeleteAudioAfterTranscription.collectAsState()
+    val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
+    val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
     val isPremium by viewModel.isPremium.collectAsState()
     val context = LocalContext.current
     var showAcknowledgments by remember { mutableStateOf(false) }
@@ -223,31 +234,180 @@ fun SettingsScreen(
                 Switch(checked = autoLocation, onCheckedChange = { viewModel.setAutoLocation(it) })
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
 
-            SettingsSectionHeader(stringResource(R.string.settings_section_storage))
+            SettingsRow(
+                icon = Icons.Default.Translate,
+                title = "Transcription Language",
+                subtitle = transcriptionLanguage.displayName
+            ) {
+                androidx.compose.foundation.lazy.LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(TranscriptionLanguage.entries.size) { i ->
+                        val lang = TranscriptionLanguage.entries[i]
+                        FilterChip(
+                            selected = transcriptionLanguage == lang,
+                            onClick = { viewModel.setTranscriptionLanguage(lang) },
+                            label = { Text(lang.displayName) }
+                        )
+                    }
+                }
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable { viewModel.setAutoCopyTranscript(!autoCopyTranscript) }
                     .padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    Icons.Default.Storage,
+                    Icons.Default.ContentCopy,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(stringResource(R.string.settings_recordings_storage), style = MaterialTheme.typography.bodyLarge)
+                    Text("Auto-copy Transcript", style = MaterialTheme.typography.bodyLarge)
                     Text(
-                        storageUsed,
+                        "Automatically copy transcripts to clipboard",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+                Switch(checked = autoCopyTranscript, onCheckedChange = { viewModel.setAutoCopyTranscript(it) })
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setAutoDeleteAudioAfterTranscription(!autoDeleteAudio) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.DeleteSweep,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Auto-delete Audio", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Delete audio file after successful transcription to save space",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(checked = autoDeleteAudio, onCheckedChange = { viewModel.setAutoDeleteAudioAfterTranscription(it) })
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            SettingsSectionHeader(stringResource(R.string.settings_section_storage))
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(Icons.Default.Storage, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(storageUsed, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                        Text("Used", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(Icons.Default.MicNone, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text("$totalRecordingsCount", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                        Text("Recordings", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(Icons.Default.Timer, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(totalDuration, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                        Text("Total Time", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    if (availableSpace.isNotEmpty()) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(Icons.Default.SdCard, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(availableSpace, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                            Text("Free", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            SettingsSectionHeader("Feedback")
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setSoundEffectsEnabled(!soundEffectsEnabled) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.VolumeUp,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Sound Effects", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Play sounds on recording start/stop",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(checked = soundEffectsEnabled, onCheckedChange = { viewModel.setSoundEffectsEnabled(it) })
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setHapticFeedbackEnabled(!hapticFeedbackEnabled) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.Vibration,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Haptic Feedback", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Vibrate on recording start/stop",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(checked = hapticFeedbackEnabled, onCheckedChange = { viewModel.setHapticFeedbackEnabled(it) })
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -366,6 +526,8 @@ fun SettingsScreen(
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+
+            CrossPromoSection(currentApp = AppId.CLEARVOICE)
 
             Spacer(modifier = Modifier.height(32.dp))
         }

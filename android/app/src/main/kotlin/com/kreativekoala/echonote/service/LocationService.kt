@@ -3,7 +3,9 @@ package com.kreativekoala.echonote.service
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Geocoder
+import android.os.Build
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -69,20 +71,31 @@ class LocationService @Inject constructor(
             }
         }
 
-    @Suppress("DEPRECATION")
-    private fun reverseGeocode(lat: Double, lng: Double): String? {
+    private suspend fun reverseGeocode(lat: Double, lng: Double): String? {
         return try {
             val geocoder = Geocoder(context, Locale.getDefault())
-            val addresses = geocoder.getFromLocation(lat, lng, 1)
-            if (addresses.isNullOrEmpty()) return null
-
-            val address = addresses[0]
-            address.locality
-                ?: address.subLocality
-                ?: address.thoroughfare
-                ?: address.subAdminArea
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                suspendCancellableCoroutine { continuation ->
+                    geocoder.getFromLocation(lat, lng, 1) { addresses ->
+                        continuation.resume(extractLocality(addresses))
+                    }
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                val addresses = geocoder.getFromLocation(lat, lng, 1)
+                extractLocality(addresses ?: emptyList())
+            }
         } catch (_: Exception) {
             null
         }
+    }
+
+    private fun extractLocality(addresses: List<Address>): String? {
+        if (addresses.isEmpty()) return null
+        val address = addresses[0]
+        return address.locality
+            ?: address.subLocality
+            ?: address.thoroughfare
+            ?: address.subAdminArea
     }
 }

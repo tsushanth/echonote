@@ -1,0 +1,2 @@
+- Improved microphone compatibility across more Android devices
+- Added Redeem Offer Code option in Settings

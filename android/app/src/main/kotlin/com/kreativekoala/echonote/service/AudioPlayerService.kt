@@ -167,7 +167,19 @@ class AudioPlayerService @Inject constructor(
             codec.configure(format, null, null, 0)
             codec.start()
 
-            val allSamples = mutableListOf<Float>()
+            // Get total duration to estimate total sample count for bucket sizing
+            val durationUs = if (format.containsKey(MediaFormat.KEY_DURATION))
+                format.getLong(MediaFormat.KEY_DURATION) else 0L
+            val sourceSampleRate = if (format.containsKey(MediaFormat.KEY_SAMPLE_RATE))
+                format.getInteger(MediaFormat.KEY_SAMPLE_RATE) else 44100
+            val estimatedTotal = if (durationUs > 0)
+                (durationUs / 1_000_000.0 * sourceSampleRate).toLong() else Long.MAX_VALUE
+
+            // Online bucketing — no accumulation of all samples
+            val bucketSumSq = DoubleArray(samplesCount)
+            val bucketCount = LongArray(samplesCount)
+            var totalSamplesDecoded = 0L
+
             val bufferInfo = MediaCodec.BufferInfo()
             var inputDone = false
             var outputDone = false
@@ -197,11 +209,17 @@ class AudioPlayerService @Inject constructor(
                 val outputIndex = codec.dequeueOutputBuffer(bufferInfo, 10_000)
                 if (outputIndex >= 0) {
                     val outputBuffer = codec.getOutputBuffer(outputIndex)!!
-                    val shortBuffer =
-                        outputBuffer.order(ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+                    val shortBuffer = outputBuffer.order(ByteOrder.LITTLE_ENDIAN).asShortBuffer()
                     while (shortBuffer.hasRemaining()) {
-                        val sample = shortBuffer.get()
-                        allSamples.add(abs(sample.toFloat()) / 32768f)
+                        val v = shortBuffer.get().toFloat() / 32768f
+                        // Assign to bucket based on position in estimated total
+                        val bucketIdx = if (estimatedTotal > 0)
+                            ((totalSamplesDecoded * samplesCount) / estimatedTotal)
+                                .toInt().coerceIn(0, samplesCount - 1)
+                        else (totalSamplesDecoded % samplesCount).toInt()
+                        bucketSumSq[bucketIdx] += v * v
+                        bucketCount[bucketIdx]++
+                        totalSamplesDecoded++
                     }
                     codec.releaseOutputBuffer(outputIndex, false)
 
@@ -215,32 +233,19 @@ class AudioPlayerService @Inject constructor(
             codec.release()
             extractor.release()
 
-            if (allSamples.isEmpty()) return FloatArray(samplesCount) { 0f }
-
-            val samplesPerBucket = allSamples.size / samplesCount
-            if (samplesPerBucket == 0) return FloatArray(samplesCount) { 0f }
+            if (totalSamplesDecoded == 0L) return FloatArray(samplesCount) { 0f }
 
             val waveform = FloatArray(samplesCount)
             var maxVal = 0f
-
             for (i in 0 until samplesCount) {
-                val start = i * samplesPerBucket
-                val end = ((i + 1) * samplesPerBucket).coerceAtMost(allSamples.size)
-                if (start >= allSamples.size) break
-
-                var sum = 0f
-                for (j in start until end) {
-                    sum += allSamples[j] * allSamples[j]
-                }
-                val rms = sqrt(sum / (end - start).coerceAtLeast(1))
+                val count = bucketCount[i].coerceAtLeast(1)
+                val rms = sqrt(bucketSumSq[i] / count).toFloat()
                 waveform[i] = rms
                 if (rms > maxVal) maxVal = rms
             }
 
             if (maxVal > 0f) {
-                for (i in waveform.indices) {
-                    waveform[i] = waveform[i] / maxVal
-                }
+                for (i in waveform.indices) waveform[i] = waveform[i] / maxVal
             }
 
             waveform

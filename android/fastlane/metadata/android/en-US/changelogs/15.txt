@@ -1,0 +1,1 @@
+Fixed crashes when importing or transcribing large audio files. The app no longer runs out of memory on long recordings — audio processing now streams data in small chunks instead of loading everything at once.

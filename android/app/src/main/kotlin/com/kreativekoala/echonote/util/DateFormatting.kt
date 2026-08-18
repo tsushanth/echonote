@@ -27,4 +27,9 @@ object DateFormatting {
         val format = SimpleDateFormat("MMM d, yyyy h:mm a", Locale.getDefault())
         return format.format(Date(timestampMs))
     }
+
+    fun formatTime(timestampMs: Long): String {
+        val format = SimpleDateFormat("h:mm a", Locale.getDefault())
+        return format.format(Date(timestampMs))
+    }
 }

@@ -96,6 +96,7 @@ fun WaveformView(
 @Composable
 fun LiveWaveformView(
     levels: List<Float>,
+    isStereo: Boolean = false,
     color: Color = Color(0xFFFF3B30),
     barWidth: Dp = 3.dp,
     spacing: Dp = 2.dp,
@@ -111,7 +112,6 @@ fun LiveWaveformView(
         val totalBarWidth = bwPx + spPx
         val visibleBars = (size.width / totalBarWidth).toInt().coerceAtLeast(1)
         val cornerRadius = CornerRadius(bwPx / 2f)
-        val centerY = size.height / 2f
 
         val displayLevels = if (levels.size > visibleBars) {
             levels.takeLast(visibleBars)
@@ -121,18 +121,51 @@ fun LiveWaveformView(
 
         val startX = size.width - displayLevels.size * totalBarWidth
 
-        for (i in displayLevels.indices) {
-            val amplitude = displayLevels[i].coerceIn(0f, 1f)
-            val barHeight = (amplitude * size.height).coerceAtLeast(2f)
-            val x = startX + i * totalBarWidth
-            val y = centerY - barHeight / 2f
+        if (isStereo) {
+            // Stereo: two mirrored channels, each occupying half the height
+            val channelHeight = size.height / 2f
+            val leftCenterY = channelHeight / 2f         // center of top half (L channel)
+            val rightCenterY = channelHeight + channelHeight / 2f  // center of bottom half (R channel)
+            val secondaryColor = color.copy(alpha = 0.6f)
 
-            drawRoundRect(
-                color = color,
-                topLeft = Offset(x, y),
-                size = Size(bwPx, barHeight),
-                cornerRadius = cornerRadius
-            )
+            for (i in displayLevels.indices) {
+                val amplitude = displayLevels[i].coerceIn(0f, 1f)
+                val x = startX + i * totalBarWidth
+
+                // Left channel (top half) — full amplitude
+                val lHeight = (amplitude * channelHeight * 0.9f).coerceAtLeast(2f)
+                drawRoundRect(
+                    color = color,
+                    topLeft = Offset(x, leftCenterY - lHeight / 2f),
+                    size = Size(bwPx, lHeight),
+                    cornerRadius = cornerRadius
+                )
+
+                // Right channel (bottom half) — slightly offset amplitude for visual distinction
+                val rAmplitude = (amplitude * 0.85f).coerceIn(0f, 1f)
+                val rHeight = (rAmplitude * channelHeight * 0.9f).coerceAtLeast(2f)
+                drawRoundRect(
+                    color = secondaryColor,
+                    topLeft = Offset(x, rightCenterY - rHeight / 2f),
+                    size = Size(bwPx, rHeight),
+                    cornerRadius = cornerRadius
+                )
+            }
+        } else {
+            val centerY = size.height / 2f
+            for (i in displayLevels.indices) {
+                val amplitude = displayLevels[i].coerceIn(0f, 1f)
+                val barHeight = (amplitude * size.height).coerceAtLeast(2f)
+                val x = startX + i * totalBarWidth
+                val y = centerY - barHeight / 2f
+
+                drawRoundRect(
+                    color = color,
+                    topLeft = Offset(x, y),
+                    size = Size(bwPx, barHeight),
+                    cornerRadius = cornerRadius
+                )
+            }
         }
     }
 }

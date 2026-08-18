@@ -1,20 +1,36 @@
 package com.kreativekoala.echonote.ui.playback
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kreativekoala.echonote.data.model.Recording
+import com.kreativekoala.echonote.data.model.TranscriptSegment
+import com.kreativekoala.echonote.data.model.toJson
+import com.kreativekoala.echonote.data.model.toTranscriptSegments
 import com.kreativekoala.echonote.data.repository.RecordingRepository
+import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.AudioPlayerService
 import com.kreativekoala.echonote.service.PremiumManager
+import com.kreativekoala.echonote.service.ReviewManager
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
+import com.kreativekoala.echonote.util.ExportFormat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -27,7 +43,9 @@ class PlayerViewModel @Inject constructor(
     private val recordingRepository: RecordingRepository,
     private val transcriptionService: TranscriptionService,
     private val audioEditorService: AudioEditorService,
-    private val premiumManager: PremiumManager
+    private val premiumManager: PremiumManager,
+    private val reviewManager: ReviewManager,
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
 
     val isPremium = premiumManager.isPremium
@@ -50,12 +68,30 @@ class PlayerViewModel @Inject constructor(
     val isTranscribing = transcriptionService.isTranscribing
     val transcriptionProgress = transcriptionService.progress
     val transcriptionStatus = transcriptionService.statusMessage
+    val partialTranscript = transcriptionService.partialTranscript
 
     private val _transcriptionResult = MutableStateFlow<String?>(null)
     val transcriptionResult: StateFlow<String?> = _transcriptionResult
 
     private val _transcriptionError = MutableStateFlow<String?>(null)
     val transcriptionError: StateFlow<String?> = _transcriptionError
+
+    private val _transcriptSegments = MutableStateFlow<List<TranscriptSegment>>(emptyList())
+    val transcriptSegments: StateFlow<List<TranscriptSegment>> = _transcriptSegments
+
+    val activeSegmentIndex: StateFlow<Int> = currentPositionMs.map { posMs ->
+        val segs = _transcriptSegments.value
+        if (segs.isEmpty()) return@map -1
+        var active = -1
+        for (i in segs.indices) {
+            if (posMs >= segs[i].startMs) active = i
+            else break
+        }
+        active
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), -1)
+
+    private val _triggerReview = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+    val triggerReview: SharedFlow<Unit> = _triggerReview
 
     // Trim state
     private val _isTrimming = MutableStateFlow(false)
@@ -74,6 +110,7 @@ class PlayerViewModel @Inject constructor(
         _currentRecording.value = recording
         _showPlayback.value = true
         _transcriptionResult.value = recording.transcript
+        _transcriptSegments.value = recording.transcriptSegmentsJson?.toTranscriptSegments() ?: emptyList()
         _showTrimMode.value = false
         _trimStart.value = 0f
         _trimEnd.value = 1f
@@ -102,6 +139,8 @@ class PlayerViewModel @Inject constructor(
     fun decreaseSpeed() {
         playerService.setPlaybackSpeed(playerService.playbackSpeed.value - 0.25f)
     }
+
+    fun setSpeed(speed: Float) = playerService.setPlaybackSpeed(speed)
 
     fun toggleSkipSilence() {
         playerService.setSkipSilence(!playerService.skipSilence.value)
@@ -137,9 +176,23 @@ class PlayerViewModel @Inject constructor(
             when (val result = transcriptionService.transcribe(rec.fileUri)) {
                 is TranscriptionResult.Success -> {
                     _transcriptionResult.value = result.text
+                    _transcriptSegments.value = result.segments
                     _transcriptionError.value = null
-                    recordingRepository.updateRecording(rec.copy(transcript = result.text))
-                    _currentRecording.value = rec.copy(transcript = result.text)
+                    val segJson = if (result.segments.isNotEmpty()) result.segments.toJson() else null
+                    recordingRepository.updateRecording(rec.copy(transcript = result.text, transcriptSegmentsJson = segJson))
+                    _currentRecording.value = rec.copy(transcript = result.text, transcriptSegmentsJson = segJson)
+                    if (reviewManager.shouldPromptReview()) _triggerReview.tryEmit(Unit)
+                    // Auto-copy transcript
+                    if (settingsRepository.autoCopyTranscript.first()) {
+                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        clipboard.setPrimaryClip(ClipData.newPlainText("Transcript", result.text))
+                    }
+                    // Auto-delete audio
+                    if (settingsRepository.autoDeleteAudioAfterTranscription.first()) {
+                        withContext(Dispatchers.IO) {
+                            try { File(rec.fileUri).delete() } catch (_: Exception) {}
+                        }
+                    }
                 }
                 is TranscriptionResult.Error -> {
                     _transcriptionError.value = result.message
@@ -234,6 +287,78 @@ class PlayerViewModel @Inject constructor(
             _isTrimming.value = false
             _showTrimMode.value = false
         }
+    }
+
+    fun exportTranscript(format: ExportFormat, context: Context) {
+        val text = _transcriptionResult.value ?: return
+        val rec = _currentRecording.value ?: return
+        val duration = durationMs.value.takeIf { it > 0 } ?: 1L
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val (fileName, content) = when (format) {
+                is ExportFormat.TXT -> Pair("transcript.txt", text)
+                is ExportFormat.SRT -> Pair("transcript.srt", buildSrt(text, duration))
+                is ExportFormat.VTT -> Pair("transcript.vtt", buildVtt(text, duration))
+            }
+            val outFile = File(context.cacheDir, fileName)
+            outFile.writeText(content)
+            val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", outFile)
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_STREAM, uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            val chooser = Intent.createChooser(intent, "Export Transcript")
+            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(chooser)
+        }
+    }
+
+    private fun buildSrt(text: String, durationMs: Long): String {
+        val sentences = text.split(Regex("(?<=[.?!])\\s+")).filter { it.isNotBlank() }
+        if (sentences.isEmpty()) return ""
+        val segDuration = durationMs / sentences.size
+        val sb = StringBuilder()
+        sentences.forEachIndexed { i, sentence ->
+            val start = i * segDuration
+            val end = start + segDuration
+            sb.appendLine(i + 1)
+            sb.appendLine("${formatSrtTime(start)} --> ${formatSrtTime(end)}")
+            sb.appendLine(sentence.trim())
+            sb.appendLine()
+        }
+        return sb.toString()
+    }
+
+    private fun buildVtt(text: String, durationMs: Long): String {
+        val sentences = text.split(Regex("(?<=[.?!])\\s+")).filter { it.isNotBlank() }
+        if (sentences.isEmpty()) return "WEBVTT\n"
+        val segDuration = durationMs / sentences.size
+        val sb = StringBuilder("WEBVTT\n\n")
+        sentences.forEachIndexed { i, sentence ->
+            val start = i * segDuration
+            val end = start + segDuration
+            sb.appendLine("${formatVttTime(start)} --> ${formatVttTime(end)}")
+            sb.appendLine(sentence.trim())
+            sb.appendLine()
+        }
+        return sb.toString()
+    }
+
+    private fun formatSrtTime(ms: Long): String {
+        val h = ms / 3600000
+        val m = (ms % 3600000) / 60000
+        val s = (ms % 60000) / 1000
+        val millis = ms % 1000
+        return "%02d:%02d:%02d,%03d".format(h, m, s, millis)
+    }
+
+    private fun formatVttTime(ms: Long): String {
+        val h = ms / 3600000
+        val m = (ms % 3600000) / 60000
+        val s = (ms % 60000) / 1000
+        val millis = ms % 1000
+        return "%02d:%02d:%02d.%03d".format(h, m, s, millis)
     }
 
     override fun onCleared() {
