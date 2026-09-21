@@ -196,16 +196,33 @@ class PlayerViewModel @Inject constructor(
                     recordingRepository.updateRecording(updatedRec)
                     _currentRecording.value = updatedRec
                     if (reviewManager.shouldPromptReview()) _triggerReview.tryEmit(Unit)
+                    val contributeVoiceData = settingsRepository.contributeVoiceData.first()
                     enqueueContributionUpload(updatedRec.id)
                     // Auto-copy transcript
                     if (settingsRepository.autoCopyTranscript.first()) {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         clipboard.setPrimaryClip(ClipData.newPlainText("Transcript", result.text))
                     }
-                    // Auto-delete audio
+                    // Auto-delete audio. If the user also opted into voice-data
+                    // contribution, do NOT delete synchronously here: the upload is
+                    // enqueued on WorkManager and may run well after this call
+                    // returns, so deleting now would race the worker off the file
+                    // (WorkManager already no-ops silently if the file is gone,
+                    // which is exactly how a contribution used to vanish silently).
+                    // Instead mark the recording pendingContribution so the worker
+                    // performs the deletion itself once the upload has actually
+                    // succeeded or is otherwise definitively moot (mirrors the
+                    // worker's own upload preconditions).
                     if (settingsRepository.autoDeleteAudioAfterTranscription.first()) {
-                        withContext(Dispatchers.IO) {
-                            try { File(rec.fileUri).delete() } catch (_: Exception) {}
+                        val deferToWorker = contributeVoiceData && result.text.isNotBlank()
+                        if (deferToWorker) {
+                            val deferredRec = updatedRec.copy(pendingContribution = true)
+                            recordingRepository.updateRecording(deferredRec)
+                            _currentRecording.value = deferredRec
+                        } else {
+                            withContext(Dispatchers.IO) {
+                                try { File(rec.fileUri).delete() } catch (_: Exception) {}
+                            }
                         }
                     }
                 }
