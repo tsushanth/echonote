@@ -62,6 +62,9 @@ class SettingsViewModel @Inject constructor(
     val hapticFeedbackEnabled: StateFlow<Boolean> = settingsRepository.hapticFeedbackEnabled
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
+    val contributeVoiceData: StateFlow<Boolean> = settingsRepository.contributeVoiceData
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
     private val _storageUsed = MutableStateFlow(context.getString(R.string.settings_calculating))
     val storageUsed: StateFlow<String> = _storageUsed
 
@@ -112,6 +115,10 @@ class SettingsViewModel @Inject constructor(
 
     fun setHapticFeedbackEnabled(enabled: Boolean) {
         viewModelScope.launch { settingsRepository.setHapticFeedbackEnabled(enabled) }
+    }
+
+    fun setContributeVoiceData(enabled: Boolean) {
+        viewModelScope.launch { settingsRepository.setContributeVoiceData(enabled) }
     }
 
     private fun calculateStorageUsed() {

@@ -23,6 +23,21 @@ enum class TranscriptionLanguage(
     KOREAN("Korean", "vosk-model-small-ko-0.22.zip", "vosk-model-ko");
 
     val modelUrl: String get() = "https://alphacephei.com/vosk/models/$modelFileName"
+
+    /** BCP-47 language tag sent with opt-in voice-data contribution uploads. */
+    val bcp47Tag: String
+        get() = when (this) {
+            ENGLISH -> "en-US"
+            SPANISH -> "es-ES"
+            FRENCH -> "fr-FR"
+            GERMAN -> "de-DE"
+            PORTUGUESE -> "pt-PT"
+            CHINESE -> "zh-CN"
+            ITALIAN -> "it-IT"
+            HINDI -> "hi-IN"
+            JAPANESE -> "ja-JP"
+            KOREAN -> "ko-KR"
+        }
 }
 
 enum class AudioFormat(val extension: String, val displayName: String) {
@@ -72,7 +87,12 @@ data class Recording(
     val transcriptSegmentsJson: String? = null,
     val waveformData: ByteArray? = null,
     val folderId: String? = null,
-    val deletedAt: Long? = null
+    val deletedAt: Long? = null,
+    // Voice data contribution (opt-in): language snapshot taken at transcribe time,
+    // when the contribution upload succeeded, and whether an upload is outstanding.
+    val contributionLanguage: TranscriptionLanguage? = null,
+    val contributedAt: Long? = null,
+    val pendingContribution: Boolean = false
 ) {
     val formattedDuration: String
         get() {

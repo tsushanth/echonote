@@ -12,7 +12,7 @@ import com.kreativekoala.echonote.data.model.RecordingFolder
 
 @Database(
     entities = [Recording::class, RecordingFolder::class, Bookmark::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class EchoNoteDatabase : RoomDatabase() {
@@ -34,13 +34,21 @@ abstract class EchoNoteDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE recordings ADD COLUMN contributionLanguage TEXT")
+                database.execSQL("ALTER TABLE recordings ADD COLUMN contributedAt INTEGER")
+                database.execSQL("ALTER TABLE recordings ADD COLUMN pendingContribution INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
         fun create(context: Context): EchoNoteDatabase {
             return Room.databaseBuilder(
                 context.applicationContext,
                 EchoNoteDatabase::class.java,
                 "echonote.db"
             )
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                 .build()
         }
     }
