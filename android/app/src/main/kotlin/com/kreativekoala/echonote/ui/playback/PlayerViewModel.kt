@@ -20,6 +20,12 @@ import com.kreativekoala.echonote.service.ReviewManager
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
 import com.kreativekoala.echonote.util.ExportFormat
+import com.kreativekoala.echonote.worker.ContributionUploadWorker
+import androidx.work.Constraints
+import androidx.work.Data
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -179,9 +185,18 @@ class PlayerViewModel @Inject constructor(
                     _transcriptSegments.value = result.segments
                     _transcriptionError.value = null
                     val segJson = if (result.segments.isNotEmpty()) result.segments.toJson() else null
-                    recordingRepository.updateRecording(rec.copy(transcript = result.text, transcriptSegmentsJson = segJson))
-                    _currentRecording.value = rec.copy(transcript = result.text, transcriptSegmentsJson = segJson)
+                    // Snapshot the live global transcription language onto the recording NOW,
+                    // rather than reading it later at upload time.
+                    val languageAtTranscribeTime = settingsRepository.transcriptionLanguage.first()
+                    val updatedRec = rec.copy(
+                        transcript = result.text,
+                        transcriptSegmentsJson = segJson,
+                        contributionLanguage = languageAtTranscribeTime
+                    )
+                    recordingRepository.updateRecording(updatedRec)
+                    _currentRecording.value = updatedRec
                     if (reviewManager.shouldPromptReview()) _triggerReview.tryEmit(Unit)
+                    enqueueContributionUpload(updatedRec.id)
                     // Auto-copy transcript
                     if (settingsRepository.autoCopyTranscript.first()) {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -203,6 +218,21 @@ class PlayerViewModel @Inject constructor(
 
     fun clearTranscriptionError() {
         _transcriptionError.value = null
+    }
+
+    // Voice-data contribution: enqueue the opt-in upload right after a transcript now
+    // exists and a language was captured. The worker itself checks the live
+    // contributeVoiceData setting and no-ops if the user hasn't opted in (or opted out
+    // since) — Wi-Fi only for now; a cellular toggle is future work.
+    private fun enqueueContributionUpload(recordingId: String) {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .build()
+        val request = OneTimeWorkRequestBuilder<ContributionUploadWorker>()
+            .setConstraints(constraints)
+            .setInputData(Data.Builder().putString(ContributionUploadWorker.KEY_RECORDING_ID, recordingId).build())
+            .build()
+        WorkManager.getInstance(context).enqueue(request)
     }
 
     fun isTranscriptionAvailable(): Boolean = transcriptionService.isAvailable()
