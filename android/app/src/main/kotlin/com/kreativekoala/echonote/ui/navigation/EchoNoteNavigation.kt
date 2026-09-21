@@ -35,8 +35,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AppOpenTracker
 import com.kreativekoala.echonote.service.BillingService
+import com.kreativekoala.echonote.ui.consent.ConsentScreen
 import com.kreativekoala.echonote.ui.organization.FolderDetailScreen
 import com.kreativekoala.echonote.ui.organization.FolderViewModel
 import com.kreativekoala.echonote.ui.organization.RecordingsListScreen
@@ -58,15 +60,22 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.launch
 
 private const val PAYWALL_PREFS = "paywall_prefs"
 private const val KEY_ONBOARDING_PAYWALL_SHOWN = "onboarding_paywall_shown"
+
+// Distinct from KEY_ONBOARDING_PAYWALL_SHOWN — its own prefs file/key so the two
+// one-time interruptions are tracked independently.
+private const val CONSENT_PREFS = "consent_prefs"
+private const val KEY_CONTRIBUTION_CONSENT_SHOWN = "contribution_consent_shown"
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface NavigationEntryPoint {
     fun appOpenTracker(): AppOpenTracker
     fun billingService(): BillingService
+    fun settingsRepository(): SettingsRepository
 }
 
 sealed class BottomNavItem(val route: String, val labelResId: Int, val icon: ImageVector) {
@@ -88,6 +97,8 @@ fun EchoNoteNavigation() {
     }
     val appOpenTracker = entryPoint.appOpenTracker()
     val billingService = entryPoint.billingService()
+    val settingsRepository = entryPoint.settingsRepository()
+    val coroutineScope = rememberCoroutineScope()
 
     val isSubscribed by billingService.isSubscribed.collectAsState()
 
@@ -117,6 +128,19 @@ fun EchoNoteNavigation() {
     }
     var showOnboardingPaywall by remember {
         mutableStateOf(!onboardingPaywallShown && !isSubscribed && appOpenTracker.getOpenCount() == 1)
+    }
+
+    // Voice-data contribution consent: shown once ever, on the SECOND app open, so it
+    // never stacks with the onboarding paywall (which owns open count == 1). Gated on
+    // its own SharedPreferences flag, distinct from the paywall's.
+    val consentPrefs = remember {
+        context.getSharedPreferences(CONSENT_PREFS, Context.MODE_PRIVATE)
+    }
+    val contributionConsentShown = remember {
+        consentPrefs.getBoolean(KEY_CONTRIBUTION_CONSENT_SHOWN, false)
+    }
+    var showConsentScreen by remember {
+        mutableStateOf(!contributionConsentShown && appOpenTracker.getOpenCount() == 2)
     }
 
     val shouldShowHardPaywall = appOpenTracker.hasExceededFreeLimit() && !isSubscribed && !hardPaywallDismissed
@@ -443,6 +467,22 @@ fun EchoNoteNavigation() {
                     showOnboardingPaywall = false
                 }
             }
+        }
+
+        // Voice-data contribution consent: shown once ever, on the second app open,
+        // never stacked on top of the onboarding paywall.
+        if (showConsentScreen && !showOnboardingPaywall) {
+            ConsentScreen(
+                onAccept = {
+                    coroutineScope.launch { settingsRepository.setContributeVoiceData(true) }
+                    consentPrefs.edit().putBoolean(KEY_CONTRIBUTION_CONSENT_SHOWN, true).apply()
+                    showConsentScreen = false
+                },
+                onDecline = {
+                    consentPrefs.edit().putBoolean(KEY_CONTRIBUTION_CONSENT_SHOWN, true).apply()
+                    showConsentScreen = false
+                }
+            )
         }
     }
 }

@@ -50,6 +50,7 @@ fun SettingsScreen(
     val autoDeleteAudio by viewModel.autoDeleteAudioAfterTranscription.collectAsState()
     val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
     val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
+    val contributeVoiceData by viewModel.contributeVoiceData.collectAsState()
     val isPremium by viewModel.isPremium.collectAsState()
     val context = LocalContext.current
     var showAcknowledgments by remember { mutableStateOf(false) }
@@ -408,6 +409,35 @@ fun SettingsScreen(
                     )
                 }
                 Switch(checked = hapticFeedbackEnabled, onCheckedChange = { viewModel.setHapticFeedbackEnabled(it) })
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            SettingsSectionHeader("Privacy")
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setContributeVoiceData(!contributeVoiceData) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.VolunteerActivism,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Contribute Voice Data", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Share recording audio, transcript, and language to help train speech recognition. Off by default, fully optional.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(checked = contributeVoiceData, onCheckedChange = { viewModel.setContributeVoiceData(it) })
             }
 
             Spacer(modifier = Modifier.height(16.dp))

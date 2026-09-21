@@ -31,6 +31,7 @@ class SettingsRepository @Inject constructor(
         val AUTO_DELETE_AUDIO = booleanPreferencesKey("auto_delete_audio")
         val SOUND_EFFECTS = booleanPreferencesKey("sound_effects")
         val HAPTIC_FEEDBACK = booleanPreferencesKey("haptic_feedback")
+        val CONTRIBUTE_VOICE_DATA = booleanPreferencesKey("contribute_voice_data")
     }
 
     val defaultFormat: Flow<AudioFormat> = context.dataStore.data.map { prefs ->
@@ -71,6 +72,12 @@ class SettingsRepository @Inject constructor(
         prefs[Keys.HAPTIC_FEEDBACK] ?: true
     }
 
+    // Opt-in, OFF by default: contribute recording audio + transcript + language to
+    // a remote backend to help train speech-recognition models. See ConsentScreen.
+    val contributeVoiceData: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.CONTRIBUTE_VOICE_DATA] ?: false
+    }
+
     suspend fun setDefaultFormat(format: AudioFormat) {
         context.dataStore.edit { it[Keys.DEFAULT_FORMAT] = format.name }
     }
@@ -105,5 +112,9 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setHapticFeedbackEnabled(enabled: Boolean) {
         context.dataStore.edit { it[Keys.HAPTIC_FEEDBACK] = enabled }
+    }
+
+    suspend fun setContributeVoiceData(enabled: Boolean) {
+        context.dataStore.edit { it[Keys.CONTRIBUTE_VOICE_DATA] = enabled }
     }
 }
