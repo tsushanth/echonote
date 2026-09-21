@@ -10,6 +10,8 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.*
@@ -17,9 +19,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -29,8 +33,9 @@ import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingFolder
 import com.kreativekoala.echonote.ui.components.RecordingRowItem
+import com.kreativekoala.echonote.ui.components.lip
 import com.kreativekoala.echonote.ui.settings.PaywallScreen
-import com.kreativekoala.echonote.ui.theme.RecordingRed
+import com.kreativekoala.echonote.ui.theme.*
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -198,24 +203,53 @@ fun RecordingsListScreen(
             if (!isSelectionMode) {
                 Column(
                     horizontalAlignment = Alignment.End,
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    SmallFloatingActionButton(
-                        onClick = { importLauncher.launch(arrayOf("audio/*", "video/*")) },
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-                    ) {
-                        Icon(Icons.Default.FileUpload, contentDescription = "Import audio/video")
+                    Box(modifier = Modifier.padding(bottom = 3.dp)) {
+                        Box(
+                            modifier = Modifier
+                                .size(48.dp)
+                                .lip(CircleShape)
+                                .clip(CircleShape)
+                                .background(SurfaceRaised)
+                                .then(
+                                    Modifier.combinedClickable(
+                                        onClick = { importLauncher.launch(arrayOf("audio/*", "video/*")) }
+                                    )
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.FileUpload,
+                                contentDescription = "Import audio/video",
+                                tint = TextPrimary
+                            )
+                        }
                     }
-                    FloatingActionButton(
-                        onClick = {
-                            if (viewModel.canCreateRecording()) onRecordClick()
-                            else showPaywall = true
-                        },
-                        containerColor = RecordingRed,
-                        contentColor = Color.White
-                    ) {
-                        Icon(Icons.Default.Mic, contentDescription = stringResource(R.string.recordings_record))
+                    Box(modifier = Modifier.padding(bottom = 4.dp)) {
+                        Box(
+                            modifier = Modifier
+                                .size(64.dp)
+                                .lip(CircleShape, color = CoralDim, depth = 4.dp)
+                                .clip(CircleShape)
+                                .background(Coral)
+                                .then(
+                                    Modifier.combinedClickable(
+                                        onClick = {
+                                            if (viewModel.canCreateRecording()) onRecordClick()
+                                            else showPaywall = true
+                                        }
+                                    )
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Mic,
+                                contentDescription = stringResource(R.string.recordings_record),
+                                tint = Color.White,
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -228,23 +262,36 @@ fun RecordingsListScreen(
         ) {
             // Search bar
             if (!isSelectionMode) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { viewModel.setSearchQuery(it) },
-                    placeholder = { Text(stringResource(R.string.recordings_search_placeholder)) },
-                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                    trailingIcon = {
-                        if (searchQuery.isNotEmpty()) {
-                            IconButton(onClick = { viewModel.setSearchQuery("") }) {
-                                Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.recordings_clear))
-                            }
-                        }
-                    },
-                    singleLine = true,
+                Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                )
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    shape = RoundedCornerShape(50),
+                    color = Surface
+                ) {
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = { viewModel.setSearchQuery(it) },
+                        placeholder = { Text(stringResource(R.string.recordings_search_placeholder), color = TextTertiary) },
+                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = TextSecondary) },
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                IconButton(onClick = { viewModel.setSearchQuery("") }) {
+                                    Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.recordings_clear), tint = TextSecondary)
+                                }
+                            }
+                        },
+                        singleLine = true,
+                        shape = RoundedCornerShape(50),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Lip,
+                            unfocusedBorderColor = Lip,
+                            focusedTextColor = TextPrimary,
+                            unfocusedTextColor = TextPrimary
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
 
             if (recordings.isEmpty()) {
@@ -256,31 +303,43 @@ fun RecordingsListScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(
-                            Icons.Default.Mic,
-                            contentDescription = null,
-                            modifier = Modifier.size(64.dp),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Box(
+                            modifier = Modifier
+                                .size(88.dp)
+                                .clip(CircleShape)
+                                .background(SurfaceRaised),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Mic,
+                                contentDescription = null,
+                                modifier = Modifier.size(40.dp),
+                                tint = TextSecondary
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(20.dp))
                         Text(
                             text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_no_results)
                             else stringResource(R.string.recordings_no_recordings),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = TextPrimary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_try_different_search)
                             else stringResource(R.string.recordings_tap_to_start),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                            color = TextSecondary,
                             textAlign = TextAlign.Center
                         )
                     }
                 }
             } else {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
                     items(
                         items = recordings,
                         key = { it.id }
@@ -349,13 +408,18 @@ fun RecordingsListScreen(
                                 },
                                 enableDismissFromStartToEnd = false
                             ) {
-                                Box {
+                                Box(
+                                    modifier = Modifier
+                                        .padding(bottom = 4.dp)
+                                        .lip(RoundedCornerShape(20.dp))
+                                        .clip(RoundedCornerShape(20.dp))
+                                        .background(Surface)
+                                ) {
                                     RecordingRowItem(
                                         recording = recording,
                                         onTap = { onRecordingClick(recording) },
                                         onLongPress = { showContextMenu = true },
-                                        onFavoriteToggle = { viewModel.toggleFavorite(recording) },
-                                        modifier = Modifier.background(MaterialTheme.colorScheme.surface)
+                                        onFavoriteToggle = { viewModel.toggleFavorite(recording) }
                                     )
                                     DropdownMenu(
                                         expanded = showContextMenu,
@@ -435,7 +499,6 @@ fun RecordingsListScreen(
                                 }
                             }
                         }
-                        HorizontalDivider(modifier = Modifier.padding(start = 16.dp))
                     }
                 }
             }
