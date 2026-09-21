@@ -13,6 +13,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +26,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
@@ -36,7 +38,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.ui.components.LiveWaveformView
-import com.kreativekoala.echonote.ui.theme.RecordingRed
+import com.kreativekoala.echonote.ui.components.lip
+import com.kreativekoala.echonote.ui.theme.*
 import com.kreativekoala.ratingkit.RatingKit
 import android.app.Activity
 
@@ -203,11 +206,10 @@ fun RecordingScreen(
 
                 Text(
                     text = timeText,
-                    fontSize = 64.sp,
-                    fontWeight = FontWeight.Light,
+                    fontSize = 72.sp,
+                    fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.Monospace,
-                    color = if (isRecording && !isPaused) RecordingRed
-                    else MaterialTheme.colorScheme.onSurface,
+                    color = if (isRecording && !isPaused) Coral else TextPrimary,
                     textAlign = TextAlign.Center
                 )
 
@@ -235,60 +237,69 @@ fun RecordingScreen(
                 ) {
                     if (isRecording) {
                         // Stop button
-                        IconButton(
-                            onClick = {
-                                if (hapticFeedbackEnabled) buzz()
-                                if (soundEffectsEnabled) beep(false)
-                                viewModel.stopRecording()
-                            },
-                            modifier = Modifier.size(56.dp)
+                        Box(
+                            modifier = Modifier
+                                .size(56.dp)
+                                .clip(CircleShape)
+                                .background(SurfaceRaised)
+                                .clickable {
+                                    if (hapticFeedbackEnabled) buzz()
+                                    if (soundEffectsEnabled) beep(false)
+                                    viewModel.stopRecording()
+                                },
+                            contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 Icons.Default.Stop,
                                 contentDescription = stringResource(R.string.recording_stop),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(32.dp)
+                                tint = TextPrimary,
+                                modifier = Modifier.size(28.dp)
                             )
                         }
 
                         // Pause/Resume button
-                        FilledIconButton(
-                            onClick = {
-                                if (isPaused) viewModel.resumeRecording()
-                                else viewModel.pauseRecording()
-                            },
-                            modifier = Modifier.size(80.dp),
-                            shape = CircleShape,
-                            colors = IconButtonDefaults.filledIconButtonColors(
-                                containerColor = RecordingRed
-                            )
-                        ) {
-                            Icon(
-                                if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
-                                contentDescription = if (isPaused) stringResource(R.string.recording_resume) else stringResource(R.string.recording_pause),
-                                tint = Color.White,
-                                modifier = Modifier.size(40.dp)
-                            )
+                        Box(modifier = Modifier.padding(bottom = 4.dp)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(80.dp)
+                                    .lip(CircleShape, color = CoralDim)
+                                    .clip(CircleShape)
+                                    .background(Coral)
+                                    .clickable {
+                                        if (isPaused) viewModel.resumeRecording() else viewModel.pauseRecording()
+                                    },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    if (isPaused) Icons.Default.PlayArrow else Icons.Default.Pause,
+                                    contentDescription = if (isPaused) stringResource(R.string.recording_resume) else stringResource(R.string.recording_pause),
+                                    tint = Color.White,
+                                    modifier = Modifier.size(36.dp)
+                                )
+                            }
                         }
                     } else {
                         // Record button
-                        FilledIconButton(
-                            onClick = {
-                                if (hapticFeedbackEnabled) buzz()
-                                if (soundEffectsEnabled) beep(true)
-                                viewModel.startRecording()
-                            },
-                            modifier = Modifier.size(80.dp),
-                            shape = CircleShape,
-                            colors = IconButtonDefaults.filledIconButtonColors(
-                                containerColor = RecordingRed
-                            )
-                        ) {
+                        Box(modifier = Modifier.padding(bottom = 4.dp)) {
                             Box(
                                 modifier = Modifier
-                                    .size(32.dp)
-                                    .background(Color.White, CircleShape)
-                            )
+                                    .size(80.dp)
+                                    .lip(CircleShape, color = CoralDim)
+                                    .clip(CircleShape)
+                                    .background(Coral)
+                                    .clickable {
+                                        if (hapticFeedbackEnabled) buzz()
+                                        if (soundEffectsEnabled) beep(true)
+                                        viewModel.startRecording()
+                                    },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(28.dp)
+                                        .background(Color.White, RoundedCornerShape(6.dp))
+                                )
+                            }
                         }
                     }
                 }
@@ -297,8 +308,20 @@ fun RecordingScreen(
 
                 // Format/Quality selectors (only when not recording)
                 if (!isRecording) {
+                    val chipColors = FilterChipDefaults.filterChipColors(
+                        containerColor = SurfaceRaised,
+                        labelColor = TextSecondary,
+                        selectedContainerColor = Electric,
+                        selectedLabelColor = Color.White
+                    )
+                    val chipBorder = FilterChipDefaults.filterChipBorder(
+                        enabled = true,
+                        selected = false,
+                        borderColor = Color.Transparent,
+                        selectedBorderColor = Color.Transparent
+                    )
                     Column(
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Row(
@@ -308,12 +331,18 @@ fun RecordingScreen(
                             FilterChip(
                                 selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED,
                                 onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED) },
-                                label = { Text(stringResource(R.string.recording_format_m4a)) }
+                                label = { Text(stringResource(R.string.recording_format_m4a)) },
+                                shape = RoundedCornerShape(50),
+                                colors = chipColors,
+                                border = chipBorder
                             )
                             FilterChip(
                                 selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED,
                                 onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED) },
-                                label = { Text(stringResource(R.string.recording_format_wav)) }
+                                label = { Text(stringResource(R.string.recording_format_wav)) },
+                                shape = RoundedCornerShape(50),
+                                colors = chipColors,
+                                border = chipBorder
                             )
                         }
                         Row(
@@ -324,7 +353,10 @@ fun RecordingScreen(
                                 FilterChip(
                                     selected = selectedQuality == q,
                                     onClick = { viewModel.setQuality(q) },
-                                    label = { Text(q.displayName) }
+                                    label = { Text(q.displayName) },
+                                    shape = RoundedCornerShape(50),
+                                    colors = chipColors,
+                                    border = chipBorder
                                 )
                             }
                         }
@@ -335,7 +367,10 @@ fun RecordingScreen(
                             FilterChip(
                                 selected = isStereo,
                                 onClick = { viewModel.setStereo(!isStereo) },
-                                label = { Text(stringResource(R.string.recording_stereo)) }
+                                label = { Text(stringResource(R.string.recording_stereo)) },
+                                shape = RoundedCornerShape(50),
+                                colors = chipColors,
+                                border = chipBorder
                             )
                         }
 
@@ -346,11 +381,11 @@ fun RecordingScreen(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text("Mic Gain", style = MaterialTheme.typography.bodyMedium)
+                                Text("Mic Gain", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
                                 Text(
                                     text = "%.1f×".format(gain),
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    color = TextSecondary
                                 )
                             }
                             Slider(
@@ -358,6 +393,11 @@ fun RecordingScreen(
                                 onValueChange = { viewModel.setGain(it) },
                                 valueRange = 0.5f..2.0f,
                                 steps = 5,
+                                colors = SliderDefaults.colors(
+                                    thumbColor = Electric,
+                                    activeTrackColor = Electric,
+                                    inactiveTrackColor = SurfaceRaised
+                                ),
                                 modifier = Modifier.fillMaxWidth()
                             )
                         }
