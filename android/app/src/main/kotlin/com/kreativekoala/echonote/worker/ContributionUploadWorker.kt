@@ -6,6 +6,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.kreativekoala.echonote.BuildConfig
 import com.kreativekoala.echonote.data.local.RecordingDao
+import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.InstallIdProvider
 import dagger.assisted.Assisted
@@ -52,18 +53,30 @@ class ContributionUploadWorker @AssistedInject constructor(
         val transcript = recording.transcript
         val language = recording.contributionLanguage
 
-        // Preconditions not met: nothing to do, and nothing to retry.
+        // Preconditions not met: nothing to do, and nothing to retry. A contribution
+        // will never happen for this recording, so if PlayerViewModel deferred the
+        // user's auto-delete preference waiting on this worker (pendingContribution),
+        // apply that deletion now instead of leaving the audio file stranded forever.
         if (!contributeEnabled || transcript.isNullOrBlank() || language == null || recording.contributedAt != null) {
+            if (recording.pendingContribution) {
+                applyDeferredAutoDelete(recording)
+            }
             return@withContext Result.success()
         }
 
         val audioFile = File(recording.fileUri)
         if (!audioFile.exists()) {
+            if (recording.pendingContribution) {
+                recordingDao.update(recording.copy(pendingContribution = false))
+            }
             return@withContext Result.success()
         }
 
         if (BuildConfig.INGEST_URL.isBlank()) {
             // No ingest endpoint configured for this build — nothing we can do.
+            if (recording.pendingContribution) {
+                applyDeferredAutoDelete(recording)
+            }
             return@withContext Result.success()
         }
 
@@ -91,14 +104,35 @@ class ContributionUploadWorker @AssistedInject constructor(
                             pendingContribution = false
                         )
                     )
+                    // Upload succeeded — now safe to honor the user's auto-delete
+                    // preference for this recording's audio, re-checked live since
+                    // it may have changed between transcription and now.
+                    if (settingsRepository.autoDeleteAudioAfterTranscription.first()) {
+                        try { audioFile.delete() } catch (_: Exception) {}
+                    }
                     Result.success()
                 } else {
                     // Let WorkManager's normal retry policy handle transient failures.
+                    // Leave pendingContribution set so the audio file is preserved
+                    // for the retry attempt.
                     Result.retry()
                 }
             }
         } catch (_: Exception) {
             Result.retry()
         }
+    }
+
+    // Precondition for the upload stopped holding after PlayerViewModel deferred
+    // auto-delete for this recording (contribution disabled/opted-out since,
+    // already contributed elsewhere, or no ingest endpoint configured for this
+    // build). The upload is never going to happen, so apply the user's auto-delete
+    // preference now rather than leaving the audio file stranded indefinitely, and
+    // clear the pending flag either way.
+    private suspend fun applyDeferredAutoDelete(recording: Recording) {
+        if (settingsRepository.autoDeleteAudioAfterTranscription.first()) {
+            try { File(recording.fileUri).delete() } catch (_: Exception) {}
+        }
+        recordingDao.update(recording.copy(pendingContribution = false))
     }
 }
