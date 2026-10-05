@@ -8,8 +8,6 @@ import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.TranscriptionService
 import com.kreativekoala.echonote.service.LocationService
 import com.kreativekoala.echonote.service.AppOpenTracker
-import com.kreativekoala.echonote.service.BillingService
-import com.kreativekoala.echonote.service.PremiumManager
 import com.kreativekoala.echonote.service.ReviewManager
 import dagger.Module
 import dagger.Provides
@@ -54,18 +52,6 @@ object ServiceModule {
     @Singleton
     fun provideLocationService(@ApplicationContext context: Context): LocationService {
         return LocationService(context)
-    }
-
-    @Provides
-    @Singleton
-    fun provideBillingService(@ApplicationContext context: Context): BillingService {
-        return BillingService(context).also { it.initialize() }
-    }
-
-    @Provides
-    @Singleton
-    fun providePremiumManager(billingService: BillingService): PremiumManager {
-        return PremiumManager(billingService)
     }
 
     @Provides

@@ -1,13 +1,11 @@
 package com.kreativekoala.echonote.service
 
 import android.content.Context
-import com.kreativekoala.echonote.util.Constants
 import javax.inject.Inject
 
 /**
  * Tracks the number of times the app has been opened (cold starts only).
- * After [Constants.Premium.FREE_OPEN_LIMIT] opens, non-premium users
- * are shown a hard paywall.
+ * Used to time the one-time voice-contribution consent prompt.
  */
 class AppOpenTracker @Inject constructor(
     private val context: Context
@@ -34,12 +32,5 @@ class AppOpenTracker @Inject constructor(
      */
     fun getOpenCount(): Int {
         return prefs.getInt(KEY_OPEN_COUNT, 0)
-    }
-
-    /**
-     * Returns true if the user has exceeded the free open limit.
-     */
-    fun hasExceededFreeLimit(): Boolean {
-        return getOpenCount() > Constants.Premium.FREE_OPEN_LIMIT
     }
 }

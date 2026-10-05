@@ -1,29 +1,23 @@
 package com.kreativekoala.echonote.service
 
-import com.kreativekoala.echonote.util.Constants
-import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-class PremiumManager @Inject constructor(
-    private val billingService: BillingService
-) {
-    val isPremium: StateFlow<Boolean> = billingService.isSubscribed
+/**
+ * Entitlement check. The app is completely free: every feature is unlocked for every
+ * user (including anyone who previously subscribed), so nothing here depends on
+ * billing state. Kept as the single place to ask "may the user do X?" so call sites
+ * stay unchanged.
+ */
+class PremiumManager @Inject constructor() {
 
-    fun canCreateRecording(currentCount: Int): Boolean {
-        return isPremium.value || currentCount < Constants.Premium.FREE_RECORDING_LIMIT
-    }
+    @Suppress("UNUSED_PARAMETER")
+    fun canCreateRecording(currentCount: Int): Boolean = true
 
-    fun canCreateFolder(currentCount: Int): Boolean {
-        return isPremium.value || currentCount < Constants.Premium.FREE_FOLDER_LIMIT
-    }
+    @Suppress("UNUSED_PARAMETER")
+    fun canCreateFolder(currentCount: Int): Boolean = true
 
-    fun canCreateBookmark(currentCount: Int): Boolean {
-        return isPremium.value || currentCount < Constants.Premium.FREE_BOOKMARK_LIMIT
-    }
+    @Suppress("UNUSED_PARAMETER")
+    fun canCreateBookmark(currentCount: Int): Boolean = true
 
-    fun canUseTranscription(): Boolean = isPremium.value
-
-    fun refreshPremiumStatus() {
-        billingService.queryExistingPurchases()
-    }
+    fun canUseTranscription(): Boolean = true
 }

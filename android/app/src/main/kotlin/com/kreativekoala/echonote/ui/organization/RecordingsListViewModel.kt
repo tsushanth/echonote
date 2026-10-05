@@ -29,8 +29,6 @@ class RecordingsListViewModel @Inject constructor(
     private val premiumManager: PremiumManager
 ) : ViewModel() {
 
-    val isPremium = premiumManager.isPremium
-
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery
 

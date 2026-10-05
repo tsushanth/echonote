@@ -15,7 +15,6 @@ import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.AudioPlayerService
-import com.kreativekoala.echonote.service.PremiumManager
 import com.kreativekoala.echonote.service.ReviewManager
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
@@ -49,12 +48,10 @@ class PlayerViewModel @Inject constructor(
     private val recordingRepository: RecordingRepository,
     private val transcriptionService: TranscriptionService,
     private val audioEditorService: AudioEditorService,
-    private val premiumManager: PremiumManager,
     private val reviewManager: ReviewManager,
     private val settingsRepository: SettingsRepository
 ) : ViewModel() {
 
-    val isPremium = premiumManager.isPremium
     val isPlaying = playerService.isPlaying
     val currentPositionMs = playerService.currentPositionMs
     val durationMs = playerService.durationMs
@@ -168,10 +165,6 @@ class PlayerViewModel @Inject constructor(
     }
 
     // Transcription
-    fun refreshPremiumStatus() {
-        premiumManager.refreshPremiumStatus()
-    }
-
     fun transcribe() {
         val rec = _currentRecording.value ?: return
         if (transcriptionService.isTranscribing.value) return

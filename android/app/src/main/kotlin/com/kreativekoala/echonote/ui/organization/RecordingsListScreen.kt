@@ -34,7 +34,6 @@ import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingFolder
 import com.kreativekoala.echonote.ui.components.RecordingRowItem
 import com.kreativekoala.echonote.ui.components.lip
-import com.kreativekoala.echonote.ui.settings.PaywallScreen
 import com.kreativekoala.echonote.ui.theme.*
 import java.io.File
 
@@ -57,7 +56,6 @@ fun RecordingsListScreen(
     var recordingToMove by remember { mutableStateOf<Recording?>(null) }
     var recordingToRename by remember { mutableStateOf<Recording?>(null) }
     var renameText by remember { mutableStateOf("") }
-    var showPaywall by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
     val isSelectionMode = selectedIds.isNotEmpty()
@@ -68,10 +66,6 @@ fun RecordingsListScreen(
         uri?.let { viewModel.importFile(context, it) }
     }
 
-    if (showPaywall) {
-        PaywallScreen(onDismiss = { showPaywall = false })
-        return
-    }
 
     // Rename dialog
     if (recordingToRename != null) {
@@ -237,7 +231,6 @@ fun RecordingsListScreen(
                                     Modifier.combinedClickable(
                                         onClick = {
                                             if (viewModel.canCreateRecording()) onRecordClick()
-                                            else showPaywall = true
                                         }
                                     )
                                 ),

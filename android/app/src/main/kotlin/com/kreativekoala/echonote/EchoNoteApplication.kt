@@ -27,8 +27,6 @@ class EchoNoteApplication : Application(), Configuration.Provider {
         FirebaseAnalyticsHelper.initialize(this)
         TikTokHelper.initialize(this)
         FacebookSDKHelper.initialize(this)
-        com.kreativekoala.paywallkit.manager.ExperimentManager.init(this)
-        com.kreativekoala.paywallkit.manager.PromoCodeManager.init(this)
         RatingKit.init(this, appId = "clearvoice")
         appOpenTracker.incrementOpenCount()
     }

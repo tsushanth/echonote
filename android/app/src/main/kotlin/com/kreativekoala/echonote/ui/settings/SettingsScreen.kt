@@ -28,9 +28,6 @@ import com.kreativekoala.echonote.util.Constants
 import androidx.compose.ui.graphics.Color
 import com.kreativekoala.crosspromokit.models.AppId
 import com.kreativekoala.crosspromokit.view.CrossPromoSection
-import com.kreativekoala.paywallkit.models.PaywallFeature
-import com.kreativekoala.paywallkit.models.PaywallTheme
-import com.kreativekoala.paywallkit.view.PaywallPreview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,34 +48,8 @@ fun SettingsScreen(
     val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
     val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
     val contributeVoiceData by viewModel.contributeVoiceData.collectAsState()
-    val isPremium by viewModel.isPremium.collectAsState()
     val context = LocalContext.current
     var showAcknowledgments by remember { mutableStateOf(false) }
-    var showPaywall by remember { mutableStateOf(false) }
-    var tapCount by remember { mutableIntStateOf(0) }
-    var showPaywallPreview by remember { mutableStateOf(false) }
-
-    if (showPaywallPreview) {
-        PaywallPreview(
-            appId = "clearvoice",
-            appName = "ClearVoice",
-            features = listOf(
-                PaywallFeature("\uD83C\uDFA4", "Unlimited Recordings", "Record without limits"),
-                PaywallFeature("\uD83D\uDCDD", "Transcription", "Convert speech to text"),
-                PaywallFeature("✂\uFE0F", "Audio Editing", "Trim and enhance recordings"),
-                PaywallFeature("⚡", "Playback Controls", "Speed adjustment & skip silence"),
-                PaywallFeature("\uD83D\uDCC1", "Unlimited Folders", "Organize everything")
-            ),
-            theme = PaywallTheme(accent = Color(0xFF6C63FF), accent2 = Color(0xFF9C27B0)),
-            onDone = { showPaywallPreview = false }
-        )
-        return
-    }
-
-    if (showPaywall) {
-        PaywallScreen(onDismiss = { showPaywall = false })
-        return
-    }
 
     if (showAcknowledgments) {
         AcknowledgmentsScreen(onBack = { showAcknowledgments = false })
@@ -96,55 +67,6 @@ fun SettingsScreen(
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
         ) {
-            if (!isPremium) {
-                // Go Premium button
-                Card(
-                    onClick = { showPaywall = true },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
-                    )
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.WorkspacePremium,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(28.dp)
-                        )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                stringResource(R.string.settings_go_premium),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
-                            Text(
-                                stringResource(R.string.settings_premium_subtitle),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-                            )
-                        }
-                        Icon(
-                            Icons.Default.ChevronRight,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-            }
-
             SettingsSectionHeader(stringResource(R.string.settings_section_recording_defaults))
 
             SettingsRow(
@@ -447,7 +369,6 @@ fun SettingsScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { tapCount++ }
                     .padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -465,17 +386,6 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                }
-            }
-
-            if (tapCount >= 5) {
-                Button(
-                    onClick = { showPaywallPreview = true },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
-                ) {
-                    Text("Preview Paywalls")
                 }
             }
 

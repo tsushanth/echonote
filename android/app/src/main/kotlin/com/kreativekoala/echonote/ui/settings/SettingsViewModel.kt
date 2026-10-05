@@ -10,7 +10,6 @@ import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.data.repository.SettingsRepository
-import com.kreativekoala.echonote.service.PremiumManager
 import com.kreativekoala.echonote.util.Constants
 import com.kreativekoala.echonote.util.TimeFormatting
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,11 +28,8 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val settingsRepository: SettingsRepository,
-    private val premiumManager: PremiumManager,
     private val recordingRepository: RecordingRepository
 ) : ViewModel() {
-
-    val isPremium: StateFlow<Boolean> = premiumManager.isPremium
 
     val defaultFormat: StateFlow<AudioFormat> = settingsRepository.defaultFormat
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AudioFormat.COMPRESSED)

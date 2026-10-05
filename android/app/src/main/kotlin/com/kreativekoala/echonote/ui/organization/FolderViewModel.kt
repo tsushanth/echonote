@@ -26,8 +26,6 @@ class FolderViewModel @Inject constructor(
     private val premiumManager: PremiumManager
 ) : ViewModel() {
 
-    val isPremium = premiumManager.isPremium
-
     val folders: StateFlow<List<RecordingFolder>> = folderRepository.getAllFolders()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 

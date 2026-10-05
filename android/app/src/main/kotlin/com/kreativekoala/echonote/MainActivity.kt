@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import com.kreativekoala.paywallkit.manager.PromoCodeManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PromoCodeManager.handleIntent(intent)
         enableEdgeToEdge()
         RatingKit.trackAppOpen(this)
         requestPermissionsIfNeeded()

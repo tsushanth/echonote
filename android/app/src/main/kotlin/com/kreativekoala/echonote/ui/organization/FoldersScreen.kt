@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.RecordingFolder
-import com.kreativekoala.echonote.util.Constants
 import com.kreativekoala.echonote.util.TimeFormatting
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,15 +29,8 @@ fun FoldersScreen(
     viewModel: FolderViewModel = hiltViewModel()
 ) {
     val folders by viewModel.folders.collectAsState()
-    val isPremium by viewModel.isPremium.collectAsState()
     var showCreateDialog by remember { mutableStateOf(false) }
-    var showPaywall by remember { mutableStateOf(false) }
     var newFolderName by remember { mutableStateOf("") }
-
-    if (showPaywall) {
-        com.kreativekoala.echonote.ui.settings.PaywallScreen(onDismiss = { showPaywall = false })
-        return
-    }
 
     if (showCreateDialog) {
         AlertDialog(
@@ -88,7 +80,6 @@ fun FoldersScreen(
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 if (viewModel.canCreateFolder()) showCreateDialog = true
-                else showPaywall = true
             }) {
                 Icon(Icons.Default.CreateNewFolder, contentDescription = stringResource(R.string.folders_new_folder_fab))
             }
@@ -130,32 +121,6 @@ fun FoldersScreen(
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                // Folder limit indicator (free users only)
-                if (!isPremium) {
-                    item {
-                        val limit = Constants.Premium.FREE_FOLDER_LIMIT
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp, vertical = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = stringResource(R.string.folders_limit_format, folders.size, limit),
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            LinearProgressIndicator(
-                                progress = { (folders.size.toFloat() / limit).coerceIn(0f, 1f) },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(4.dp),
-                                trackColor = MaterialTheme.colorScheme.surfaceVariant,
-                            )
-                        }
-                    }
-                }
                 items(
                     items = folders,
                     key = { it.id }

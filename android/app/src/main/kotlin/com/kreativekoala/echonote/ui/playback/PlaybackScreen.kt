@@ -33,7 +33,6 @@ import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.tts.ReadAloudSheet
 import com.kreativekoala.echonote.ui.components.WaveformView
-import com.kreativekoala.echonote.ui.settings.PaywallScreen
 import com.kreativekoala.echonote.util.DateFormatting
 import com.kreativekoala.echonote.util.ExportFormat
 import com.kreativekoala.echonote.util.TimeFormatting
@@ -62,11 +61,9 @@ fun PlaybackScreen(
     val showTrimMode by viewModel.showTrimMode.collectAsState()
     val trimStart by viewModel.trimStart.collectAsState()
     val trimEnd by viewModel.trimEnd.collectAsState()
-    val isPremium by viewModel.isPremium.collectAsState()
     val transcriptSegments by viewModel.transcriptSegments.collectAsState()
     val activeSegmentIndex by viewModel.activeSegmentIndex.collectAsState()
     val context = LocalContext.current
-    var showPaywall by remember { mutableStateOf(false) }
     var showExportMenu by remember { mutableStateOf(false) }
     var showPartialReadAloud by remember { mutableStateOf(false) }
 
@@ -81,14 +78,6 @@ fun PlaybackScreen(
     }
 
     val rec = recording ?: return
-
-    if (showPaywall) {
-        PaywallScreen(onDismiss = {
-            showPaywall = false
-            viewModel.refreshPremiumStatus()
-        })
-        return
-    }
 
     val progress = if (durationMs > 0) currentPositionMs.toFloat() / durationMs.toFloat() else 0f
 
@@ -272,10 +261,7 @@ fun PlaybackScreen(
                 listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f).forEach { speed ->
                     FilterChip(
                         selected = playbackSpeed == speed,
-                        onClick = {
-                            if (isPremium || speed == 1f) viewModel.setSpeed(speed)
-                            else showPaywall = true
-                        },
+                        onClick = { viewModel.setSpeed(speed) },
                         label = {
                             val label = when (speed) {
                                 0.5f -> "0.5×"
@@ -286,10 +272,7 @@ fun PlaybackScreen(
                                 else -> "2×"
                             }
                             Text(text = label, style = MaterialTheme.typography.labelSmall)
-                        },
-                        leadingIcon = if (!isPremium && speed != 1f) {
-                            { Icon(Icons.Default.Lock, contentDescription = null, modifier = Modifier.size(12.dp)) }
-                        } else null
+                        }
                     )
                 }
             }
@@ -304,14 +287,9 @@ fun PlaybackScreen(
             ) {
                 FilterChip(
                     selected = skipSilence,
-                    onClick = {
-                        if (isPremium) viewModel.toggleSkipSilence()
-                        else showPaywall = true
-                    },
+                    onClick = { viewModel.toggleSkipSilence() },
                     label = { Text(stringResource(R.string.playback_skip_silence)) },
-                    leadingIcon = if (!isPremium) {
-                        { Icon(Icons.Default.Lock, contentDescription = null, modifier = Modifier.size(16.dp)) }
-                    } else if (skipSilence) {
+                    leadingIcon = if (skipSilence) {
                         { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(16.dp)) }
                     } else null
                 )
@@ -325,10 +303,7 @@ fun PlaybackScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 OutlinedButton(
-                    onClick = {
-                        if (isPremium) viewModel.transcribe()
-                        else showPaywall = true
-                    },
+                    onClick = { viewModel.transcribe() },
                     enabled = !isTranscribing,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(12.dp)
@@ -342,7 +317,7 @@ fun PlaybackScreen(
                         Text(transcriptionStatus ?: stringResource(R.string.playback_transcribing))
                     } else {
                         Icon(
-                            if (!isPremium) Icons.Default.Lock else Icons.Default.TextFields,
+                            Icons.Default.TextFields,
                             contentDescription = null,
                             modifier = Modifier.size(18.dp)
                         )
@@ -378,16 +353,13 @@ fun PlaybackScreen(
                     }
                 } else {
                     OutlinedButton(
-                        onClick = {
-                            if (isPremium) viewModel.toggleTrimMode()
-                            else showPaywall = true
-                        },
+                        onClick = { viewModel.toggleTrimMode() },
                         enabled = true,
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Icon(
-                            if (!isPremium) Icons.Default.Lock else Icons.Default.ContentCut,
+                            Icons.Default.ContentCut,
                             contentDescription = null,
                             modifier = Modifier.size(18.dp)
                         )
