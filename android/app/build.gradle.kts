@@ -15,6 +15,12 @@ val localProperties = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) f.inputStream().use { load(it) }
 }
+// Release signing secrets live in the gitignored local.properties (or env CLEARVOICE_STORE_PASSWORD / CLEARVOICE_KEY_PASSWORD), never in this file.
+fun signingProp(name: String): String =
+    localProperties.getProperty(name)
+        ?: System.getenv(name.removePrefix("clearvoice.").replace(Regex("([A-Z])"), "_$1").uppercase().let { "CLEARVOICE_$it" })
+        ?: ""
+
 fun ingestProp(name: String) = (localProperties.getProperty(name) ?: "").replace("\"", "")
 
 android {
@@ -25,7 +31,7 @@ android {
         applicationId = "com.kreativekoala.echonote"
         minSdk = 26
         targetSdk = 36
-        versionCode = 40
+        versionCode = 41
         versionName = "1.9.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -37,9 +43,9 @@ android {
     signingConfigs {
         create("release") {
             storeFile = file("/Users/sushanthtiruvaipati/Documents/GitHub/AndroidAppKey")
-            storePassword = "REMOVED_SIGNING_PASSWORD"
+            storePassword = signingProp("clearvoice.storePassword")
             keyAlias = "androidappkey"
-            keyPassword = "REMOVED_SIGNING_PASSWORD"
+            keyPassword = signingProp("clearvoice.keyPassword")
         }
     }
 
