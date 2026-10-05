@@ -82,6 +82,8 @@ dependencies {
 
     // RatingKit
     implementation(project(":ratingkit"))
+    // Play requires Billing Library >= 8.0.0 for any build that declares com.android.vending.BILLING; no code calls it.
+    implementation("com.android.billingclient:billing-ktx:8.0.0")
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
