@@ -8,9 +8,6 @@ import android.content.Intent
 import android.widget.Toast
 import com.google.android.play.core.review.ReviewManagerFactory
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -572,27 +573,50 @@ fun PlaybackScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         if (transcriptSegments.isNotEmpty()) {
-                            val wordListState = rememberLazyListState()
-                            LaunchedEffect(activeSegmentIndex) {
-                                if (activeSegmentIndex >= 0) {
-                                    wordListState.animateScrollToItem(activeSegmentIndex)
+                            // Wrapped text that scrolls vertically; the word being played is highlighted
+                            // and kept in view.
+                            val scrollState = rememberScrollState()
+                            var layout by remember { mutableStateOf<TextLayoutResult?>(null) }
+                            val activeColor = MaterialTheme.colorScheme.primary
+                            val idleColor = MaterialTheme.colorScheme.onSurfaceVariant
+                            val annotated = remember(transcriptSegments, activeSegmentIndex, activeColor, idleColor) {
+                                buildAnnotatedString {
+                                    var activeStart = -1
+                                    transcriptSegments.forEachIndexed { idx, seg ->
+                                        if (idx > 0) append(" ")
+                                        val isActive = idx == activeSegmentIndex
+                                        if (isActive) activeStart = length
+                                        withStyle(
+                                            SpanStyle(
+                                                color = if (isActive) activeColor else idleColor,
+                                                fontWeight = if (isActive) FontWeight.Bold else FontWeight.Normal
+                                            )
+                                        ) { append(seg.word) }
+                                    }
                                 }
                             }
-                            LazyRow(
-                                state = wordListState,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                itemsIndexed(transcriptSegments) { idx, seg ->
-                                    val isActive = idx == activeSegmentIndex
-                                    Text(
-                                        text = seg.word,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontWeight = if (isActive) FontWeight.Bold else FontWeight.Normal,
-                                        color = if (isActive) MaterialTheme.colorScheme.primary
-                                                else MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                            val activeOffset = remember(transcriptSegments, activeSegmentIndex) {
+                                if (activeSegmentIndex < 0) -1
+                                else transcriptSegments.take(activeSegmentIndex).sumOf { it.word.length + 1 }
+                            }
+                            LaunchedEffect(activeOffset, layout) {
+                                val l = layout
+                                if (activeOffset >= 0 && l != null && activeOffset < l.layoutInput.text.length) {
+                                    val top = l.getLineTop(l.getLineForOffset(activeOffset))
+                                    scrollState.animateScrollTo(top.toInt())
                                 }
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .heightIn(max = 280.dp)
+                                    .verticalScroll(scrollState)
+                            ) {
+                                Text(
+                                    text = annotated,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    onTextLayout = { layout = it }
+                                )
                             }
                         } else {
                             Text(
