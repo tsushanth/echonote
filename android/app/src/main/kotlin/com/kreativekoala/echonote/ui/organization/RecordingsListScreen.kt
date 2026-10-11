@@ -205,7 +205,7 @@ fun RecordingsListScreen(
                                 .size(48.dp)
                                 .lip(CircleShape)
                                 .clip(CircleShape)
-                                .background(SurfaceRaised)
+                                .background(MaterialTheme.colorScheme.surfaceVariant)
                                 .then(
                                     Modifier.combinedClickable(
                                         onClick = { importLauncher.launch(arrayOf("audio/*", "video/*")) }
@@ -216,7 +216,7 @@ fun RecordingsListScreen(
                             Icon(
                                 Icons.Default.FileUpload,
                                 contentDescription = "Import audio/video",
-                                tint = TextPrimary
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         }
                     }
@@ -224,9 +224,9 @@ fun RecordingsListScreen(
                         Box(
                             modifier = Modifier
                                 .size(64.dp)
-                                .lip(CircleShape, color = CoralDim, depth = 4.dp)
+                                .lip(CircleShape, color = EchoTheme.colors.recordWash, depth = 4.dp)
                                 .clip(CircleShape)
-                                .background(Coral)
+                                .background(EchoTheme.colors.record)
                                 .then(
                                     Modifier.combinedClickable(
                                         onClick = {
@@ -260,27 +260,27 @@ fun RecordingsListScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 8.dp),
                     shape = RoundedCornerShape(50),
-                    color = Surface
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     OutlinedTextField(
                         value = searchQuery,
                         onValueChange = { viewModel.setSearchQuery(it) },
-                        placeholder = { Text(stringResource(R.string.recordings_search_placeholder), color = TextTertiary) },
-                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = TextSecondary) },
+                        placeholder = { Text(stringResource(R.string.recordings_search_placeholder), color = EchoTheme.colors.faint) },
+                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant) },
                         trailingIcon = {
                             if (searchQuery.isNotEmpty()) {
                                 IconButton(onClick = { viewModel.setSearchQuery("") }) {
-                                    Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.recordings_clear), tint = TextSecondary)
+                                    Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.recordings_clear), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
                             }
                         },
                         singleLine = true,
                         shape = RoundedCornerShape(50),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Lip,
-                            unfocusedBorderColor = Lip,
-                            focusedTextColor = TextPrimary,
-                            unfocusedTextColor = TextPrimary
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                            focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                            unfocusedTextColor = MaterialTheme.colorScheme.onSurface
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -300,14 +300,14 @@ fun RecordingsListScreen(
                             modifier = Modifier
                                 .size(88.dp)
                                 .clip(CircleShape)
-                                .background(SurfaceRaised),
+                                .background(MaterialTheme.colorScheme.surfaceVariant),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 Icons.Default.Mic,
                                 contentDescription = null,
                                 modifier = Modifier.size(40.dp),
-                                tint = TextSecondary
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                         Spacer(modifier = Modifier.height(20.dp))
@@ -315,14 +315,14 @@ fun RecordingsListScreen(
                             text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_no_results)
                             else stringResource(R.string.recordings_no_recordings),
                             style = MaterialTheme.typography.headlineMedium,
-                            color = TextPrimary
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = if (searchQuery.isNotEmpty()) stringResource(R.string.recordings_try_different_search)
                             else stringResource(R.string.recordings_tap_to_start),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = TextSecondary,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             textAlign = TextAlign.Center
                         )
                     }
@@ -330,8 +330,8 @@ fun RecordingsListScreen(
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                    contentPadding = PaddingValues(vertical = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
                     items(
                         items = recordings,
@@ -403,16 +403,20 @@ fun RecordingsListScreen(
                             ) {
                                 Box(
                                     modifier = Modifier
-                                        .padding(bottom = 4.dp)
-                                        .lip(RoundedCornerShape(20.dp))
-                                        .clip(RoundedCornerShape(20.dp))
-                                        .background(Surface)
+                                        .fillMaxWidth()
+                                        .background(MaterialTheme.colorScheme.background)
                                 ) {
                                     RecordingRowItem(
                                         recording = recording,
                                         onTap = { onRecordingClick(recording) },
                                         onLongPress = { showContextMenu = true },
                                         onFavoriteToggle = { viewModel.toggleFavorite(recording) }
+                                    )
+                                    HorizontalDivider(
+                                        modifier = Modifier
+                                            .align(Alignment.BottomCenter)
+                                            .padding(horizontal = 20.dp),
+                                        color = MaterialTheme.colorScheme.outlineVariant
                                     )
                                     DropdownMenu(
                                         expanded = showContextMenu,

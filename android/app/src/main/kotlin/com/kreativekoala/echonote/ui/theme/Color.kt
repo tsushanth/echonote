@@ -1,43 +1,82 @@
 package com.kreativekoala.echonote.ui.theme
 
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-// Fixed identity, not Material You dynamic color — the app read the same generic
-// wallpaper-driven blue every competitor's default screen does. Two deliberate
-// accents, one job each: Coral = recording is live / destructive, Electric = the
-// one premium CTA color.
-val Ink = Color(0xFF0B0B0F)
-val Surface = Color(0xFF17171D)
-val SurfaceRaised = Color(0xFF1F1F27)
-val Lip = Color(0xFF2A2A34)
+// Palette is built around the thing the app produces: a transcript you read like a
+// page. Cool "fog" grounds and spruce ink instead of a neutral black; a highlighter
+// yellow marks the word being spoken, the way you'd mark a printed page. Coral is
+// reserved for "recording is live" and destructive actions only.
 
-val Coral = Color(0xFFFF4B3E)
-val CoralDim = Color(0xFF4A1A16)
-val Electric = Color(0xFF5B6EF5)
-val ElectricDim = Color(0xFF1C2166)
-val Gold = Color(0xFFFFCC00)
+// Light: fog ground, page surfaces, spruce ink
+val Fog = Color(0xFFE6ECEC)
+val Page = Color(0xFFF7F9F8)
+val PageSunk = Color(0xFFDCE4E4)
+val SpruceInk = Color(0xFF10262B)
+val SpruceMuted = Color(0xFF51666B)
+val SpruceFaint = Color(0xFF8A9C9F)
+val Teal = Color(0xFF1F6F78)
+val TealWash = Color(0xFFCFE4E6)
 
-val TextPrimary = Color(0xFFF5F3F0)
-val TextSecondary = Color(0xFF9A98A3)
-val TextTertiary = Color(0xFF5C5A64)
+// Dark: deep spruce ground
+val SpruceDeep = Color(0xFF0C1A1D)
+val PageDark = Color(0xFF14282C)
+val PageRaisedDark = Color(0xFF1C3338)
+val ChalkInk = Color(0xFFEAF1F0)
+val ChalkMuted = Color(0xFFA2B6B8)
+val ChalkFaint = Color(0xFF647B7E)
+val TealLight = Color(0xFF7CC8CF)
+val TealDeep = Color(0xFF173F45)
 
-// Kept for existing call sites; now points at the refined Coral so record/stop/
-// destructive states share one color throughout instead of drifting between the
-// old #FF3B30 and whatever else crept in.
-val RecordingRed = Coral
-val WaveformBlue = Electric
-val WaveformGray = TextTertiary
+val CoralLight = Color(0xFFD93C2F)
+val CoralDark = Color(0xFFFF5A4D)
+val CoralWashLight = Color(0xFFF7D6D2)
+val CoralWashDark = Color(0xFF4A1A16)
 
-// Light theme — kept for ThemeMode.LIGHT; the dark scheme below is the real
-// restyle target since the app has always been dark-first.
-val PrimaryLight = Electric
-val OnPrimaryLight = Color.White
-val SurfaceLight = Color(0xFFF2F2F7)
-val OnSurfaceLight = Color(0xFF1C1C1E)
-val BackgroundLight = Color.White
+val HighlighterLight = Color(0xFFF2C94C)
+val HighlighterDark = Color(0xFFE0B83A)
 
-val PrimaryDark = Electric
-val OnPrimaryDark = Color.White
-val SurfaceDark = Surface
-val OnSurfaceDark = TextPrimary
-val BackgroundDark = Ink
+/** Speaker identity colors, muted enough to sit behind serif text in either theme. */
+val SpeakerColorsLight = listOf(
+    Color(0xFF1F6F78), Color(0xFFB4532A), Color(0xFF5B5BA6),
+    Color(0xFF7A8F2B), Color(0xFFA33B6B), Color(0xFF2F7DB5)
+)
+val SpeakerColorsDark = listOf(
+    Color(0xFF7CC8CF), Color(0xFFE59A72), Color(0xFFA9A9E8),
+    Color(0xFFC3D470), Color(0xFFE69AC0), Color(0xFF8CC3EC)
+)
+
+/** Colors the Material scheme has no slot for. Read with [EchoTheme.colors]. */
+@Immutable
+data class EchoColors(
+    val record: Color,
+    val recordWash: Color,
+    val highlighter: Color,
+    val onHighlighter: Color,
+    val faint: Color,
+    val sunk: Color,
+    val speakers: List<Color>
+)
+
+val LightEchoColors = EchoColors(
+    record = CoralLight,
+    recordWash = CoralWashLight,
+    highlighter = HighlighterLight,
+    onHighlighter = SpruceInk,
+    faint = SpruceFaint,
+    sunk = PageSunk,
+    speakers = SpeakerColorsLight
+)
+
+val DarkEchoColors = EchoColors(
+    record = CoralDark,
+    recordWash = CoralWashDark,
+    highlighter = HighlighterDark,
+    onHighlighter = SpruceDeep,
+    faint = ChalkFaint,
+    sunk = SpruceDeep,
+    speakers = SpeakerColorsDark
+)
+
+val LocalEchoColors = staticCompositionLocalOf { LightEchoColors }

@@ -206,10 +206,8 @@ fun RecordingScreen(
 
                 Text(
                     text = timeText,
-                    fontSize = 72.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.Monospace,
-                    color = if (isRecording && !isPaused) Coral else TextPrimary,
+                    style = TimerTextStyle.copy(fontSize = 72.sp, fontWeight = FontWeight.SemiBold),
+                    color = if (isRecording && !isPaused) EchoTheme.colors.record else MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center
                 )
 
@@ -241,7 +239,7 @@ fun RecordingScreen(
                             modifier = Modifier
                                 .size(56.dp)
                                 .clip(CircleShape)
-                                .background(SurfaceRaised)
+                                .background(MaterialTheme.colorScheme.surfaceVariant)
                                 .clickable {
                                     if (hapticFeedbackEnabled) buzz()
                                     if (soundEffectsEnabled) beep(false)
@@ -252,7 +250,7 @@ fun RecordingScreen(
                             Icon(
                                 Icons.Default.Stop,
                                 contentDescription = stringResource(R.string.recording_stop),
-                                tint = TextPrimary,
+                                tint = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier.size(28.dp)
                             )
                         }
@@ -262,9 +260,9 @@ fun RecordingScreen(
                             Box(
                                 modifier = Modifier
                                     .size(80.dp)
-                                    .lip(CircleShape, color = CoralDim)
+                                    .lip(CircleShape, color = EchoTheme.colors.recordWash)
                                     .clip(CircleShape)
-                                    .background(Coral)
+                                    .background(EchoTheme.colors.record)
                                     .clickable {
                                         if (isPaused) viewModel.resumeRecording() else viewModel.pauseRecording()
                                     },
@@ -284,9 +282,9 @@ fun RecordingScreen(
                             Box(
                                 modifier = Modifier
                                     .size(80.dp)
-                                    .lip(CircleShape, color = CoralDim)
+                                    .lip(CircleShape, color = EchoTheme.colors.recordWash)
                                     .clip(CircleShape)
-                                    .background(Coral)
+                                    .background(EchoTheme.colors.record)
                                     .clickable {
                                         if (hapticFeedbackEnabled) buzz()
                                         if (soundEffectsEnabled) beep(true)
@@ -308,100 +306,16 @@ fun RecordingScreen(
 
                 // Format/Quality selectors (only when not recording)
                 if (!isRecording) {
-                    val chipColors = FilterChipDefaults.filterChipColors(
-                        containerColor = SurfaceRaised,
-                        labelColor = TextSecondary,
-                        selectedContainerColor = Electric,
-                        selectedLabelColor = Color.White
+                    RecordingSettingsPanel(
+                        format = selectedFormat,
+                        onFormat = { viewModel.setFormat(it) },
+                        quality = selectedQuality,
+                        onQuality = { viewModel.setQuality(it) },
+                        isStereo = isStereo,
+                        onStereo = { viewModel.setStereo(it) },
+                        gain = gain,
+                        onGain = { viewModel.setGain(it) }
                     )
-                    val chipBorder = FilterChipDefaults.filterChipBorder(
-                        enabled = true,
-                        selected = false,
-                        borderColor = Color.Transparent,
-                        selectedBorderColor = Color.Transparent
-                    )
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            FilterChip(
-                                selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED,
-                                onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED) },
-                                label = { Text(stringResource(R.string.recording_format_m4a)) },
-                                shape = RoundedCornerShape(50),
-                                colors = chipColors,
-                                border = chipBorder
-                            )
-                            FilterChip(
-                                selected = selectedFormat == com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED,
-                                onClick = { viewModel.setFormat(com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED) },
-                                label = { Text(stringResource(R.string.recording_format_wav)) },
-                                shape = RoundedCornerShape(50),
-                                colors = chipColors,
-                                border = chipBorder
-                            )
-                        }
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            com.kreativekoala.echonote.data.model.RecordingQuality.entries.forEach { q ->
-                                FilterChip(
-                                    selected = selectedQuality == q,
-                                    onClick = { viewModel.setQuality(q) },
-                                    label = { Text(q.displayName) },
-                                    shape = RoundedCornerShape(50),
-                                    colors = chipColors,
-                                    border = chipBorder
-                                )
-                            }
-                        }
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            FilterChip(
-                                selected = isStereo,
-                                onClick = { viewModel.setStereo(!isStereo) },
-                                label = { Text(stringResource(R.string.recording_stereo)) },
-                                shape = RoundedCornerShape(50),
-                                colors = chipColors,
-                                border = chipBorder
-                            )
-                        }
-
-                        // Mic Gain slider
-                        Column(modifier = Modifier.fillMaxWidth()) {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text("Mic Gain", style = MaterialTheme.typography.bodyMedium, color = TextPrimary)
-                                Text(
-                                    text = "%.1f×".format(gain),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = TextSecondary
-                                )
-                            }
-                            Slider(
-                                value = gain,
-                                onValueChange = { viewModel.setGain(it) },
-                                valueRange = 0.5f..2.0f,
-                                steps = 5,
-                                colors = SliderDefaults.colors(
-                                    thumbColor = Electric,
-                                    activeTrackColor = Electric,
-                                    inactiveTrackColor = SurfaceRaised
-                                ),
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-                    }
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
@@ -499,5 +413,92 @@ private fun ReviewPromptCard(
                 }
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RecordingSettingsPanel(
+    format: com.kreativekoala.echonote.data.model.AudioFormat,
+    onFormat: (com.kreativekoala.echonote.data.model.AudioFormat) -> Unit,
+    quality: com.kreativekoala.echonote.data.model.RecordingQuality,
+    onQuality: (com.kreativekoala.echonote.data.model.RecordingQuality) -> Unit,
+    isStereo: Boolean,
+    onStereo: (Boolean) -> Unit,
+    gain: Float,
+    onGain: (Float) -> Unit
+) {
+    val formats = listOf(
+        com.kreativekoala.echonote.data.model.AudioFormat.COMPRESSED to stringResource(R.string.recording_format_m4a),
+        com.kreativekoala.echonote.data.model.AudioFormat.UNCOMPRESSED to stringResource(R.string.recording_format_wav)
+    )
+    val qualities = com.kreativekoala.echonote.data.model.RecordingQuality.entries
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        SettingRow(label = "Format") {
+            SingleChoiceSegmentedButtonRow {
+                formats.forEachIndexed { i, (value, label) ->
+                    SegmentedButton(
+                        selected = format == value,
+                        onClick = { onFormat(value) },
+                        shape = SegmentedButtonDefaults.itemShape(i, formats.size)
+                    ) { Text(label) }
+                }
+            }
+        }
+        SettingRow(label = "Quality") {
+            SingleChoiceSegmentedButtonRow {
+                qualities.forEachIndexed { i, q ->
+                    SegmentedButton(
+                        selected = quality == q,
+                        onClick = { onQuality(q) },
+                        shape = SegmentedButtonDefaults.itemShape(i, qualities.size),
+                        label = { Text(q.displayName, maxLines = 1) }
+                    )
+                }
+            }
+        }
+        SettingRow(label = stringResource(R.string.recording_stereo)) {
+            Switch(checked = isStereo, onCheckedChange = onStereo)
+        }
+        Column {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("Mic gain", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+                Text(
+                    text = "%.1f\u00D7".format(gain),
+                    style = TimerTextStyle.copy(fontSize = 14.sp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Slider(
+                value = gain,
+                onValueChange = onGain,
+                valueRange = 0.5f..2.0f,
+                steps = 5,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+private fun SettingRow(label: String, control: @Composable () -> Unit) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+        control()
     }
 }

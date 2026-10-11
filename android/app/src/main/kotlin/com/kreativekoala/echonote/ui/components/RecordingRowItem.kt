@@ -1,27 +1,31 @@
 package com.kreativekoala.echonote.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.Recording
-import com.kreativekoala.echonote.ui.theme.*
+import com.kreativekoala.echonote.ui.theme.EchoTheme
+import com.kreativekoala.echonote.ui.theme.SourceSerif
+import com.kreativekoala.echonote.ui.theme.TimerTextStyle
 import com.kreativekoala.echonote.util.DateFormatting
 import com.kreativekoala.echonote.util.TimeFormatting
 
+/**
+ * A list row reads like a contents-page entry: the title, then the first lines of
+ * what was actually said, so a recording can be recognised without opening it.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RecordingRowItem(
@@ -31,121 +35,90 @@ fun RecordingRowItem(
     modifier: Modifier = Modifier,
     onLongPress: (() -> Unit)? = null
 ) {
+    val colors = MaterialTheme.colorScheme
+    val preview = recording.transcript?.trim()?.takeIf { it.isNotEmpty() }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .combinedClickable(
-                onClick = onTap,
-                onLongClick = onLongPress
-            )
-            .padding(horizontal = 16.dp, vertical = 14.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .combinedClickable(onClick = onTap, onLongClick = onLongPress)
+            .padding(start = 20.dp, end = 8.dp, top = 14.dp, bottom = 14.dp),
+        verticalAlignment = Alignment.Top
     ) {
-        // A colored disc carries the recording's status at a glance — replaces
-        // the small inline star/sparkle icons that only showed up next to the
-        // title with no consistent visual weight.
-        Box(
-            modifier = Modifier
-                .size(44.dp)
-                .clip(CircleShape)
-                .background(
-                    when {
-                        recording.isEnhanced -> ElectricDim
-                        recording.isFavorite -> CoralDim
-                        else -> SurfaceRaised
-                    }
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = when {
-                    recording.isEnhanced -> Icons.Default.AutoAwesome
-                    recording.isFavorite -> Icons.Default.Favorite
-                    else -> Icons.Default.Mic
-                },
-                contentDescription = null,
-                tint = when {
-                    recording.isEnhanced -> Electric
-                    recording.isFavorite -> Coral
-                    else -> TextSecondary
-                },
-                modifier = Modifier.size(20.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.width(14.dp))
-
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = recording.title,
                 style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.SemiBold,
-                color = TextPrimary,
+                color = colors.onSurface,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            Spacer(modifier = Modifier.height(2.dp))
+            if (preview != null) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = preview,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = SourceSerif,
+                        fontSize = 15.sp,
+                        lineHeight = 22.sp
+                    ),
+                    color = colors.onSurfaceVariant,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = DateFormatting.formatRelativeDate(recording.dateCreated),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = TextSecondary
-                )
-                Text(
                     text = recording.formattedDuration,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = TextSecondary
+                    style = TimerTextStyle.copy(fontSize = 13.sp),
+                    color = colors.onSurface
                 )
-                recording.locationName?.let { loc ->
-                    Icon(
-                        Icons.Default.LocationOn,
-                        contentDescription = null,
-                        modifier = Modifier.size(12.dp),
-                        tint = TextTertiary
-                    )
-                    Text(
-                        text = loc,
-                        style = MaterialTheme.typography.labelLarge,
-                        color = TextTertiary,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(2.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text(
-                    text = TimeFormatting.formatFileSize(recording.fileSize),
+                    text = DateFormatting.formatRelativeDate(recording.dateCreated),
                     style = MaterialTheme.typography.labelLarge,
-                    color = TextTertiary
+                    fontWeight = FontWeight.Normal,
+                    color = colors.onSurfaceVariant
                 )
-                if (recording.isStereo) {
-                    Text(
-                        text = stringResource(R.string.recording_row_stereo),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = TextTertiary
+                if (recording.isEnhanced) {
+                    Icon(
+                        Icons.Default.AutoAwesome,
+                        contentDescription = null,
+                        modifier = Modifier.size(14.dp),
+                        tint = colors.primary
                     )
                 }
-                if (recording.transcript != null) {
-                    Text(
-                        text = stringResource(R.string.recording_row_transcript),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = TextTertiary
-                    )
+                recording.locationName?.let { loc ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.LocationOn,
+                            contentDescription = null,
+                            modifier = Modifier.size(13.dp),
+                            tint = EchoTheme.colors.faint
+                        )
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Text(
+                            text = loc,
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.Normal,
+                            color = EchoTheme.colors.faint,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
         }
 
-        Spacer(modifier = Modifier.width(8.dp))
         IconButton(onClick = onFavoriteToggle) {
             Icon(
                 imageVector = if (recording.isFavorite) Icons.Default.Favorite
                 else Icons.Default.FavoriteBorder,
                 contentDescription = if (recording.isFavorite) stringResource(R.string.recording_row_unfavorite) else stringResource(R.string.recording_row_favorite),
-                tint = if (recording.isFavorite) Coral else TextTertiary
+                tint = if (recording.isFavorite) EchoTheme.colors.record else EchoTheme.colors.faint
             )
         }
     }

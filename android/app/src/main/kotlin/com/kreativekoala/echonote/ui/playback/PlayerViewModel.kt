@@ -19,6 +19,9 @@ import com.kreativekoala.echonote.service.ReviewManager
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
 import com.kreativekoala.echonote.util.ExportFormat
+import com.kreativekoala.echonote.util.buildSubtitleCues
+import com.kreativekoala.echonote.util.toSrt
+import com.kreativekoala.echonote.util.toVtt
 import com.kreativekoala.echonote.worker.ContributionUploadWorker
 import androidx.work.Constraints
 import androidx.work.Data
@@ -333,12 +336,20 @@ class PlayerViewModel @Inject constructor(
         val text = _transcriptionResult.value ?: return
         val rec = _currentRecording.value ?: return
         val duration = durationMs.value.takeIf { it > 0 } ?: 1L
+        // Recordings transcribed before word timings were stored fall back to even spacing.
+        val timedCues = _transcriptSegments.value.takeIf { it.isNotEmpty() }?.let { buildSubtitleCues(it) }
 
         viewModelScope.launch(Dispatchers.IO) {
             val (fileName, content) = when (format) {
                 is ExportFormat.TXT -> Pair("transcript.txt", text)
-                is ExportFormat.SRT -> Pair("transcript.srt", buildSrt(text, duration))
-                is ExportFormat.VTT -> Pair("transcript.vtt", buildVtt(text, duration))
+                is ExportFormat.SRT -> Pair(
+                    "transcript.srt",
+                    timedCues?.toSrt() ?: buildSrt(text, duration)
+                )
+                is ExportFormat.VTT -> Pair(
+                    "transcript.vtt",
+                    timedCues?.toVtt() ?: buildVtt(text, duration)
+                )
             }
             val outFile = File(context.cacheDir, fileName)
             outFile.writeText(content)

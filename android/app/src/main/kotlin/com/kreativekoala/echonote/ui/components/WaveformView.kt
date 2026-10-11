@@ -13,20 +13,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.kreativekoala.echonote.ui.theme.WaveformBlue
-import com.kreativekoala.echonote.ui.theme.WaveformGray
+import androidx.compose.material3.MaterialTheme
+import com.kreativekoala.echonote.ui.theme.EchoTheme
 
 @Composable
 fun WaveformView(
     samples: FloatArray,
     progress: Float = 0f,
     onSeek: ((Float) -> Unit)? = null,
-    activeColor: Color = WaveformBlue,
-    inactiveColor: Color = WaveformGray,
+    activeColor: Color = Color.Unspecified,
+    inactiveColor: Color = Color.Unspecified,
     barWidth: Dp = 3.dp,
     spacing: Dp = 2.dp,
     modifier: Modifier = Modifier
 ) {
+    val played = if (activeColor == Color.Unspecified) MaterialTheme.colorScheme.primary else activeColor
+    val unplayed = if (inactiveColor == Color.Unspecified) EchoTheme.colors.faint.copy(alpha = 0.55f) else inactiveColor
     Canvas(
         modifier = modifier
             .fillMaxWidth()
@@ -71,7 +73,7 @@ fun WaveformView(
             val barHeight = (amplitude * size.height).coerceAtLeast(2f)
             val x = i * totalBarWidth
             val y = centerY - barHeight / 2f
-            val color = if (i < progressIndex) activeColor else inactiveColor
+            val color = if (i < progressIndex) played else unplayed
 
             drawRoundRect(
                 color = color,
@@ -84,7 +86,7 @@ fun WaveformView(
         if (progress > 0f && progress < 1f) {
             val playheadX = progress * size.width
             drawLine(
-                color = activeColor,
+                color = played,
                 start = Offset(playheadX, 0f),
                 end = Offset(playheadX, size.height),
                 strokeWidth = 2f
@@ -97,11 +99,12 @@ fun WaveformView(
 fun LiveWaveformView(
     levels: List<Float>,
     isStereo: Boolean = false,
-    color: Color = Color(0xFFFF3B30),
+    color: Color = Color.Unspecified,
     barWidth: Dp = 3.dp,
     spacing: Dp = 2.dp,
     modifier: Modifier = Modifier
 ) {
+    val color = if (color == Color.Unspecified) EchoTheme.colors.record else color
     Canvas(
         modifier = modifier
             .fillMaxWidth()

@@ -1,76 +1,76 @@
 package com.kreativekoala.echonote.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 
 private val LightColorScheme = lightColorScheme(
-    primary = PrimaryLight,
-    onPrimary = OnPrimaryLight,
-    secondary = Coral,
-    onSecondary = OnPrimaryLight,
-    surface = SurfaceLight,
-    onSurface = OnSurfaceLight,
-    surfaceVariant = SurfaceLight,
-    onSurfaceVariant = OnSurfaceLight,
-    background = BackgroundLight,
-    error = Coral,
-    onError = OnPrimaryLight
+    primary = Teal,
+    onPrimary = Color.White,
+    primaryContainer = TealWash,
+    onPrimaryContainer = SpruceInk,
+    secondary = CoralLight,
+    onSecondary = Color.White,
+    secondaryContainer = CoralWashLight,
+    onSecondaryContainer = CoralLight,
+    background = Fog,
+    onBackground = SpruceInk,
+    surface = Page,
+    onSurface = SpruceInk,
+    surfaceVariant = PageSunk,
+    onSurfaceVariant = SpruceMuted,
+    outline = SpruceFaint,
+    outlineVariant = PageSunk,
+    error = CoralLight,
+    onError = Color.White,
+    errorContainer = CoralWashLight,
+    onErrorContainer = CoralLight
 )
 
-// The actual restyle target: fixed dark tokens chosen deliberately, not Material
-// You dynamic color pulled from the device wallpaper.
 private val DarkColorScheme = darkColorScheme(
-    primary = Electric,
-    onPrimary = Color.White,
-    primaryContainer = ElectricDim,
-    onPrimaryContainer = Electric,
-    secondary = Coral,
+    primary = TealLight,
+    onPrimary = SpruceDeep,
+    primaryContainer = TealDeep,
+    onPrimaryContainer = TealLight,
+    secondary = CoralDark,
     onSecondary = Color.White,
-    secondaryContainer = CoralDim,
-    onSecondaryContainer = Coral,
-    background = Ink,
-    onBackground = TextPrimary,
-    surface = Surface,
-    onSurface = TextPrimary,
-    surfaceVariant = SurfaceRaised,
-    onSurfaceVariant = TextSecondary,
-    outline = Lip,
-    outlineVariant = TextTertiary,
-    error = Coral,
+    secondaryContainer = CoralWashDark,
+    onSecondaryContainer = CoralDark,
+    background = SpruceDeep,
+    onBackground = ChalkInk,
+    surface = PageDark,
+    onSurface = ChalkInk,
+    surfaceVariant = PageRaisedDark,
+    onSurfaceVariant = ChalkMuted,
+    outline = ChalkFaint,
+    outlineVariant = PageRaisedDark,
+    error = CoralDark,
     onError = Color.White,
-    errorContainer = CoralDim,
-    onErrorContainer = Coral
+    errorContainer = CoralWashDark,
+    onErrorContainer = CoralDark
 )
+
+object EchoTheme {
+    val colors: EchoColors
+        @Composable get() = LocalEchoColors.current
+}
 
 @Composable
 fun EchoNoteTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // This app has always been dark-first; dynamic color made every install read
-    // its own device wallpaper's palette instead of a deliberate one — off by
-    // default now. Still available for a future explicit "match my device" toggle.
-    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    CompositionLocalProvider(
+        LocalEchoColors provides if (darkTheme) DarkEchoColors else LightEchoColors
+    ) {
+        MaterialTheme(
+            colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
+            typography = Typography,
+            content = content
+        )
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
 }

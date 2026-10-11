@@ -8,11 +8,11 @@ import android.content.Intent
 import android.widget.Toast
 import com.google.android.play.core.review.ReviewManagerFactory
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.systemGestureExclusion
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -22,22 +22,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.tts.ReadAloudSheet
 import com.kreativekoala.echonote.ui.components.WaveformView
+import com.kreativekoala.echonote.ui.theme.EchoTheme
+import com.kreativekoala.echonote.ui.theme.TimerTextStyle
 import com.kreativekoala.echonote.util.DateFormatting
 import com.kreativekoala.echonote.util.ExportFormat
 import com.kreativekoala.echonote.util.TimeFormatting
 import java.io.File
+
+private val SPEEDS = listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f)
+
+private fun speedLabel(speed: Float): String =
+    if (speed == speed.toInt().toFloat()) "${speed.toInt()}×" else "${speed}×"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,8 +67,8 @@ fun PlaybackScreen(
     val transcriptSegments by viewModel.transcriptSegments.collectAsState()
     val activeSegmentIndex by viewModel.activeSegmentIndex.collectAsState()
     val context = LocalContext.current
-    var showExportMenu by remember { mutableStateOf(false) }
-    var showPartialReadAloud by remember { mutableStateOf(false) }
+    var showMenu by remember { mutableStateOf(false) }
+    var showReadAloud by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         viewModel.triggerReview.collect {
@@ -81,11 +83,26 @@ fun PlaybackScreen(
     val rec = recording ?: return
 
     val progress = if (durationMs > 0) currentPositionMs.toFloat() / durationMs.toFloat() else 0f
+    val paragraphs = remember(transcriptSegments) { buildParagraphs(transcriptSegments) }
+    val hasText = !transcriptionResult.isNullOrBlank()
+
+    // Items that sit above the transcript in the list; needed to scroll to the right row.
+    val leadingItems = 1 + (if (isTranscribing) 1 else 0) + (if (transcriptionError != null) 1 else 0) +
+        (if (!hasText && !isTranscribing) 1 else 0)
+    val listState = rememberLazyListState()
+    val activeParagraph = paragraphIndexOf(paragraphs, activeSegmentIndex)
+    LaunchedEffect(activeParagraph) {
+        if (isPlaying && activeParagraph >= 0) {
+            listState.animateScrollToItem(leadingItems + activeParagraph)
+        }
+    }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 navigationIcon = {
                     IconButton(onClick = {
                         viewModel.dismiss()
@@ -113,223 +130,352 @@ fun PlaybackScreen(
                     }) {
                         Icon(Icons.Default.Share, contentDescription = stringResource(R.string.playback_share))
                     }
+                    Box {
+                        IconButton(onClick = { showMenu = true }) {
+                            Icon(Icons.Default.MoreVert, contentDescription = "More")
+                        }
+                        DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        if (hasText) stringResource(R.string.playback_retranscribe)
+                                        else stringResource(R.string.playback_transcribe)
+                                    )
+                                },
+                                enabled = !isTranscribing,
+                                leadingIcon = { Icon(Icons.Default.TextFields, contentDescription = null) },
+                                onClick = {
+                                    showMenu = false
+                                    viewModel.transcribe()
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.playback_trim)) },
+                                leadingIcon = { Icon(Icons.Default.ContentCut, contentDescription = null) },
+                                onClick = {
+                                    showMenu = false
+                                    viewModel.toggleTrimMode()
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.playback_skip_silence)) },
+                                leadingIcon = { Icon(Icons.Default.GraphicEq, contentDescription = null) },
+                                trailingIcon = {
+                                    if (skipSilence) Icon(Icons.Default.Check, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                                },
+                                onClick = {
+                                    showMenu = false
+                                    viewModel.toggleSkipSilence()
+                                }
+                            )
+                            if (hasText) {
+                                HorizontalDivider()
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.playback_copy_transcript)) },
+                                    leadingIcon = { Icon(Icons.Default.ContentCopy, contentDescription = null) },
+                                    onClick = {
+                                        showMenu = false
+                                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                        clipboard.setPrimaryClip(ClipData.newPlainText("Transcript", transcriptionResult))
+                                        Toast.makeText(context, context.getString(R.string.playback_transcript_copied), Toast.LENGTH_SHORT).show()
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Read aloud") },
+                                    leadingIcon = { Icon(Icons.Default.VolumeUp, contentDescription = null) },
+                                    onClick = {
+                                        showMenu = false
+                                        showReadAloud = true
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Export as text") },
+                                    onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.TXT, context) }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Export as subtitles (SRT)") },
+                                    onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.SRT, context) }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Export as web subtitles (VTT)") },
+                                    onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.VTT, context) }
+                                )
+                            }
+                        }
+                    }
                 }
+            )
+        },
+        bottomBar = {
+            PlayerBar(
+                waveformSamples = waveformSamples,
+                progress = progress,
+                currentPositionMs = currentPositionMs,
+                durationMs = durationMs,
+                isPlaying = isPlaying,
+                playbackSpeed = playbackSpeed,
+                showTrimMode = showTrimMode,
+                isTrimming = isTrimming,
+                trimStart = trimStart,
+                trimEnd = trimEnd,
+                onSeekProgress = viewModel::seekToProgress,
+                onTogglePlay = viewModel::togglePlayPause,
+                onSkipBack = viewModel::skipBackward,
+                onSkipForward = viewModel::skipForward,
+                onSpeed = viewModel::setSpeed,
+                onTrimRange = viewModel::setTrimRange,
+                onApplyTrim = viewModel::performTrim,
+                onCancelTrim = viewModel::toggleTrimMode
             )
         }
     ) { padding ->
-        Column(
+        LazyColumn(
+            state = listState,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
-                .padding(horizontal = 24.dp)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(padding),
+            contentPadding = PaddingValues(bottom = 24.dp)
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
+            item(key = "header") {
+                Column(Modifier.padding(horizontal = 20.dp, vertical = 8.dp)) {
+                    Text(
+                        text = rec.title,
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        text = buildString {
+                            append(DateFormatting.formatDateTime(rec.dateCreated))
+                            rec.locationName?.let { append("  ").append(it) }
+                        },
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
 
-            Text(
-                text = rec.title,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = buildString {
-                    rec.locationName?.let { append("$it • ") }
-                    append(DateFormatting.formatDateTime(rec.dateCreated))
-                },
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
+            if (isTranscribing) {
+                item(key = "progress") {
+                    TranscribingCard(
+                        status = transcriptionStatus ?: "Transcribing…",
+                        progress = transcriptionProgress,
+                        partial = partialTranscript,
+                        onReadAloud = { showReadAloud = true }
+                    )
+                }
+            }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            if (transcriptionError != null) {
+                item(key = "error") {
+                    ErrorCard(
+                        message = transcriptionError!!,
+                        onDismiss = viewModel::clearTranscriptionError
+                    )
+                }
+            }
 
-            WaveformView(
-                samples = waveformSamples,
-                progress = progress,
-                onSeek = { p -> viewModel.seekToProgress(p) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp)
-            )
+            if (!hasText && !isTranscribing) {
+                item(key = "cta") {
+                    Column(Modifier.padding(horizontal = 20.dp, vertical = 24.dp)) {
+                        Text(
+                            text = "No transcript yet",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = "Transcribe on this phone to read, search and jump through the recording. The audio never leaves the device.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Spacer(Modifier.height(16.dp))
+                        Button(onClick = viewModel::transcribe, shape = RoundedCornerShape(12.dp)) {
+                            Icon(Icons.Default.TextFields, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("Transcribe this recording")
+                        }
+                    }
+                }
+            }
 
+            if (hasText) {
+                if (paragraphs.isNotEmpty()) {
+                    transcriptItems(
+                        words = transcriptSegments,
+                        paragraphs = paragraphs,
+                        activeWord = activeSegmentIndex,
+                        onSeek = viewModel::seekTo
+                    )
+                } else {
+                    plainTranscriptItem(transcriptionResult!!)
+                }
+            }
+        }
+    }
+
+    if (showReadAloud) {
+        ReadAloudSheet(
+            text = if (isTranscribing) partialTranscript else transcriptionResult.orEmpty(),
+            onDismiss = { showReadAloud = false }
+        )
+    }
+}
+
+@Composable
+private fun TranscribingCard(
+    status: String,
+    progress: Float,
+    partial: String,
+    onReadAloud: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 8.dp),
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.primaryContainer
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = status,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+                Text(
+                    text = "${(progress * 100).toInt()}%",
+                    style = TimerTextStyle.copy(fontSize = 14.sp),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
+            Spacer(Modifier.height(10.dp))
+            LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
+            if (partial.isNotBlank()) {
+                Spacer(Modifier.height(12.dp))
+                Text(
+                    text = partial.takeLast(280),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    maxLines = 5
+                )
+                Spacer(Modifier.height(8.dp))
+                TextButton(onClick = onReadAloud) { Text("Read aloud so far") }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ErrorCard(message: String, onDismiss: () -> Unit) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 8.dp),
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.errorContainer
+    ) {
+        Row(Modifier.padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 4.dp), verticalAlignment = Alignment.Top) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    text = stringResource(R.string.playback_transcription_failed),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onErrorContainer
+                )
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    text = message,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onErrorContainer
+                )
+            }
+            IconButton(onClick = onDismiss, modifier = Modifier.size(36.dp)) {
+                Icon(
+                    Icons.Default.Close,
+                    contentDescription = stringResource(R.string.playback_dismiss),
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.onErrorContainer
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PlayerBar(
+    waveformSamples: FloatArray,
+    progress: Float,
+    currentPositionMs: Long,
+    durationMs: Long,
+    isPlaying: Boolean,
+    playbackSpeed: Float,
+    showTrimMode: Boolean,
+    isTrimming: Boolean,
+    trimStart: Float,
+    trimEnd: Float,
+    onSeekProgress: (Float) -> Unit,
+    onTogglePlay: () -> Unit,
+    onSkipBack: () -> Unit,
+    onSkipForward: () -> Unit,
+    onSpeed: (Float) -> Unit,
+    onTrimRange: (Float, Float) -> Unit,
+    onApplyTrim: () -> Unit,
+    onCancelTrim: () -> Unit
+) {
+    var showSpeedMenu by remember { mutableStateOf(false) }
+    Surface(
+        color = MaterialTheme.colorScheme.surface,
+        tonalElevation = 3.dp,
+        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+    ) {
+        Column(
+            Modifier
+                .navigationBarsPadding()
+                .padding(horizontal = 20.dp)
+                .padding(top = 16.dp, bottom = 8.dp)
+        ) {
             if (showTrimMode) {
-                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = stringResource(R.string.playback_drag_trim),
-                    style = MaterialTheme.typography.labelSmall,
+                    style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
                 RangeSlider(
                     value = trimStart..trimEnd,
-                    onValueChange = { range ->
-                        viewModel.setTrimRange(range.start, range.endInclusive)
-                    },
+                    onValueChange = { range -> onTrimRange(range.start, range.endInclusive) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .systemGestureExclusion()
                 )
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text(
+                        TimeFormatting.formatDuration((trimStart * durationMs).toLong()),
+                        style = TimerTextStyle.copy(fontSize = 12.sp),
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    Text(
+                        TimeFormatting.formatDuration((trimEnd * durationMs).toLong()),
+                        style = TimerTextStyle.copy(fontSize = 12.sp),
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Text(
-                        text = TimeFormatting.formatDuration((trimStart * durationMs).toLong()),
-                        style = MaterialTheme.typography.labelSmall,
-                        fontFamily = FontFamily.Monospace,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                    Text(
-                        text = TimeFormatting.formatDuration((trimEnd * durationMs).toLong()),
-                        style = MaterialTheme.typography.labelSmall,
-                        fontFamily = FontFamily.Monospace,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = TimeFormatting.formatDuration(currentPositionMs),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontFamily = FontFamily.Monospace,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Text(
-                    text = TimeFormatting.formatDuration(durationMs),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontFamily = FontFamily.Monospace,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Slider(
-                value = progress,
-                onValueChange = { viewModel.seekToProgress(it) },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Playback controls
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(32.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                IconButton(onClick = { viewModel.skipBackward() }) {
-                    Icon(
-                        Icons.Default.Replay,
-                        contentDescription = stringResource(R.string.playback_skip_back),
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-
-                FilledIconButton(
-                    onClick = { viewModel.togglePlayPause() },
-                    modifier = Modifier.size(64.dp),
-                    shape = CircleShape
-                ) {
-                    Icon(
-                        if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                        contentDescription = if (isPlaying) stringResource(R.string.playback_pause) else stringResource(R.string.playback_play),
-                        modifier = Modifier.size(36.dp)
-                    )
-                }
-
-                IconButton(onClick = { viewModel.skipForward() }) {
-                    Icon(
-                        Icons.Default.Forward30,
-                        contentDescription = stringResource(R.string.playback_skip_forward),
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Speed controls — 6 preset chips
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f).forEach { speed ->
-                    FilterChip(
-                        selected = playbackSpeed == speed,
-                        onClick = { viewModel.setSpeed(speed) },
-                        label = {
-                            val label = when (speed) {
-                                0.5f -> "0.5×"
-                                0.75f -> "0.75×"
-                                1f -> "1×"
-                                1.25f -> "1.25×"
-                                1.5f -> "1.5×"
-                                else -> "2×"
-                            }
-                            Text(text = label, style = MaterialTheme.typography.labelSmall)
-                        }
-                    )
-                }
-            }
-
-            // Skip Silence toggle
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FilterChip(
-                    selected = skipSilence,
-                    onClick = { viewModel.toggleSkipSilence() },
-                    label = { Text(stringResource(R.string.playback_skip_silence)) },
-                    leadingIcon = if (skipSilence) {
-                        { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(16.dp)) }
-                    } else null
-                )
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Action buttons row: Transcribe and Trim
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                OutlinedButton(
-                    onClick = { viewModel.transcribe() },
-                    enabled = !isTranscribing,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    if (isTranscribing) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(18.dp),
-                            strokeWidth = 2.dp
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(transcriptionStatus ?: stringResource(R.string.playback_transcribing))
-                    } else {
-                        Icon(
-                            Icons.Default.TextFields,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(if (transcriptionResult != null) stringResource(R.string.playback_retranscribe) else stringResource(R.string.playback_transcribe))
-                    }
-                }
-
-                if (showTrimMode) {
+                    OutlinedButton(
+                        onClick = onCancelTrim,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(12.dp)
+                    ) { Text(stringResource(R.string.playback_cancel_trim)) }
                     Button(
-                        onClick = { viewModel.performTrim() },
+                        onClick = onApplyTrim,
                         enabled = !isTrimming,
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(12.dp)
@@ -340,303 +486,99 @@ fun PlaybackScreen(
                                 strokeWidth = 2.dp,
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(Modifier.width(8.dp))
                             Text(stringResource(R.string.playback_trimming))
                         } else {
-                            Icon(
-                                Icons.Default.ContentCut,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.playback_apply_trim))
                         }
                     }
-                } else {
-                    OutlinedButton(
-                        onClick = { viewModel.toggleTrimMode() },
-                        enabled = true,
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(12.dp)
+                }
+            }
+
+            WaveformView(
+                samples = waveformSamples,
+                progress = progress,
+                onSeek = onSeekProgress,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+            )
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(
+                    TimeFormatting.formatDuration(currentPositionMs),
+                    style = TimerTextStyle.copy(fontSize = 13.sp),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    TimeFormatting.formatDuration(durationMs),
+                    style = TimerTextStyle.copy(fontSize = 13.sp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(Modifier.width(64.dp)) {
+                    TextButton(onClick = { showSpeedMenu = true }) {
+                        Text(
+                            speedLabel(playbackSpeed),
+                            style = TimerTextStyle.copy(fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                        )
+                    }
+                    DropdownMenu(expanded = showSpeedMenu, onDismissRequest = { showSpeedMenu = false }) {
+                        SPEEDS.forEach { speed ->
+                            DropdownMenuItem(
+                                text = { Text(speedLabel(speed)) },
+                                trailingIcon = {
+                                    if (speed == playbackSpeed) {
+                                        Icon(Icons.Default.Check, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                                    }
+                                },
+                                onClick = {
+                                    showSpeedMenu = false
+                                    onSpeed(speed)
+                                }
+                            )
+                        }
+                    }
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(20.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onSkipBack) {
+                        Icon(
+                            Icons.Default.Replay,
+                            contentDescription = stringResource(R.string.playback_skip_back),
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
+                    FilledIconButton(
+                        onClick = onTogglePlay,
+                        modifier = Modifier.size(60.dp),
+                        shape = CircleShape
                     ) {
                         Icon(
-                            Icons.Default.ContentCut,
-                            contentDescription = null,
-                            modifier = Modifier.size(18.dp)
+                            if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                            contentDescription = if (isPlaying) stringResource(R.string.playback_pause) else stringResource(R.string.playback_play),
+                            modifier = Modifier.size(32.dp)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(stringResource(R.string.playback_trim))
                     }
-                }
-            }
-
-            if (showTrimMode) {
-                Spacer(modifier = Modifier.height(4.dp))
-                TextButton(onClick = { viewModel.toggleTrimMode() }) {
-                    Text(stringResource(R.string.playback_cancel_trim))
-                }
-            }
-
-            // Live transcription progress card
-            if (isTranscribing) {
-                Spacer(modifier = Modifier.height(16.dp))
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer
-                    )
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = transcriptionStatus ?: "Transcribing…",
-                                style = MaterialTheme.typography.labelMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer
-                            )
-                            Text(
-                                text = "${(transcriptionProgress * 100).toInt()}%",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        LinearProgressIndicator(
-                            progress = { transcriptionProgress },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                        if (partialTranscript.isNotBlank()) {
-                            Spacer(modifier = Modifier.height(10.dp))
-                            // Show the full accumulated transcript (scrollable, capped height)
-                            // so the user can follow along live and trigger Read Aloud on
-                            // what's been transcribed so far — same UX as SecureVox.
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(max = 220.dp)
-                                    .verticalScroll(rememberScrollState())
-                            ) {
-                                Text(
-                                    text = partialTranscript,
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(10.dp))
-                            OutlinedButton(
-                                onClick = { showPartialReadAloud = true },
-                                modifier = Modifier.fillMaxWidth(),
-                            ) {
-                                Icon(
-                                    Icons.Default.VolumeUp,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(16.dp),
-                                )
-                                Spacer(Modifier.width(6.dp))
-                                Text("Read Aloud (so far)")
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Transcription error display
-            if (transcriptionError != null) {
-                Spacer(modifier = Modifier.height(12.dp))
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.errorContainer
-                    )
-                ) {
-                    Row(
-                        modifier = Modifier.padding(12.dp),
-                        verticalAlignment = Alignment.Top
-                    ) {
+                    IconButton(onClick = onSkipForward) {
                         Icon(
-                            Icons.Default.Warning,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier.size(20.dp)
+                            Icons.Default.Forward30,
+                            contentDescription = stringResource(R.string.playback_skip_forward),
+                            modifier = Modifier.size(28.dp)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = stringResource(R.string.playback_transcription_failed),
-                                style = MaterialTheme.typography.labelMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.onErrorContainer
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = transcriptionError!!,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onErrorContainer
-                            )
-                        }
-                        IconButton(
-                            onClick = { viewModel.clearTranscriptionError() },
-                            modifier = Modifier.size(24.dp)
-                        ) {
-                            Icon(
-                                Icons.Default.Close,
-                                contentDescription = stringResource(R.string.playback_dismiss),
-                                modifier = Modifier.size(16.dp),
-                                tint = MaterialTheme.colorScheme.onErrorContainer
-                            )
-                        }
                     }
                 }
+                Spacer(Modifier.width(64.dp))
             }
-
-            // Transcript display with Copy button
-            if (transcriptionResult != null) {
-                Spacer(modifier = Modifier.height(24.dp))
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = stringResource(R.string.playback_transcript),
-                                style = MaterialTheme.typography.titleSmall,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box {
-                                    IconButton(
-                                        onClick = { showExportMenu = true },
-                                        modifier = Modifier.size(32.dp)
-                                    ) {
-                                        Icon(
-                                            Icons.Default.Share,
-                                            contentDescription = "Export transcript",
-                                            modifier = Modifier.size(18.dp),
-                                            tint = MaterialTheme.colorScheme.primary
-                                        )
-                                    }
-                                    DropdownMenu(
-                                        expanded = showExportMenu,
-                                        onDismissRequest = { showExportMenu = false }
-                                    ) {
-                                        DropdownMenuItem(
-                                            text = { Text("Export as TXT") },
-                                            onClick = {
-                                                showExportMenu = false
-                                                viewModel.exportTranscript(ExportFormat.TXT, context)
-                                            }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text("Export as SRT") },
-                                            onClick = {
-                                                showExportMenu = false
-                                                viewModel.exportTranscript(ExportFormat.SRT, context)
-                                            }
-                                        )
-                                        DropdownMenuItem(
-                                            text = { Text("Export as VTT") },
-                                            onClick = {
-                                                showExportMenu = false
-                                                viewModel.exportTranscript(ExportFormat.VTT, context)
-                                            }
-                                        )
-                                    }
-                                }
-                                IconButton(
-                                    onClick = {
-                                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                        val clip = ClipData.newPlainText("Transcript", transcriptionResult)
-                                        clipboard.setPrimaryClip(clip)
-                                        Toast.makeText(context, context.getString(R.string.playback_transcript_copied), Toast.LENGTH_SHORT).show()
-                                    },
-                                    modifier = Modifier.size(32.dp)
-                                ) {
-                                    Icon(
-                                        Icons.Default.ContentCopy,
-                                        contentDescription = stringResource(R.string.playback_copy_transcript),
-                                        modifier = Modifier.size(18.dp),
-                                        tint = MaterialTheme.colorScheme.primary
-                                    )
-                                }
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        if (transcriptSegments.isNotEmpty()) {
-                            // Wrapped text that scrolls vertically; the word being played is highlighted
-                            // and kept in view.
-                            val scrollState = rememberScrollState()
-                            var layout by remember { mutableStateOf<TextLayoutResult?>(null) }
-                            val activeColor = MaterialTheme.colorScheme.primary
-                            val idleColor = MaterialTheme.colorScheme.onSurfaceVariant
-                            val annotated = remember(transcriptSegments, activeSegmentIndex, activeColor, idleColor) {
-                                buildAnnotatedString {
-                                    var activeStart = -1
-                                    transcriptSegments.forEachIndexed { idx, seg ->
-                                        if (idx > 0) append(" ")
-                                        val isActive = idx == activeSegmentIndex
-                                        if (isActive) activeStart = length
-                                        withStyle(
-                                            SpanStyle(
-                                                color = if (isActive) activeColor else idleColor,
-                                                fontWeight = if (isActive) FontWeight.Bold else FontWeight.Normal
-                                            )
-                                        ) { append(seg.word) }
-                                    }
-                                }
-                            }
-                            val activeOffset = remember(transcriptSegments, activeSegmentIndex) {
-                                if (activeSegmentIndex < 0) -1
-                                else transcriptSegments.take(activeSegmentIndex).sumOf { it.word.length + 1 }
-                            }
-                            LaunchedEffect(activeOffset, layout) {
-                                val l = layout
-                                if (activeOffset >= 0 && l != null && activeOffset < l.layoutInput.text.length) {
-                                    val top = l.getLineTop(l.getLineForOffset(activeOffset))
-                                    scrollState.animateScrollTo(top.toInt())
-                                }
-                            }
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .heightIn(max = 280.dp)
-                                    .verticalScroll(scrollState)
-                            ) {
-                                Text(
-                                    text = annotated,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    onTextLayout = { layout = it }
-                                )
-                            }
-                        } else {
-                            Text(
-                                text = transcriptionResult!!,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
         }
-    }
-
-    if (showPartialReadAloud) {
-        ReadAloudSheet(
-            text = partialTranscript,
-            onDismiss = { showPartialReadAloud = false }
-        )
     }
 }
