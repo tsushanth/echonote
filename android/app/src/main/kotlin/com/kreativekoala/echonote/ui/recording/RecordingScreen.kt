@@ -441,25 +441,37 @@ private fun RecordingSettingsPanel(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
+        val segColors = SegmentedButtonDefaults.colors(
+            activeContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            activeContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            activeBorderColor = MaterialTheme.colorScheme.primary,
+            inactiveContainerColor = Color.Transparent,
+            inactiveContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            inactiveBorderColor = MaterialTheme.colorScheme.outline
+        )
         SettingRow(label = "Format") {
             SingleChoiceSegmentedButtonRow {
                 formats.forEachIndexed { i, (value, label) ->
                     SegmentedButton(
                         selected = format == value,
                         onClick = { onFormat(value) },
-                        shape = SegmentedButtonDefaults.itemShape(i, formats.size)
+                        shape = SegmentedButtonDefaults.itemShape(i, formats.size),
+                        colors = segColors
                     ) { Text(label) }
                 }
             }
         }
-        SettingRow(label = "Quality") {
-            SingleChoiceSegmentedButtonRow {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("Quality", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+            SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                 qualities.forEachIndexed { i, q ->
                     SegmentedButton(
                         selected = quality == q,
                         onClick = { onQuality(q) },
                         shape = SegmentedButtonDefaults.itemShape(i, qualities.size),
-                        label = { Text(q.displayName, maxLines = 1) }
+                        colors = segColors,
+                        icon = {},
+                        label = { Text(q.displayName, maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelMedium) }
                     )
                 }
             }
@@ -485,6 +497,13 @@ private fun RecordingSettingsPanel(
                 onValueChange = onGain,
                 valueRange = 0.5f..2.0f,
                 steps = 5,
+                colors = SliderDefaults.colors(
+                    thumbColor = MaterialTheme.colorScheme.primary,
+                    activeTrackColor = MaterialTheme.colorScheme.primary,
+                    inactiveTrackColor = MaterialTheme.colorScheme.outlineVariant,
+                    activeTickColor = Color.Transparent,
+                    inactiveTickColor = Color.Transparent
+                ),
                 modifier = Modifier.fillMaxWidth()
             )
         }
