@@ -226,6 +226,11 @@ class PlayerViewModel @Inject constructor(
                     _transcriptionError.value = result.message
                 }
             }
+            // Transcription releases the player to free the decoder; bring it back, paused,
+            // unless the user left this recording or the audio was auto-deleted.
+            if (_showPlayback.value && _currentRecording.value?.id == rec.id && File(rec.fileUri).exists()) {
+                playerService.play(rec.fileUri, autoPlay = false)
+            }
         }
     }
 

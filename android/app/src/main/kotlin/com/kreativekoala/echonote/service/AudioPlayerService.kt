@@ -40,7 +40,7 @@ class AudioPlayerService @Inject constructor(
     private val _skipSilence = MutableStateFlow(false)
     val skipSilence: StateFlow<Boolean> = _skipSilence
 
-    fun play(filePath: String) {
+    fun play(filePath: String, autoPlay: Boolean = true) {
         release()
 
         val player = ExoPlayer.Builder(context).build()
@@ -72,7 +72,7 @@ class AudioPlayerService @Inject constructor(
         })
 
         player.prepare()
-        player.play()
+        if (autoPlay) player.play()
         exoPlayer = player
     }
 
