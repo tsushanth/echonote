@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Tandakan perkataan tidak pasti</string>
+    <string name="flags_setting_desc">Menggariskan perkataan yang tidak dipersetujui oleh semakan kedua. Memerlukan kualiti Accurate, muat turun sekali sahaja sekitar 45 MB (model Fast) dan menambah masa pemprosesan. Kekal pada peranti anda.</string>
+    <string name="flags_setting_unsupported">Tidak tersedia untuk %1$s, jadi tiada perkataan ditandakan.</string>
+    <string name="flags_a11y_unsure">tidak pasti</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Onzekere woorden markeren</string>
+    <string name="flags_setting_desc">Onderstreept woorden waar een tweede controle niet mee overeenkomt. Vereist de kwaliteit Accurate, een eenmalige download van ongeveer 45 MB (het model Fast) en verlengt de verwerkingstijd. Blijft op je apparaat.</string>
+    <string name="flags_setting_unsupported">Niet beschikbaar voor %1$s, dus er worden geen woorden gemarkeerd.</string>
+    <string name="flags_a11y_unsure">onzeker</string>
+</resources>

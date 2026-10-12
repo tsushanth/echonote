@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">تمييز الكلمات غير المؤكدة</string>
+    <string name="flags_setting_desc">يضع خطًا تحت الكلمات التي يختلف معها فحص ثانٍ. يتطلب جودة Accurate وتنزيلًا لمرة واحدة بحجم 45 ميغابايت تقريبًا (النموذج Fast) ويزيد وقت المعالجة. يبقى على جهازك.</string>
+    <string name="flags_setting_unsupported">غير متاح للغة %1$s، لذلك لا يتم تمييز أي كلمات.</string>
+    <string name="flags_a11y_unsure">غير مؤكدة</string>
+</resources>

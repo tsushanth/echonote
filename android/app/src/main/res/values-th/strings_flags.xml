@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">ทำเครื่องหมายคำที่ไม่แน่ใจ</string>
+    <string name="flags_setting_desc">ขีดเส้นใต้คำที่การตรวจสอบครั้งที่สองไม่เห็นด้วย ต้องใช้คุณภาพAccurate ดาวน์โหลดครั้งเดียวประมาณ 45 MB (โมเดลFast) และใช้เวลาประมวลผลเพิ่มขึ้น ข้อมูลอยู่บนอุปกรณ์ของคุณ</string>
+    <string name="flags_setting_unsupported">ไม่รองรับ %1$s จึงไม่มีการทำเครื่องหมายคำ</string>
+    <string name="flags_a11y_unsure">ไม่แน่ใจ</string>
+</resources>

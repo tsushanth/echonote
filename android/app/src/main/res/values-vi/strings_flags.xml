@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Đánh dấu từ chưa chắc chắn</string>
+    <string name="flags_setting_desc">Gạch chân những từ mà lần kiểm tra thứ hai không đồng ý. Cần chất lượng Accurate, tải xuống một lần khoảng 45 MB (mô hình Fast) và tăng thời gian xử lý. Dữ liệu vẫn ở trên thiết bị của bạn.</string>
+    <string name="flags_setting_unsupported">Không khả dụng cho %1$s, nên sẽ không có từ nào được đánh dấu.</string>
+    <string name="flags_a11y_unsure">chưa chắc</string>
+</resources>

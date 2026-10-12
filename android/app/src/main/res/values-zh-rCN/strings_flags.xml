@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">标记不确定的词</string>
+    <string name="flags_setting_desc">为第二次检查不认同的词加下划线。需要Accurate质量，一次性下载约 45 MB（Fast模型），并会增加处理时间。数据保留在你的设备上。</string>
+    <string name="flags_setting_unsupported">%1$s暂不支持，因此不会标记任何词。</string>
+    <string name="flags_a11y_unsure">不确定</string>
+</resources>

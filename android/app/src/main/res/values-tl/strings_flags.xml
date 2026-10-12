@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Markahan ang mga hindi tiyak na salita</string>
+    <string name="flags_setting_desc">Nilalagyan ng salungguhit ang mga salitang hindi sinang-ayunan ng pangalawang pagsusuri. Kailangan ang kalidad na Accurate, isang beses na download na humigit-kumulang 45 MB (ang modelong Fast) at nagdaragdag ng oras ng pagproseso. Nananatili sa iyong device.</string>
+    <string name="flags_setting_unsupported">Hindi available para sa %1$s, kaya walang mamarkahang salita.</string>
+    <string name="flags_a11y_unsure">hindi tiyak</string>
+</resources>

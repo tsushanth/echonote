@@ -28,6 +28,7 @@ import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.service.AsrEngine
 import com.kreativekoala.echonote.service.DeviceMemory
 import com.kreativekoala.echonote.service.EnginePlan
+import com.kreativekoala.echonote.service.UncertainWords
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
 import androidx.compose.ui.graphics.Color
@@ -46,6 +47,7 @@ fun SettingsScreen(
     val transcriptionLanguage by viewModel.transcriptionLanguage.collectAsState()
     val transcriptionEngine by viewModel.transcriptionEngine.collectAsState()
     val identifySpeakers by viewModel.identifySpeakers.collectAsState()
+    val markUncertainWords by viewModel.markUncertainWords.collectAsState()
     val storageUsed by viewModel.storageUsed.collectAsState()
     val totalRecordingsCount by viewModel.totalRecordingsCount.collectAsState()
     val totalDuration by viewModel.totalDuration.collectAsState()
@@ -250,6 +252,41 @@ fun SettingsScreen(
                     )
                 }
                 Switch(checked = identifySpeakers, onCheckedChange = { viewModel.setIdentifySpeakers(it) })
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setMarkUncertainWords(!markUncertainWords) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.Spellcheck,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(stringResource(R.string.flags_setting_title), style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        stringResource(R.string.flags_setting_desc),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    if (markUncertainWords && transcriptionEngine == TranscriptionEngine.ACCURATE &&
+                        !UncertainWords.supports(transcriptionLanguage, EnginePlan.forLanguage(transcriptionLanguage, DeviceMemory.totalBytes(LocalContext.current)))
+                    ) {
+                        Text(
+                            stringResource(R.string.flags_setting_unsupported, transcriptionLanguage.displayName),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+                    }
+                }
+                Switch(checked = markUncertainWords, onCheckedChange = { viewModel.setMarkUncertainWords(it) })
             }
 
             Row(
