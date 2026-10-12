@@ -78,3 +78,13 @@ fun distributeOverSpeech(words: List<String>, spans: List<SpeechSpan>, offsetMs:
         TranscriptSegment(w, start, maxOf(end, start))
     }
 }
+
+/**
+ * Recognizer word times can start before anyone speaks: NeMo stamps its first token at 0.00 in most clips,
+ * 1 to 2.5 s ahead of the speech. No word can start before speech does, so move any earlier start up to the
+ * first speech region ([spans] are relative to the window, [offsetMs] is the window's start in the recording).
+ */
+fun clampStartsToSpeech(words: List<TranscriptSegment>, spans: List<SpeechSpan>, offsetMs: Long): List<TranscriptSegment> {
+    val speechStart = offsetMs + (spans.firstOrNull()?.startMs ?: return words)
+    return words.map { if (it.startMs < speechStart) it.copy(startMs = speechStart, endMs = maxOf(it.endMs, speechStart)) else it }
+}

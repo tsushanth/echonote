@@ -128,6 +128,7 @@ class SherpaTranscriber(
             recognizer.decode(stream)
             val result = recognizer.getResult(stream)
             var found = tokensToWords(result.tokens, result.timestamps, result.durations, windowStartMs)
+                .let { clampStartsToSpeech(it, speechSpans(window, count), windowStartMs) }
             if (found.isEmpty()) {
                 // No token times (Whisper): time the words over the speech in this window.
                 val spoken = groupTokens(result.tokens).map { it.text }

@@ -145,4 +145,15 @@ class TranscriptAlignTest {
         assertTrue(distributeOverSpeech(listOf("a"), emptyList(), 0).isEmpty())
         assertEquals(28_000L, distributeOverSpeech(listOf("a"), listOf(SpeechSpan(0, 500)), 28_000).single().startMs)
     }
+
+    @Test
+    fun wordsCannotStartBeforeSpeechDoes() {
+        val words = listOf(TranscriptSegment("Er", 0, 80), TranscriptSegment("griff", 2160, 2400))
+        val clamped = clampStartsToSpeech(words, listOf(SpeechSpan(2100, 5000)), 0)
+        assertEquals(listOf(2100L, 2160L), clamped.map { it.startMs })
+        assertTrue(clamped.all { it.endMs >= it.startMs })
+        // a window further into the recording shifts the limit by its offset
+        assertEquals(30_100L, clampStartsToSpeech(listOf(TranscriptSegment("x", 28_000, 28_100)), listOf(SpeechSpan(2100, 5000)), 28_000).single().startMs)
+        assertEquals(words, clampStartsToSpeech(words, emptyList(), 0))
+    }
 }
