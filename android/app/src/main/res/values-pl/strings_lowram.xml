@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Tryb dokładny potrzebuje więcej pamięci, niż ma ten telefon, więc dla języka %1$s używany jest tryb szybki. Etykiety mówców są niedostępne.</string>
+    <string name="settings_accurate_lowram_smaller">Ten telefon ma mniej pamięci, niż potrzebuje najlepszy model, więc tryb dokładny używa mniejszego modelu (pobranie %1$d MB, jednorazowo). Jest nieco mniej dokładny niż na telefonach z większą pamięcią. Etykiety mówców nadal działają.</string>
+</resources>

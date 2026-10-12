@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">高精度モードにはこの端末より多くのメモリが必要なため、%1$sでは高速モードを使います。話者ラベルは利用できません。</string>
+    <string name="settings_accurate_lowram_smaller">この端末のメモリは最良のモデルに必要な量より少ないため、高精度モードは小さめのモデル（%1$d MBを1回ダウンロード）を使います。メモリの多い端末よりやや精度が下がります。話者ラベルは引き続き使えます。</string>
+</resources>

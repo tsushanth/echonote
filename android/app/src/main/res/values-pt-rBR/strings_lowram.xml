@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">O modo Preciso precisa de mais memória do que este celular tem, então %1$s usa o modo Rápido. Os rótulos de falantes não estão disponíveis.</string>
+    <string name="settings_accurate_lowram_smaller">Este celular tem menos memória do que o melhor modelo exige, então o modo Preciso usa um modelo menor (download de %1$d MB, uma única vez). Ele é um pouco menos preciso do que em celulares com mais memória. Os rótulos de falantes continuam funcionando.</string>
+</resources>

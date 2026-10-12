@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">精准模式需要的内存超出这部手机所能提供的，因此%1$s改用快速模式。无法使用说话人标签。</string>
+    <string name="settings_accurate_lowram_smaller">这部手机的内存少于最佳模型所需，因此精准模式使用较小的模型（一次性下载 %1$d MB）。精度比内存更大的手机略低。说话人标签仍可使用。</string>
+</resources>

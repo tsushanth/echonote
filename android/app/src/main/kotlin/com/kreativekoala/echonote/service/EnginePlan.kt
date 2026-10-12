@@ -29,6 +29,14 @@ enum class AsrEngine(val displayName: String, val downloadMb: Int) {
  *   hi    16.4      90.7          -         -        Vosk (Whisper is unusable)
  *
  * Where Vosk is the choice, Accurate and speaker labels simply use Fast.
+ *
+ * On a phone with less than [WHISPER_SMALL_MIN_RAM_BYTES] of RAM, the Whisper-small languages fall back:
+ *
+ *   en       NeMo FC. Same 28 s windows, peaked ~383 MB on a Pixel 9 Pro (Whisper small ~1.3 GB). WER vs Vosk, paired
+ *            bootstrap, Vosk minus NeMo: +12.1 points on 120 real ESB clips (CI 10.0..14.3), +7.1 on 25 FLEURS (CI 2.3..12.3).
+ *            It is still worse than Whisper small (ESB 9.9 vs 8.9, FLEURS 17.8 vs 11.0 with the Whisper English normalizer).
+ *   pt ja ko Vosk. NeMo does not cover them. Whisper base would be 55% of small's memory but was only clearly better for pt
+ *            (29.6 to 16.7); ja is worse than Vosk and ko is within noise, so it is not shipped as a fallback.
  */
 object EnginePlan {
     /**
@@ -45,10 +53,14 @@ object EnginePlan {
         else -> AsrEngine.WHISPER_SMALL
     }
 
-    /** The engine to run: the best one, or Vosk when the phone is too small for it. */
+    /** What a phone below [WHISPER_SMALL_MIN_RAM_BYTES] runs in place of Whisper small: NeMo for English, Vosk otherwise. */
+    fun lowRamFallback(language: TranscriptionLanguage): AsrEngine =
+        if (language == TranscriptionLanguage.ENGLISH) AsrEngine.NEMO_FAST_CONFORMER else AsrEngine.VOSK
+
+    /** The engine to run: the best one, or [lowRamFallback] when the phone is too small for Whisper small. */
     fun forLanguage(language: TranscriptionLanguage, totalMemBytes: Long = Long.MAX_VALUE): AsrEngine {
         val best = bestForLanguage(language)
-        return if (best == AsrEngine.WHISPER_SMALL && totalMemBytes < WHISPER_SMALL_MIN_RAM_BYTES) AsrEngine.VOSK else best
+        return if (best == AsrEngine.WHISPER_SMALL && totalMemBytes < WHISPER_SMALL_MIN_RAM_BYTES) lowRamFallback(language) else best
     }
 
     /** Whisper needs a language code; SenseVoice takes the same ISO codes. */

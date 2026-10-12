@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Accurate needs more memory than this phone has, so %1$s uses Fast instead. Speaker labels are not available.</string>
+    <string name="settings_accurate_lowram_smaller">This phone has less memory than the best model needs, so Accurate uses a smaller model (%1$d MB download, once). It is a little less accurate than on phones with more memory. Speaker labels still work.</string>
+</resources>

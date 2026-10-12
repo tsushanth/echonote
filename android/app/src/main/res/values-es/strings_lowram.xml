@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Preciso necesita más memoria de la que tiene este teléfono, así que %1$s usa Rápido en su lugar. Las etiquetas de hablante no están disponibles.</string>
+    <string name="settings_accurate_lowram_smaller">Este teléfono tiene menos memoria de la que necesita el mejor modelo, así que Preciso usa un modelo más pequeño (descarga de %1$d MB, una sola vez). Es algo menos preciso que en teléfonos con más memoria. Las etiquetas de hablante siguen funcionando.</string>
+</resources>

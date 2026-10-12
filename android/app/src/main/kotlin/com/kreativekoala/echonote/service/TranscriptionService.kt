@@ -77,7 +77,9 @@ class TranscriptionService @Inject constructor(
         try {
             val language = settingsRepository.transcriptionLanguage.first()
 
-            // Accurate picks the best engine for the language; where that is Vosk it is the same as Fast.
+            // Accurate picks the best engine for the language; where that is Vosk it is the same as Fast. On a
+            // phone with too little RAM for Whisper small, English runs NeMo (same sherpa path, speaker labels
+            // included) and the other Whisper languages run Vosk; see EnginePlan.lowRamFallback.
             val engine = EnginePlan.forLanguage(language, DeviceMemory.totalBytes(context))
             if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE && engine != AsrEngine.VOSK) {
                 return@withContext transcribeWithSherpa(fileUri, language, engine)
