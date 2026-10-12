@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">लाइव ट्रांसक्रिप्ट</string>
+    <string name="live_transcript_starting">तैयार हो रहा है...</string>
+    <string name="live_transcript_listening">सुन रहा है...</string>
+    <string name="live_transcript_no_model">लाइव ट्रांसक्रिप्ट के लिए तेज़ मॉडल चाहिए। उसे डाउनलोड करने के लिए एक बार तेज़ ट्रांसक्रिप्शन चलाएँ। रिकॉर्डिंग जारी है।</string>
+    <string name="live_transcript_unavailable">लाइव ट्रांसक्रिप्ट रुक गया। रिकॉर्डिंग जारी है।</string>
+    <string name="settings_live_transcript_title">रिकॉर्डिंग के दौरान लाइव ट्रांसक्रिप्ट</string>
+    <string name="settings_live_transcript_subtitle">बोलते समय शब्द दिखाता है। ज़्यादा बैटरी लगती है। आपकी भाषा के तेज़ मॉडल की ज़रूरत है (Android 10 या नया)।</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">실시간 받아쓰기</string>
+    <string name="live_transcript_starting">준비 중...</string>
+    <string name="live_transcript_listening">듣는 중...</string>
+    <string name="live_transcript_no_model">실시간 받아쓰기에는 빠른 모델이 필요합니다. 빠른 변환을 한 번 실행해 내려받으세요. 녹음은 계속됩니다.</string>
+    <string name="live_transcript_unavailable">실시간 받아쓰기가 중지되었습니다. 녹음은 계속됩니다.</string>
+    <string name="settings_live_transcript_title">녹음 중 실시간 받아쓰기</string>
+    <string name="settings_live_transcript_subtitle">말하는 동안 단어를 보여 줍니다. 배터리를 더 사용합니다. 사용 언어의 빠른 모델이 필요합니다(Android 10 이상).</string>
+</resources>

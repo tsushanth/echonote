@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">النص المباشر</string>
+    <string name="live_transcript_starting">جارٍ التحضير...</string>
+    <string name="live_transcript_listening">أستمع...</string>
+    <string name="live_transcript_no_model">يحتاج النص المباشر إلى النموذج السريع. شغّل النسخ السريع مرة واحدة لتنزيله. يستمر التسجيل.</string>
+    <string name="live_transcript_unavailable">توقف النص المباشر. يستمر التسجيل.</string>
+    <string name="settings_live_transcript_title">نص مباشر أثناء التسجيل</string>
+    <string name="settings_live_transcript_subtitle">يعرض الكلمات أثناء حديثك. يستهلك مزيدًا من البطارية. يحتاج إلى النموذج السريع للغتك (Android 10 أو أحدث).</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Live transcript</string>
+    <string name="live_transcript_starting">Voorbereiden...</string>
+    <string name="live_transcript_listening">Luisteren...</string>
+    <string name="live_transcript_no_model">Live transcript heeft het Snelle model nodig. Voer één keer een snelle transcriptie uit om het te downloaden. De opname gaat door.</string>
+    <string name="live_transcript_unavailable">Live transcript is gestopt. De opname gaat door.</string>
+    <string name="settings_live_transcript_title">Live transcript tijdens opnemen</string>
+    <string name="settings_live_transcript_subtitle">Toont woorden terwijl je spreekt. Gebruikt meer batterij. Heeft het Snelle model voor jouw taal nodig (Android 10 of nieuwer).</string>
+</resources>

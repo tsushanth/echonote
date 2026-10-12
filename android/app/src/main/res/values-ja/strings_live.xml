@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">ライブ文字起こし</string>
+    <string name="live_transcript_starting">準備中...</string>
+    <string name="live_transcript_listening">聞き取り中...</string>
+    <string name="live_transcript_no_model">ライブ文字起こしには高速モデルが必要です。一度高速文字起こしを実行してダウンロードしてください。録音は続行されます。</string>
+    <string name="live_transcript_unavailable">ライブ文字起こしを停止しました。録音は続行されます。</string>
+    <string name="settings_live_transcript_title">録音中のライブ文字起こし</string>
+    <string name="settings_live_transcript_subtitle">話している間に文字を表示します。電池の消費が増えます。お使いの言語の高速モデルが必要です(Android 10以降)。</string>
+</resources>
