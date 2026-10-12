@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">ट्रांसक्रिप्ट संपादित करें</string>
+    <string name="edit_title">टेक्स्ट संपादित करें</string>
+    <string name="edit_blank">टेक्स्ट खाली नहीं हो सकता</string>
+    <string name="edit_save">सहेजें</string>
+    <string name="edit_cancel">रद्द करें</string>
+    <string name="edit_retranscribe_title">आपके बदलाव बदल दें?</string>
+    <string name="edit_retranscribe_body">दोबारा ट्रांसक्राइब करने पर आपका सुधारा हुआ टेक्स्ट बदल जाएगा।</string>
+    <string name="edit_retranscribe_confirm">दोबारा ट्रांसक्राइब करें</string>
+</resources>

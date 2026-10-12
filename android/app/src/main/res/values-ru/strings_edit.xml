@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Редактировать расшифровку</string>
+    <string name="edit_title">Изменить текст</string>
+    <string name="edit_blank">Текст не может быть пустым</string>
+    <string name="edit_save">Сохранить</string>
+    <string name="edit_cancel">Отмена</string>
+    <string name="edit_retranscribe_title">Заменить ваши правки?</string>
+    <string name="edit_retranscribe_body">Повторная расшифровка заменит исправленный вами текст.</string>
+    <string name="edit_retranscribe_confirm">Расшифровать заново</string>
+</resources>

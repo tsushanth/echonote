@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">编辑转写文本</string>
+    <string name="edit_title">编辑文本</string>
+    <string name="edit_blank">文本不能为空</string>
+    <string name="edit_save">保存</string>
+    <string name="edit_cancel">取消</string>
+    <string name="edit_retranscribe_title">要替换你的修改吗？</string>
+    <string name="edit_retranscribe_body">重新转写会替换你修改过的文本。</string>
+    <string name="edit_retranscribe_confirm">重新转写</string>
+</resources>

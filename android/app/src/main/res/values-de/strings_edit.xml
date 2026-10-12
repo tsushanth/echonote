@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Transkript bearbeiten</string>
+    <string name="edit_title">Text bearbeiten</string>
+    <string name="edit_blank">Der Text darf nicht leer sein</string>
+    <string name="edit_save">Speichern</string>
+    <string name="edit_cancel">Abbrechen</string>
+    <string name="edit_retranscribe_title">Deine Änderungen ersetzen?</string>
+    <string name="edit_retranscribe_body">Beim erneuten Transkribieren wird der korrigierte Text ersetzt.</string>
+    <string name="edit_retranscribe_confirm">Neu transkribieren</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">تعديل النص</string>
+    <string name="edit_title">تعديل النص</string>
+    <string name="edit_blank">لا يمكن ترك النص فارغا</string>
+    <string name="edit_save">حفظ</string>
+    <string name="edit_cancel">إلغاء</string>
+    <string name="edit_retranscribe_title">استبدال تعديلاتك؟</string>
+    <string name="edit_retranscribe_body">ستؤدي إعادة النسخ إلى استبدال النص الذي صححته.</string>
+    <string name="edit_retranscribe_confirm">إعادة النسخ</string>
+</resources>
