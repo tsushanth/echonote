@@ -207,4 +207,13 @@
     <string name="nav_folders">Mga Folder</string>
     <string name="nav_favorites">Mga Paborito</string>
     <string name="nav_settings">Mga Setting</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Mga modelo ng boses, label ng nagsasalita, at font</string>
+    <string name="acknowledgments_whisper_desc">Tumpak na modelo ng transkripsyon. Lisensya ng MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Pinapatakbo ang mga modelo ng boses at nagsasalita sa iyong telepono. Apache 2.0 at MIT.</string>
+    <string name="acknowledgments_speaker_desc">Nagtatangi ng mga boses para sa mga label ng nagsasalita. Apache 2.0 ang NeMo, MIT ang pyannote.</string>
+    <string name="acknowledgments_fonts_desc">Ang mga font ng app. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Tingnan ang buong teksto ng mga lisensya</string>
+    <string name="licenses_title">Mga lisensya ng open source</string>
 </resources>

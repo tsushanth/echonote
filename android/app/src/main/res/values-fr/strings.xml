@@ -207,4 +207,13 @@
     <string name="nav_folders">Dossiers</string>
     <string name="nav_favorites">Favoris</string>
     <string name="nav_settings">Paramètres</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Modèles vocaux, étiquettes de locuteurs et polices</string>
+    <string name="acknowledgments_whisper_desc">Modèle de transcription précis. Licence MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Exécutent les modèles vocaux et de locuteurs sur votre téléphone. Apache 2.0 et MIT.</string>
+    <string name="acknowledgments_speaker_desc">Distinguent les voix pour les étiquettes de locuteurs. NeMo est sous Apache 2.0, pyannote sous MIT.</string>
+    <string name="acknowledgments_fonts_desc">Les polices de l’application. Licence SIL Open Font 1.1.</string>
+    <string name="acknowledgments_view_licenses">Afficher les textes complets des licences</string>
+    <string name="licenses_title">Licences open source</string>
 </resources>

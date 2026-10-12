@@ -207,4 +207,13 @@
     <string name="nav_folders">المجلدات</string>
     <string name="nav_favorites">المفضلة</string>
     <string name="nav_settings">الإعدادات</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">نماذج الكلام وتمييز المتحدثين والخطوط</string>
+    <string name="acknowledgments_whisper_desc">نموذج نسخ دقيق. رخصة MIT.</string>
+    <string name="acknowledgments_sherpa_desc">يشغّلان نماذج الكلام والمتحدثين على هاتفك. Apache 2.0 وMIT.</string>
+    <string name="acknowledgments_speaker_desc">تمييز الأصوات لوسم المتحدثين. NeMo بترخيص Apache 2.0 وpyannote بترخيص MIT.</string>
+    <string name="acknowledgments_fonts_desc">خطوط التطبيق. رخصة الخطوط المفتوحة SIL 1.1.</string>
+    <string name="acknowledgments_view_licenses">عرض نصوص التراخيص كاملة</string>
+    <string name="licenses_title">تراخيص المصادر المفتوحة</string>
 </resources>

@@ -207,4 +207,13 @@
     <string name="nav_folders">โฟลเดอร์</string>
     <string name="nav_favorites">รายการโปรด</string>
     <string name="nav_settings">การตั้งค่า</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">โมเดลเสียง ป้ายผู้พูด และแบบอักษร</string>
+    <string name="acknowledgments_whisper_desc">โมเดลถอดเสียงที่แม่นยำ สัญญาอนุญาต MIT</string>
+    <string name="acknowledgments_sherpa_desc">รันโมเดลเสียงและโมเดลผู้พูดบนโทรศัพท์ของคุณ Apache 2.0 และ MIT</string>
+    <string name="acknowledgments_speaker_desc">แยกเสียงเพื่อใส่ป้ายผู้พูด NeMo ใช้ Apache 2.0 และ pyannote ใช้ MIT</string>
+    <string name="acknowledgments_fonts_desc">แบบอักษรของแอป SIL Open Font License 1.1</string>
+    <string name="acknowledgments_view_licenses">ดูข้อความสัญญาอนุญาตฉบับเต็ม</string>
+    <string name="licenses_title">สัญญาอนุญาตโอเพนซอร์ส</string>
 </resources>

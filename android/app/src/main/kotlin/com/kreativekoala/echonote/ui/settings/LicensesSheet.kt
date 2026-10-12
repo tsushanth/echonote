@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,7 +59,7 @@ fun LicensesSheet(onDismiss: () -> Unit) {
     ) {
         Column(Modifier.fillMaxHeight(0.92f).navigationBarsPadding()) {
             Text(
-                text = "Open-source licenses",
+                text = stringResource(R.string.licenses_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)
             )

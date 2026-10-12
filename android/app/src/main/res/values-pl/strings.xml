@@ -207,4 +207,13 @@
     <string name="nav_folders">Foldery</string>
     <string name="nav_favorites">Ulubione</string>
     <string name="nav_settings">Ustawienia</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Modele mowy, etykiety rozmówców i czcionki</string>
+    <string name="acknowledgments_whisper_desc">Dokładny model transkrypcji. Licencja MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Uruchamiają modele mowy i rozmówców na telefonie. Apache 2.0 i MIT.</string>
+    <string name="acknowledgments_speaker_desc">Rozróżniają głosy na potrzeby etykiet rozmówców. NeMo: Apache 2.0, pyannote: MIT.</string>
+    <string name="acknowledgments_fonts_desc">Czcionki aplikacji. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Pokaż pełne teksty licencji</string>
+    <string name="licenses_title">Licencje open source</string>
 </resources>

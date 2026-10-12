@@ -207,4 +207,13 @@
     <string name="nav_folders">Thư mục</string>
     <string name="nav_favorites">Yêu thích</string>
     <string name="nav_settings">Cài đặt</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Mô hình giọng nói, nhãn người nói và phông chữ</string>
+    <string name="acknowledgments_whisper_desc">Mô hình chép lời chính xác. Giấy phép MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Chạy các mô hình giọng nói và người nói ngay trên điện thoại của bạn. Apache 2.0 và MIT.</string>
+    <string name="acknowledgments_speaker_desc">Phân biệt giọng nói để gắn nhãn người nói. NeMo dùng Apache 2.0, pyannote dùng MIT.</string>
+    <string name="acknowledgments_fonts_desc">Phông chữ của ứng dụng. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Xem toàn văn giấy phép</string>
+    <string name="licenses_title">Giấy phép nguồn mở</string>
 </resources>

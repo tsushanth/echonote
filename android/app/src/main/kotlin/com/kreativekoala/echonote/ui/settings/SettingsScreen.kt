@@ -24,6 +24,7 @@ import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.model.TranscriptionEngine
+import com.kreativekoala.echonote.service.AccurateSupport
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
 import androidx.compose.ui.graphics.Color
@@ -196,6 +197,14 @@ fun SettingsScreen(
                             label = { Text(engine.displayName) }
                         )
                     }
+                }
+                if (transcriptionEngine == TranscriptionEngine.ACCURATE && !AccurateSupport.isSupported(transcriptionLanguage)) {
+                    Text(
+                        text = "Accurate is not better than Fast for ${transcriptionLanguage.displayName} yet, so Fast is used. Speaker labels need Accurate.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier.padding(top = 6.dp)
+                    )
                 }
             }
 
@@ -579,17 +588,17 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
             HorizontalDivider()
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Speech models, speaker labels and type",
+                text = stringResource(R.string.acknowledgments_models_title),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(12.dp))
-            FrameworkRow("Whisper by OpenAI", "Accurate transcription model. MIT License.")
-            FrameworkRow("sherpa-onnx and ONNX Runtime", "Run the speech and speaker models on your phone. Apache 2.0 and MIT.")
-            FrameworkRow("NVIDIA TitaNet and pyannote segmentation", "Tell voices apart for speaker labels. NeMo Apache 2.0 and MIT.")
-            FrameworkRow("Figtree and Source Serif 4", "The app's typefaces. SIL Open Font License 1.1.")
+            FrameworkRow("Whisper (OpenAI)", stringResource(R.string.acknowledgments_whisper_desc))
+            FrameworkRow("sherpa-onnx, ONNX Runtime", stringResource(R.string.acknowledgments_sherpa_desc))
+            FrameworkRow("NVIDIA TitaNet, pyannote", stringResource(R.string.acknowledgments_speaker_desc))
+            FrameworkRow("Figtree, Source Serif 4", stringResource(R.string.acknowledgments_fonts_desc))
             Spacer(modifier = Modifier.height(8.dp))
-            TextButton(onClick = { showLicenseTexts = true }) { Text("View full license texts") }
+            TextButton(onClick = { showLicenseTexts = true }) { Text(stringResource(R.string.acknowledgments_view_licenses)) }
         }
     }
 }

@@ -207,4 +207,13 @@
     <string name="nav_folders">Ordner</string>
     <string name="nav_favorites">Favoriten</string>
     <string name="nav_settings">Einstellungen</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Sprachmodelle, Sprecherzuordnung und Schriften</string>
+    <string name="acknowledgments_whisper_desc">Genaues Transkriptionsmodell. MIT-Lizenz.</string>
+    <string name="acknowledgments_sherpa_desc">Führen die Sprach- und Sprechermodelle direkt auf dem Telefon aus. Apache 2.0 und MIT.</string>
+    <string name="acknowledgments_speaker_desc">Unterscheiden Stimmen für die Sprecherzuordnung. NeMo steht unter Apache 2.0, pyannote unter MIT.</string>
+    <string name="acknowledgments_fonts_desc">Die Schriften der App. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Vollständige Lizenztexte anzeigen</string>
+    <string name="licenses_title">Open-Source-Lizenzen</string>
 </resources>

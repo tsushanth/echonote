@@ -207,4 +207,13 @@
     <string name="nav_folders">Папки</string>
     <string name="nav_favorites">Избранное</string>
     <string name="nav_settings">Настройки</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Речевые модели, метки говорящих и шрифты</string>
+    <string name="acknowledgments_whisper_desc">Точная модель транскрипции. Лицензия MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Запускают речевые модели и модели говорящих на вашем телефоне. Apache 2.0 и MIT.</string>
+    <string name="acknowledgments_speaker_desc">Различают голоса для меток говорящих. NeMo: Apache 2.0, pyannote: MIT.</string>
+    <string name="acknowledgments_fonts_desc">Шрифты приложения. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Показать полные тексты лицензий</string>
+    <string name="licenses_title">Лицензии открытого ПО</string>
 </resources>

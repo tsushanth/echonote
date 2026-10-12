@@ -235,4 +235,13 @@
     <string name="recording_error_permission">Microphone permission is required to record audio.</string>
     <!-- Widget -->
     <string name="widget_description">ClearVoice Widget</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Speech models, speaker labels and type</string>
+    <string name="acknowledgments_whisper_desc">Accurate transcription model. MIT License.</string>
+    <string name="acknowledgments_sherpa_desc">Run the speech and speaker models on your phone. Apache 2.0 and MIT.</string>
+    <string name="acknowledgments_speaker_desc">Tell voices apart for speaker labels. NeMo is Apache 2.0, pyannote is MIT.</string>
+    <string name="acknowledgments_fonts_desc">The app’s typefaces. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">View full license texts</string>
+    <string name="licenses_title">Open-source licenses</string>
 </resources>

@@ -207,4 +207,13 @@
     <string name="nav_folders">文件夹</string>
     <string name="nav_favorites">收藏</string>
     <string name="nav_settings">设置</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">语音模型、说话人标签和字体</string>
+    <string name="acknowledgments_whisper_desc">高精度转写模型。MIT 许可证。</string>
+    <string name="acknowledgments_sherpa_desc">在你的手机上运行语音和说话人模型。Apache 2.0 和 MIT。</string>
+    <string name="acknowledgments_speaker_desc">区分声音以标注说话人。NeMo 采用 Apache 2.0，pyannote 采用 MIT。</string>
+    <string name="acknowledgments_fonts_desc">应用字体。SIL Open Font License 1.1。</string>
+    <string name="acknowledgments_view_licenses">查看许可证全文</string>
+    <string name="licenses_title">开源许可证</string>
 </resources>

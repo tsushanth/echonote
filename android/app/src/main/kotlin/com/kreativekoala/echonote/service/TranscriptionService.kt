@@ -77,7 +77,10 @@ class TranscriptionService @Inject constructor(
         try {
             val language = settingsRepository.transcriptionLanguage.first()
 
-            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE) {
+            // Accurate only where Whisper base beats Vosk; elsewhere it would make the text worse.
+            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE &&
+                AccurateSupport.isSupported(language)
+            ) {
                 return@withContext transcribeWithWhisper(fileUri, language)
             }
 

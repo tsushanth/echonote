@@ -207,4 +207,13 @@
     <string name="nav_folders">Folder</string>
     <string name="nav_favorites">Kegemaran</string>
     <string name="nav_settings">Tetapan</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Model pertuturan, label penutur dan fon</string>
+    <string name="acknowledgments_whisper_desc">Model transkripsi yang tepat. Lesen MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Menjalankan model pertuturan dan penutur pada telefon anda. Apache 2.0 dan MIT.</string>
+    <string name="acknowledgments_speaker_desc">Membezakan suara untuk label penutur. NeMo ialah Apache 2.0, pyannote ialah MIT.</string>
+    <string name="acknowledgments_fonts_desc">Fon aplikasi. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Lihat teks lesen penuh</string>
+    <string name="licenses_title">Lesen sumber terbuka</string>
 </resources>

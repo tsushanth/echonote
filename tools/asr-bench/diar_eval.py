@@ -1,10 +1,10 @@
 import pickle, random, itertools, os, sys, numpy as np, sherpa_onnx
-utts = pickle.load(open("diar_utts.pkl", "rb"))
+utts = pickle.load(open(os.environ.get("PKL", "diar_utts.pkl"), "rb"))
 spks = sorted(utts)
 rng = random.Random(7)
 GAP = np.zeros(8000, dtype="float32")
 mixes = []
-for k in range(16):
+for k in range(int(os.environ.get('NMIX', '16'))):
     n = 2 if k % 2 == 0 else 3
     chosen = rng.sample(spks, n)
     if n == 2:

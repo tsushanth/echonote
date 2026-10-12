@@ -207,4 +207,13 @@
     <string name="nav_folders">フォルダ</string>
     <string name="nav_favorites">お気に入り</string>
     <string name="nav_settings">設定</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">音声モデル、話者ラベル、書体</string>
+    <string name="acknowledgments_whisper_desc">高精度の文字起こしモデル。MITライセンス。</string>
+    <string name="acknowledgments_sherpa_desc">音声モデルと話者モデルを端末上で実行します。Apache 2.0 と MIT。</string>
+    <string name="acknowledgments_speaker_desc">声を区別して話者ラベルを付けます。NeMo は Apache 2.0、pyannote は MIT。</string>
+    <string name="acknowledgments_fonts_desc">アプリの書体。SIL Open Font License 1.1。</string>
+    <string name="acknowledgments_view_licenses">ライセンス全文を表示</string>
+    <string name="licenses_title">オープンソースライセンス</string>
 </resources>

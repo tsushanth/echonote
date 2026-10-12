@@ -207,4 +207,13 @@
     <string name="nav_folders">फ़ोल्डर</string>
     <string name="nav_favorites">पसंदीदा</string>
     <string name="nav_settings">सेटिंग्स</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">स्पीच मॉडल, वक्ता लेबल और फ़ॉन्ट</string>
+    <string name="acknowledgments_whisper_desc">सटीक ट्रांसक्रिप्शन मॉडल। MIT लाइसेंस।</string>
+    <string name="acknowledgments_sherpa_desc">आपके फ़ोन पर स्पीच और वक्ता मॉडल चलाते हैं। Apache 2.0 और MIT।</string>
+    <string name="acknowledgments_speaker_desc">वक्ता लेबल के लिए आवाज़ों को अलग पहचानते हैं। NeMo Apache 2.0 है, pyannote MIT है।</string>
+    <string name="acknowledgments_fonts_desc">ऐप के फ़ॉन्ट। SIL ओपन फ़ॉन्ट लाइसेंस 1.1।</string>
+    <string name="acknowledgments_view_licenses">पूरे लाइसेंस पाठ देखें</string>
+    <string name="licenses_title">ओपन-सोर्स लाइसेंस</string>
 </resources>

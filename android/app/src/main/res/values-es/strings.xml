@@ -207,4 +207,13 @@
     <string name="nav_folders">Carpetas</string>
     <string name="nav_favorites">Favoritos</string>
     <string name="nav_settings">Ajustes</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Modelos de voz, etiquetas de hablantes y tipografía</string>
+    <string name="acknowledgments_whisper_desc">Modelo de transcripción preciso. Licencia MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Ejecutan los modelos de voz y de hablantes en tu teléfono. Apache 2.0 y MIT.</string>
+    <string name="acknowledgments_speaker_desc">Distinguen voces para las etiquetas de hablantes. NeMo usa Apache 2.0 y pyannote usa MIT.</string>
+    <string name="acknowledgments_fonts_desc">Las tipografías de la app. Licencia SIL Open Font 1.1.</string>
+    <string name="acknowledgments_view_licenses">Ver los textos completos de las licencias</string>
+    <string name="licenses_title">Licencias de código abierto</string>
 </resources>

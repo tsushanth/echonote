@@ -207,4 +207,13 @@
     <string name="nav_folders">Folder</string>
     <string name="nav_favorites">Favorit</string>
     <string name="nav_settings">Pengaturan</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Model suara, label pembicara, dan font</string>
+    <string name="acknowledgments_whisper_desc">Model transkripsi yang akurat. Lisensi MIT.</string>
+    <string name="acknowledgments_sherpa_desc">Menjalankan model suara dan pembicara di ponsel Anda. Apache 2.0 dan MIT.</string>
+    <string name="acknowledgments_speaker_desc">Membedakan suara untuk label pembicara. NeMo berlisensi Apache 2.0, pyannote berlisensi MIT.</string>
+    <string name="acknowledgments_fonts_desc">Font aplikasi. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Lihat teks lisensi lengkap</string>
+    <string name="licenses_title">Lisensi sumber terbuka</string>
 </resources>

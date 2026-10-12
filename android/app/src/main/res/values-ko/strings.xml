@@ -207,4 +207,13 @@
     <string name="nav_folders">폴더</string>
     <string name="nav_favorites">즐겨찾기</string>
     <string name="nav_settings">설정</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">음성 모델, 화자 레이블, 글꼴</string>
+    <string name="acknowledgments_whisper_desc">정확한 받아쓰기 모델. MIT 라이선스.</string>
+    <string name="acknowledgments_sherpa_desc">음성 모델과 화자 모델을 휴대폰에서 실행합니다. Apache 2.0 및 MIT.</string>
+    <string name="acknowledgments_speaker_desc">화자 레이블을 위해 목소리를 구분합니다. NeMo는 Apache 2.0, pyannote는 MIT.</string>
+    <string name="acknowledgments_fonts_desc">앱 글꼴. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">라이선스 전문 보기</string>
+    <string name="licenses_title">오픈소스 라이선스</string>
 </resources>

@@ -207,4 +207,13 @@
     <string name="nav_folders">Klasörler</string>
     <string name="nav_favorites">Favoriler</string>
     <string name="nav_settings">Ayarlar</string>
+
+    <!-- Speech models, speaker labels, licenses -->
+    <string name="acknowledgments_models_title">Konuşma modelleri, konuşmacı etiketleri ve yazı tipleri</string>
+    <string name="acknowledgments_whisper_desc">Doğru transkripsiyon modeli. MIT Lisansı.</string>
+    <string name="acknowledgments_sherpa_desc">Konuşma ve konuşmacı modellerini telefonunuzda çalıştırır. Apache 2.0 ve MIT.</string>
+    <string name="acknowledgments_speaker_desc">Konuşmacı etiketleri için sesleri ayırt eder. NeMo Apache 2.0, pyannote MIT lisanslıdır.</string>
+    <string name="acknowledgments_fonts_desc">Uygulamanın yazı tipleri. SIL Open Font License 1.1.</string>
+    <string name="acknowledgments_view_licenses">Lisansların tam metinlerini göster</string>
+    <string name="licenses_title">Açık kaynak lisansları</string>
 </resources>

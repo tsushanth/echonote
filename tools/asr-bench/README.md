@@ -57,3 +57,37 @@ Caveats: clean read speech, no overlapping talk, sequential turns, 16 conversati
 worse and the usable threshold range is not wide. A synthetic two-voice test (macOS TTS) looked fine at
 0.3 and merged both voices at 0.5, which is why that test alone is not enough. TitaNet-small's licence has
 not been confirmed (the large model's card says CC-BY-4.0).
+
+## Other languages (2026-10-11)
+
+`ml_fetch.py`, `ml_run.py` (set `WSIZE=small` for Whisper small), `ml_extra.py`, `ml_score.py`: 25 FLEURS read-speech
+utterances per language (about 5 minutes each), the app's own Vosk small models and language codes, Whisper int8.
+Error rate % (WER; CER for zh, ja and ko), lower is better:
+
+| lang | Vosk small | Whisper base | Whisper small | other family |
+|---|---|---|---|---|
+| en | 24.0 | 10.9 | **8.9** | NeMo FC 16.2 |
+| de | 23.8 | 20.9 | **9.1** | NeMo FC **9.1** |
+| es | 11.5 | 10.7 | **5.6** | NeMo FC 6.9 |
+| fr | 19.4 | 32.2 | 12.8 | NeMo FC **11.5** |
+| it | **9.0** | 21.2 | 9.8 | |
+| pt | 29.6 | 16.7 | **6.3** | |
+| hi | **16.4** | 115 (garbage loop) | 90.7 | |
+| zh | 24.2 | 46.9 (Traditional script) | 39.3 | SenseVoice **11.9** |
+| ja | 22.2 | 27.9 | **20.0** | SenseVoice 78 (outputs Chinese; unusable) |
+| ko | 29.8 | 25.0 | **22.0** | SenseVoice 79 (unusable) |
+
+* Whisper base (what the app ships as Accurate) is worse than Vosk for fr, it, hi, zh and ja, so the app only
+  routes en, es, de, pt and ko to it (`AccurateSupport`) and falls back to Fast elsewhere.
+* Whisper small fixes most of that (de 21 to 9, fr 32 to 13, pt 17 to 6) but is about 3x slower than base
+  (Mac real-time factor 0.15 vs 0.05) and a ~375 MB download (112 + 262 MB), and does not fix Hindi.
+* Voting vosk + best Whisper + a third family (ROVER, languages with three engines): es 5.6 to 3.8, de 9.1 to 7.9,
+  fr 11.5 to 10.4, en 8.9 to 8.7, zh 11.9 to 12.3 (worse), ja and ko no gain. No third family for hi, it or pt.
+* Whisper's token timings for zh and ja come as one character per token with no spaces, so word-level
+  highlighting would be clause-sized there. Not addressed because those languages do not use Whisper base.
+
+`mls_fetch.py`, `mls_sweep.sh`, `diar_eval.py`: speaker labels on Multilingual LibriSpeech real speakers
+(TitaNet-small, threshold 0.85, 10 mixtures of 2-3 speakers per language). Right speaker count / share of
+speech on the wrong speaker: es 9/10 17.8%, fr 8/10 22.2%, de 10/10 20.5%, it 10/10 10.0%, pt 10/10 10.1%
+(English was 16/16, 7.8%). 0.85 was best or tied-best in every language. zh, ja, ko and hi are untested: no
+open speaker-labelled data was reachable.
