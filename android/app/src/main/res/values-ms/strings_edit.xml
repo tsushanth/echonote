@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Edit transkrip</string>
+    <string name="edit_title">Edit teks</string>
+    <string name="edit_blank">Teks tidak boleh kosong</string>
+    <string name="edit_save">Simpan</string>
+    <string name="edit_cancel">Batal</string>
+    <string name="edit_retranscribe_title">Ganti suntingan anda?</string>
+    <string name="edit_retranscribe_body">Transkripsi semula akan menggantikan teks yang anda betulkan.</string>
+    <string name="edit_retranscribe_confirm">Transkripsi semula</string>
+</resources>

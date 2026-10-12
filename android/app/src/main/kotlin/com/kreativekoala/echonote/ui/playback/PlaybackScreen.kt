@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
+import com.kreativekoala.echonote.service.joinWords
 import com.kreativekoala.echonote.tts.ReadAloudSheet
 import com.kreativekoala.echonote.ui.components.WaveformView
 import com.kreativekoala.echonote.ui.theme.EchoTheme
@@ -69,6 +70,9 @@ fun PlaybackScreen(
     val context = LocalContext.current
     var showMenu by remember { mutableStateOf(false) }
     var showReadAloud by remember { mutableStateOf(false) }
+    var editTarget by remember { mutableStateOf<EditTarget?>(null) }
+    var confirmRetranscribe by remember { mutableStateOf(false) }
+    val hasEdits by viewModel.hasEdits.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.triggerReview.collect {
@@ -91,6 +95,18 @@ fun PlaybackScreen(
         (if (!hasText && !isTranscribing) 1 else 0)
     val listState = rememberLazyListState()
     val activeParagraph = paragraphIndexOf(paragraphs, activeSegmentIndex)
+    // One stable lambda so paragraphs away from the playhead can still skip recomposition.
+    val openParagraphEditor = remember(transcriptSegments) {
+        { p: TranscriptParagraph ->
+            editTarget = EditTarget(
+                p.firstWord, p.endWord,
+                joinWords(transcriptSegments.subList(p.firstWord, p.endWord).map { it.word })
+            )
+        }
+    }
+    val openPlainEditor = remember(transcriptionResult) {
+        { editTarget = EditTarget(-1, -1, transcriptionResult.orEmpty()) }
+    }
     LaunchedEffect(activeParagraph) {
         if (isPlaying && activeParagraph >= 0) {
             listState.animateScrollToItem(leadingItems + activeParagraph)
@@ -146,7 +162,7 @@ fun PlaybackScreen(
                                 leadingIcon = { Icon(Icons.Default.TextFields, contentDescription = null) },
                                 onClick = {
                                     showMenu = false
-                                    viewModel.transcribe()
+                                    if (hasText && hasEdits) confirmRetranscribe = true else viewModel.transcribe()
                                 }
                             )
                             DropdownMenuItem(
@@ -170,6 +186,16 @@ fun PlaybackScreen(
                             )
                             if (hasText) {
                                 HorizontalDivider()
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.edit_menu)) },
+                                    enabled = !isTranscribing,
+                                    leadingIcon = { Icon(Icons.Default.Edit, contentDescription = null) },
+                                    onClick = {
+                                        showMenu = false
+                                        if (paragraphs.isEmpty()) openPlainEditor()
+                                        else openParagraphEditor(paragraphs[maxOf(activeParagraph, 0)])
+                                    }
+                                )
                                 DropdownMenuItem(
                                     text = { Text(stringResource(R.string.playback_copy_transcript)) },
                                     leadingIcon = { Icon(Icons.Default.ContentCopy, contentDescription = null) },
@@ -305,13 +331,35 @@ fun PlaybackScreen(
                         words = transcriptSegments,
                         paragraphs = paragraphs,
                         activeWord = activeSegmentIndex,
-                        onSeek = viewModel::seekTo
+                        onSeek = viewModel::seekTo,
+                        onEdit = if (isTranscribing) null else openParagraphEditor
                     )
                 } else {
-                    plainTranscriptItem(transcriptionResult!!)
+                    plainTranscriptItem(transcriptionResult!!, if (isTranscribing) null else openPlainEditor)
                 }
             }
         }
+    }
+
+    editTarget?.let { target ->
+        TranscriptEditDialog(
+            target = target,
+            onSave = { text ->
+                if (text.trim() != target.text) {
+                    if (target.first < 0) viewModel.editPlainTranscript(text)
+                    else viewModel.editParagraph(target.first, target.end, text)
+                }
+                editTarget = null
+            },
+            onDismiss = { editTarget = null }
+        )
+    }
+
+    if (confirmRetranscribe) {
+        RetranscribeEditsDialog(
+            onConfirm = { confirmRetranscribe = false; viewModel.transcribe() },
+            onDismiss = { confirmRetranscribe = false }
+        )
     }
 
     if (showReadAloud) {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Edit transcript</string>
+    <string name="edit_title">Edit text</string>
+    <string name="edit_blank">Text cannot be empty</string>
+    <string name="edit_save">Save</string>
+    <string name="edit_cancel">Cancel</string>
+    <string name="edit_retranscribe_title">Replace your edits?</string>
+    <string name="edit_retranscribe_body">Re-transcribing replaces the text you corrected.</string>
+    <string name="edit_retranscribe_confirm">Re-transcribe</string>
+</resources>

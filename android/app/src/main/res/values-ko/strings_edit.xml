@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">대본 편집</string>
+    <string name="edit_title">텍스트 편집</string>
+    <string name="edit_blank">텍스트를 비워 둘 수 없습니다</string>
+    <string name="edit_save">저장</string>
+    <string name="edit_cancel">취소</string>
+    <string name="edit_retranscribe_title">수정한 내용을 바꿀까요?</string>
+    <string name="edit_retranscribe_body">다시 변환하면 수정한 텍스트가 바뀝니다.</string>
+    <string name="edit_retranscribe_confirm">다시 변환</string>
+</resources>

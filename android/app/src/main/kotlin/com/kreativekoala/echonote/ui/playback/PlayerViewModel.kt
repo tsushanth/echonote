@@ -16,6 +16,8 @@ import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.AudioPlayerService
 import com.kreativekoala.echonote.service.ReviewManager
+import com.kreativekoala.echonote.service.applyParagraphEdit
+import com.kreativekoala.echonote.service.transcriptText
 import com.kreativekoala.echonote.service.TranscriptionResult
 import com.kreativekoala.echonote.service.TranscriptionService
 import com.kreativekoala.echonote.util.ExportFormat
@@ -85,6 +87,11 @@ class PlayerViewModel @Inject constructor(
     private val _transcriptSegments = MutableStateFlow<List<TranscriptSegment>>(emptyList())
     val transcriptSegments: StateFlow<List<TranscriptSegment>> = _transcriptSegments
 
+    // Recordings whose transcript the user has corrected by hand; re-transcribing would overwrite it.
+    private val editedPrefs = context.getSharedPreferences("transcript_edits", Context.MODE_PRIVATE)
+    private val _hasEdits = MutableStateFlow(false)
+    val hasEdits: StateFlow<Boolean> = _hasEdits
+
     val activeSegmentIndex: StateFlow<Int> = currentPositionMs.map { posMs ->
         val segs = _transcriptSegments.value
         if (segs.isEmpty()) return@map -1
@@ -117,6 +124,7 @@ class PlayerViewModel @Inject constructor(
         _showPlayback.value = true
         _transcriptionResult.value = recording.transcript
         _transcriptSegments.value = recording.transcriptSegmentsJson?.toTranscriptSegments() ?: emptyList()
+        _hasEdits.value = editedPrefs.getStringSet(KEY_EDITED, emptySet())?.contains(recording.id) == true
         _showTrimMode.value = false
         _trimStart.value = 0f
         _trimEnd.value = 1f
@@ -180,6 +188,7 @@ class PlayerViewModel @Inject constructor(
                     _transcriptionResult.value = result.text
                     _transcriptSegments.value = result.segments
                     _transcriptionError.value = null
+                    setEdited(rec.id, false)
                     val segJson = if (result.segments.isNotEmpty()) result.segments.toJson() else null
                     // Snapshot the live global transcription language onto the recording NOW,
                     // rather than reading it later at upload time.
@@ -232,6 +241,46 @@ class PlayerViewModel @Inject constructor(
                 playerService.play(rec.fileUri, autoPlay = false)
             }
         }
+    }
+
+    /**
+     * Replaces words [first] until [end] with [text], keeping timings usable, and saves both the word list
+     * and the plain transcript. Returns false (and changes nothing) when the text is blank or the range is stale.
+     */
+    fun editParagraph(first: Int, end: Int, text: String): Boolean {
+        val rec = _currentRecording.value ?: return false
+        if (transcriptionService.isTranscribing.value) return false
+        val edited = applyParagraphEdit(_transcriptSegments.value, first, end, text) ?: return false
+        saveEdit(rec, transcriptText(edited), edited)
+        return true
+    }
+
+    /** Edits the plain text of an older recording that has no word timings. Returns false when blank. */
+    fun editPlainTranscript(text: String): Boolean {
+        val rec = _currentRecording.value ?: return false
+        if (transcriptionService.isTranscribing.value || text.isBlank()) return false
+        saveEdit(rec, text.trim(), emptyList())
+        return true
+    }
+
+    private fun saveEdit(rec: Recording, text: String, segments: List<TranscriptSegment>) {
+        _transcriptionResult.value = text
+        _transcriptSegments.value = segments
+        val updated = rec.copy(
+            transcript = text,
+            transcriptSegmentsJson = if (segments.isNotEmpty()) segments.toJson() else rec.transcriptSegmentsJson,
+            dateModified = System.currentTimeMillis()
+        )
+        _currentRecording.value = updated
+        setEdited(rec.id, true)
+        viewModelScope.launch(Dispatchers.IO) { recordingRepository.updateRecording(updated) }
+    }
+
+    private fun setEdited(recordingId: String, edited: Boolean) {
+        val ids = editedPrefs.getStringSet(KEY_EDITED, emptySet()).orEmpty().toMutableSet()
+        if (edited) ids.add(recordingId) else ids.remove(recordingId)
+        editedPrefs.edit().putStringSet(KEY_EDITED, ids).apply()
+        if (_currentRecording.value?.id == recordingId) _hasEdits.value = edited
     }
 
     fun clearTranscriptionError() {
@@ -415,6 +464,10 @@ class PlayerViewModel @Inject constructor(
         val s = (ms % 60000) / 1000
         val millis = ms % 1000
         return "%02d:%02d:%02d.%03d".format(h, m, s, millis)
+    }
+
+    private companion object {
+        const val KEY_EDITED = "edited_ids"
     }
 
     override fun onCleared() {

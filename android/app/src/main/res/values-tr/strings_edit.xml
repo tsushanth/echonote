@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Çeviriyazıyı düzenle</string>
+    <string name="edit_title">Metni düzenle</string>
+    <string name="edit_blank">Metin boş olamaz</string>
+    <string name="edit_save">Kaydet</string>
+    <string name="edit_cancel">İptal</string>
+    <string name="edit_retranscribe_title">Düzenlemeleriniz değiştirilsin mi?</string>
+    <string name="edit_retranscribe_body">Yeniden yazıya dökmek düzelttiğiniz metni değiştirir.</string>
+    <string name="edit_retranscribe_confirm">Yeniden yazıya dök</string>
+</resources>

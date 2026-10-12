@@ -74,13 +74,15 @@ fun paragraphIndexOf(paragraphs: List<TranscriptParagraph>, wordIndex: Int): Int
 /**
  * Adds the transcript to a lazy list, one item per paragraph so long recordings
  * stay cheap. Words already spoken read in full ink, upcoming words recede, and the
- * current word sits on a highlighter mark. Tapping any word seeks there.
+ * current word sits on a highlighter mark. Tapping any word seeks there; a long press
+ * calls [onEdit] (null when editing is unavailable).
  */
 fun LazyListScope.transcriptItems(
     words: List<TranscriptSegment>,
     paragraphs: List<TranscriptParagraph>,
     activeWord: Int,
-    onSeek: (Long) -> Unit
+    onSeek: (Long) -> Unit,
+    onEdit: ((TranscriptParagraph) -> Unit)? = null
 ) {
     paragraphs.forEachIndexed { index, paragraph ->
         item(key = "p$index") {
@@ -96,6 +98,7 @@ fun LazyListScope.transcriptItems(
                 paragraph = paragraph,
                 activeWord = localActive,
                 onSeek = onSeek,
+                onEdit = onEdit,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
             )
         }
@@ -111,6 +114,7 @@ private fun TranscriptParagraphView(
     paragraph: TranscriptParagraph,
     activeWord: Int,
     onSeek: (Long) -> Unit,
+    onEdit: ((TranscriptParagraph) -> Unit)?,
     modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
@@ -172,27 +176,36 @@ private fun TranscriptParagraphView(
             onTextLayout = { layout = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .pointerInput(starts) {
-                    detectTapGestures { position ->
-                        val l = layout ?: return@detectTapGestures
-                        val offset = l.getOffsetForPosition(position)
-                        var lo = 0
-                        var hi = starts.size - 1
-                        while (lo < hi) {
-                            val mid = (lo + hi + 1) / 2
-                            if (starts[mid] <= offset) lo = mid else hi = mid - 1
+                .pointerInput(starts, onEdit) {
+                    detectTapGestures(
+                        onLongPress = onEdit?.let { edit -> { _ -> edit(paragraph) } },
+                        onTap = { position ->
+                            val l = layout ?: return@detectTapGestures
+                            val offset = l.getOffsetForPosition(position)
+                            var lo = 0
+                            var hi = starts.size - 1
+                            while (lo < hi) {
+                                val mid = (lo + hi + 1) / 2
+                                if (starts[mid] <= offset) lo = mid else hi = mid - 1
+                            }
+                            onSeek(words[paragraph.firstWord + lo].startMs)
                         }
-                        onSeek(words[paragraph.firstWord + lo].startMs)
-                    }
+                    )
                 }
         )
     }
 }
 
-/** Plain transcript for recordings that have text but no word timings (older recordings). */
-fun LazyListScope.plainTranscriptItem(text: String) {
+/** Plain transcript for recordings that have text but no word timings (older recordings); long press edits it. */
+fun LazyListScope.plainTranscriptItem(text: String, onEdit: (() -> Unit)? = null) {
     item(key = "plain") {
-        Column(Modifier.padding(horizontal = 20.dp, vertical = 10.dp)) {
+        Column(
+            Modifier
+                .padding(horizontal = 20.dp, vertical = 10.dp)
+                .pointerInput(onEdit) {
+                    if (onEdit != null) detectTapGestures(onLongPress = { onEdit() })
+                }
+        ) {
             Text(
                 text = text,
                 style = TranscriptTextStyle,
