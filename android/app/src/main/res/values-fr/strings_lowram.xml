@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Précis nécessite plus de mémoire que ce téléphone n\'en a, donc %1$s utilise Rapide à la place. Les étiquettes de locuteurs ne sont pas disponibles.</string>
+    <string name="settings_accurate_lowram_smaller">Ce téléphone a moins de mémoire que le meilleur modèle n\'en demande, donc Précis utilise un modèle plus petit (téléchargement de %1$d Mo, une seule fois). Il est un peu moins précis que sur les téléphones dotés de plus de mémoire. Les étiquettes de locuteurs fonctionnent toujours.</string>
+</resources>

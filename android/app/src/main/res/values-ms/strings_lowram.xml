@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Mod Tepat memerlukan lebih banyak memori daripada telefon ini, jadi %1$s menggunakan mod Pantas. Label penutur tidak tersedia.</string>
+    <string name="settings_accurate_lowram_smaller">Telefon ini mempunyai memori kurang daripada yang diperlukan model terbaik, jadi mod Tepat menggunakan model yang lebih kecil (muat turun %1$d MB, sekali sahaja). Ia sedikit kurang tepat berbanding telefon yang mempunyai lebih memori. Label penutur masih berfungsi.</string>
+</resources>

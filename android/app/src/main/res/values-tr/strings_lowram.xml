@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Doğru modu bu telefonun sahip olduğundan daha fazla bellek gerektirir, bu yüzden %1$s için Hızlı modu kullanılır. Konuşmacı etiketleri kullanılamaz.</string>
+    <string name="settings_accurate_lowram_smaller">Bu telefonun belleği en iyi modelin gerektirdiğinden az, bu yüzden Doğru modu daha küçük bir model kullanır (%1$d MB indirme, bir kez). Daha fazla belleği olan telefonlara göre biraz daha az doğrudur. Konuşmacı etiketleri yine de çalışır.</string>
+</resources>

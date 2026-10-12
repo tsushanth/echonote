@@ -209,7 +209,9 @@ fun SettingsScreen(
                             best == AsrEngine.VOSK ->
                                 "For ${transcriptionLanguage.displayName}, Fast is already the best model we have, so Accurate uses it. Speaker labels are not available."
                             actual == AsrEngine.VOSK ->
-                                "Accurate needs more memory than this phone has, so Fast is used. Speaker labels are not available."
+                                stringResource(R.string.settings_accurate_lowram_fast, transcriptionLanguage.displayName)
+                            actual != best && actual == EnginePlan.lowRamFallback(transcriptionLanguage) ->
+                                stringResource(R.string.settings_accurate_lowram_smaller, actual.downloadMb)
                             else ->
                                 "For ${transcriptionLanguage.displayName}, Accurate uses ${best.displayName} (${best.downloadMb} MB download, once)."
                         }

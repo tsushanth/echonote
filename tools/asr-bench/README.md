@@ -104,3 +104,58 @@ even spread over each 28 s window. NeMo and SenseVoice do return real times. Aga
 444 matched words of real English speech, mean absolute start error: even spread over the window 0.65 s (50% within
 0.5 s); spread over the speech only, by word length, 0.48 s (66% within 0.5 s). The app now does the latter for
 Whisper (`WordTiming.kt`). Still approximate: tap-to-seek and speaker alignment can be off by about half a second.
+
+## Low-RAM fallback: NeMo instead of Vosk for English (2026-10-12)
+
+Question: phones under 5e9 bytes of RAM cannot run Whisper small (~1.3 GB peak on a Pixel 9 Pro) and used Vosk, which is
+about 2.5x worse. Is NeMo FastConformer (103 MB, ~383 MB peak on the Pixel) a better fallback for English?
+`lowram_en_eval.py` (all engines, one scorer, both clip sets), `lowram_nemo_short.py`, `lowram_base_fallback.py`.
+
+WER %, Whisper `EnglishTextNormalizer` (the 120-clip scorer), lower is better:
+
+| source | clips | Vosk small | Whisper small | NeMo FC |
+|---|---|---|---|---|
+| AMI meetings | 30 | 24.9 | 13.0 | 12.1 |
+| Earnings22 | 30 | 35.3 | 10.8 | 13.2 |
+| GigaSpeech | 30 | 9.1 | 4.4 | 8.3 |
+| VoxPopuli | 30 | 19.0 | 7.6 | 6.5 |
+| **ESB all 120** | 120 | 22.0 | **8.9** | 9.9 |
+| **FLEURS en** | 25 | 24.9 | **11.0** | 17.8 |
+| all 145 | 145 | 22.3 | 9.0 | 10.6 |
+
+Same data with the plain normalizer `ml_score2.py` uses (NFKC, lowercase, punctuation to spaces): ESB 120 24.4 / 13.4 / 14.0,
+FLEURS 24.0 / 8.9 / 16.2 (Vosk / Whisper small / NeMo). Paired bootstrap over clips, WER points, 95% CI:
+
+| comparison | ESB 120 | FLEURS 25 |
+|---|---|---|
+| Vosk minus NeMo | +12.1 [10.0, 14.3] | +7.1 [2.3, 12.3] |
+| Whisper small minus NeMo | -1.1 [-1.9, -0.3] | -6.9 [-12.2, -2.0] |
+
+**Why the two NeMo numbers disagree.** Both are right; they measure different speech.
+* NeMo is strong on conversational / parliamentary speech like its training data (VoxPopuli 6.5, better than Whisper small;
+  AMI 12.1) and weaker on FLEURS read Wikipedia sentences full of rare words ("cabbage juice" heard as "capestries", "Dunlap
+  broadsides" as "Dunmat Bobsite"), where it also drops or splits characters ("goingt", "tovie").
+* The normalizer is not the explanation. Switching it moves every engine's FLEURS score by 1-2 points (NeMo 16.2 to 17.8,
+  Whisper small 8.9 to 11.0, Vosk 24.0 to 24.9) and the NeMo-minus-Whisper-small gap stays 6.8-7.3 points. (FLEURS references
+  keep digits, "150 and 200"; the Whisper normalizer folds spelled numbers either way.) The earlier "16.2 vs 9.9" mismatch
+  was therefore two different kinds of speech, not two scorers.
+* Clip length is not the cause, and does not exceed the app's 28 s windows (longest clip 27.9 s). By length (Whisper
+  normalizer, Vosk / Whisper small / NeMo): <10 s (12 clips) 27.8 / 10.1 / 19.8; 10-20 s (62) 16.0 / 8.5 / 10.7; 20-30 s (71)
+  26.2 / 9.3 / 9.9. NeMo is weakest on short clips, but padding the FLEURS clips with 1 s of silence (17.8 to 20.3) or joining
+  them into ~20 s windows (22.0) made it worse, so short length alone is not the mechanism; the vocabulary is.
+  Real recordings in the app are cut at quiet moments near 28 s, so the 20-30 s row is the more relevant one.
+
+**Conclusion.** NeMo is clearly better than Vosk for English on both sets (both CIs exclude 0: +12 and +7 points), at ~0.4 GB
+instead of ~1.3 GB, so `EnginePlan.forLanguage` now returns NeMo for English below 5e9 bytes. It is still worse than Whisper small
+(1 point on ESB, 7 on FLEURS), so phones with enough RAM keep Whisper small. Confidence: high that NeMo beats Vosk; moderate on
+the size of the gap to Whisper small (25 FLEURS clips is a small sample). Mac Python peak RSS for 12 clips, including the
+Python/ONNX baseline: Vosk 268 MB, NeMo 509 MB, Whisper base 685 MB, Whisper small 1186 MB.
+
+**pt, ja, ko stay on Vosk.** NeMo has none of them. Whisper base int8 (0.69 GB on the Mac, 58% of small) was measured on the
+same FLEURS clips (`lowram_base_fallback.py`, CER for ja/ko, paired bootstrap of Vosk minus base): pt 29.6 vs 16.7, +12.9
+[7.5, 18.5] so base is clearly better; ja 22.2 vs 27.9, -5.6 [-11.4, 1.5] so base is worse; ko 29.8 vs 25.0, +4.7 [-4.1, 15.4]
+so not distinguishable. A pt-only (maybe ko) Whisper base fallback is possible but needs a new ~160 MB download and an
+on-phone memory check, so it is only a proposal, not shipped.
+
+Not measured: real-phone RAM and speed for the English-on-NeMo path on a 4 GB phone (including speaker labels, which load
+the 46 MB diarization models while NeMo is still resident), and quality on noisy phone recordings.

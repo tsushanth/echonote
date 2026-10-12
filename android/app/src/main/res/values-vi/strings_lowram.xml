@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Chế độ Chính xác cần nhiều bộ nhớ hơn điện thoại này có, nên %1$s dùng chế độ Nhanh. Không có nhãn người nói.</string>
+    <string name="settings_accurate_lowram_smaller">Điện thoại này có ít bộ nhớ hơn mức mô hình tốt nhất cần, nên chế độ Chính xác dùng mô hình nhỏ hơn (tải %1$d MB, một lần). Độ chính xác thấp hơn một chút so với điện thoại có nhiều bộ nhớ hơn. Nhãn người nói vẫn hoạt động.</string>
+</resources>

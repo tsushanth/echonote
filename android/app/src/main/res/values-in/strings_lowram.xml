@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Mode Akurat butuh memori lebih banyak daripada yang dimiliki ponsel ini, jadi %1$s memakai mode Cepat. Label pembicara tidak tersedia.</string>
+    <string name="settings_accurate_lowram_smaller">Memori ponsel ini kurang dari yang dibutuhkan model terbaik, jadi mode Akurat memakai model yang lebih kecil (unduhan %1$d MB, sekali saja). Akurasinya sedikit lebih rendah daripada ponsel dengan memori lebih besar. Label pembicara tetap berfungsi.</string>
+</resources>

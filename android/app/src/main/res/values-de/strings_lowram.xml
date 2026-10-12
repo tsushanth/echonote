@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Genau braucht mehr Arbeitsspeicher, als dieses Telefon hat, daher nutzt %1$s stattdessen Schnell. Sprecherkennzeichnung ist nicht verfügbar.</string>
+    <string name="settings_accurate_lowram_smaller">Dieses Telefon hat weniger Arbeitsspeicher, als das beste Modell braucht, daher nutzt Genau ein kleineres Modell (%1$d MB Download, einmalig). Es ist etwas weniger genau als auf Telefonen mit mehr Speicher. Die Sprecherkennzeichnung funktioniert weiterhin.</string>
+</resources>
