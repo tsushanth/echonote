@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">พื้นที่จัดเก็บการบันทึก</string>
     <string name="settings_section_about">เกี่ยวกับ</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">เวอร์ชัน 1.0.0</string>
+    <string name="settings_version_format">เวอร์ชัน %1$s</string>
     <string name="settings_privacy_policy">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_terms_of_service">ข้อกำหนดการให้บริการ</string>
     <string name="settings_acknowledgments">กิตติกรรมประกาศ</string>

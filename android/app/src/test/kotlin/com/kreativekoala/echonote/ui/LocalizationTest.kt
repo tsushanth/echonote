@@ -26,6 +26,17 @@ class LocalizationTest {
     }
 
     @Test
+    fun theVersionStringIsAFormatSoItShowsTheRealVersion() {
+        val dirs = File("src/main/res").listFiles { f -> f.isDirectory && f.name.startsWith("values") }!!
+        val format = Regex("name=\"settings_version_format\">[^<]*%1\\\$" + "s[^<]*<")
+        for (dir in dirs) {
+            val text = File(dir, "strings.xml").takeIf { it.exists() }?.readText() ?: continue
+            assertTrue("${dir.name} lacks settings_version_format", format.containsMatchIn(text))
+            assertFalse("${dir.name} still has the hard-coded version", text.contains("name=\"settings_version\""))
+        }
+    }
+
+    @Test
     fun eachLanguageUsesTheEngineThatWonItsBenchmark() {
         val plan = TranscriptionLanguage.entries.associateWith { EnginePlan.forLanguage(it) }
         assertEquals(AsrEngine.SENSE_VOICE, plan[TranscriptionLanguage.CHINESE])

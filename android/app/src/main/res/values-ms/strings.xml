@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Storan Rakaman</string>
     <string name="settings_section_about">Perihal</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Versi 1.0.0</string>
+    <string name="settings_version_format">Versi %1$s</string>
     <string name="settings_privacy_policy">Dasar Privasi</string>
     <string name="settings_terms_of_service">Syarat Perkhidmatan</string>
     <string name="settings_acknowledgments">Penghargaan</string>

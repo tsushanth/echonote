@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Almacenamiento de grabaciones</string>
     <string name="settings_section_about">Acerca de</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Versión 1.0.0</string>
+    <string name="settings_version_format">Versión %1$s</string>
     <string name="settings_privacy_policy">Política de privacidad</string>
     <string name="settings_terms_of_service">Términos de servicio</string>
     <string name="settings_acknowledgments">Agradecimientos</string>

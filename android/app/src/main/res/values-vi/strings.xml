@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Bộ nhớ bản ghi</string>
     <string name="settings_section_about">Giới thiệu</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Phiên bản 1.0.0</string>
+    <string name="settings_version_format">Phiên bản %1$s</string>
     <string name="settings_privacy_policy">Chính sách bảo mật</string>
     <string name="settings_terms_of_service">Điều khoản dịch vụ</string>
     <string name="settings_acknowledgments">Lời cảm ơn</string>

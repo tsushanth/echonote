@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Opnameopslag</string>
     <string name="settings_section_about">Over</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Versie 1.0.0</string>
+    <string name="settings_version_format">Versie %1$s</string>
     <string name="settings_privacy_policy">Privacybeleid</string>
     <string name="settings_terms_of_service">Servicevoorwaarden</string>
     <string name="settings_acknowledgments">Erkenningen</string>

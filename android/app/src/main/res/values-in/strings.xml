@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Penyimpanan Rekaman</string>
     <string name="settings_section_about">Tentang</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Versi 1.0.0</string>
+    <string name="settings_version_format">Versi %1$s</string>
     <string name="settings_privacy_policy">Kebijakan Privasi</string>
     <string name="settings_terms_of_service">Ketentuan Layanan</string>
     <string name="settings_acknowledgments">Pengakuan</string>

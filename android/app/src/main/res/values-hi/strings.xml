@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">रिकॉर्डिंग स्टोरेज</string>
     <string name="settings_section_about">जानकारी</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">संस्करण 1.0.0</string>
+    <string name="settings_version_format">संस्करण %1$s</string>
     <string name="settings_privacy_policy">गोपनीयता नीति</string>
     <string name="settings_terms_of_service">सेवा की शर्तें</string>
     <string name="settings_acknowledgments">आभार</string>

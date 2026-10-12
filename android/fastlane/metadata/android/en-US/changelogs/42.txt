@@ -1,0 +1,5 @@
+• Transcripts you can read and tap: tap any word to jump to it, and the spoken word is highlighted as it plays
+• Accurate transcription that picks the best model for your language (English, German, Spanish, French, Portuguese, Chinese, Japanese, Korean; downloads once)
+• Speaker labels show who is talking
+• A new look, and an Acknowledgments screen with licenses
+• Fixes: playback after transcribing, subtitle timing

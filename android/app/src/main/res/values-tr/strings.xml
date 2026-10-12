@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">Kayıt Depolama</string>
     <string name="settings_section_about">Hakkında</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">Sürüm 1.0.0</string>
+    <string name="settings_version_format">Sürüm %1$s</string>
     <string name="settings_privacy_policy">Gizlilik Politikası</string>
     <string name="settings_terms_of_service">Hizmet Şartları</string>
     <string name="settings_acknowledgments">Teşekkürler</string>

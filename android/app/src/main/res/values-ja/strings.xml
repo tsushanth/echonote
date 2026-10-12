@@ -162,7 +162,7 @@
     <string name="settings_recordings_storage">録音のストレージ</string>
     <string name="settings_section_about">アプリについて</string>
     <string name="settings_app_name">ClearVoice Recorder</string>
-    <string name="settings_version">バージョン 1.0.0</string>
+    <string name="settings_version_format">バージョン %1$s</string>
     <string name="settings_privacy_policy">プライバシーポリシー</string>
     <string name="settings_terms_of_service">利用規約</string>
     <string name="settings_acknowledgments">謝辞</string>
