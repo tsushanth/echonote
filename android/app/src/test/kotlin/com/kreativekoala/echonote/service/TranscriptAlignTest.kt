@@ -80,4 +80,21 @@ class TranscriptAlignTest {
         val old = """[{"word":"a","startMs":1,"endMs":2}]""".toTranscriptSegments()
         assertNull(old.single().speaker)
     }
+
+    @Test
+    fun sentenceTakesItsMajoritySpeakerSoTurnsBreakAtSentenceEnds() {
+        fun w(t: String, a: Long, b: Long, sp: Int?) = TranscriptSegment(t, a, b, sp)
+        val words = listOf(
+            w("Let's", 0, 300, 0), w("start", 300, 600, 0), w("the", 600, 800, 0),
+            w("numbers.", 900, 1400, 1),            // late word time puts the last word in speaker 1
+            w("Sure,", 2000, 2300, 1), w("revenue", 2300, 2800, 1), w("grew.", 2800, 3200, 1)
+        )
+        assertEquals(listOf(0, 0, 0, 0, 1, 1, 1), smoothSpeakersBySentence(words).map { it.speaker })
+    }
+
+    @Test
+    fun smoothingLeavesUnlabelledWordsAlone() {
+        val words = listOf(TranscriptSegment("a.", 0, 100), TranscriptSegment("b.", 100, 200))
+        assertEquals(words, smoothSpeakersBySentence(words))
+    }
 }

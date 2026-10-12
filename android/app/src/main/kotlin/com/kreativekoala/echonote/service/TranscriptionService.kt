@@ -285,7 +285,7 @@ class TranscriptionService @Inject constructor(
                         val spans = SpeakerDiarizer(diarizationDir).diarize(kept.first, kept.second) {
                             _progress.value = 0.85f + it * 0.13f
                         }
-                        words = assignSpeakers(words, spans)
+                        words = smoothSpeakersBySentence(assignSpeakers(words, spans))
                     } catch (e: Exception) {
                         android.util.Log.e("TranscriptionService", "diarization failed", e)
                     }

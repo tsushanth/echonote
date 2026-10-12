@@ -68,6 +68,31 @@ fun assignSpeakers(words: List<TranscriptSegment>, spans: List<SpeakerSpan>): Li
     return words.mapIndexed { i, w -> w.copy(speaker = order.getValue(raw[i])) }
 }
 
+/**
+ * Whisper's word times run a little late, so a speaker turn can end a word or two before the
+ * sentence does. Give each sentence (ending in . ? or !) the speaker who has most of its spoken
+ * time, so turns break at sentence ends. Words with no speaker are left alone.
+ */
+fun smoothSpeakersBySentence(words: List<TranscriptSegment>): List<TranscriptSegment> {
+    if (words.none { it.speaker != null }) return words
+    val out = words.toMutableList()
+    var start = 0
+    for (i in words.indices) {
+        val endsSentence = words[i].word.let { it.endsWith(".") || it.endsWith("?") || it.endsWith("!") }
+        if (endsSentence || i == words.lastIndex) {
+            val weight = HashMap<Int, Long>()
+            for (j in start..i) {
+                val sp = words[j].speaker ?: continue
+                weight[sp] = (weight[sp] ?: 0L) + maxOf(words[j].endMs - words[j].startMs, 1L)
+            }
+            val winner = weight.maxByOrNull { it.value }?.key
+            if (winner != null) for (j in start..i) out[j] = words[j].copy(speaker = winner)
+            start = i + 1
+        }
+    }
+    return out
+}
+
 private fun distanceTo(span: SpeakerSpan, ms: Long): Long = when {
     ms < span.startMs -> span.startMs - ms
     ms > span.endMs -> ms - span.endMs
