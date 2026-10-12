@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Summarize</string>
+    <string name="summary_title_key_points">Key points</string>
+    <string name="summary_title_ai">Summary</string>
+    <string name="summary_note_extracted">Sentences picked from the transcript</string>
+    <string name="summary_note_ai">Written by on-device AI</string>
+    <string name="summary_working">Finding key points…</string>
+    <string name="summary_too_short">This transcript is too short to summarize.</string>
+    <string name="summary_stale">The transcript changed after these key points were made.</string>
+    <string name="summary_update">Update</string>
+    <string name="summary_copy">Copy key points</string>
+    <string name="summary_copied">Key points copied</string>
+    <string name="summary_hide">Hide key points</string>
+    <string name="summary_show">Show key points</string>
+</resources>

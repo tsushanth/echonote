@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Samenvatten</string>
+    <string name="summary_title_key_points">Kernpunten</string>
+    <string name="summary_title_ai">Samenvatting</string>
+    <string name="summary_note_extracted">Zinnen gekozen uit het transcript</string>
+    <string name="summary_note_ai">Geschreven door AI op het apparaat</string>
+    <string name="summary_working">Kernpunten zoeken…</string>
+    <string name="summary_too_short">Dit transcript is te kort om samen te vatten.</string>
+    <string name="summary_stale">Het transcript is gewijzigd na deze kernpunten.</string>
+    <string name="summary_update">Bijwerken</string>
+    <string name="summary_copy">Kernpunten kopiëren</string>
+    <string name="summary_copied">Kernpunten gekopieerd</string>
+    <string name="summary_hide">Kernpunten verbergen</string>
+    <string name="summary_show">Kernpunten tonen</string>
+</resources>

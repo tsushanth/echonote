@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">تلخيص</string>
+    <string name="summary_title_key_points">النقاط الرئيسية</string>
+    <string name="summary_title_ai">ملخص</string>
+    <string name="summary_note_extracted">جمل مختارة من النص</string>
+    <string name="summary_note_ai">كتبه الذكاء الاصطناعي على الجهاز</string>
+    <string name="summary_working">جارٍ استخراج النقاط الرئيسية…</string>
+    <string name="summary_too_short">هذا النص قصير جدًا للتلخيص.</string>
+    <string name="summary_stale">تغيّر النص بعد إنشاء هذه النقاط.</string>
+    <string name="summary_update">تحديث</string>
+    <string name="summary_copy">نسخ النقاط الرئيسية</string>
+    <string name="summary_copied">تم نسخ النقاط الرئيسية</string>
+    <string name="summary_hide">إخفاء النقاط الرئيسية</string>
+    <string name="summary_show">إظهار النقاط الرئيسية</string>
+</resources>

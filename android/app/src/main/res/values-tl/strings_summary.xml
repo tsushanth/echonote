@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Ibuod</string>
+    <string name="summary_title_key_points">Mahahalagang punto</string>
+    <string name="summary_title_ai">Buod</string>
+    <string name="summary_note_extracted">Mga pangungusap na pinili mula sa transcript</string>
+    <string name="summary_note_ai">Isinulat ng AI sa device</string>
+    <string name="summary_working">Hinahanap ang mahahalagang punto…</string>
+    <string name="summary_too_short">Masyadong maikli ang transcript na ito para ibuod.</string>
+    <string name="summary_stale">Nagbago ang transcript pagkatapos gawin ang mga punto.</string>
+    <string name="summary_update">I-update</string>
+    <string name="summary_copy">Kopyahin ang mahahalagang punto</string>
+    <string name="summary_copied">Nakopya ang mahahalagang punto</string>
+    <string name="summary_hide">Itago ang mahahalagang punto</string>
+    <string name="summary_show">Ipakita ang mahahalagang punto</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Podsumuj</string>
+    <string name="summary_title_key_points">Najważniejsze punkty</string>
+    <string name="summary_title_ai">Podsumowanie</string>
+    <string name="summary_note_extracted">Zdania wybrane z transkrypcji</string>
+    <string name="summary_note_ai">Napisane przez AI na urządzeniu</string>
+    <string name="summary_working">Szukanie najważniejszych punktów…</string>
+    <string name="summary_too_short">Ta transkrypcja jest za krótka, by ją podsumować.</string>
+    <string name="summary_stale">Transkrypcja zmieniła się po utworzeniu tych punktów.</string>
+    <string name="summary_update">Odśwież</string>
+    <string name="summary_copy">Kopiuj najważniejsze punkty</string>
+    <string name="summary_copied">Skopiowano najważniejsze punkty</string>
+    <string name="summary_hide">Ukryj najważniejsze punkty</string>
+    <string name="summary_show">Pokaż najważniejsze punkty</string>
+</resources>

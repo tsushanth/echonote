@@ -4,6 +4,7 @@ import com.kreativekoala.echonote.data.local.BookmarkDao
 import com.kreativekoala.echonote.data.local.RecordingDao
 import com.kreativekoala.echonote.data.model.Bookmark
 import com.kreativekoala.echonote.data.model.Recording
+import com.kreativekoala.echonote.service.summary.SummaryStore
 import kotlinx.coroutines.flow.Flow
 import java.io.File
 import javax.inject.Inject
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 @Singleton
 class RecordingRepository @Inject constructor(
     private val recordingDao: RecordingDao,
-    private val bookmarkDao: BookmarkDao
+    private val bookmarkDao: BookmarkDao,
+    private val summaryStore: SummaryStore
 ) {
     fun getAllRecordings(): Flow<List<Recording>> = recordingDao.getAllRecordings()
 
@@ -50,6 +52,7 @@ class RecordingRepository @Inject constructor(
 
     suspend fun permanentlyDelete(recording: Recording) {
         try { File(recording.fileUri).delete() } catch (_: Exception) {}
+        summaryStore.delete(recording.id)
         recordingDao.delete(recording)
     }
 
@@ -57,6 +60,7 @@ class RecordingRepository @Inject constructor(
         val deletedSnapshot = recordingDao.getDeletedRecordingsOnce()
         deletedSnapshot.forEach { rec ->
             try { File(rec.fileUri).delete() } catch (_: Exception) {}
+            summaryStore.delete(rec.id)
         }
         recordingDao.purgeOldDeleted(Long.MAX_VALUE)
     }

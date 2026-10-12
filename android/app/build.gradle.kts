@@ -182,6 +182,9 @@ dependencies {
     // OkHttp (multipart upload for opt-in voice contributions)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
+    // On-device summaries through Gemini Nano (ML Kit GenAI, beta). Off unless OnDeviceAiSummarizer.ENABLED.
+    implementation("com.google.mlkit:genai-summarization:1.0.0-beta1")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.json:json:20240303")
