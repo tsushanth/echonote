@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Живая расшифровка</string>
+    <string name="live_transcript_starting">Подготовка...</string>
+    <string name="live_transcript_listening">Слушаю...</string>
+    <string name="live_transcript_no_model">Для живой расшифровки нужна быстрая модель. Один раз запустите быструю расшифровку, чтобы скачать её. Запись продолжается.</string>
+    <string name="live_transcript_unavailable">Живая расшифровка остановлена. Запись продолжается.</string>
+    <string name="settings_live_transcript_title">Живая расшифровка при записи</string>
+    <string name="settings_live_transcript_subtitle">Показывает слова, пока вы говорите. Расходует больше заряда. Нужна быстрая модель для вашего языка (Android 10 или новее).</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Canlı transkript</string>
+    <string name="live_transcript_starting">Hazırlanıyor...</string>
+    <string name="live_transcript_listening">Dinleniyor...</string>
+    <string name="live_transcript_no_model">Canlı transkript için Hızlı model gerekir. İndirmek için bir kez hızlı transkripsiyon çalıştırın. Kayıt devam ediyor.</string>
+    <string name="live_transcript_unavailable">Canlı transkript durdu. Kayıt devam ediyor.</string>
+    <string name="settings_live_transcript_title">Kayıt sırasında canlı transkript</string>
+    <string name="settings_live_transcript_subtitle">Siz konuşurken sözcükleri gösterir. Daha fazla pil kullanır. Dilinizin Hızlı modeli gerekir (Android 10 veya üzeri).</string>
+</resources>

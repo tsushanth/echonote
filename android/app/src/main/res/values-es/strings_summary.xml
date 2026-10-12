@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Resumir</string>
+    <string name="summary_title_key_points">Puntos clave</string>
+    <string name="summary_title_ai">Resumen</string>
+    <string name="summary_note_extracted">Frases elegidas de la transcripción</string>
+    <string name="summary_note_ai">Escrito por IA en el dispositivo</string>
+    <string name="summary_working">Buscando puntos clave…</string>
+    <string name="summary_too_short">Esta transcripción es demasiado corta para resumirla.</string>
+    <string name="summary_stale">La transcripción cambió después de crear estos puntos.</string>
+    <string name="summary_update">Actualizar</string>
+    <string name="summary_copy">Copiar puntos clave</string>
+    <string name="summary_copied">Puntos clave copiados</string>
+    <string name="summary_hide">Ocultar puntos clave</string>
+    <string name="summary_show">Mostrar puntos clave</string>
+</resources>

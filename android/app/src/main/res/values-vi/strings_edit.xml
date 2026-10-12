@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Sửa bản chép lời</string>
+    <string name="edit_title">Sửa văn bản</string>
+    <string name="edit_blank">Văn bản không được để trống</string>
+    <string name="edit_save">Lưu</string>
+    <string name="edit_cancel">Hủy</string>
+    <string name="edit_retranscribe_title">Thay thế các chỉnh sửa của bạn?</string>
+    <string name="edit_retranscribe_body">Chép lời lại sẽ thay thế văn bản bạn đã sửa.</string>
+    <string name="edit_retranscribe_confirm">Chép lời lại</string>
+</resources>

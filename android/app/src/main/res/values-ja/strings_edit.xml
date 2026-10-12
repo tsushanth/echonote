@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">文字起こしを編集</string>
+    <string name="edit_title">テキストを編集</string>
+    <string name="edit_blank">テキストを空にすることはできません</string>
+    <string name="edit_save">保存</string>
+    <string name="edit_cancel">キャンセル</string>
+    <string name="edit_retranscribe_title">編集内容を置き換えますか？</string>
+    <string name="edit_retranscribe_body">再度文字起こしすると、修正したテキストが置き換えられます。</string>
+    <string name="edit_retranscribe_confirm">再度文字起こし</string>
+</resources>

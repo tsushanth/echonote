@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Mas maraming memorya ang kailangan ng Tumpak kaysa sa meron ang teleponong ito, kaya Mabilis ang gagamitin para sa %1$s. Hindi available ang mga label ng nagsasalita.</string>
+    <string name="settings_accurate_lowram_smaller">Mas kaunti ang memorya ng teleponong ito kaysa sa kailangan ng pinakamahusay na modelo, kaya mas maliit na modelo ang gagamitin ng Tumpak (%1$d MB na download, isang beses lang). Bahagyang mas mababa ang katumpakan kaysa sa mga teleponong may mas maraming memorya. Gumagana pa rin ang mga label ng nagsasalita.</string>
+</resources>

@@ -13,7 +13,9 @@ import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.repository.RecordingRepository
+import com.kreativekoala.echonote.data.repository.LiveTranscriptSettings
 import com.kreativekoala.echonote.data.repository.SettingsRepository
+import com.kreativekoala.echonote.service.LiveTranscriber
 import com.kreativekoala.echonote.service.AudioRecorderService
 import com.kreativekoala.echonote.service.LocationService
 import com.kreativekoala.echonote.service.RecordingForegroundService
@@ -42,7 +44,9 @@ class RecordingViewModel @Inject constructor(
     private val recorderService: AudioRecorderService,
     private val locationService: LocationService,
     private val recordingRepository: RecordingRepository,
-    private val settingsRepository: SettingsRepository
+    private val settingsRepository: SettingsRepository,
+    private val liveTranscriber: LiveTranscriber,
+    private val liveSettings: LiveTranscriptSettings
 ) : ViewModel() {
 
     val isRecording = recorderService.isRecording
@@ -50,6 +54,11 @@ class RecordingViewModel @Inject constructor(
     val currentAmplitude = recorderService.currentAmplitude
     val elapsedTimeMs = recorderService.elapsedTimeMs
     val meterLevels = recorderService.meterLevels
+
+    /** Live transcript (Settings switch, default off). Everything here is best-effort and never affects recording. */
+    val liveEnabled: StateFlow<Boolean> = liveSettings.enabled
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+    val liveState = liveTranscriber.state
 
     private val _selectedFormat = MutableStateFlow(AudioFormat.COMPRESSED)
     val selectedFormat: StateFlow<AudioFormat> = _selectedFormat
@@ -122,6 +131,8 @@ class RecordingViewModel @Inject constructor(
             context.startService(serviceIntent)
         }
 
+        startLiveTranscript()
+
         if (autoLocationEnabled) {
             viewModelScope.launch {
                 pendingLocationName = locationService.getCurrentLocationName()
@@ -136,10 +147,39 @@ class RecordingViewModel @Inject constructor(
         _showPermissionError.value = false
     }
 
-    fun pauseRecording() = recorderService.pauseRecording()
-    fun resumeRecording() = recorderService.resumeRecording()
+    /** Runs after the recorder is already recording. Any failure here is swallowed. */
+    private fun startLiveTranscript() {
+        viewModelScope.launch {
+            try {
+                if (!liveSettings.enabled.first()) return@launch
+                val language = settingsRepository.transcriptionLanguage.first()
+                // The user may have stopped while the settings were being read.
+                if (!recorderService.isRecording.value) return@launch
+                liveTranscriber.start(language)
+                if (recorderService.isPaused.value) liveTranscriber.setPaused(true)
+            } catch (e: kotlinx.coroutines.CancellationException) {
+                throw e
+            } catch (_: Throwable) {}
+        }
+    }
+
+    fun pauseRecording() {
+        recorderService.pauseRecording()
+        liveTranscriber.setPaused(true)
+    }
+
+    fun resumeRecording() {
+        recorderService.resumeRecording()
+        liveTranscriber.setPaused(false)
+    }
+
+    override fun onCleared() {
+        liveTranscriber.stop()
+        super.onCleared()
+    }
 
     fun stopRecording() {
+        liveTranscriber.stop()
         pendingResult = recorderService.stopRecording()
         // Stop the foreground service
         context.stopService(RecordingForegroundService.startIntent(context))
@@ -183,6 +223,7 @@ class RecordingViewModel @Inject constructor(
     }
 
     fun cancelRecording() {
+        liveTranscriber.stop()
         recorderService.cancelRecording()
         context.stopService(RecordingForegroundService.startIntent(context))
     }

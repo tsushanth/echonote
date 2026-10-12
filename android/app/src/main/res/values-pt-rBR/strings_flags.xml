@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Marcar palavras incertas</string>
+    <string name="flags_setting_desc">Sublinha as palavras com as quais uma segunda verificação não concorda. Exige a qualidade Accurate, um download único de cerca de 45 MB (o modelo Fast) e aumenta o tempo de processamento. Fica no seu dispositivo.</string>
+    <string name="flags_setting_unsupported">Indisponível para %1$s, então nenhuma palavra é marcada.</string>
+    <string name="flags_a11y_unsure">incerta</string>
+</resources>

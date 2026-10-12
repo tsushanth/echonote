@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">แก้ไขข้อความถอดเสียง</string>
+    <string name="edit_title">แก้ไขข้อความ</string>
+    <string name="edit_blank">ข้อความต้องไม่ว่างเปล่า</string>
+    <string name="edit_save">บันทึก</string>
+    <string name="edit_cancel">ยกเลิก</string>
+    <string name="edit_retranscribe_title">แทนที่สิ่งที่คุณแก้ไข?</string>
+    <string name="edit_retranscribe_body">การถอดเสียงใหม่จะแทนที่ข้อความที่คุณแก้ไข</string>
+    <string name="edit_retranscribe_confirm">ถอดเสียงใหม่</string>
+</resources>

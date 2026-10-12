@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Transcript bewerken</string>
+    <string name="edit_title">Tekst bewerken</string>
+    <string name="edit_blank">Tekst mag niet leeg zijn</string>
+    <string name="edit_save">Opslaan</string>
+    <string name="edit_cancel">Annuleren</string>
+    <string name="edit_retranscribe_title">Je bewerkingen vervangen?</string>
+    <string name="edit_retranscribe_body">Opnieuw transcriberen vervangt de tekst die je hebt gecorrigeerd.</string>
+    <string name="edit_retranscribe_confirm">Opnieuw transcriberen</string>
+</resources>

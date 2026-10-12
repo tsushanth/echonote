@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">Modifica trascrizione</string>
+    <string name="edit_title">Modifica testo</string>
+    <string name="edit_blank">Il testo non può essere vuoto</string>
+    <string name="edit_save">Salva</string>
+    <string name="edit_cancel">Annulla</string>
+    <string name="edit_retranscribe_title">Sostituire le tue modifiche?</string>
+    <string name="edit_retranscribe_body">Ritrascrivere sostituisce il testo che hai corretto.</string>
+    <string name="edit_retranscribe_confirm">Ritrascrivi</string>
+</resources>

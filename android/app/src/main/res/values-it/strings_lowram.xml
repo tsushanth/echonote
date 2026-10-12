@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Accurato richiede più memoria di quella di questo telefono, quindi %1$s usa Veloce. Le etichette dei relatori non sono disponibili.</string>
+    <string name="settings_accurate_lowram_smaller">Questo telefono ha meno memoria di quella richiesta dal modello migliore, quindi Accurato usa un modello più piccolo (download di %1$d MB, una sola volta). È un po\' meno accurato che sui telefoni con più memoria. Le etichette dei relatori funzionano ancora.</string>
+</resources>

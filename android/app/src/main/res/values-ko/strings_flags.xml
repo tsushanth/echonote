@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">불확실한 단어 표시</string>
+    <string name="flags_setting_desc">두 번째 확인에서 일치하지 않은 단어에 밑줄을 긋습니다. Accurate 품질, 약 45MB의 1회 다운로드(Fast 모델)가 필요하며 처리 시간이 늘어납니다. 기기 안에서만 처리됩니다.</string>
+    <string name="flags_setting_unsupported">%1$s에서는 사용할 수 없어 단어를 표시하지 않습니다.</string>
+    <string name="flags_a11y_unsure">불확실</string>
+</resources>

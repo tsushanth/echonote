@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">要約する</string>
+    <string name="summary_title_key_points">要点</string>
+    <string name="summary_title_ai">要約</string>
+    <string name="summary_note_extracted">文字起こしから選んだ文</string>
+    <string name="summary_note_ai">端末内のAIが作成</string>
+    <string name="summary_working">要点を探しています…</string>
+    <string name="summary_too_short">この文字起こしは短すぎて要約できません。</string>
+    <string name="summary_stale">この要点を作成した後に文字起こしが変更されました。</string>
+    <string name="summary_update">更新</string>
+    <string name="summary_copy">要点をコピー</string>
+    <string name="summary_copied">要点をコピーしました</string>
+    <string name="summary_hide">要点を隠す</string>
+    <string name="summary_show">要点を表示</string>
+</resources>

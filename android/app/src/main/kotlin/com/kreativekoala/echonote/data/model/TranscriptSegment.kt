@@ -8,7 +8,9 @@ data class TranscriptSegment(
     val startMs: Long,
     val endMs: Long,
     /** Zero-based speaker index, or null when speakers were not identified. */
-    val speaker: Int? = null
+    val speaker: Int? = null,
+    /** True when a second engine did not agree with this word. Only written to JSON when true. */
+    val uncertain: Boolean = false
 )
 
 data class TranscriptionOutput(
@@ -24,6 +26,7 @@ fun List<TranscriptSegment>.toJson(): String {
         obj.put("startMs", seg.startMs)
         obj.put("endMs", seg.endMs)
         seg.speaker?.let { obj.put("speaker", it) }
+        if (seg.uncertain) obj.put("uncertain", true)
         arr.put(obj)
     }
     return arr.toString()
@@ -40,7 +43,8 @@ fun String.toTranscriptSegments(): List<TranscriptSegment> {
                     word = obj.getString("word"),
                     startMs = obj.getLong("startMs"),
                     endMs = obj.getLong("endMs"),
-                    speaker = if (obj.has("speaker")) obj.getInt("speaker") else null
+                    speaker = if (obj.has("speaker")) obj.getInt("speaker") else null,
+                    uncertain = obj.optBoolean("uncertain", false)
                 )
             )
         }

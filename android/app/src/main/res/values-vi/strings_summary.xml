@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Tóm tắt</string>
+    <string name="summary_title_key_points">Ý chính</string>
+    <string name="summary_title_ai">Tóm tắt</string>
+    <string name="summary_note_extracted">Các câu chọn từ bản ghi</string>
+    <string name="summary_note_ai">Do AI trên thiết bị viết</string>
+    <string name="summary_working">Đang tìm ý chính…</string>
+    <string name="summary_too_short">Bản ghi này quá ngắn để tóm tắt.</string>
+    <string name="summary_stale">Bản ghi đã thay đổi sau khi tạo các ý này.</string>
+    <string name="summary_update">Cập nhật</string>
+    <string name="summary_copy">Sao chép ý chính</string>
+    <string name="summary_copied">Đã sao chép ý chính</string>
+    <string name="summary_hide">Ẩn ý chính</string>
+    <string name="summary_show">Hiện ý chính</string>
+</resources>

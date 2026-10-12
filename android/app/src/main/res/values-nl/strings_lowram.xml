@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">Nauwkeurig heeft meer geheugen nodig dan deze telefoon heeft, dus %1$s gebruikt Snel. Sprekerlabels zijn niet beschikbaar.</string>
+    <string name="settings_accurate_lowram_smaller">Deze telefoon heeft minder geheugen dan het beste model nodig heeft, dus Nauwkeurig gebruikt een kleiner model (%1$d MB download, eenmalig). Het is iets minder nauwkeurig dan op telefoons met meer geheugen. Sprekerlabels werken nog steeds.</string>
+</resources>

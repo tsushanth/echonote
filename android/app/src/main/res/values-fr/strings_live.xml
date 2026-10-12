@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Transcription en direct</string>
+    <string name="live_transcript_starting">Préparation...</string>
+    <string name="live_transcript_listening">Écoute...</string>
+    <string name="live_transcript_no_model">La transcription en direct nécessite le modèle Rapide. Lancez une transcription rapide une fois pour le télécharger. L\'enregistrement continue.</string>
+    <string name="live_transcript_unavailable">La transcription en direct s\'est arrêtée. L\'enregistrement continue.</string>
+    <string name="settings_live_transcript_title">Transcription en direct pendant l\'enregistrement</string>
+    <string name="settings_live_transcript_subtitle">Affiche les mots pendant que vous parlez. Consomme plus de batterie. Nécessite le modèle Rapide de votre langue (Android 10 ou plus récent).</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Live na transcript</string>
+    <string name="live_transcript_starting">Naghahanda...</string>
+    <string name="live_transcript_listening">Nakikinig...</string>
+    <string name="live_transcript_no_model">Kailangan ng live na transcript ang Mabilis na model. Magpatakbo ng mabilis na transcription nang isang beses para ma-download ito. Tuloy ang pagre-record.</string>
+    <string name="live_transcript_unavailable">Huminto ang live na transcript. Tuloy ang pagre-record.</string>
+    <string name="settings_live_transcript_title">Live na transcript habang nagre-record</string>
+    <string name="settings_live_transcript_subtitle">Ipinapakita ang mga salita habang nagsasalita ka. Mas malakas sa baterya. Kailangan ang Mabilis na model ng wika mo (Android 10 o mas bago).</string>
+</resources>

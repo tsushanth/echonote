@@ -16,6 +16,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import com.kreativekoala.echonote.R
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
@@ -74,13 +82,15 @@ fun paragraphIndexOf(paragraphs: List<TranscriptParagraph>, wordIndex: Int): Int
 /**
  * Adds the transcript to a lazy list, one item per paragraph so long recordings
  * stay cheap. Words already spoken read in full ink, upcoming words recede, and the
- * current word sits on a highlighter mark. Tapping any word seeks there.
+ * current word sits on a highlighter mark. Tapping any word seeks there; a long press
+ * calls [onEdit] (null when editing is unavailable).
  */
 fun LazyListScope.transcriptItems(
     words: List<TranscriptSegment>,
     paragraphs: List<TranscriptParagraph>,
     activeWord: Int,
-    onSeek: (Long) -> Unit
+    onSeek: (Long) -> Unit,
+    onEdit: ((TranscriptParagraph) -> Unit)? = null
 ) {
     paragraphs.forEachIndexed { index, paragraph ->
         item(key = "p$index") {
@@ -96,6 +106,7 @@ fun LazyListScope.transcriptItems(
                 paragraph = paragraph,
                 activeWord = localActive,
                 onSeek = onSeek,
+                onEdit = onEdit,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
             )
         }
@@ -111,6 +122,7 @@ private fun TranscriptParagraphView(
     paragraph: TranscriptParagraph,
     activeWord: Int,
     onSeek: (Long) -> Unit,
+    onEdit: ((TranscriptParagraph) -> Unit)?,
     modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
@@ -153,6 +165,27 @@ private fun TranscriptParagraphView(
 
     var layout by remember { mutableStateOf<TextLayoutResult?>(null) }
 
+    // Character ranges of words the second engine did not agree with (empty unless "Mark uncertain words" was on).
+    val uncertainRanges = remember(words, paragraph, starts) {
+        buildList {
+            for (i in starts.indices) {
+                val w = words[paragraph.firstWord + i]
+                if (w.uncertain && w.word.isNotEmpty()) add(starts[i] until (starts[i] + w.word.length))
+            }
+        }
+    }
+    val underlineColor = colors.onSurfaceVariant.copy(alpha = 0.85f)
+    val unsureHint = stringResource(R.string.flags_a11y_unsure)
+    val spoken = remember(words, paragraph, unsureHint, uncertainRanges.isEmpty()) {
+        if (uncertainRanges.isEmpty()) null else buildString {
+            for (i in paragraph.firstWord until paragraph.endWord) {
+                if (i > paragraph.firstWord && needsSpace(words[i - 1].word, words[i].word)) append(" ")
+                append(words[i].word)
+                if (words[i].uncertain) append(" (").append(unsureHint).append(")")
+            }
+        }
+    }
+
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         paragraph.speaker?.let { speaker ->
             Text(
@@ -172,33 +205,78 @@ private fun TranscriptParagraphView(
             onTextLayout = { layout = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .pointerInput(starts) {
-                    detectTapGestures { position ->
-                        val l = layout ?: return@detectTapGestures
-                        val offset = l.getOffsetForPosition(position)
-                        var lo = 0
-                        var hi = starts.size - 1
-                        while (lo < hi) {
-                            val mid = (lo + hi + 1) / 2
-                            if (starts[mid] <= offset) lo = mid else hi = mid - 1
-                        }
-                        onSeek(words[paragraph.firstWord + lo].startMs)
+                .then(if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier)
+                .then(
+                    if (uncertainRanges.isEmpty()) Modifier else Modifier.drawBehind {
+                        drawUncertainUnderlines(layout, uncertainRanges, underlineColor)
                     }
+                )
+                .pointerInput(starts, onEdit) {
+                    detectTapGestures(
+                        onLongPress = onEdit?.let { edit -> { _ -> edit(paragraph) } },
+                        onTap = { position ->
+                            val l = layout ?: return@detectTapGestures
+                            val offset = l.getOffsetForPosition(position)
+                            var lo = 0
+                            var hi = starts.size - 1
+                            while (lo < hi) {
+                                val mid = (lo + hi + 1) / 2
+                                if (starts[mid] <= offset) lo = mid else hi = mid - 1
+                            }
+                            onSeek(words[paragraph.firstWord + lo].startMs)
+                        }
+                    )
                 }
         )
     }
 }
 
-/** Plain transcript for recordings that have text but no word timings (older recordings). */
-fun LazyListScope.plainTranscriptItem(text: String) {
+/** Plain transcript for recordings that have text but no word timings (older recordings); long press edits it. */
+fun LazyListScope.plainTranscriptItem(text: String, onEdit: (() -> Unit)? = null) {
     item(key = "plain") {
-        Column(Modifier.padding(horizontal = 20.dp, vertical = 10.dp)) {
+        Column(
+            Modifier
+                .padding(horizontal = 20.dp, vertical = 10.dp)
+                .pointerInput(onEdit) {
+                    if (onEdit != null) detectTapGestures(onLongPress = { onEdit() })
+                }
+        ) {
             Text(
                 text = text,
                 style = TranscriptTextStyle,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(Modifier.height(4.dp))
+        }
+    }
+}
+
+/**
+ * Dotted line just under each marked word (one piece per wrapped line). Quiet on purpose: same ink as the
+ * secondary text, no red, no wave, so a marked word reads as "worth a second listen" rather than as an error.
+ */
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawUncertainUnderlines(
+    layout: TextLayoutResult?,
+    ranges: List<IntRange>,
+    color: androidx.compose.ui.graphics.Color
+) {
+    val l = layout ?: return
+    val stroke = 1.5.dp.toPx()
+    val dots = PathEffect.dashPathEffect(floatArrayOf(0.01f, stroke * 2.2f))
+    val last = l.layoutInput.text.length - 1
+    for (r in ranges) {
+        if (r.first > last) continue
+        val end = minOf(r.last, last)
+        val firstLine = l.getLineForOffset(r.first)
+        val lastLine = l.getLineForOffset(end)
+        for (line in firstLine..lastLine) {
+            val from = maxOf(r.first, l.getLineStart(line))
+            val to = minOf(end, l.getLineEnd(line, visibleEnd = true) - 1)
+            if (to < from) continue
+            val left = l.getBoundingBox(from).left
+            val right = l.getBoundingBox(to).right
+            val y = l.getLineBaseline(line) + 3.dp.toPx()
+            drawLine(color, Offset(left, y), Offset(right, y), strokeWidth = stroke, cap = StrokeCap.Round, pathEffect = dots)
         }
     }
 }

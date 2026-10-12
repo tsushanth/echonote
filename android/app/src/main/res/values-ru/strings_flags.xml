@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Отмечать неуверенные слова</string>
+    <string name="flags_setting_desc">Подчёркивает слова, с которыми не согласилась вторая проверка. Нужно качество Accurate, разовая загрузка около 45 МБ (модель Fast), обработка занимает больше времени. Всё остаётся на вашем устройстве.</string>
+    <string name="flags_setting_unsupported">Недоступно для языка: %1$s, поэтому слова не отмечаются.</string>
+    <string name="flags_a11y_unsure">неуверенно</string>
+</resources>

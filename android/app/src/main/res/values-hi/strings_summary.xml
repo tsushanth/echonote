@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">सारांश बनाएँ</string>
+    <string name="summary_title_key_points">मुख्य बिंदु</string>
+    <string name="summary_title_ai">सारांश</string>
+    <string name="summary_note_extracted">ट्रांसक्रिप्ट से चुने गए वाक्य</string>
+    <string name="summary_note_ai">डिवाइस पर AI द्वारा लिखा गया</string>
+    <string name="summary_working">मुख्य बिंदु खोजे जा रहे हैं…</string>
+    <string name="summary_too_short">सारांश के लिए यह ट्रांसक्रिप्ट बहुत छोटा है।</string>
+    <string name="summary_stale">इन मुख्य बिंदुओं के बाद ट्रांसक्रिप्ट बदल गया है।</string>
+    <string name="summary_update">अपडेट करें</string>
+    <string name="summary_copy">मुख्य बिंदु कॉपी करें</string>
+    <string name="summary_copied">मुख्य बिंदु कॉपी हो गए</string>
+    <string name="summary_hide">मुख्य बिंदु छिपाएँ</string>
+    <string name="summary_show">मुख्य बिंदु दिखाएँ</string>
+</resources>

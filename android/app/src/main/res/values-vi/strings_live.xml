@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Bản chép trực tiếp</string>
+    <string name="live_transcript_starting">Đang chuẩn bị...</string>
+    <string name="live_transcript_listening">Đang nghe...</string>
+    <string name="live_transcript_no_model">Bản chép trực tiếp cần mô hình Nhanh. Hãy chạy chép lời nhanh một lần để tải về. Việc ghi âm vẫn tiếp tục.</string>
+    <string name="live_transcript_unavailable">Bản chép trực tiếp đã dừng. Việc ghi âm vẫn tiếp tục.</string>
+    <string name="settings_live_transcript_title">Chép lời trực tiếp khi ghi âm</string>
+    <string name="settings_live_transcript_subtitle">Hiển thị chữ khi bạn nói. Tốn pin hơn. Cần mô hình Nhanh cho ngôn ngữ của bạn (Android 10 trở lên).</string>
+</resources>

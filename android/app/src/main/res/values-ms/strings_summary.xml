@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Ringkaskan</string>
+    <string name="summary_title_key_points">Perkara penting</string>
+    <string name="summary_title_ai">Ringkasan</string>
+    <string name="summary_note_extracted">Ayat dipilih daripada transkrip</string>
+    <string name="summary_note_ai">Ditulis oleh AI pada peranti</string>
+    <string name="summary_working">Mencari perkara penting…</string>
+    <string name="summary_too_short">Transkrip ini terlalu pendek untuk diringkaskan.</string>
+    <string name="summary_stale">Transkrip berubah selepas perkara ini dibuat.</string>
+    <string name="summary_update">Kemas kini</string>
+    <string name="summary_copy">Salin perkara penting</string>
+    <string name="summary_copied">Perkara penting disalin</string>
+    <string name="summary_hide">Sembunyikan perkara penting</string>
+    <string name="summary_show">Tunjukkan perkara penting</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Unsichere Wörter markieren</string>
+    <string name="flags_setting_desc">Unterstreicht Wörter, bei denen eine zweite Prüfung abweicht. Benötigt die Qualität Accurate, einen einmaligen Download von etwa 45 MB (das Modell Fast) und verlängert die Verarbeitung. Bleibt auf Ihrem Gerät.</string>
+    <string name="flags_setting_unsupported">Für %1$s nicht verfügbar, daher werden keine Wörter markiert.</string>
+    <string name="flags_a11y_unsure">unsicher</string>
+</resources>

@@ -42,6 +42,13 @@ import com.kreativekoala.echonote.ui.components.lip
 import com.kreativekoala.echonote.ui.theme.*
 import com.kreativekoala.ratingkit.RatingKit
 import android.app.Activity
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
+import com.kreativekoala.echonote.service.LiveStatus
+import com.kreativekoala.echonote.service.LiveTranscriptState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,6 +71,8 @@ fun RecordingScreen(
     val gain by viewModel.gain.collectAsState()
     val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
     val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
+    val liveEnabled by viewModel.liveEnabled.collectAsState()
+    val liveState by viewModel.liveState.collectAsState()
     val context = LocalContext.current
     val vibrator = remember {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -224,6 +233,12 @@ fun RecordingScreen(
                     )
                 } else {
                     Spacer(modifier = Modifier.height(120.dp))
+                }
+
+                // Live transcript (Settings switch, default off; nothing is added to the layout when off)
+                if (isRecording && liveEnabled) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    LiveTranscriptArea(liveState)
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -519,5 +534,42 @@ private fun SettingRow(label: String, control: @Composable () -> Unit) {
     ) {
         Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
         control()
+    }
+}
+
+@Composable
+private fun LiveTranscriptArea(state: LiveTranscriptState) {
+    val scroll = rememberScrollState()
+    LaunchedEffect(state.text) { scroll.scrollTo(scroll.maxValue) }
+    val hint = when (state.status) {
+        LiveStatus.NO_MODEL -> stringResource(R.string.live_transcript_no_model)
+        LiveStatus.UNAVAILABLE -> stringResource(R.string.live_transcript_unavailable)
+        LiveStatus.STARTING -> stringResource(R.string.live_transcript_starting)
+        LiveStatus.LISTENING -> if (state.text.isEmpty()) stringResource(R.string.live_transcript_listening) else null
+        LiveStatus.OFF -> null
+    }
+    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+        Text(
+            text = stringResource(R.string.live_transcript_label),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Box(modifier = Modifier.fillMaxWidth().height(116.dp).verticalScroll(scroll)) {
+            if (hint != null) {
+                Text(
+                    text = hint,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
+                )
+            } else {
+                Text(
+                    text = state.text,
+                    style = TranscriptTextStyle,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+        }
     }
 }

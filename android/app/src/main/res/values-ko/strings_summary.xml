@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">요약</string>
+    <string name="summary_title_key_points">핵심 내용</string>
+    <string name="summary_title_ai">요약</string>
+    <string name="summary_note_extracted">녹취록에서 고른 문장</string>
+    <string name="summary_note_ai">기기 내 AI가 작성함</string>
+    <string name="summary_working">핵심 내용을 찾는 중…</string>
+    <string name="summary_too_short">이 녹취록은 요약하기에 너무 짧습니다.</string>
+    <string name="summary_stale">이 핵심 내용을 만든 후 녹취록이 변경되었습니다.</string>
+    <string name="summary_update">업데이트</string>
+    <string name="summary_copy">핵심 내용 복사</string>
+    <string name="summary_copied">핵심 내용을 복사했습니다</string>
+    <string name="summary_hide">핵심 내용 숨기기</string>
+    <string name="summary_show">핵심 내용 보기</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Özetle</string>
+    <string name="summary_title_key_points">Ana noktalar</string>
+    <string name="summary_title_ai">Özet</string>
+    <string name="summary_note_extracted">Transkriptten seçilen cümleler</string>
+    <string name="summary_note_ai">Cihazdaki yapay zeka yazdı</string>
+    <string name="summary_working">Ana noktalar bulunuyor…</string>
+    <string name="summary_too_short">Bu transkript özetlemek için çok kısa.</string>
+    <string name="summary_stale">Bu noktalar oluşturulduktan sonra transkript değişti.</string>
+    <string name="summary_update">Güncelle</string>
+    <string name="summary_copy">Ana noktaları kopyala</string>
+    <string name="summary_copied">Ana noktalar kopyalandı</string>
+    <string name="summary_hide">Ana noktaları gizle</string>
+    <string name="summary_show">Ana noktaları göster</string>
+</resources>

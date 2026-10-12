@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_menu">I-edit ang transcript</string>
+    <string name="edit_title">I-edit ang teksto</string>
+    <string name="edit_blank">Hindi puwedeng walang laman ang teksto</string>
+    <string name="edit_save">I-save</string>
+    <string name="edit_cancel">Kanselahin</string>
+    <string name="edit_retranscribe_title">Palitan ang mga edit mo?</string>
+    <string name="edit_retranscribe_body">Papalitan ng muling pag-transcribe ang tekstong itinama mo.</string>
+    <string name="edit_retranscribe_confirm">I-transcribe ulit</string>
+</resources>
