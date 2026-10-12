@@ -78,10 +78,12 @@ Error rate % (WER; CER for zh, ja and ko), lower is better:
 | ko | 29.8 | 25.0 | **22.0** | SenseVoice 79 (unusable) |
 
 * Whisper base (what the app first shipped as Accurate) is worse than Vosk for fr, it, hi, zh and ja. The app now
-  routes by language (`EnginePlan`): Whisper small for en, es, pt, de, fr, ja, ko; SenseVoice for zh; Vosk (Fast)
-  for it and hi. NeMo fast-conformer (en/de/es/fr) was as good as Whisper small and 3x lighter but is only
-  published as a .tar.bz2 on GitHub (its Hugging Face repo is empty), so using it would mean shipping an archive
-  extractor; left out for now.
+  routes by language (`EnginePlan`): Whisper small for en, pt, ja, ko; NeMo FastConformer for de, es, fr; SenseVoice for zh;
+  Vosk (Fast) for it and hi. NeMo fast-conformer (en/de/es/fr) tied Whisper small for de, es and fr (paired bootstrap of WER difference,
+  Whisper small minus NeMo: de +0.0 [-3.4, +3.3], es -1.3 [-5.1, +2.0], fr +1.3 [-2.3, +5.5]; English -7.4 [-12.5, -2.8]
+  so Whisper small is clearly better there) and is 3.6x smaller, about 15x faster, with real word times, so de, es and
+  fr use it. It is only published as a .tar.bz2 on GitHub (its Hugging Face repo is empty), so the app unpacks it with
+  Apache Commons Compress, pinning the archive and each extracted file.
 * Whisper small fixes most of that (de 21 to 9, fr 32 to 13, pt 17 to 6) but is about 3x slower than base
   (Mac real-time factor 0.15 vs 0.05) and a ~375 MB download (112 + 262 MB), and does not fix Hindi.
 * Voting vosk + best Whisper + a third family (ROVER, languages with three engines): es 5.6 to 3.8, de 9.1 to 7.9,
