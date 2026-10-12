@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
+import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.data.repository.SettingsRepository
@@ -45,6 +46,12 @@ class SettingsViewModel @Inject constructor(
 
     val transcriptionLanguage: StateFlow<TranscriptionLanguage> = settingsRepository.transcriptionLanguage
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranscriptionLanguage.ENGLISH)
+
+    val transcriptionEngine: StateFlow<TranscriptionEngine> = settingsRepository.transcriptionEngine
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranscriptionEngine.FAST)
+
+    val identifySpeakers: StateFlow<Boolean> = settingsRepository.identifySpeakers
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
     val autoCopyTranscript: StateFlow<Boolean> = settingsRepository.autoCopyTranscript
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
@@ -91,6 +98,14 @@ class SettingsViewModel @Inject constructor(
 
     fun setAutoLocation(enabled: Boolean) {
         viewModelScope.launch { settingsRepository.setAutoLocation(enabled) }
+    }
+
+    fun setTranscriptionEngine(engine: TranscriptionEngine) {
+        viewModelScope.launch { settingsRepository.setTranscriptionEngine(engine) }
+    }
+
+    fun setIdentifySpeakers(enabled: Boolean) {
+        viewModelScope.launch { settingsRepository.setIdentifySpeakers(enabled) }
     }
 
     fun setTranscriptionLanguage(language: TranscriptionLanguage) {

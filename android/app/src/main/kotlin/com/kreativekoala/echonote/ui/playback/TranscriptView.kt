@@ -44,19 +44,23 @@ data class TranscriptParagraph(
 private const val PAUSE_BREAK_MS = 1200L
 private const val MAX_WORDS_PER_PARAGRAPH = 70
 
-/** Splits timed words into paragraphs at long pauses, or when a paragraph runs too long. */
+/**
+ * Splits timed words into paragraphs at long pauses, when the speaker changes, or when a
+ * paragraph runs too long. Each paragraph carries the speaker of its first word.
+ */
 fun buildParagraphs(words: List<TranscriptSegment>): List<TranscriptParagraph> {
     if (words.isEmpty()) return emptyList()
     val result = mutableListOf<TranscriptParagraph>()
     var first = 0
     for (i in 1 until words.size) {
         val gap = words[i].startMs - words[i - 1].endMs
-        if (gap >= PAUSE_BREAK_MS || i - first >= MAX_WORDS_PER_PARAGRAPH) {
-            result += TranscriptParagraph(first, i, words[first].startMs)
+        val speakerChanged = words[i].speaker != words[i - 1].speaker
+        if (gap >= PAUSE_BREAK_MS || speakerChanged || i - first >= MAX_WORDS_PER_PARAGRAPH) {
+            result += TranscriptParagraph(first, i, words[first].startMs, words[first].speaker)
             first = i
         }
     }
-    result += TranscriptParagraph(first, words.size, words[first].startMs)
+    result += TranscriptParagraph(first, words.size, words[first].startMs, words[first].speaker)
     return result
 }
 

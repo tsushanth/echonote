@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
+import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.data.model.TranscriptionOutput
 import com.kreativekoala.echonote.data.model.TranscriptSegment
@@ -63,6 +64,7 @@ class TranscriptionService @Inject constructor(
         }
 
         _isTranscribing.value = true
+        val startedAtMs = android.os.SystemClock.elapsedRealtime()
         _progress.value = 0f
         _statusMessage.value = null
         _partialTranscript.value = ""
@@ -74,6 +76,10 @@ class TranscriptionService @Inject constructor(
 
         try {
             val language = settingsRepository.transcriptionLanguage.first()
+
+            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE) {
+                return@withContext transcribeWithWhisper(fileUri, language)
+            }
 
             // Ensure model is ready
             val model = getOrDownloadModel(language)
@@ -99,6 +105,7 @@ class TranscriptionService @Inject constructor(
         } catch (e: Exception) {
             TranscriptionResult.Error("Transcription failed: ${e.message ?: "Unknown error"}")
         } finally {
+            android.util.Log.i("TranscriptionService", "transcribe finished in ${android.os.SystemClock.elapsedRealtime() - startedAtMs} ms")
             _isTranscribing.value = false
             _progress.value = 0f
             _statusMessage.value = null
@@ -232,13 +239,73 @@ class TranscriptionService @Inject constructor(
     }
 
     /**
-     * Decode audio and feed directly to Vosk in streaming fashion.
-     * Never holds the full PCM in memory — avoids OOM on large files.
+     * Whisper path: download the model once, decode the recording into 16 kHz mono chunks,
+     * and optionally label speakers afterwards. Memory is held to one 28 s window plus,
+     * when speakers are requested, the audio itself (recordings up to 30 minutes).
      */
-    private fun decodeAndRecognize(fileUri: String, model: Model, onPartial: (String) -> Unit = {}): TranscriptionOutput? {
+    private suspend fun transcribeWithWhisper(fileUri: String, language: TranscriptionLanguage): TranscriptionResult {
+        val whisperDir = File(context.filesDir, SherpaModels.WHISPER_DIR)
+        val wantSpeakers = settingsRepository.identifySpeakers.first()
+        val diarizationDir = File(context.filesDir, SherpaModels.DIARIZATION_DIR)
+
+        try {
+            if (!ModelDownloader.isReady(whisperDir, SherpaModels.WHISPER_BASE)) {
+                _statusMessage.value = "Downloading accurate speech model (160 MB)..."
+                ModelDownloader.ensure(whisperDir, SherpaModels.WHISPER_BASE) { _progress.value = 0.02f + it * 0.2f }
+            }
+            if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
+                _statusMessage.value = "Downloading speaker model (35 MB)..."
+                ModelDownloader.ensure(diarizationDir, SherpaModels.DIARIZATION) { _progress.value = 0.22f + it * 0.03f }
+            }
+        } catch (e: Exception) {
+            return TranscriptionResult.Error("Could not download the accurate speech model. Check your internet connection and try again. (${e.message})")
+        }
+
+        _statusMessage.value = "Transcribing..."
+        _progress.value = 0.25f
+        val languageCode = language.bcp47Tag.substringBefore('-')
+
+        WhisperTranscriber(whisperDir, languageCode, keepAudio = wantSpeakers) { _partialTranscript.value = it }.use { whisper ->
+            val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
+                whisper.accept(samples, count)
+            }
+            if (!hasAudio) return TranscriptionResult.Error("No audio found in this recording")
+            whisper.finish()
+
+            var words = whisper.words.toList()
+            if (words.isEmpty()) return TranscriptionResult.Error("No speech detected in this recording")
+
+            if (wantSpeakers) {
+                val kept = whisper.keptAudio()
+                if (kept == null) {
+                    _statusMessage.value = "Speaker labels skipped: recording is longer than 30 minutes"
+                } else {
+                    _statusMessage.value = "Identifying speakers..."
+                    try {
+                        val spans = SpeakerDiarizer(diarizationDir).diarize(kept.first, kept.second) {
+                            _progress.value = 0.85f + it * 0.13f
+                        }
+                        words = assignSpeakers(words, spans)
+                    } catch (e: Exception) {
+                        android.util.Log.e("TranscriptionService", "diarization failed", e)
+                    }
+                }
+            }
+            _progress.value = 1f
+            return TranscriptionResult.Success(words.joinToString(" ") { it.word }, words)
+        }
+    }
+
+    /**
+     * Decodes [fileUri] to 16 kHz mono PCM and hands it to [onChunk] as it is produced, so the
+     * whole recording is never held in memory. Returns false when the file has no audio track.
+     */
+    private fun decodeAudio(
+        fileUri: String,
+        onProgress: (Float) -> Unit = {},
+        onChunk: (ShortArray, Int) -> Unit
+    ): Boolean {
         val extractor = MediaExtractor()
-        val recognizer = Recognizer(model, 16000.0f)
-        recognizer.setWords(true)
         try {
             extractor.setDataSource(fileUri)
 
@@ -251,13 +318,13 @@ class TranscriptionService @Inject constructor(
                     break
                 }
             }
-            if (audioTrackIndex < 0) return null
+            if (audioTrackIndex < 0) return false
 
             extractor.selectTrack(audioTrackIndex)
             val format = extractor.getTrackFormat(audioTrackIndex)
             val sampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE)
             val channelCount = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
-            val mime = format.getString(MediaFormat.KEY_MIME) ?: return null
+            val mime = format.getString(MediaFormat.KEY_MIME) ?: return false
             android.util.Log.d("TranscriptionService", "Audio: mime=$mime sampleRate=$sampleRate channels=$channelCount")
             val totalDurationUs = if (format.containsKey(MediaFormat.KEY_DURATION))
                 format.getLong(MediaFormat.KEY_DURATION) else 0L
@@ -269,13 +336,8 @@ class TranscriptionService @Inject constructor(
 
             val bufferInfo = MediaCodec.BufferInfo()
             var isEos = false
-            // Streaming resampler: srcOffset = fractional position in current source chunk
-            // Always >= 0 at start of each chunk; carry-over from previous chunk
             var srcOffset = 0.0
-            val ratio = if (sampleRate != 16000) sampleRate.toDouble() / 16000.0 else 1.0
-            // Reusable output chunk buffer (bytes for Vosk)
-            val voskChunk = ByteArray(8192)
-            var voskChunkPos = 0
+            val ratio = sampleRate.toDouble() / 16000.0
 
             try {
                 while (true) {
@@ -291,10 +353,7 @@ class TranscriptionService @Inject constructor(
                                 val sampleTimeUs = extractor.sampleTime
                                 codec.queueInputBuffer(inputIndex, 0, sampleSize, sampleTimeUs, 0)
                                 extractor.advance()
-                                if (totalDurationUs > 0) {
-                                    val pct = (sampleTimeUs.toFloat() / totalDurationUs)
-                                    _progress.value = 0.3f + pct * 0.65f
-                                }
+                                if (totalDurationUs > 0) onProgress((sampleTimeUs.toFloat() / totalDurationUs).coerceIn(0f, 1f))
                             }
                         }
                     }
@@ -316,36 +375,9 @@ class TranscriptionService @Inject constructor(
                             }
                         } else decoded
 
-                        // Resample and pipe to Vosk chunk buffer
-                        // srcOffset tracks where in current mono chunk to read next output sample
-                        if (ratio == 1.0) {
-                            for (s in mono) {
-                                voskChunk[voskChunkPos++] = (s.toInt() and 0xFF).toByte()
-                                voskChunk[voskChunkPos++] = ((s.toInt() shr 8) and 0xFF).toByte()
-                                if (voskChunkPos >= voskChunk.size) {
-                                    if (recognizer.acceptWaveForm(voskChunk, voskChunkPos)) {
-                                        val sentence = JSONObject(recognizer.result).optString("text", "")
-                                        if (sentence.isNotBlank()) onPartial(sentence)
-                                    }
-                                    voskChunkPos = 0
-                                }
-                            }
-                        } else {
-                            while (srcOffset < mono.size) {
-                                val s = mono[srcOffset.toInt()]
-                                voskChunk[voskChunkPos++] = (s.toInt() and 0xFF).toByte()
-                                voskChunk[voskChunkPos++] = ((s.toInt() shr 8) and 0xFF).toByte()
-                                if (voskChunkPos >= voskChunk.size) {
-                                    if (recognizer.acceptWaveForm(voskChunk, voskChunkPos)) {
-                                        val sentence = JSONObject(recognizer.result).optString("text", "")
-                                        if (sentence.isNotBlank()) onPartial(sentence)
-                                    }
-                                    voskChunkPos = 0
-                                }
-                                srcOffset += ratio
-                            }
-                            srcOffset -= mono.size  // carry fractional offset into next chunk
-                        }
+                        val (resampled, nextOffset) = resampleByAveraging(mono, ratio, srcOffset)
+                        srcOffset = nextOffset
+                        if (resampled.isNotEmpty()) onChunk(resampled, resampled.size)
 
                         codec.releaseOutputBuffer(outputIndex, false)
                         if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) break
@@ -357,14 +389,44 @@ class TranscriptionService @Inject constructor(
                 try { codec.stop() } catch (_: Exception) {}
                 try { codec.release() } catch (_: Exception) {}
             }
+            return true
+        } catch (e: Exception) {
+            android.util.Log.e("TranscriptionService", "decodeAudio failed", e)
+            return false
+        } finally {
+            extractor.release()
+        }
+    }
 
-            // Flush remaining bytes
-            if (voskChunkPos > 0) {
+    /** Vosk path: stream the decoded audio into a Vosk recognizer. */
+    private fun decodeAndRecognize(fileUri: String, model: Model, onPartial: (String) -> Unit = {}): TranscriptionOutput? {
+        val recognizer = Recognizer(model, 16000.0f)
+        recognizer.setWords(true)
+        try {
+            val voskChunk = ByteArray(8192)
+            var voskChunkPos = 0
+
+            fun feed() {
                 if (recognizer.acceptWaveForm(voskChunk, voskChunkPos)) {
                     val sentence = JSONObject(recognizer.result).optString("text", "")
                     if (sentence.isNotBlank()) onPartial(sentence)
                 }
+                voskChunkPos = 0
             }
+
+            val hasAudio = decodeAudio(
+                fileUri,
+                onProgress = { _progress.value = 0.3f + it * 0.65f }
+            ) { samples, count ->
+                for (i in 0 until count) {
+                    val s = samples[i].toInt()
+                    voskChunk[voskChunkPos++] = (s and 0xFF).toByte()
+                    voskChunk[voskChunkPos++] = ((s shr 8) and 0xFF).toByte()
+                    if (voskChunkPos >= voskChunk.size) feed()
+                }
+            }
+            if (!hasAudio) return null
+            if (voskChunkPos > 0) feed()
 
             val finalResult = recognizer.finalResult
             android.util.Log.d("TranscriptionService", "Vosk finalResult: $finalResult")
@@ -389,7 +451,6 @@ class TranscriptionService @Inject constructor(
             android.util.Log.e("TranscriptionService", "decodeAndRecognize failed", e)
             return null
         } finally {
-            extractor.release()
             recognizer.close()
         }
     }

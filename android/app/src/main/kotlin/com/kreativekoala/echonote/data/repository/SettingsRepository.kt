@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
+import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -27,6 +28,8 @@ class SettingsRepository @Inject constructor(
         val STEREO_DEFAULT = booleanPreferencesKey("stereo_default")
         val AUTO_LOCATION = booleanPreferencesKey("auto_location")
         val TRANSCRIPTION_LANGUAGE = stringPreferencesKey("transcription_language")
+        val TRANSCRIPTION_ENGINE = stringPreferencesKey("transcription_engine")
+        val IDENTIFY_SPEAKERS = booleanPreferencesKey("identify_speakers")
         val AUTO_COPY_TRANSCRIPT = booleanPreferencesKey("auto_copy_transcript")
         val AUTO_DELETE_AUDIO = booleanPreferencesKey("auto_delete_audio")
         val SOUND_EFFECTS = booleanPreferencesKey("sound_effects")
@@ -54,6 +57,15 @@ class SettingsRepository @Inject constructor(
         prefs[Keys.TRANSCRIPTION_LANGUAGE]?.let {
             runCatching { TranscriptionLanguage.valueOf(it) }.getOrNull()
         } ?: TranscriptionLanguage.ENGLISH
+    }
+
+    val transcriptionEngine: Flow<TranscriptionEngine> = context.dataStore.data.map { prefs ->
+        prefs[Keys.TRANSCRIPTION_ENGINE]?.let { runCatching { TranscriptionEngine.valueOf(it) }.getOrNull() }
+            ?: TranscriptionEngine.FAST
+    }
+
+    val identifySpeakers: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.IDENTIFY_SPEAKERS] ?: false
     }
 
     val autoCopyTranscript: Flow<Boolean> = context.dataStore.data.map { prefs ->
@@ -96,6 +108,14 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setTranscriptionLanguage(language: TranscriptionLanguage) {
         context.dataStore.edit { it[Keys.TRANSCRIPTION_LANGUAGE] = language.name }
+    }
+
+    suspend fun setTranscriptionEngine(engine: TranscriptionEngine) {
+        context.dataStore.edit { it[Keys.TRANSCRIPTION_ENGINE] = engine.name }
+    }
+
+    suspend fun setIdentifySpeakers(enabled: Boolean) {
+        context.dataStore.edit { it[Keys.IDENTIFY_SPEAKERS] = enabled }
     }
 
     suspend fun setAutoCopyTranscript(enabled: Boolean) {

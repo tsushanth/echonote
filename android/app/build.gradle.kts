@@ -1,3 +1,6 @@
+import java.net.URI
+import java.security.MessageDigest
+
 import java.util.Properties
 
 plugins {
@@ -22,6 +25,30 @@ fun signingProp(name: String): String =
         ?: ""
 
 fun ingestProp(name: String) = (localProperties.getProperty(name) ?: "").replace("\"", "")
+
+// sherpa-onnx (Whisper + speaker diarization). The AAR is ~50 MB, so it is fetched
+// into app/libs on first build instead of being committed, and checked against a
+// pinned SHA-256 because it ships native code.
+val sherpaVersion = "1.13.8"
+val sherpaSha256 = "633c24321e06b1fe79feafa03ea16cbc0f8a286641e2da3559bac91bdb13bd96"
+val sherpaAar = layout.projectDirectory.file("libs/sherpa-onnx-$sherpaVersion.aar").asFile
+
+val downloadSherpaOnnx by tasks.registering {
+    outputs.file(sherpaAar)
+    doLast {
+        fun sha256(f: File): String = MessageDigest.getInstance("SHA-256")
+            .digest(f.readBytes()).joinToString("") { "%02x".format(it) }
+        if (!sherpaAar.exists() || sha256(sherpaAar) != sherpaSha256) {
+            sherpaAar.parentFile.mkdirs()
+            val url = "https://github.com/k2-fsa/sherpa-onnx/releases/download/v$sherpaVersion/sherpa-onnx-$sherpaVersion.aar"
+            val tmp = File(sherpaAar.parentFile, sherpaAar.name + ".part")
+            URI(url).toURL().openStream().use { input -> tmp.outputStream().use { input.copyTo(it) } }
+            check(sha256(tmp) == sherpaSha256) { "sherpa-onnx AAR checksum mismatch; refusing to use it" }
+            tmp.renameTo(sherpaAar)
+        }
+    }
+}
+tasks.named("preBuild") { dependsOn(downloadSherpaOnnx) }
 
 android {
     namespace = "com.kreativekoala.echonote"
@@ -141,6 +168,9 @@ dependencies {
     // Vosk (offline speech recognition)
     implementation("com.alphacephei:vosk-android:0.3.75")
 
+    // sherpa-onnx: Whisper engine + speaker labels (AAR fetched by downloadSherpaOnnx)
+    implementation(files(sherpaAar))
+
     // WorkManager + Hilt-Work (background upload of opt-in voice contributions)
     implementation("androidx.work:work-runtime-ktx:2.10.0")
     implementation("androidx.hilt:hilt-work:1.2.0")
@@ -151,6 +181,7 @@ dependencies {
 
     // Testing
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20240303")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
     testImplementation("io.mockk:mockk:1.13.13")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

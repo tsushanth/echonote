@@ -7,3 +7,7 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# sherpa-onnx AAR is fetched by the downloadSherpaOnnx Gradle task
+/app/libs/*.aar
+/app/libs/*.part

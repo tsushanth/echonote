@@ -23,6 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
+import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
 import androidx.compose.ui.graphics.Color
@@ -39,6 +40,8 @@ fun SettingsScreen(
     val autoLocation by viewModel.autoLocation.collectAsState()
     val stereoDefault by viewModel.stereoDefault.collectAsState()
     val transcriptionLanguage by viewModel.transcriptionLanguage.collectAsState()
+    val transcriptionEngine by viewModel.transcriptionEngine.collectAsState()
+    val identifySpeakers by viewModel.identifySpeakers.collectAsState()
     val storageUsed by viewModel.storageUsed.collectAsState()
     val totalRecordingsCount by viewModel.totalRecordingsCount.collectAsState()
     val totalDuration by viewModel.totalDuration.collectAsState()
@@ -179,6 +182,49 @@ fun SettingsScreen(
             }
 
             HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            SettingsRow(
+                icon = Icons.Default.GraphicEq,
+                title = "Transcription Quality",
+                subtitle = transcriptionEngine.summary
+            ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    TranscriptionEngine.entries.forEach { engine ->
+                        FilterChip(
+                            selected = transcriptionEngine == engine,
+                            onClick = { viewModel.setTranscriptionEngine(engine) },
+                            label = { Text(engine.displayName) }
+                        )
+                    }
+                }
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { viewModel.setIdentifySpeakers(!identifySpeakers) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.RecordVoiceOver,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Label Speakers", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Mark who is talking in each paragraph. Needs Accurate quality, a one-time 35 MB download, and recordings up to 30 minutes.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(checked = identifySpeakers, onCheckedChange = { viewModel.setIdentifySpeakers(it) })
+            }
 
             Row(
                 modifier = Modifier
