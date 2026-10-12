@@ -421,17 +421,22 @@ class TranscriptionService @Inject constructor(
         }
     }
 
-    /** Vosk path: stream the decoded audio into a Vosk recognizer. */
+    /** Vosk path: stream the decoded audio into a Vosk recognizer and keep every sentence it finishes. */
     private fun decodeAndRecognize(fileUri: String, model: Model, onPartial: (String) -> Unit = {}): TranscriptionOutput? {
         val recognizer = Recognizer(model, 16000.0f)
         recognizer.setWords(true)
         try {
             val voskChunk = ByteArray(8192)
             var voskChunkPos = 0
+            // One result per finished sentence, plus the last one. Reading `result` consumes a sentence, so
+            // each must be kept here; the final result alone holds only the text after the last pause.
+            val results = mutableListOf<String>()
 
             fun feed() {
                 if (recognizer.acceptWaveForm(voskChunk, voskChunkPos)) {
-                    val sentence = JSONObject(recognizer.result).optString("text", "")
+                    val raw = recognizer.result
+                    results += raw
+                    val sentence = JSONObject(raw).optString("text", "")
                     if (sentence.isNotBlank()) onPartial(sentence)
                 }
                 voskChunkPos = 0
@@ -451,25 +456,8 @@ class TranscriptionService @Inject constructor(
             if (!hasAudio) return null
             if (voskChunkPos > 0) feed()
 
-            val finalResult = recognizer.finalResult
-            android.util.Log.d("TranscriptionService", "Vosk finalResult: $finalResult")
-            val json = JSONObject(finalResult)
-            val text = json.optString("text", "").ifBlank { null } ?: return null
-            val segments = mutableListOf<TranscriptSegment>()
-            val wordsArr = json.optJSONArray("result")
-            if (wordsArr != null) {
-                for (i in 0 until wordsArr.length()) {
-                    val w = wordsArr.getJSONObject(i)
-                    segments.add(
-                        TranscriptSegment(
-                            word = w.optString("word"),
-                            startMs = (w.optDouble("start", 0.0) * 1000).toLong(),
-                            endMs = (w.optDouble("end", 0.0) * 1000).toLong()
-                        )
-                    )
-                }
-            }
-            return TranscriptionOutput(text, segments)
+            results += recognizer.finalResult
+            return mergeVoskResults(results)
         } catch (e: Exception) {
             android.util.Log.e("TranscriptionService", "decodeAndRecognize failed", e)
             return null
