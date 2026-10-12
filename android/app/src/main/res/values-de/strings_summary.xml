@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Zusammenfassen</string>
+    <string name="summary_title_key_points">Kernpunkte</string>
+    <string name="summary_title_ai">Zusammenfassung</string>
+    <string name="summary_note_extracted">Sätze aus dem Transkript</string>
+    <string name="summary_note_ai">Von der KI auf dem Gerät geschrieben</string>
+    <string name="summary_working">Kernpunkte werden gesucht…</string>
+    <string name="summary_too_short">Dieses Transkript ist zu kurz für eine Zusammenfassung.</string>
+    <string name="summary_stale">Das Transkript hat sich seit diesen Kernpunkten geändert.</string>
+    <string name="summary_update">Aktualisieren</string>
+    <string name="summary_copy">Kernpunkte kopieren</string>
+    <string name="summary_copied">Kernpunkte kopiert</string>
+    <string name="summary_hide">Kernpunkte ausblenden</string>
+    <string name="summary_show">Kernpunkte anzeigen</string>
+</resources>

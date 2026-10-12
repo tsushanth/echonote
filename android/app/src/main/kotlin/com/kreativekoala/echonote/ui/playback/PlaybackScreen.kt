@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.service.joinWords
+import com.kreativekoala.echonote.service.summary.SummaryUiState
 import com.kreativekoala.echonote.tts.ReadAloudSheet
 import com.kreativekoala.echonote.ui.components.WaveformView
 import com.kreativekoala.echonote.ui.theme.EchoTheme
@@ -67,6 +68,7 @@ fun PlaybackScreen(
     val trimEnd by viewModel.trimEnd.collectAsState()
     val transcriptSegments by viewModel.transcriptSegments.collectAsState()
     val activeSegmentIndex by viewModel.activeSegmentIndex.collectAsState()
+    val summaryState by viewModel.summaryState.collectAsState()
     val context = LocalContext.current
     var showMenu by remember { mutableStateOf(false) }
     var showReadAloud by remember { mutableStateOf(false) }
@@ -92,7 +94,8 @@ fun PlaybackScreen(
 
     // Items that sit above the transcript in the list; needed to scroll to the right row.
     val leadingItems = 1 + (if (isTranscribing) 1 else 0) + (if (transcriptionError != null) 1 else 0) +
-        (if (!hasText && !isTranscribing) 1 else 0)
+        (if (!hasText && !isTranscribing) 1 else 0) +
+        (if (hasText) summaryItemCount(summaryState) else 0)
     val listState = rememberLazyListState()
     val activeParagraph = paragraphIndexOf(paragraphs, activeSegmentIndex)
     // One stable lambda so paragraphs away from the playhead can still skip recomposition.
@@ -194,6 +197,15 @@ fun PlaybackScreen(
                                         showMenu = false
                                         if (paragraphs.isEmpty()) openPlainEditor()
                                         else openParagraphEditor(paragraphs[maxOf(activeParagraph, 0)])
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.summary_action)) },
+                                    leadingIcon = { Icon(Icons.Default.Notes, contentDescription = null) },
+                                    enabled = !isTranscribing && summaryState != SummaryUiState.Working,
+                                    onClick = {
+                                        showMenu = false
+                                        viewModel.summarize()
                                     }
                                 )
                                 DropdownMenuItem(
@@ -326,6 +338,7 @@ fun PlaybackScreen(
             }
 
             if (hasText) {
+                summaryItem(summaryState, onRefresh = viewModel::summarize)
                 if (paragraphs.isNotEmpty()) {
                     transcriptItems(
                         words = transcriptSegments,

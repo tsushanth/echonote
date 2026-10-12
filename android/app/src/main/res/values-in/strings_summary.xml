@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Ringkas</string>
+    <string name="summary_title_key_points">Poin penting</string>
+    <string name="summary_title_ai">Ringkasan</string>
+    <string name="summary_note_extracted">Kalimat yang dipilih dari transkrip</string>
+    <string name="summary_note_ai">Ditulis oleh AI di perangkat</string>
+    <string name="summary_working">Mencari poin penting…</string>
+    <string name="summary_too_short">Transkrip ini terlalu pendek untuk diringkas.</string>
+    <string name="summary_stale">Transkrip berubah setelah poin ini dibuat.</string>
+    <string name="summary_update">Perbarui</string>
+    <string name="summary_copy">Salin poin penting</string>
+    <string name="summary_copied">Poin penting disalin</string>
+    <string name="summary_hide">Sembunyikan poin penting</string>
+    <string name="summary_show">Tampilkan poin penting</string>
+</resources>

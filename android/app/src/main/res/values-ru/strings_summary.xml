@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">Кратко</string>
+    <string name="summary_title_key_points">Главное</string>
+    <string name="summary_title_ai">Сводка</string>
+    <string name="summary_note_extracted">Предложения из расшифровки</string>
+    <string name="summary_note_ai">Написано ИИ на устройстве</string>
+    <string name="summary_working">Ищем главное…</string>
+    <string name="summary_too_short">Эта расшифровка слишком короткая для сводки.</string>
+    <string name="summary_stale">Расшифровка изменилась после создания этих пунктов.</string>
+    <string name="summary_update">Обновить</string>
+    <string name="summary_copy">Копировать главное</string>
+    <string name="summary_copied">Главное скопировано</string>
+    <string name="summary_hide">Скрыть главное</string>
+    <string name="summary_show">Показать главное</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">สรุป</string>
+    <string name="summary_title_key_points">ประเด็นสำคัญ</string>
+    <string name="summary_title_ai">สรุป</string>
+    <string name="summary_note_extracted">ประโยคที่เลือกจากถอดเสียง</string>
+    <string name="summary_note_ai">เขียนโดย AI บนอุปกรณ์</string>
+    <string name="summary_working">กำลังหาประเด็นสำคัญ…</string>
+    <string name="summary_too_short">ข้อความถอดเสียงนี้สั้นเกินกว่าจะสรุปได้</string>
+    <string name="summary_stale">ข้อความถอดเสียงเปลี่ยนไปหลังสร้างประเด็นเหล่านี้</string>
+    <string name="summary_update">อัปเดต</string>
+    <string name="summary_copy">คัดลอกประเด็นสำคัญ</string>
+    <string name="summary_copied">คัดลอกประเด็นสำคัญแล้ว</string>
+    <string name="summary_hide">ซ่อนประเด็นสำคัญ</string>
+    <string name="summary_show">แสดงประเด็นสำคัญ</string>
+</resources>
