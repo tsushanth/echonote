@@ -1,0 +1,1 @@
+• Fix: Fast transcription no longer drops everything said before the last pause
