@@ -47,7 +47,7 @@ fun applyParagraphEdit(words: List<TranscriptSegment>, first: Int, end: Int, new
     val old = words.subList(first, end)
     val speaker = old.first().speaker
     val replacement = if (newWords.size == old.size) {
-        old.mapIndexed { i, w -> w.copy(word = newWords[i]) }
+        old.mapIndexed { i, w -> w.copy(word = newWords[i], uncertain = w.uncertain && w.word == newWords[i]) }
     } else {
         distributeByLength(newWords, old.first().startMs, old.last().endMs, speaker)
     }

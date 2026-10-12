@@ -67,10 +67,4 @@ class SummaryStoreTest {
         assertEquals(SummaryKind.EXTRACTIVE, summarize(ext, null, "t", lang, emptyList())!!.kind)
     }
 
-    @Test fun onDeviceAiIsOffAndOnlyEnglishJapaneseKorean() {
-        assertFalse(OnDeviceAiSummarizer.ENABLED)
-        assertEquals(null, OnDeviceAiSummarizer.mlKitLanguage(TranscriptionLanguage.SPANISH))
-        assertEquals(null, OnDeviceAiSummarizer.mlKitLanguage(TranscriptionLanguage.CHINESE))
-        assertEquals(listOf("a", "b", "c"), OnDeviceAiSummarizer.parseBullets("- a\n\n• b\n* c "))
-    }
 }

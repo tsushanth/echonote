@@ -68,4 +68,15 @@ class TranscriptEditTest {
         assertEquals("hello wrld again", transcriptText(base))
         assertEquals("日本語text", transcriptText(listOf(w("日", 0, 1), w("本", 1, 2), w("語", 2, 3), w("text", 3, 4))))
     }
+
+    @Test
+    fun aCorrectedWordLosesItsUncertainMarkButAnUntouchedOneKeepsIt() {
+        val flagged = listOf(
+            TranscriptSegment("hello", 0, 500, uncertain = true),
+            TranscriptSegment("wrld", 500, 900, uncertain = true),
+            TranscriptSegment("again", 3000, 3400)
+        )
+        val out = applyParagraphEdit(flagged, 0, 2, "hello world")!!
+        assertEquals(listOf(true, false, false), out.map { it.uncertain })
+    }
 }

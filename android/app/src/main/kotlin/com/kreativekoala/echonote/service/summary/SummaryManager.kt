@@ -18,15 +18,14 @@ sealed interface SummaryUiState {
 }
 
 /**
- * Chooses a summarizer, runs it, and stores the answer. Tries [primary] (the on-device AI one,
- * only when it is enabled and reports itself available) and falls back to the extractive one
- * on null or any failure.
+ * Chooses a summarizer, runs it, and stores the answer. Today that is the extractive one only; the
+ * `ai` slot in [summarize] is kept so an on-device model can be added later (see docs/SUMMARIES.md),
+ * with any null or failure falling back to extractive.
  */
 @Singleton
 class SummaryManager @Inject constructor(
     private val store: SummaryStore,
-    private val extractive: ExtractiveSummarizer,
-    private val onDeviceAi: OnDeviceAiSummarizer
+    private val extractive: ExtractiveSummarizer
 ) {
     suspend fun loadStored(recordingId: String, transcript: String?): SummaryUiState = withContext(Dispatchers.IO) {
         val stored = store.load(recordingId) ?: return@withContext SummaryUiState.None
@@ -40,7 +39,7 @@ class SummaryManager @Inject constructor(
         language: TranscriptionLanguage,
         segments: List<TranscriptSegment>
     ): SummaryUiState {
-        val result = summarize(extractive, onDeviceAi, transcript, language, segments)
+        val result = summarize(extractive, null, transcript, language, segments)
             ?: return SummaryUiState.TooShort
         withContext(Dispatchers.IO) {
             store.save(recordingId, StoredSummary(result, hashTranscript(transcript), System.currentTimeMillis()))
