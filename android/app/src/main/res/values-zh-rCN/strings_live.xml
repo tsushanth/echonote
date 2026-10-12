@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">实时转写</string>
+    <string name="live_transcript_starting">正在准备...</string>
+    <string name="live_transcript_listening">正在聆听...</string>
+    <string name="live_transcript_no_model">实时转写需要快速模型。请先运行一次快速转写来下载。录音会继续。</string>
+    <string name="live_transcript_unavailable">实时转写已停止。录音会继续。</string>
+    <string name="settings_live_transcript_title">录音时实时转写</string>
+    <string name="settings_live_transcript_subtitle">在你说话时显示文字。更耗电。需要所用语言的快速模型(Android 10 或更高版本)。</string>
+</resources>

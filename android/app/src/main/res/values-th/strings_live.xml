@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">ถอดเสียงสด</string>
+    <string name="live_transcript_starting">กำลังเตรียม...</string>
+    <string name="live_transcript_listening">กำลังฟัง...</string>
+    <string name="live_transcript_no_model">ถอดเสียงสดต้องใช้โมเดลแบบเร็ว ให้ถอดเสียงแบบเร็วหนึ่งครั้งเพื่อดาวน์โหลด การบันทึกยังคงดำเนินต่อไป</string>
+    <string name="live_transcript_unavailable">ถอดเสียงสดหยุดแล้ว การบันทึกยังคงดำเนินต่อไป</string>
+    <string name="settings_live_transcript_title">ถอดเสียงสดขณะบันทึก</string>
+    <string name="settings_live_transcript_subtitle">แสดงคำขณะที่คุณพูด ใช้แบตเตอรี่มากขึ้น ต้องมีโมเดลแบบเร็วของภาษาคุณ (Android 10 ขึ้นไป)</string>
+</resources>

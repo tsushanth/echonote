@@ -302,6 +302,8 @@ fun SettingsScreen(
                 Switch(checked = autoDeleteAudio, onCheckedChange = { viewModel.setAutoDeleteAudioAfterTranscription(it) })
             }
 
+            LiveTranscriptSettingRow()
+
             Spacer(modifier = Modifier.height(16.dp))
 
             SettingsSectionHeader(stringResource(R.string.settings_section_storage))

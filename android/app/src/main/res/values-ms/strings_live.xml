@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Transkrip langsung</string>
+    <string name="live_transcript_starting">Bersiap...</string>
+    <string name="live_transcript_listening">Mendengar...</string>
+    <string name="live_transcript_no_model">Transkrip langsung memerlukan model Pantas. Jalankan transkripsi Pantas sekali untuk memuat turunnya. Rakaman diteruskan.</string>
+    <string name="live_transcript_unavailable">Transkrip langsung berhenti. Rakaman diteruskan.</string>
+    <string name="settings_live_transcript_title">Transkrip langsung semasa merakam</string>
+    <string name="settings_live_transcript_subtitle">Menunjukkan perkataan semasa anda bercakap. Guna lebih banyak bateri. Perlukan model Pantas untuk bahasa anda (Android 10 atau lebih baharu).</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Live transcript</string>
+    <string name="live_transcript_starting">Getting ready...</string>
+    <string name="live_transcript_listening">Listening...</string>
+    <string name="live_transcript_no_model">Live transcript needs the Fast model. Run a Fast transcription once to download it. Recording continues.</string>
+    <string name="live_transcript_unavailable">Live transcript stopped. Recording continues.</string>
+    <string name="settings_live_transcript_title">Live transcript while recording</string>
+    <string name="settings_live_transcript_subtitle">Shows words as you speak. Uses more battery. Needs the Fast model for your language (Android 10 or newer).</string>
+</resources>

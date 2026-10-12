@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="live_transcript_label">Transcripción en vivo</string>
+    <string name="live_transcript_starting">Preparando...</string>
+    <string name="live_transcript_listening">Escuchando...</string>
+    <string name="live_transcript_no_model">La transcripción en vivo necesita el modelo Rápido. Haz una transcripción rápida una vez para descargarlo. La grabación continúa.</string>
+    <string name="live_transcript_unavailable">La transcripción en vivo se detuvo. La grabación continúa.</string>
+    <string name="settings_live_transcript_title">Transcripción en vivo al grabar</string>
+    <string name="settings_live_transcript_subtitle">Muestra las palabras mientras hablas. Usa más batería. Necesita el modelo Rápido de tu idioma (Android 10 o superior).</string>
+</resources>
