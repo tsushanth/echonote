@@ -78,7 +78,7 @@ class TranscriptionService @Inject constructor(
             val language = settingsRepository.transcriptionLanguage.first()
 
             // Accurate picks the best engine for the language; where that is Vosk it is the same as Fast.
-            val engine = EnginePlan.forLanguage(language)
+            val engine = EnginePlan.forLanguage(language, DeviceMemory.totalBytes(context))
             if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE && engine != AsrEngine.VOSK) {
                 return@withContext transcribeWithSherpa(fileUri, language, engine)
             }

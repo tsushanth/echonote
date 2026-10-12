@@ -25,6 +25,7 @@ import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.service.AsrEngine
+import com.kreativekoala.echonote.service.DeviceMemory
 import com.kreativekoala.echonote.service.EnginePlan
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
@@ -190,28 +191,34 @@ fun SettingsScreen(
                 title = "Transcription Quality",
                 subtitle = transcriptionEngine.summary
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TranscriptionEngine.entries.forEach { engine ->
-                        FilterChip(
-                            selected = transcriptionEngine == engine,
-                            onClick = { viewModel.setTranscriptionEngine(engine) },
-                            label = { Text(engine.displayName) }
+                Column {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        TranscriptionEngine.entries.forEach { engine ->
+                            FilterChip(
+                                selected = transcriptionEngine == engine,
+                                onClick = { viewModel.setTranscriptionEngine(engine) },
+                                label = { Text(engine.displayName) }
+                            )
+                        }
+                    }
+                    if (transcriptionEngine == TranscriptionEngine.ACCURATE) {
+                        val best = EnginePlan.bestForLanguage(transcriptionLanguage)
+                        val actual = EnginePlan.forLanguage(transcriptionLanguage, DeviceMemory.totalBytes(LocalContext.current))
+                        val note = when {
+                            best == AsrEngine.VOSK ->
+                                "For ${transcriptionLanguage.displayName}, Fast is already the best model we have, so Accurate uses it. Speaker labels are not available."
+                            actual == AsrEngine.VOSK ->
+                                "Accurate needs more memory than this phone has, so Fast is used. Speaker labels are not available."
+                            else ->
+                                "For ${transcriptionLanguage.displayName}, Accurate uses ${best.displayName} (${best.downloadMb} MB download, once)."
+                        }
+                        Text(
+                            text = note,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 6.dp)
                         )
                     }
-                }
-                if (transcriptionEngine == TranscriptionEngine.ACCURATE) {
-                    val plan = EnginePlan.forLanguage(transcriptionLanguage)
-                    val note = if (plan == AsrEngine.VOSK) {
-                        "For ${transcriptionLanguage.displayName}, Fast is already the best model we have, so Accurate uses it. Speaker labels are not available."
-                    } else {
-                        "For ${transcriptionLanguage.displayName}, Accurate uses ${plan.displayName} (${plan.downloadMb} MB download, once)."
-                    }
-                    Text(
-                        text = note,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = 6.dp)
-                    )
                 }
             }
 

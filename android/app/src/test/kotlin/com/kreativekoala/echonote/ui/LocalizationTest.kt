@@ -36,7 +36,16 @@ class LocalizationTest {
             TranscriptionLanguage.ENGLISH, TranscriptionLanguage.SPANISH, TranscriptionLanguage.PORTUGUESE,
             TranscriptionLanguage.GERMAN, TranscriptionLanguage.FRENCH, TranscriptionLanguage.JAPANESE, TranscriptionLanguage.KOREAN
         ).forEach { assertEquals(it.name, AsrEngine.WHISPER_SMALL, plan[it]) }
-        assertFalse(EnginePlan.accurateDiffersFromFast(TranscriptionLanguage.HINDI))
-        assertTrue(EnginePlan.accurateDiffersFromFast(TranscriptionLanguage.ENGLISH))
+    }
+
+    @Test
+    fun smallPhonesFallBackToVoskWhereWhisperSmallWouldBeUsed() {
+        val fourGb = 3_800_000_000L
+        val sixGb = 5_700_000_000L
+        assertEquals(AsrEngine.VOSK, EnginePlan.forLanguage(TranscriptionLanguage.ENGLISH, fourGb))
+        assertEquals(AsrEngine.WHISPER_SMALL, EnginePlan.forLanguage(TranscriptionLanguage.ENGLISH, sixGb))
+        // SenseVoice peaked at about 0.5 GB, so a small phone still gets it
+        assertEquals(AsrEngine.SENSE_VOICE, EnginePlan.forLanguage(TranscriptionLanguage.CHINESE, fourGb))
+        assertTrue(EnginePlan.bestForLanguage(TranscriptionLanguage.ENGLISH) == AsrEngine.WHISPER_SMALL)
     }
 }

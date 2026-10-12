@@ -30,14 +30,24 @@ enum class AsrEngine(val displayName: String, val downloadMb: Int) {
  * Where Vosk is the choice, Accurate and speaker labels simply use Fast.
  */
 object EnginePlan {
-    fun forLanguage(language: TranscriptionLanguage): AsrEngine = when (language) {
+    /**
+     * Whisper small peaked at about 1.3 GB of memory on a Pixel 9 Pro (SenseVoice about 0.5 GB). A 4 GB phone
+     * reports about 3.8e9 bytes of RAM and a 6 GB phone about 5.7e9, so below 5e9 it is not used.
+     */
+    const val WHISPER_SMALL_MIN_RAM_BYTES = 5_000_000_000L
+
+    /** The engine best for [language], ignoring how much memory the phone has. */
+    fun bestForLanguage(language: TranscriptionLanguage): AsrEngine = when (language) {
         TranscriptionLanguage.CHINESE -> AsrEngine.SENSE_VOICE
         TranscriptionLanguage.ITALIAN, TranscriptionLanguage.HINDI -> AsrEngine.VOSK
         else -> AsrEngine.WHISPER_SMALL
     }
 
-    /** True when Accurate does something different from Fast for this language. */
-    fun accurateDiffersFromFast(language: TranscriptionLanguage): Boolean = forLanguage(language) != AsrEngine.VOSK
+    /** The engine to run: the best one, or Vosk when the phone is too small for it. */
+    fun forLanguage(language: TranscriptionLanguage, totalMemBytes: Long = Long.MAX_VALUE): AsrEngine {
+        val best = bestForLanguage(language)
+        return if (best == AsrEngine.WHISPER_SMALL && totalMemBytes < WHISPER_SMALL_MIN_RAM_BYTES) AsrEngine.VOSK else best
+    }
 
     /** Whisper needs a language code; SenseVoice takes the same ISO codes. */
     fun languageCode(language: TranscriptionLanguage): String = language.bcp47Tag.substringBefore('-')
