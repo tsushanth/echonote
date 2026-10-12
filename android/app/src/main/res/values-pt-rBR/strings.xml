@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Distinguem vozes para os rótulos de falantes. NeMo é Apache 2.0, pyannote é MIT.</string>
     <string name="acknowledgments_fonts_desc">As fontes do app. Licença SIL Open Font 1.1.</string>
     <string name="acknowledgments_view_licenses">Ver os textos completos das licenças</string>
+    <string name="acknowledgments_nemo_desc">Transcrição precisa para alemão, espanhol e francês. CC BY 4.0 ou Apache 2.0.</string>
     <string name="licenses_title">Licenças de código aberto</string>
 </resources>

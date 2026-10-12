@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Rozróżniają głosy na potrzeby etykiet rozmówców. NeMo: Apache 2.0, pyannote: MIT.</string>
     <string name="acknowledgments_fonts_desc">Czcionki aplikacji. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Pokaż pełne teksty licencji</string>
+    <string name="acknowledgments_nemo_desc">Dokładna transkrypcja dla niemieckiego, hiszpańskiego i francuskiego. CC BY 4.0 lub Apache 2.0.</string>
     <string name="licenses_title">Licencje open source</string>
 </resources>

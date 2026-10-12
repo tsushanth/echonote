@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Membezakan suara untuk label penutur. NeMo ialah Apache 2.0, pyannote ialah MIT.</string>
     <string name="acknowledgments_fonts_desc">Fon aplikasi. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Lihat teks lesen penuh</string>
+    <string name="acknowledgments_nemo_desc">Transkripsi tepat untuk bahasa Jerman, Sepanyol dan Perancis. CC BY 4.0 atau Apache 2.0.</string>
     <string name="licenses_title">Lesen sumber terbuka</string>
 </resources>

@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">화자 레이블을 위해 목소리를 구분합니다. NeMo는 Apache 2.0, pyannote는 MIT.</string>
     <string name="acknowledgments_fonts_desc">앱 글꼴. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">라이선스 전문 보기</string>
+    <string name="acknowledgments_nemo_desc">독일어, 스페인어, 프랑스어용 정확한 받아쓰기. CC BY 4.0 또는 Apache 2.0.</string>
     <string name="licenses_title">오픈소스 라이선스</string>
 </resources>

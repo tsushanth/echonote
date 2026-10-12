@@ -246,10 +246,16 @@ class TranscriptionService @Inject constructor(
      * requested, the audio itself (recordings up to 30 minutes).
      */
     private suspend fun transcribeWithSherpa(fileUri: String, language: TranscriptionLanguage, engine: AsrEngine): TranscriptionResult {
-        val (dirName, files) = when (engine) {
-            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL_DIR to SherpaModels.WHISPER_SMALL
-            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE_DIR to SherpaModels.SENSE_VOICE
+        val dirName = when (engine) {
+            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL_DIR
+            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE_DIR
+            AsrEngine.NEMO_FAST_CONFORMER -> SherpaModels.NEMO_DIR
             AsrEngine.VOSK -> return TranscriptionResult.Error("Fast engine selected")
+        }
+        val files = when (engine) {
+            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL
+            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE
+            else -> SherpaModels.NEMO_FAST_CONFORMER.files
         }
         val modelDir = File(context.filesDir, dirName)
         val wantSpeakers = settingsRepository.identifySpeakers.first()
@@ -260,7 +266,11 @@ class TranscriptionService @Inject constructor(
         try {
             if (!ModelDownloader.isReady(modelDir, files)) {
                 _statusMessage.value = "Downloading ${language.displayName} speech model (${engine.downloadMb} MB)..."
-                ModelDownloader.ensure(modelDir, files) { _progress.value = 0.02f + it * 0.2f }
+                if (engine == AsrEngine.NEMO_FAST_CONFORMER) {
+                    ModelDownloader.ensureArchive(modelDir, SherpaModels.NEMO_FAST_CONFORMER) { _progress.value = 0.02f + it * 0.2f }
+                } else {
+                    ModelDownloader.ensure(modelDir, files) { _progress.value = 0.02f + it * 0.2f }
+                }
             }
             if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
                 _statusMessage.value = "Downloading speaker model (46 MB)..."

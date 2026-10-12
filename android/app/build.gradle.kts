@@ -171,6 +171,9 @@ dependencies {
     // sherpa-onnx: Whisper engine + speaker labels (AAR fetched by downloadSherpaOnnx)
     implementation(files(sherpaAar))
 
+    // Unpacks the .tar.bz2 the NeMo FastConformer model is published as (Apache 2.0)
+    implementation("org.apache.commons:commons-compress:1.27.1")
+
     // WorkManager + Hilt-Work (background upload of opt-in voice contributions)
     implementation("androidx.work:work-runtime-ktx:2.10.0")
     implementation("androidx.hilt:hilt-work:1.2.0")

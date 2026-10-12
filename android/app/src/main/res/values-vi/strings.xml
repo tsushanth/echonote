@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Phân biệt giọng nói để gắn nhãn người nói. NeMo dùng Apache 2.0, pyannote dùng MIT.</string>
     <string name="acknowledgments_fonts_desc">Phông chữ của ứng dụng. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Xem toàn văn giấy phép</string>
+    <string name="acknowledgments_nemo_desc">Chép lời chính xác cho tiếng Đức, Tây Ban Nha và Pháp. CC BY 4.0 hoặc Apache 2.0.</string>
     <string name="licenses_title">Giấy phép nguồn mở</string>
 </resources>

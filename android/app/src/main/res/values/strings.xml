@@ -243,5 +243,6 @@
     <string name="acknowledgments_speaker_desc">Tell voices apart for speaker labels. NeMo is Apache 2.0, pyannote is MIT.</string>
     <string name="acknowledgments_fonts_desc">The app’s typefaces. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">View full license texts</string>
+    <string name="acknowledgments_nemo_desc">Accurate transcription for German, Spanish and French. CC BY 4.0 or Apache 2.0.</string>
     <string name="licenses_title">Open-source licenses</string>
 </resources>

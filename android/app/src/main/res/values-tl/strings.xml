@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Nagtatangi ng mga boses para sa mga label ng nagsasalita. Apache 2.0 ang NeMo, MIT ang pyannote.</string>
     <string name="acknowledgments_fonts_desc">Ang mga font ng app. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Tingnan ang buong teksto ng mga lisensya</string>
+    <string name="acknowledgments_nemo_desc">Tumpak na transkripsyon para sa Aleman, Espanyol, at Pranses. CC BY 4.0 o Apache 2.0.</string>
     <string name="licenses_title">Mga lisensya ng open source</string>
 </resources>

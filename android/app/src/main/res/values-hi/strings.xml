@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">वक्ता लेबल के लिए आवाज़ों को अलग पहचानते हैं। NeMo Apache 2.0 है, pyannote MIT है।</string>
     <string name="acknowledgments_fonts_desc">ऐप के फ़ॉन्ट। SIL ओपन फ़ॉन्ट लाइसेंस 1.1।</string>
     <string name="acknowledgments_view_licenses">पूरे लाइसेंस पाठ देखें</string>
+    <string name="acknowledgments_nemo_desc">जर्मन, स्पेनिश और फ़्रेंच के लिए सटीक ट्रांसक्रिप्शन। CC BY 4.0 या Apache 2.0।</string>
     <string name="licenses_title">ओपन-सोर्स लाइसेंस</string>
 </resources>

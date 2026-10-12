@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Konuşmacı etiketleri için sesleri ayırt eder. NeMo Apache 2.0, pyannote MIT lisanslıdır.</string>
     <string name="acknowledgments_fonts_desc">Uygulamanın yazı tipleri. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Lisansların tam metinlerini göster</string>
+    <string name="acknowledgments_nemo_desc">Almanca, İspanyolca ve Fransızca için doğru transkripsiyon. CC BY 4.0 veya Apache 2.0.</string>
     <string name="licenses_title">Açık kaynak lisansları</string>
 </resources>

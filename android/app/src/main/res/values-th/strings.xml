@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">แยกเสียงเพื่อใส่ป้ายผู้พูด NeMo ใช้ Apache 2.0 และ pyannote ใช้ MIT</string>
     <string name="acknowledgments_fonts_desc">แบบอักษรของแอป SIL Open Font License 1.1</string>
     <string name="acknowledgments_view_licenses">ดูข้อความสัญญาอนุญาตฉบับเต็ม</string>
+    <string name="acknowledgments_nemo_desc">ถอดเสียงที่แม่นยำสำหรับภาษาเยอรมัน สเปน และฝรั่งเศส CC BY 4.0 หรือ Apache 2.0</string>
     <string name="licenses_title">สัญญาอนุญาตโอเพนซอร์ส</string>
 </resources>

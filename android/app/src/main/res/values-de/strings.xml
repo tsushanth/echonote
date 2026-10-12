@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Unterscheiden Stimmen für die Sprecherzuordnung. NeMo steht unter Apache 2.0, pyannote unter MIT.</string>
     <string name="acknowledgments_fonts_desc">Die Schriften der App. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Vollständige Lizenztexte anzeigen</string>
+    <string name="acknowledgments_nemo_desc">Genaue Transkription für Deutsch, Spanisch und Französisch. CC BY 4.0 oder Apache 2.0.</string>
     <string name="licenses_title">Open-Source-Lizenzen</string>
 </resources>

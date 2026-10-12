@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">区分声音以标注说话人。NeMo 采用 Apache 2.0，pyannote 采用 MIT。</string>
     <string name="acknowledgments_fonts_desc">应用字体。SIL Open Font License 1.1。</string>
     <string name="acknowledgments_view_licenses">查看许可证全文</string>
+    <string name="acknowledgments_nemo_desc">德语、西班牙语和法语的高精度转写。CC BY 4.0 或 Apache 2.0。</string>
     <string name="licenses_title">开源许可证</string>
 </resources>

@@ -32,7 +32,7 @@ class LicensesTest {
         val text = licenseFile.readText()
         listOf(
             "Whisper", "OpenAI", "sherpa-onnx", "ONNX Runtime", "Microsoft Corporation", "pyannote", "CNRS",
-            "TitaNet", "NVIDIA", "Vosk", "Figtree", "Source Serif 4"
+            "TitaNet", "NVIDIA", "FastConformer", "Commons Compress", "CC BY 4.0", "Vosk", "Figtree", "Source Serif 4"
         ).forEach { assertTrue("missing credit: $it", text.contains(it)) }
         // the three full license texts, not just names
         assertTrue(text.contains("=== Apache License 2.0 ==="))

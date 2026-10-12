@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">تمييز الأصوات لوسم المتحدثين. NeMo بترخيص Apache 2.0 وpyannote بترخيص MIT.</string>
     <string name="acknowledgments_fonts_desc">خطوط التطبيق. رخصة الخطوط المفتوحة SIL 1.1.</string>
     <string name="acknowledgments_view_licenses">عرض نصوص التراخيص كاملة</string>
+    <string name="acknowledgments_nemo_desc">نسخ دقيق للألمانية والإسبانية والفرنسية. CC BY 4.0 أو Apache 2.0.</string>
     <string name="licenses_title">تراخيص المصادر المفتوحة</string>
 </resources>

@@ -12,7 +12,7 @@ import org.junit.Test
 class LocalizationTest {
     private val keys = listOf(
         "acknowledgments_models_title", "acknowledgments_whisper_desc", "acknowledgments_sherpa_desc",
-        "acknowledgments_speaker_desc", "acknowledgments_fonts_desc", "acknowledgments_view_licenses", "licenses_title"
+        "acknowledgments_speaker_desc", "acknowledgments_nemo_desc", "acknowledgments_fonts_desc", "acknowledgments_view_licenses", "licenses_title"
     )
 
     @Test
@@ -33,9 +33,11 @@ class LocalizationTest {
         assertEquals(AsrEngine.VOSK, plan[TranscriptionLanguage.HINDI])
         assertEquals(AsrEngine.VOSK, plan[TranscriptionLanguage.ITALIAN])
         listOf(
-            TranscriptionLanguage.ENGLISH, TranscriptionLanguage.SPANISH, TranscriptionLanguage.PORTUGUESE,
-            TranscriptionLanguage.GERMAN, TranscriptionLanguage.FRENCH, TranscriptionLanguage.JAPANESE, TranscriptionLanguage.KOREAN
+            TranscriptionLanguage.ENGLISH, TranscriptionLanguage.PORTUGUESE, TranscriptionLanguage.JAPANESE, TranscriptionLanguage.KOREAN
         ).forEach { assertEquals(it.name, AsrEngine.WHISPER_SMALL, plan[it]) }
+        // NeMo tied Whisper small on these three (bootstrap CIs span 0) and is smaller, faster, with real word times
+        listOf(TranscriptionLanguage.GERMAN, TranscriptionLanguage.SPANISH, TranscriptionLanguage.FRENCH)
+            .forEach { assertEquals(it.name, AsrEngine.NEMO_FAST_CONFORMER, plan[it]) }
     }
 
     @Test
@@ -47,5 +49,7 @@ class LocalizationTest {
         // SenseVoice peaked at about 0.5 GB, so a small phone still gets it
         assertEquals(AsrEngine.SENSE_VOICE, EnginePlan.forLanguage(TranscriptionLanguage.CHINESE, fourGb))
         assertTrue(EnginePlan.bestForLanguage(TranscriptionLanguage.ENGLISH) == AsrEngine.WHISPER_SMALL)
+        // NeMo is small enough for any phone, so it is not memory-gated
+        assertEquals(AsrEngine.NEMO_FAST_CONFORMER, EnginePlan.forLanguage(TranscriptionLanguage.GERMAN, fourGb))
     }
 }

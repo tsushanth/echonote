@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Различают голоса для меток говорящих. NeMo: Apache 2.0, pyannote: MIT.</string>
     <string name="acknowledgments_fonts_desc">Шрифты приложения. SIL Open Font License 1.1.</string>
     <string name="acknowledgments_view_licenses">Показать полные тексты лицензий</string>
+    <string name="acknowledgments_nemo_desc">Точная транскрипция для немецкого, испанского и французского. CC BY 4.0 или Apache 2.0.</string>
     <string name="licenses_title">Лицензии открытого ПО</string>
 </resources>

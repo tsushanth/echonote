@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">Distinguent les voix pour les étiquettes de locuteurs. NeMo est sous Apache 2.0, pyannote sous MIT.</string>
     <string name="acknowledgments_fonts_desc">Les polices de l’application. Licence SIL Open Font 1.1.</string>
     <string name="acknowledgments_view_licenses">Afficher les textes complets des licences</string>
+    <string name="acknowledgments_nemo_desc">Transcription précise pour l’allemand, l’espagnol et le français. CC BY 4.0 ou Apache 2.0.</string>
     <string name="licenses_title">Licences open source</string>
 </resources>

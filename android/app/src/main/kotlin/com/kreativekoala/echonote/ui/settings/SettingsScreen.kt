@@ -610,6 +610,7 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
             FrameworkRow("Whisper (OpenAI)", stringResource(R.string.acknowledgments_whisper_desc))
             FrameworkRow("sherpa-onnx, ONNX Runtime", stringResource(R.string.acknowledgments_sherpa_desc))
             FrameworkRow("NVIDIA TitaNet, pyannote", stringResource(R.string.acknowledgments_speaker_desc))
+            FrameworkRow("NVIDIA NeMo FastConformer", stringResource(R.string.acknowledgments_nemo_desc))
             FrameworkRow("Figtree, Source Serif 4", stringResource(R.string.acknowledgments_fonts_desc))
             Spacer(modifier = Modifier.height(8.dp))
             TextButton(onClick = { showLicenseTexts = true }) { Text(stringResource(R.string.acknowledgments_view_licenses)) }

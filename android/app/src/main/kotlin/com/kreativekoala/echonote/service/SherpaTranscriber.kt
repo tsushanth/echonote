@@ -3,6 +3,7 @@ package com.kreativekoala.echonote.service
 import com.k2fsa.sherpa.onnx.OfflineModelConfig
 import com.k2fsa.sherpa.onnx.OfflineRecognizer
 import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
+import com.k2fsa.sherpa.onnx.OfflineNemoEncDecCtcModelConfig
 import com.k2fsa.sherpa.onnx.OfflineSenseVoiceModelConfig
 import com.k2fsa.sherpa.onnx.OfflineWhisperModelConfig
 import com.kreativekoala.echonote.data.model.TranscriptSegment
@@ -21,7 +22,7 @@ private const val MAX_KEPT_SAMPLES = 30 * 60 * SAMPLE_RATE
  * identified afterwards (dropped past 30 minutes, which sets [audioTooLong]).
  *
  * Whisper's exports return no token times, so its words are timed by spreading them over the speech in
- * each window; SenseVoice returns real times, which are used as they are.
+ * each window; SenseVoice and NeMo return real times, which are used as they are.
  */
 class SherpaTranscriber(
     private val engine: AsrEngine,
@@ -52,6 +53,11 @@ class SherpaTranscriber(
                         language = languageCode,
                         useInverseTextNormalization = true
                     ),
+                    tokens = File(modelDir, "tokens.txt").absolutePath,
+                    numThreads = 4
+                )
+                AsrEngine.NEMO_FAST_CONFORMER -> OfflineModelConfig(
+                    nemo = OfflineNemoEncDecCtcModelConfig(model = File(modelDir, "model.int8.onnx").absolutePath),
                     tokens = File(modelDir, "tokens.txt").absolutePath,
                     numThreads = 4
                 )

@@ -7,6 +7,7 @@ enum class AsrEngine(val displayName: String, val downloadMb: Int) {
     /** Small Kaldi models; the Fast option, one per language, downloaded on first use. */
     VOSK("Vosk", 0),
     WHISPER_SMALL("Whisper small", 375),
+    NEMO_FAST_CONFORMER("NeMo FastConformer", 103),
     SENSE_VOICE("SenseVoice", 237)
 }
 
@@ -15,17 +16,17 @@ enum class AsrEngine(val displayName: String, val downloadMb: Int) {
  * 25 FLEURS read-speech clips per language (tools/asr-bench, ml_*.py). Error rate %, lower is better
  * (WER; CER for Chinese, Japanese, Korean):
  *
- *   lang  Vosk  Whisper-base  Whisper-small  SenseVoice   chosen
- *   en    24.0     10.9           8.9            -        Whisper small
- *   es    11.5     10.7           5.6            -        Whisper small
- *   pt    29.6     16.7           6.3            -        Whisper small
- *   de    23.8     20.9           9.1            -        Whisper small
- *   fr    19.4     32.2          12.8            -        Whisper small
- *   ja    22.2     27.9          20.0           78 (broken)  Whisper small
- *   ko    29.8     25.0          22.0           79 (broken)  Whisper small
- *   zh    24.2     46.9          39.3           11.9      SenseVoice
- *   it     9.0     21.2           9.8            -        Vosk (Whisper is no better)
- *   hi    16.4    115 (garbage)  90.7            -        Vosk (no usable small Whisper)
+ *   lang  Vosk  Whisper-small  NeMo FC  SenseVoice   chosen
+ *   en    24.0       8.9        16.2        -        Whisper small (clearly better, CI excludes 0)
+ *   pt    29.6       6.3          -         -        Whisper small
+ *   ja    22.2      20.0          -        78 (broken)  Whisper small
+ *   ko    29.8      22.0          -        79 (broken)  Whisper small
+ *   de    23.8       9.1         9.1        -        NeMo (tied; 3.6x smaller, ~15x faster, real word times)
+ *   es    11.5       5.6         6.9        -        NeMo (tied: CI -5.1..+2.0 pts; same reasons)
+ *   fr    19.4      12.8        11.5        -        NeMo (better, though within noise)
+ *   zh    24.2      39.3          -        11.9      SenseVoice
+ *   it     9.0       9.8          -         -        Vosk (nothing is better)
+ *   hi    16.4      90.7          -         -        Vosk (Whisper is unusable)
  *
  * Where Vosk is the choice, Accurate and speaker labels simply use Fast.
  */
@@ -39,6 +40,7 @@ object EnginePlan {
     /** The engine best for [language], ignoring how much memory the phone has. */
     fun bestForLanguage(language: TranscriptionLanguage): AsrEngine = when (language) {
         TranscriptionLanguage.CHINESE -> AsrEngine.SENSE_VOICE
+        TranscriptionLanguage.GERMAN, TranscriptionLanguage.SPANISH, TranscriptionLanguage.FRENCH -> AsrEngine.NEMO_FAST_CONFORMER
         TranscriptionLanguage.ITALIAN, TranscriptionLanguage.HINDI -> AsrEngine.VOSK
         else -> AsrEngine.WHISPER_SMALL
     }

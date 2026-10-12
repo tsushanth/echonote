@@ -215,5 +215,6 @@
     <string name="acknowledgments_speaker_desc">声を区別して話者ラベルを付けます。NeMo は Apache 2.0、pyannote は MIT。</string>
     <string name="acknowledgments_fonts_desc">アプリの書体。SIL Open Font License 1.1。</string>
     <string name="acknowledgments_view_licenses">ライセンス全文を表示</string>
+    <string name="acknowledgments_nemo_desc">ドイツ語、スペイン語、フランス語の高精度な文字起こし。CC BY 4.0 または Apache 2.0。</string>
     <string name="licenses_title">オープンソースライセンス</string>
 </resources>

@@ -10,6 +10,10 @@ pyannote segmentation 3.0 -- MIT License, Copyright (c) 2020 CNRS (pyannote.audi
 
 NVIDIA NeMo TitaNet-small speaker model -- distributed by NVIDIA under the license of the NVIDIA NeMo Toolkit, the Apache License 2.0. Tells voices apart. Distributed in ONNX form by the sherpa-onnx project.
 
+NVIDIA NeMo FastConformer multilingual speech model (English, German, Spanish, French) -- Copyright NVIDIA. NVIDIA releases its NeMo speech models under Creative Commons Attribution 4.0 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) or the Apache License 2.0 of the NeMo Toolkit. Used for Accurate transcription of German, Spanish and French. Converted to ONNX and quantized to int8 by the sherpa-onnx project; the model itself was not otherwise changed.
+
+Apache Commons Compress -- Apache License 2.0. Unpacks the model download.
+
 Vosk speech recognition library and its small language models -- Apache License 2.0, Copyright Alpha Cephei Inc. Used for Fast transcription.
 
 Figtree font -- SIL Open Font License 1.1, Copyright 2022 The Figtree Project Authors.
@@ -22,7 +26,7 @@ Analytics and advertising SDKs in this app are used under their own terms and ar
 
 
 === Apache License 2.0 ===
-(applies to sherpa-onnx, NVIDIA NeMo TitaNet-small, Vosk, Jetpack, Media3, Dagger Hilt, OkHttp)
+(applies to sherpa-onnx, NVIDIA NeMo TitaNet-small and FastConformer where licensed under it, Apache Commons Compress, Vosk, Jetpack, Media3, Dagger Hilt, OkHttp)
 
 Apache License
                            Version 2.0, January 2004
@@ -350,3 +354,9 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+=== Creative Commons Attribution 4.0 (CC BY 4.0) ===
+(applies to the NVIDIA NeMo FastConformer model where licensed under it)
+
+You may share and adapt this model, including commercially, if you give appropriate credit, link to the license, and indicate changes. Credit: NVIDIA NeMo FastConformer multilingual model. Changes: converted to ONNX and quantized to int8 by the sherpa-onnx project. License text: https://creativecommons.org/licenses/by/4.0/legalcode
