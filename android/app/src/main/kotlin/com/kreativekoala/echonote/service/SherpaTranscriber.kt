@@ -3,6 +3,7 @@ package com.kreativekoala.echonote.service
 import com.k2fsa.sherpa.onnx.OfflineModelConfig
 import com.k2fsa.sherpa.onnx.OfflineRecognizer
 import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
+import com.k2fsa.sherpa.onnx.OfflineSenseVoiceModelConfig
 import com.k2fsa.sherpa.onnx.OfflineWhisperModelConfig
 import com.kreativekoala.echonote.data.model.TranscriptSegment
 import java.io.File
@@ -15,11 +16,15 @@ private const val SILENCE_MEAN_ABS = 40                // of 32768; below this a
 private const val MAX_KEPT_SAMPLES = 30 * 60 * SAMPLE_RATE
 
 /**
- * Receives 16 kHz mono audio in chunks, cuts it into windows at quiet moments, and runs
- * Whisper on each window. Keeps the audio too when [keepAudio] is set so speakers can be
+ * Receives 16 kHz mono audio in chunks, cuts it into windows at quiet moments, and runs the chosen
+ * sherpa-onnx engine on each window. Keeps the audio too when [keepAudio] is set so speakers can be
  * identified afterwards (dropped past 30 minutes, which sets [audioTooLong]).
+ *
+ * Whisper's exports return no token times, so its words are timed by spreading them over the speech in
+ * each window; SenseVoice returns real times, which are used as they are.
  */
-class WhisperTranscriber(
+class SherpaTranscriber(
+    private val engine: AsrEngine,
     private val modelDir: File,
     private val languageCode: String,
     private val keepAudio: Boolean,
@@ -29,17 +34,29 @@ class WhisperTranscriber(
     private val recognizer: OfflineRecognizer = OfflineRecognizer(
         null,
         OfflineRecognizerConfig(
-            modelConfig = OfflineModelConfig(
-                whisper = OfflineWhisperModelConfig(
-                    encoder = File(modelDir, "encoder.onnx").absolutePath,
-                    decoder = File(modelDir, "decoder.onnx").absolutePath,
-                    language = languageCode,
-                    task = "transcribe",
-                    enableTokenTimestamps = true
-                ),
-                tokens = File(modelDir, "tokens.txt").absolutePath,
-                numThreads = 4
-            )
+            modelConfig = when (engine) {
+                AsrEngine.WHISPER_SMALL -> OfflineModelConfig(
+                    whisper = OfflineWhisperModelConfig(
+                        encoder = File(modelDir, "encoder.onnx").absolutePath,
+                        decoder = File(modelDir, "decoder.onnx").absolutePath,
+                        language = languageCode,
+                        task = "transcribe",
+                        enableTokenTimestamps = true
+                    ),
+                    tokens = File(modelDir, "tokens.txt").absolutePath,
+                    numThreads = 4
+                )
+                AsrEngine.SENSE_VOICE -> OfflineModelConfig(
+                    senseVoice = OfflineSenseVoiceModelConfig(
+                        model = File(modelDir, "model.onnx").absolutePath,
+                        language = languageCode,
+                        useInverseTextNormalization = true
+                    ),
+                    tokens = File(modelDir, "tokens.txt").absolutePath,
+                    numThreads = 4
+                )
+                AsrEngine.VOSK -> error("Vosk does not run through sherpa-onnx")
+            }
         )
     )
 
@@ -105,16 +122,14 @@ class WhisperTranscriber(
             recognizer.decode(stream)
             val result = recognizer.getResult(stream)
             var found = tokensToWords(result.tokens, result.timestamps, result.durations, windowStartMs)
-            if (found.isEmpty() && result.text.isNotBlank()) {
-                // No usable token timings: spread the words evenly over the window.
-                val parts = result.text.trim().split(Regex("\\s+"))
-                val span = count * 1000L / SAMPLE_RATE
-                found = parts.mapIndexed { i, w ->
-                    TranscriptSegment(w, windowStartMs + span * i / parts.size, windowStartMs + span * (i + 1) / parts.size)
-                }
+            if (found.isEmpty()) {
+                // No token times (Whisper): time the words over the speech in this window.
+                val spoken = groupTokens(result.tokens).map { it.text }
+                    .ifEmpty { result.text.trim().split(Regex("\\s+")).filter { it.isNotEmpty() } }
+                found = distributeOverSpeech(spoken, speechSpans(window, count), windowStartMs)
             }
             words += found
-            if (found.isNotEmpty()) onPartial(words.joinToString(" ") { it.word })
+            if (found.isNotEmpty()) onPartial(joinWords(words.map { it.word }))
         } finally {
             stream.release()
         }

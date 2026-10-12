@@ -6,11 +6,73 @@ import kotlin.math.abs
 /** A span of audio attributed to one speaker, in milliseconds. */
 data class SpeakerSpan(val startMs: Long, val endMs: Long, val speaker: Int)
 
+/** Scripts written without spaces between words: Han, Hiragana, Katakana and their punctuation. */
+fun isNoSpaceScript(c: Char): Boolean =
+    c in '\u3040'..'\u30FF' || c in '\u3400'..'\u4DBF' || c in '\u4E00'..'\u9FFF' ||
+        c in '\u3000'..'\u303F' || c in '\uFF00'..'\uFFEF' || c in '\u31F0'..'\u31FF'
+
+private fun isPunctuation(c: Char): Boolean =
+    !c.isLetterOrDigit() && !c.isWhitespace() && (c in '\u3000'..'\u303F' || c in '\uFF00'..'\uFF0F' ||
+        c in '\uFF1A'..'\uFF20' || Character.getType(c).let {
+            it == Character.CONNECTOR_PUNCTUATION.toInt() || it == Character.DASH_PUNCTUATION.toInt() ||
+                it == Character.START_PUNCTUATION.toInt() || it == Character.END_PUNCTUATION.toInt() ||
+                it == Character.INITIAL_QUOTE_PUNCTUATION.toInt() || it == Character.FINAL_QUOTE_PUNCTUATION.toInt() ||
+                it == Character.OTHER_PUNCTUATION.toInt()
+        })
+
+/** True when a space belongs between two adjacent words (never next to Chinese or Japanese text). */
+fun needsSpace(prev: String, next: String): Boolean {
+    if (prev.isEmpty() || next.isEmpty()) return false
+    return !isNoSpaceScript(prev.last()) && !isNoSpaceScript(next.first())
+}
+
+/** Joins words with spaces, except around scripts that are written without them. */
+fun joinWords(words: List<String>): String = buildString {
+    words.forEachIndexed { i, w ->
+        if (i > 0 && needsSpace(words[i - 1], w)) append(' ')
+        append(w)
+    }
+}
+
+/** A word and the index of the first token it was built from. */
+data class TokenGroup(val text: String, val firstToken: Int)
+
 /**
- * Groups Whisper subword tokens into timed words. A token that starts with a space
- * begins a new word; any other token continues the current one. Special tokens
- * (`<|...|>`) are dropped. [timestampsSec] holds each token's start in seconds, and
- * a token ends where the next begins (the last uses [durationsSec] when present).
+ * Groups recognizer tokens into words. A token starts a new word when it begins with a space, when it is
+ * the first token, or at every Chinese or Japanese character (those scripts have no spaces, so each
+ * character is its own word and tapping lands precisely). Punctuation stays with the word before it, and
+ * special tokens (`<|...|>`) and empty byte fragments are dropped.
+ */
+fun groupTokens(tokens: Array<String>): List<TokenGroup> {
+    val groups = mutableListOf<TokenGroup>()
+    var text = StringBuilder()
+    var first = 0
+    fun flush() {
+        val w = text.toString().trim()
+        if (w.isNotEmpty()) groups += TokenGroup(w, first)
+        text = StringBuilder()
+    }
+    for (i in tokens.indices) {
+        val token = tokens[i]
+        if (token.isEmpty() || (token.startsWith("<|") && token.endsWith("|>"))) continue
+        val core = token.trimStart()
+        if (core.isEmpty()) { flush(); continue }
+        val c = core.first()
+        val startsNew = token.startsWith(" ") || text.isEmpty() ||
+            (isNoSpaceScript(c) && !isPunctuation(c)) ||
+            (isNoSpaceScript(text.last()) && !isPunctuation(c))
+        if (startsNew) { flush(); first = i }
+        text.append(core)
+    }
+    flush()
+    return groups
+}
+
+/**
+ * Timed words from recognizer tokens that carry start times ([timestampsSec], seconds). A word ends where
+ * the next begins (the last uses [durationsSec] when present). Returns empty when the arrays do not line up,
+ * which is the case for Whisper exports that give no token times; use [groupTokens] with
+ * [distributeOverSpeech] for those.
  */
 fun tokensToWords(
     tokens: Array<String>,
@@ -19,35 +81,14 @@ fun tokensToWords(
     offsetMs: Long
 ): List<TranscriptSegment> {
     if (tokens.isEmpty() || timestampsSec.size != tokens.size) return emptyList()
-    val words = mutableListOf<TranscriptSegment>()
-    var text = StringBuilder()
-    var start = 0L
-    var end = 0L
-
-    fun flush() {
-        val w = text.toString().trim()
-        if (w.isNotEmpty()) words += TranscriptSegment(w, start, end)
-        text = StringBuilder()
+    val groups = groupTokens(tokens)
+    return groups.mapIndexed { gi, g ->
+        val start = offsetMs + (timestampsSec[g.firstToken] * 1000).toLong()
+        val end = if (gi + 1 < groups.size) offsetMs + (timestampsSec[groups[gi + 1].firstToken] * 1000).toLong()
+        else if (durationsSec.size == tokens.size) start + (durationsSec[g.firstToken] * 1000).toLong()
+        else start + 300
+        TranscriptSegment(g.text, start, maxOf(end, start))
     }
-
-    for (i in tokens.indices) {
-        val token = tokens[i]
-        if (token.startsWith("<|") && token.endsWith("|>")) continue
-        val tokenStart = offsetMs + (timestampsSec[i] * 1000).toLong()
-        val tokenEnd = when {
-            i + 1 < tokens.size -> offsetMs + (timestampsSec[i + 1] * 1000).toLong()
-            durationsSec.size == tokens.size -> tokenStart + (durationsSec[i] * 1000).toLong()
-            else -> tokenStart + 300
-        }
-        if (token.startsWith(" ") || text.isEmpty()) {
-            flush()
-            start = tokenStart
-        }
-        text.append(token)
-        end = maxOf(tokenEnd, start)
-    }
-    flush()
-    return words
 }
 
 /**

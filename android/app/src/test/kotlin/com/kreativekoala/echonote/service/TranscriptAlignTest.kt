@@ -97,4 +97,52 @@ class TranscriptAlignTest {
         val words = listOf(TranscriptSegment("a.", 0, 100), TranscriptSegment("b.", 100, 200))
         assertEquals(words, smoothSpeakersBySentence(words))
     }
+
+    @Test
+    fun chineseAndJapaneseCharactersAreSeparateWordsWithPunctuationAttached() {
+        val groups = groupTokens(arrayOf("直", "進", "攻", "15", "米", "，", " ", "該"))
+        assertEquals(listOf("直", "進", "攻", "15", "米，", "該"), groups.map { it.text })
+    }
+
+    @Test
+    fun koreanAndEnglishWordsStillBreakOnLeadingSpaces() {
+        assertEquals(listOf("안녕", "하세요"), groupTokens(arrayOf(" 안", "녕", " 하", "세요")).map { it.text })
+        assertEquals(listOf("Hello,", "world."), groupTokens(arrayOf(" Hel", "lo", ",", " wor", "ld", ".")).map { it.text })
+    }
+
+    @Test
+    fun spacesAreNeverInsertedNextToChineseOrJapaneseText() {
+        assertEquals("你好世界", joinWords(listOf("你", "好", "世", "界")))
+        assertEquals("hello world", joinWords(listOf("hello", "world")))
+        assertEquals("米，該", joinWords(listOf("米，", "該")))
+        assertTrue(needsSpace("hello", "world"))
+        assertTrue(!needsSpace("好", "world"))
+    }
+
+    @Test
+    fun realTokenTimesAreUsedForCjkWords() {
+        val words = tokensToWords(arrayOf("钙", "甲", "15", "米"), floatArrayOf(1.0f, 1.3f, 1.6f, 1.9f), FloatArray(0), 0)
+        assertEquals(listOf("钙", "甲", "15", "米"), words.map { it.word })
+        assertEquals(listOf(1000L, 1300L, 1600L, 1900L), words.map { it.startMs })
+    }
+
+    @Test
+    fun speechSpansSkipPausesAndWordsAreNotPlacedInThem() {
+        val tone = ShortArray(16000 * 3)
+        for (i in 0 until 16000) tone[i] = (if (i % 2 == 0) 8000 else -8000).toShort()            // speech 0-1 s
+        for (i in 32000 until 48000) tone[i] = (if (i % 2 == 0) 8000 else -8000).toShort()        // speech 2-3 s
+        val spans = speechSpans(tone, tone.size)
+        assertEquals(2, spans.size)
+        val timed = distributeOverSpeech(listOf("aaaa", "bbbb", "cccc", "dddd"), spans, 0)
+        // 1 s of speech then a 1 s pause then 1 s of speech: no word may start inside the pause
+        assertTrue(timed.none { it.startMs in 1100..1900 })
+        assertEquals(listOf(true, true, true, true), timed.map { it.startMs < it.endMs })
+    }
+
+    @Test
+    fun distributionWithOffsetAndNoSpansIsSafe() {
+        assertTrue(distributeOverSpeech(emptyList(), listOf(SpeechSpan(0, 1000)), 0).isEmpty())
+        assertTrue(distributeOverSpeech(listOf("a"), emptyList(), 0).isEmpty())
+        assertEquals(28_000L, distributeOverSpeech(listOf("a"), listOf(SpeechSpan(0, 500)), 28_000).single().startMs)
+    }
 }

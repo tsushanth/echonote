@@ -25,6 +25,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kreativekoala.echonote.data.model.TranscriptSegment
+import com.kreativekoala.echonote.service.needsSpace
 import com.kreativekoala.echonote.ui.theme.EchoTheme
 import com.kreativekoala.echonote.ui.theme.TimerTextStyle
 import com.kreativekoala.echonote.ui.theme.TranscriptTextStyle
@@ -123,7 +124,9 @@ private fun TranscriptParagraphView(
             var offset = 0
             for (i in arr.indices) {
                 arr[i] = offset
-                offset += words[paragraph.firstWord + i].word.length + 1
+                val w = words[paragraph.firstWord + i].word
+                val gap = if (i + 1 < arr.size && needsSpace(w, words[paragraph.firstWord + i + 1].word)) 1 else 0
+                offset += w.length + gap
             }
         }
     }
@@ -131,7 +134,7 @@ private fun TranscriptParagraphView(
     val text = remember(words, paragraph, activeWord, playedColor, upcomingColor, echo) {
         buildAnnotatedString {
             for (i in paragraph.firstWord until paragraph.endWord) {
-                if (i > paragraph.firstWord) append(" ")
+                if (i > paragraph.firstWord && needsSpace(words[i - 1].word, words[i].word)) append(" ")
                 val isActive = i == activeWord
                 val played = i < activeWord
                 val style = when {

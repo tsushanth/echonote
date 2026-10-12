@@ -1,7 +1,8 @@
 package com.kreativekoala.echonote.ui
 
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
-import com.kreativekoala.echonote.service.AccurateSupport
+import com.kreativekoala.echonote.service.AsrEngine
+import com.kreativekoala.echonote.service.EnginePlan
 import java.io.File
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -25,16 +26,17 @@ class LocalizationTest {
     }
 
     @Test
-    fun accurateIsOnlyOfferedWhereWhisperBaseBeatVoskInTheBenchmark() {
-        val supported = TranscriptionLanguage.entries.filter { AccurateSupport.isSupported(it) }.toSet()
-        assertEquals(
-            setOf(
-                TranscriptionLanguage.ENGLISH, TranscriptionLanguage.SPANISH, TranscriptionLanguage.GERMAN,
-                TranscriptionLanguage.PORTUGUESE, TranscriptionLanguage.KOREAN
-            ),
-            supported
-        )
-        // Hindi is the case where Whisper base outputs garbage, so it must never be routed to Whisper.
-        assertFalse(AccurateSupport.isSupported(TranscriptionLanguage.HINDI))
+    fun eachLanguageUsesTheEngineThatWonItsBenchmark() {
+        val plan = TranscriptionLanguage.entries.associateWith { EnginePlan.forLanguage(it) }
+        assertEquals(AsrEngine.SENSE_VOICE, plan[TranscriptionLanguage.CHINESE])
+        // Whisper base garbles Hindi and Vosk is better for Italian, so neither may be routed to Whisper.
+        assertEquals(AsrEngine.VOSK, plan[TranscriptionLanguage.HINDI])
+        assertEquals(AsrEngine.VOSK, plan[TranscriptionLanguage.ITALIAN])
+        listOf(
+            TranscriptionLanguage.ENGLISH, TranscriptionLanguage.SPANISH, TranscriptionLanguage.PORTUGUESE,
+            TranscriptionLanguage.GERMAN, TranscriptionLanguage.FRENCH, TranscriptionLanguage.JAPANESE, TranscriptionLanguage.KOREAN
+        ).forEach { assertEquals(it.name, AsrEngine.WHISPER_SMALL, plan[it]) }
+        assertFalse(EnginePlan.accurateDiffersFromFast(TranscriptionLanguage.HINDI))
+        assertTrue(EnginePlan.accurateDiffersFromFast(TranscriptionLanguage.ENGLISH))
     }
 }

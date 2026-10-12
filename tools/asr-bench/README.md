@@ -77,8 +77,11 @@ Error rate % (WER; CER for zh, ja and ko), lower is better:
 | ja | 22.2 | 27.9 | **20.0** | SenseVoice 78 (outputs Chinese; unusable) |
 | ko | 29.8 | 25.0 | **22.0** | SenseVoice 79 (unusable) |
 
-* Whisper base (what the app ships as Accurate) is worse than Vosk for fr, it, hi, zh and ja, so the app only
-  routes en, es, de, pt and ko to it (`AccurateSupport`) and falls back to Fast elsewhere.
+* Whisper base (what the app first shipped as Accurate) is worse than Vosk for fr, it, hi, zh and ja. The app now
+  routes by language (`EnginePlan`): Whisper small for en, es, pt, de, fr, ja, ko; SenseVoice for zh; Vosk (Fast)
+  for it and hi. NeMo fast-conformer (en/de/es/fr) was as good as Whisper small and 3x lighter but is only
+  published as a .tar.bz2 on GitHub (its Hugging Face repo is empty), so using it would mean shipping an archive
+  extractor; left out for now.
 * Whisper small fixes most of that (de 21 to 9, fr 32 to 13, pt 17 to 6) but is about 3x slower than base
   (Mac real-time factor 0.15 vs 0.05) and a ~375 MB download (112 + 262 MB), and does not fix Hindi.
 * Voting vosk + best Whisper + a third family (ROVER, languages with three engines): es 5.6 to 3.8, de 9.1 to 7.9,
@@ -91,3 +94,11 @@ Error rate % (WER; CER for zh, ja and ko), lower is better:
 speech on the wrong speaker: es 9/10 17.8%, fr 8/10 22.2%, de 10/10 20.5%, it 10/10 10.0%, pt 10/10 10.1%
 (English was 16/16, 7.8%). 0.85 was best or tied-best in every language. zh, ja, ko and hi are untested: no
 open speaker-labelled data was reachable.
+
+## Word times (timing_eval.py)
+
+Whisper's sherpa-onnx int8 exports return no token timestamps (empty array), so word times in the app were an
+even spread over each 28 s window. NeMo and SenseVoice do return real times. Against Vosk word start times on
+444 matched words of real English speech, mean absolute start error: even spread over the window 0.65 s (50% within
+0.5 s); spread over the speech only, by word length, 0.48 s (66% within 0.5 s). The app now does the latter for
+Whisper (`WordTiming.kt`). Still approximate: tap-to-seek and speaker alignment can be off by about half a second.

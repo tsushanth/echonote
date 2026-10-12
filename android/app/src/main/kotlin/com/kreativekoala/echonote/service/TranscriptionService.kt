@@ -77,11 +77,10 @@ class TranscriptionService @Inject constructor(
         try {
             val language = settingsRepository.transcriptionLanguage.first()
 
-            // Accurate only where Whisper base beats Vosk; elsewhere it would make the text worse.
-            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE &&
-                AccurateSupport.isSupported(language)
-            ) {
-                return@withContext transcribeWithWhisper(fileUri, language)
+            // Accurate picks the best engine for the language; where that is Vosk it is the same as Fast.
+            val engine = EnginePlan.forLanguage(language)
+            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE && engine != AsrEngine.VOSK) {
+                return@withContext transcribeWithSherpa(fileUri, language, engine)
             }
 
             // Ensure model is ready
@@ -242,19 +241,26 @@ class TranscriptionService @Inject constructor(
     }
 
     /**
-     * Whisper path: download the model once, decode the recording into 16 kHz mono chunks,
-     * and optionally label speakers afterwards. Memory is held to one 28 s window plus,
-     * when speakers are requested, the audio itself (recordings up to 30 minutes).
+     * Accurate path: download the language's model once, decode the recording into 16 kHz mono chunks,
+     * and optionally label speakers afterwards. Memory is held to one 28 s window plus, when speakers are
+     * requested, the audio itself (recordings up to 30 minutes).
      */
-    private suspend fun transcribeWithWhisper(fileUri: String, language: TranscriptionLanguage): TranscriptionResult {
-        val whisperDir = File(context.filesDir, SherpaModels.WHISPER_DIR)
+    private suspend fun transcribeWithSherpa(fileUri: String, language: TranscriptionLanguage, engine: AsrEngine): TranscriptionResult {
+        val (dirName, files) = when (engine) {
+            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL_DIR to SherpaModels.WHISPER_SMALL
+            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE_DIR to SherpaModels.SENSE_VOICE
+            AsrEngine.VOSK -> return TranscriptionResult.Error("Fast engine selected")
+        }
+        val modelDir = File(context.filesDir, dirName)
         val wantSpeakers = settingsRepository.identifySpeakers.first()
         val diarizationDir = File(context.filesDir, SherpaModels.DIARIZATION_DIR)
+        // The Whisper base model of earlier builds is no longer used; free its ~160 MB.
+        File(context.filesDir, SherpaModels.LEGACY_WHISPER_BASE_DIR).takeIf { it.exists() }?.deleteRecursively()
 
         try {
-            if (!ModelDownloader.isReady(whisperDir, SherpaModels.WHISPER_BASE)) {
-                _statusMessage.value = "Downloading accurate speech model (160 MB)..."
-                ModelDownloader.ensure(whisperDir, SherpaModels.WHISPER_BASE) { _progress.value = 0.02f + it * 0.2f }
+            if (!ModelDownloader.isReady(modelDir, files)) {
+                _statusMessage.value = "Downloading ${language.displayName} speech model (${engine.downloadMb} MB)..."
+                ModelDownloader.ensure(modelDir, files) { _progress.value = 0.02f + it * 0.2f }
             }
             if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
                 _statusMessage.value = "Downloading speaker model (46 MB)..."
@@ -266,36 +272,40 @@ class TranscriptionService @Inject constructor(
 
         _statusMessage.value = "Transcribing..."
         _progress.value = 0.25f
-        val languageCode = language.bcp47Tag.substringBefore('-')
+        val languageCode = EnginePlan.languageCode(language)
 
-        WhisperTranscriber(whisperDir, languageCode, keepAudio = wantSpeakers) { _partialTranscript.value = it }.use { whisper ->
-            val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
-                whisper.accept(samples, count)
-            }
-            if (!hasAudio) return TranscriptionResult.Error("No audio found in this recording")
-            whisper.finish()
+        try {
+            SherpaTranscriber(engine, modelDir, languageCode, keepAudio = wantSpeakers) { _partialTranscript.value = it }.use { transcriber ->
+                val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
+                    transcriber.accept(samples, count)
+                }
+                if (!hasAudio) return TranscriptionResult.Error("No audio found in this recording")
+                transcriber.finish()
 
-            var words = whisper.words.toList()
-            if (words.isEmpty()) return TranscriptionResult.Error("No speech detected in this recording")
+                var words = transcriber.words.toList()
+                if (words.isEmpty()) return TranscriptionResult.Error("No speech detected in this recording")
 
-            if (wantSpeakers) {
-                val kept = whisper.keptAudio()
-                if (kept == null) {
-                    _statusMessage.value = "Speaker labels skipped: recording is longer than 30 minutes"
-                } else {
-                    _statusMessage.value = "Identifying speakers..."
-                    try {
-                        val spans = SpeakerDiarizer(diarizationDir).diarize(kept.first, kept.second) {
-                            _progress.value = 0.85f + it * 0.13f
+                if (wantSpeakers) {
+                    val kept = transcriber.keptAudio()
+                    if (kept == null) {
+                        _statusMessage.value = "Speaker labels skipped: recording is longer than 30 minutes"
+                    } else {
+                        _statusMessage.value = "Identifying speakers..."
+                        try {
+                            val spans = SpeakerDiarizer(diarizationDir).diarize(kept.first, kept.second) {
+                                _progress.value = 0.85f + it * 0.13f
+                            }
+                            words = smoothSpeakersBySentence(assignSpeakers(words, spans))
+                        } catch (e: Exception) {
+                            android.util.Log.e("TranscriptionService", "diarization failed", e)
                         }
-                        words = smoothSpeakersBySentence(assignSpeakers(words, spans))
-                    } catch (e: Exception) {
-                        android.util.Log.e("TranscriptionService", "diarization failed", e)
                     }
                 }
+                _progress.value = 1f
+                return TranscriptionResult.Success(joinWords(words.map { it.word }), words)
             }
-            _progress.value = 1f
-            return TranscriptionResult.Success(words.joinToString(" ") { it.word }, words)
+        } catch (e: OutOfMemoryError) {
+            return TranscriptionResult.Error("Not enough memory for the accurate model on this phone. Switch Transcription Quality to Fast.")
         }
     }
 

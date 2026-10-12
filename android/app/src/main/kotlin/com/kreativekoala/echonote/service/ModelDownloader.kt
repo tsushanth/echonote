@@ -11,19 +11,35 @@ data class ModelFile(val url: String, val fileName: String, val sizeBytes: Long,
 object SherpaModels {
     private const val HF = "https://huggingface.co/csukuangfj"
 
-    const val WHISPER_DIR = "whisper-base-int8"
-    val WHISPER_BASE = listOf(
+    /** Whisper small, int8: roughly 375 MB. Replaces the base model of earlier builds. */
+    const val WHISPER_SMALL_DIR = "whisper-small-int8"
+    val WHISPER_SMALL = listOf(
         ModelFile(
-            "$HF/sherpa-onnx-whisper-base/resolve/main/base-encoder.int8.onnx",
-            "encoder.onnx", 29_120_534, "0b8fb1304b6109976038efff5ace81720e00386f3ff6b54ee8c75291ca0a1e11"
+            "$HF/sherpa-onnx-whisper-small/resolve/main/small-encoder.int8.onnx",
+            "encoder.onnx", 112_442_483, "4cbe7b22fa9026b843b60a68640c747de05bafb1a11b57edc0e66c232d9f33a9"
         ),
         ModelFile(
-            "$HF/sherpa-onnx-whisper-base/resolve/main/base-decoder.int8.onnx",
-            "decoder.onnx", 130_672_026, "9759d217388a01b3a4c7c15533201067b48ae819c4daafc8624e64b9409dc02d"
+            "$HF/sherpa-onnx-whisper-small/resolve/main/small-decoder.int8.onnx",
+            "decoder.onnx", 262_226_114, "acad50b5c782696e91b55914cc5ab4f756f1532f76e22aa6fc615f39fb69a8ee"
         ),
         ModelFile(
-            "$HF/sherpa-onnx-whisper-base/resolve/main/base-tokens.txt",
+            "$HF/sherpa-onnx-whisper-small/resolve/main/small-tokens.txt",
             "tokens.txt", 816_730, "b34b360dbb493e781e479794586d661700670d65564001f23024971d1f2fa126"
+        )
+    )
+
+    /** Directory of the Whisper base model shipped by earlier builds; deleted when found. */
+    const val LEGACY_WHISPER_BASE_DIR = "whisper-base-int8"
+
+    const val SENSE_VOICE_DIR = "sensevoice-int8"
+    val SENSE_VOICE = listOf(
+        ModelFile(
+            "$HF/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09/resolve/main/model.int8.onnx",
+            "model.onnx", 237_115_547, "12ca1a2ae7ecf3e0019ef2822307ee0b5cadc9196569e379b4c4026f8205276d"
+        ),
+        ModelFile(
+            "$HF/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09/resolve/main/tokens.txt",
+            "tokens.txt", 315_894, "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc"
         )
     )
 

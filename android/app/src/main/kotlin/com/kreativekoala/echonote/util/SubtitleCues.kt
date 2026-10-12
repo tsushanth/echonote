@@ -1,6 +1,7 @@
 package com.kreativekoala.echonote.util
 
 import com.kreativekoala.echonote.data.model.TranscriptSegment
+import com.kreativekoala.echonote.service.joinWords
 
 data class SubtitleCue(val startMs: Long, val endMs: Long, val text: String)
 
@@ -18,7 +19,7 @@ fun buildSubtitleCues(words: List<TranscriptSegment>): List<SubtitleCue> {
     var first = 0
     fun flush(endExclusive: Int) {
         val slice = words.subList(first, endExclusive)
-        cues += SubtitleCue(slice.first().startMs, slice.last().endMs, slice.joinToString(" ") { it.word })
+        cues += SubtitleCue(slice.first().startMs, slice.last().endMs, joinWords(slice.map { it.word }))
         first = endExclusive
     }
     for (i in 1 until words.size) {
