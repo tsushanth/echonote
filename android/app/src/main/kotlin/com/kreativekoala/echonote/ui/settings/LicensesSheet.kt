@@ -26,13 +26,22 @@ import com.kreativekoala.echonote.R
 /** One chunk of the license file: a heading line (`=== ... ===`) or a paragraph. */
 internal data class LicenseBlock(val text: String, val isHeading: Boolean)
 
-/** Splits the bundled license text into blank-line-separated blocks so a long file scrolls lazily. */
+/**
+ * Splits the bundled license text into blank-line-separated blocks so a long file scrolls lazily.
+ * The upstream texts are hard-wrapped at about 78 columns, which breaks raggedly on a phone, so
+ * each paragraph is reflowed: line breaks and indentation inside it become single spaces (the
+ * wording is unchanged). Heading blocks keep their lines.
+ */
 internal fun parseLicenseBlocks(raw: String): List<LicenseBlock> =
     raw.replace("\r\n", "\n")
         .split(Regex("\n{2,}"))
         .map { it.trim('\n') }
         .filter { it.isNotBlank() }
-        .map { LicenseBlock(it, it.startsWith("=== ") && it.lines().first().endsWith(" ===")) }
+        .map { block ->
+            val isHeading = block.startsWith("=== ") && block.lines().first().endsWith(" ===")
+            val text = if (isHeading) block else block.lines().joinToString(" ") { it.trim() }
+            LicenseBlock(text, isHeading)
+        }
 
 /** Credits and full license texts for the third-party components bundled in the app. */
 @OptIn(ExperimentalMaterial3Api::class)

@@ -12,8 +12,14 @@ class LicensesTest {
     @Test
     fun blocksSplitOnBlankLinesAndHeadingsAreDetected() {
         val blocks = parseLicenseBlocks("intro line\n\n\n=== MIT License ===\n(applies to x)\n\nbody one\nbody two\n")
-        assertEquals(listOf("intro line", "=== MIT License ===\n(applies to x)", "body one\nbody two"), blocks.map { it.text })
+        assertEquals(listOf("intro line", "=== MIT License ===\n(applies to x)", "body one body two"), blocks.map { it.text })
         assertEquals(listOf(false, true, false), blocks.map { it.isHeading })
+    }
+
+    @Test
+    fun paragraphsAreReflowedWithoutChangingTheWords() {
+        val text = parseLicenseBlocks("   \"Work\" shall mean the work of\n      authorship, whether in\n   Source form.").single().text
+        assertEquals("\"Work\" shall mean the work of authorship, whether in Source form.", text)
     }
 
     @Test
