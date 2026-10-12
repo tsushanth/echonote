@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Marquer les mots incertains</string>
+    <string name="flags_setting_desc">Souligne les mots qu\'une seconde vérification ne confirme pas. Nécessite la qualité Accurate, un téléchargement unique d\'environ 45 Mo (le modèle Fast) et allonge le traitement. Reste sur votre appareil.</string>
+    <string name="flags_setting_unsupported">Indisponible pour %1$s, aucun mot n\'est donc marqué.</string>
+    <string name="flags_a11y_unsure">incertain</string>
+</resources>

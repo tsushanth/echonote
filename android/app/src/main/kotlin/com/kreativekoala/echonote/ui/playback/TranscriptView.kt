@@ -16,6 +16,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import com.kreativekoala.echonote.R
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
@@ -153,6 +161,27 @@ private fun TranscriptParagraphView(
 
     var layout by remember { mutableStateOf<TextLayoutResult?>(null) }
 
+    // Character ranges of words the second engine did not agree with (empty unless "Mark uncertain words" was on).
+    val uncertainRanges = remember(words, paragraph, starts) {
+        buildList {
+            for (i in starts.indices) {
+                val w = words[paragraph.firstWord + i]
+                if (w.uncertain && w.word.isNotEmpty()) add(starts[i] until (starts[i] + w.word.length))
+            }
+        }
+    }
+    val underlineColor = colors.onSurfaceVariant.copy(alpha = 0.85f)
+    val unsureHint = stringResource(R.string.flags_a11y_unsure)
+    val spoken = remember(words, paragraph, unsureHint, uncertainRanges.isEmpty()) {
+        if (uncertainRanges.isEmpty()) null else buildString {
+            for (i in paragraph.firstWord until paragraph.endWord) {
+                if (i > paragraph.firstWord && needsSpace(words[i - 1].word, words[i].word)) append(" ")
+                append(words[i].word)
+                if (words[i].uncertain) append(" (").append(unsureHint).append(")")
+            }
+        }
+    }
+
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         paragraph.speaker?.let { speaker ->
             Text(
@@ -172,6 +201,12 @@ private fun TranscriptParagraphView(
             onTextLayout = { layout = it },
             modifier = Modifier
                 .fillMaxWidth()
+                .then(if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier)
+                .then(
+                    if (uncertainRanges.isEmpty()) Modifier else Modifier.drawBehind {
+                        drawUncertainUnderlines(layout, uncertainRanges, underlineColor)
+                    }
+                )
                 .pointerInput(starts) {
                     detectTapGestures { position ->
                         val l = layout ?: return@detectTapGestures
@@ -199,6 +234,36 @@ fun LazyListScope.plainTranscriptItem(text: String) {
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(Modifier.height(4.dp))
+        }
+    }
+}
+
+/**
+ * Dotted line just under each marked word (one piece per wrapped line). Quiet on purpose: same ink as the
+ * secondary text, no red, no wave, so a marked word reads as "worth a second listen" rather than as an error.
+ */
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawUncertainUnderlines(
+    layout: TextLayoutResult?,
+    ranges: List<IntRange>,
+    color: androidx.compose.ui.graphics.Color
+) {
+    val l = layout ?: return
+    val stroke = 1.5.dp.toPx()
+    val dots = PathEffect.dashPathEffect(floatArrayOf(0.01f, stroke * 2.2f))
+    val last = l.layoutInput.text.length - 1
+    for (r in ranges) {
+        if (r.first > last) continue
+        val end = minOf(r.last, last)
+        val firstLine = l.getLineForOffset(r.first)
+        val lastLine = l.getLineForOffset(end)
+        for (line in firstLine..lastLine) {
+            val from = maxOf(r.first, l.getLineStart(line))
+            val to = minOf(end, l.getLineEnd(line, visibleEnd = true) - 1)
+            if (to < from) continue
+            val left = l.getBoundingBox(from).left
+            val right = l.getBoundingBox(to).right
+            val y = l.getLineBaseline(line) + 3.dp.toPx()
+            drawLine(color, Offset(left, y), Offset(right, y), strokeWidth = stroke, cap = StrokeCap.Round, pathEffect = dots)
         }
     }
 }

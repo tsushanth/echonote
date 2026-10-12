@@ -104,3 +104,35 @@ even spread over each 28 s window. NeMo and SenseVoice do return real times. Aga
 444 matched words of real English speech, mean absolute start error: even spread over the window 0.65 s (50% within
 0.5 s); spread over the speech only, by word length, 0.48 s (66% within 0.5 s). The app now does the latter for
 Whisper (`WordTiming.kt`). Still approximate: tap-to-seek and speaker alignment can be off by about half a second.
+
+## Marking uncertain words with Vosk as a second opinion (2026-10-12)
+
+`flag_eval.py` (run it from the bench folder, `python flag_eval.py <bench_dir>`). Primary engine = what `EnginePlan`
+picks for Accurate; second opinion = the app's Vosk small model. A primary word is flagged when the Levenshtein alignment
+of primary vs Vosk words pairs it with no equal Vosk word (NFKC, lower case, punctuation removed; zh and ja per character).
+A primary word is wrong when the alignment against the reference pairs it with no equal word (substitutions and insertions;
+words the engine dropped cannot be marked and are not counted). 25 FLEURS clips per language (the 120 ESB clips for en-esb).
+
+| lang | primary | words | primary wrong % | flagged % | wrong among flagged % | wrong among unflagged % | ratio | primary errors caught % | offered |
+|---|---|---|---|---|---|---|---|---|---|
+| en | Whisper small | 552 | 8.3 | 19.2 | 28.3 | 3.6 | 7.9x | 65.2 | yes |
+| en (120 ESB clips) | Whisper small | 5920 | 6.3 | 15.4 | 22.5 | 3.3 | 6.8x | 55.2 | yes |
+| de | NeMo FC | 516 | 7.8 | 18.2 | 33.0 | 2.1 | 15.5x | 77.5 | yes |
+| es | NeMo FC | 619 | 5.5 | 8.6 | 45.3 | 1.8 | 25.6x | 70.6 | yes |
+| fr | NeMo FC | 684 | 10.2 | 20.3 | 38.1 | 3.1 | 12.2x | 75.7 | yes |
+| pt | Whisper small | 663 | 5.6 | 25.3 | 17.9 | 1.4 | 12.6x | 81.1 | yes (flags 25.3%, right at the limit) |
+| ja (per character) | Whisper small | 1113 | 10.2 | 22.3 | 35.5 | 2.9 | 12.3x | 77.9 | yes |
+| zh (per character) | SenseVoice | 801 | 7.9 | 17.0 | 18.4 | 5.7 | 3.2x | 39.7 | yes (weakest ratio) |
+| ko | Whisper small | 340 | 47.4 | 68.5 | 62.7 | 14.0 | 4.5x | 90.7 | NO: flags 68.5% of words, which marks nearly everything |
+| it | Vosk | - | - | - | - | - | - | - | NO: primary is Vosk, no independent second opinion |
+| hi | Vosk | - | - | - | - | - | - | - | NO: same |
+
+Rule: offered when wrong-among-flagged is at least about 2x wrong-among-unflagged and no more than about 25% of words are
+flagged. Korean fails the second test (its Whisper error rate is 47% and Vosk's Korean differs from it on most words);
+Italian and Hindi have no second engine. When Accurate falls back to Vosk on a small-RAM phone there is also nothing to
+compare against, so no flags. The first line of the earlier table above (5.1% flagged, 49.5% wrong) is for two second
+opinions; with Vosk alone the numbers are those in this table.
+
+Caveats: 25 read-speech clips per language (about 500 to 1100 words each), so the rates carry a few points of noise;
+English on the 120 real clips is the more trustworthy row and is weaker than FLEURS. "Caught" counts only substitutions and
+insertions. Not measured on a phone, and not on noisy or accented recordings in the other languages.

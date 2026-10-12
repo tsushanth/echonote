@@ -30,6 +30,7 @@ class SettingsRepository @Inject constructor(
         val TRANSCRIPTION_LANGUAGE = stringPreferencesKey("transcription_language")
         val TRANSCRIPTION_ENGINE = stringPreferencesKey("transcription_engine")
         val IDENTIFY_SPEAKERS = booleanPreferencesKey("identify_speakers")
+        val MARK_UNCERTAIN_WORDS = booleanPreferencesKey("mark_uncertain_words")
         val AUTO_COPY_TRANSCRIPT = booleanPreferencesKey("auto_copy_transcript")
         val AUTO_DELETE_AUDIO = booleanPreferencesKey("auto_delete_audio")
         val SOUND_EFFECTS = booleanPreferencesKey("sound_effects")
@@ -66,6 +67,10 @@ class SettingsRepository @Inject constructor(
 
     val identifySpeakers: Flow<Boolean> = context.dataStore.data.map { prefs ->
         prefs[Keys.IDENTIFY_SPEAKERS] ?: false
+    }
+
+    val markUncertainWords: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.MARK_UNCERTAIN_WORDS] ?: false
     }
 
     val autoCopyTranscript: Flow<Boolean> = context.dataStore.data.map { prefs ->
@@ -116,6 +121,10 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setIdentifySpeakers(enabled: Boolean) {
         context.dataStore.edit { it[Keys.IDENTIFY_SPEAKERS] = enabled }
+    }
+
+    suspend fun setMarkUncertainWords(enabled: Boolean) {
+        context.dataStore.edit { it[Keys.MARK_UNCERTAIN_WORDS] = enabled }
     }
 
     suspend fun setAutoCopyTranscript(enabled: Boolean) {

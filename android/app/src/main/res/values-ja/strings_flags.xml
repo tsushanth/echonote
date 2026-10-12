@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">不確かな単語に印を付ける</string>
+    <string name="flags_setting_desc">2回目のチェックで一致しなかった単語に下線を付けます。Accurate品質、約45MBの1回限りのダウンロード（Fastモデル）が必要で、処理時間が長くなります。データは端末内に残ります。</string>
+    <string name="flags_setting_unsupported">%1$sでは利用できないため、単語に印は付きません。</string>
+    <string name="flags_a11y_unsure">不確か</string>
+</resources>

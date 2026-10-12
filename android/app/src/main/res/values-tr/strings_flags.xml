@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">Belirsiz kelimeleri işaretle</string>
+    <string name="flags_setting_desc">İkinci bir kontrolün katılmadığı kelimelerin altını çizer. Accurate kalitesi, yaklaşık 45 MB\'lık tek seferlik bir indirme (Fast model) gerektirir ve işlem süresini uzatır. Cihazınızda kalır.</string>
+    <string name="flags_setting_unsupported">%1$s için kullanılamıyor, bu yüzden hiçbir kelime işaretlenmez.</string>
+    <string name="flags_a11y_unsure">belirsiz</string>
+</resources>

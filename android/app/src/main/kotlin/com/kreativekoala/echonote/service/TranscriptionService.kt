@@ -284,6 +284,8 @@ class TranscriptionService @Inject constructor(
         _progress.value = 0.25f
         val languageCode = EnginePlan.languageCode(language)
 
+        var finalWords: List<TranscriptSegment>? = null
+        var keptAudio: Pair<ShortArray, Int>? = null
         try {
             SherpaTranscriber(engine, modelDir, languageCode, keepAudio = wantSpeakers) { _partialTranscript.value = it }.use { transcriber ->
                 val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
@@ -311,11 +313,104 @@ class TranscriptionService @Inject constructor(
                         }
                     }
                 }
-                _progress.value = 1f
-                return TranscriptionResult.Success(joinWords(words.map { it.word }), words)
+                finalWords = words
+                keptAudio = transcriber.keptAudio()
             }
         } catch (e: OutOfMemoryError) {
             return TranscriptionResult.Error("Not enough memory for the accurate model on this phone. Switch Transcription Quality to Fast.")
+        }
+
+        // The main model is closed now, so its memory is free for the Vosk pass.
+        var words = finalWords ?: return TranscriptionResult.Error("No speech detected in this recording")
+        if (settingsRepository.markUncertainWords.first() && UncertainWords.supports(language, engine)) {
+            words = markUncertainWords(fileUri, language, words, keptAudio)
+        }
+        _progress.value = 1f
+        return TranscriptionResult.Success(joinWords(words.map { it.word }), words)
+    }
+
+    /**
+     * Second opinion for "Mark uncertain words": runs Vosk over the same recording and marks the words it does
+     * not agree with. Never throws and never fails the transcription; on any problem (model cannot be fetched,
+     * out of memory, bad audio) the words come back unmarked and the reason goes to the log only.
+     * Uses the audio kept for speaker labels when there is one, otherwise decodes the file a second time.
+     */
+    private suspend fun markUncertainWords(
+        fileUri: String,
+        language: TranscriptionLanguage,
+        words: List<TranscriptSegment>,
+        kept: Pair<ShortArray, Int>?
+    ): List<TranscriptSegment> {
+        val startedAtMs = android.os.SystemClock.elapsedRealtime()
+        return try {
+            _statusMessage.value = "Checking for uncertain words..."
+            _progress.value = 0.85f
+            val model = getOrDownloadModel(language)
+            if (model == null) {
+                android.util.Log.w("TranscriptionService", "uncertain words skipped: Vosk model unavailable")
+                return words
+            }
+            _statusMessage.value = "Checking for uncertain words..."
+            val second = recognizeVoskWords(fileUri, model, kept) { _progress.value = 0.88f + it * 0.1f }
+            if (second == null) {
+                android.util.Log.w("TranscriptionService", "uncertain words skipped: Vosk pass produced nothing")
+                return words
+            }
+            val marked = UncertainWords.mark(words, second, UncertainWords.comparesCharacters(language))
+            android.util.Log.i(
+                "TranscriptionService",
+                "uncertain words: ${marked.count { it.uncertain }} of ${marked.size} marked in " +
+                    "${android.os.SystemClock.elapsedRealtime() - startedAtMs} ms (${if (kept != null) "reused audio" else "decoded twice"})"
+            )
+            marked
+        } catch (e: Exception) {
+            android.util.Log.w("TranscriptionService", "uncertain words skipped", e)
+            words
+        } catch (e: OutOfMemoryError) {
+            android.util.Log.w("TranscriptionService", "uncertain words skipped: out of memory")
+            words
+        }
+    }
+
+    /** Every word Vosk heard in the recording (all sentences, not only the last), or null when it heard none. */
+    private fun recognizeVoskWords(
+        fileUri: String,
+        model: Model,
+        kept: Pair<ShortArray, Int>?,
+        onProgress: (Float) -> Unit
+    ): List<String>? {
+        val recognizer = Recognizer(model, 16000.0f)
+        recognizer.setWords(true)
+        try {
+            val out = ArrayList<String>()
+            fun collect(json: String) {
+                val arr = JSONObject(json).optJSONArray("result") ?: return
+                for (i in 0 until arr.length()) arr.getJSONObject(i).optString("word").takeIf { it.isNotBlank() }?.let { out.add(it) }
+            }
+            val chunk = ByteArray(8192)
+            var pos = 0
+            fun feed() {
+                if (recognizer.acceptWaveForm(chunk, pos)) collect(recognizer.result)
+                pos = 0
+            }
+            fun accept(samples: ShortArray, count: Int) {
+                for (i in 0 until count) {
+                    val v = samples[i].toInt()
+                    chunk[pos++] = (v and 0xFF).toByte()
+                    chunk[pos++] = ((v shr 8) and 0xFF).toByte()
+                    if (pos >= chunk.size) feed()
+                }
+            }
+            if (kept != null) {
+                accept(kept.first, kept.second)
+            } else if (!decodeAudio(fileUri, onProgress = onProgress) { samples, count -> accept(samples, count) }) {
+                return null
+            }
+            if (pos > 0) feed()
+            collect(recognizer.finalResult)
+            return out.takeIf { it.isNotEmpty() }
+        } finally {
+            recognizer.close()
         }
     }
 

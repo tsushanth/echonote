@@ -53,6 +53,9 @@ class SettingsViewModel @Inject constructor(
     val identifySpeakers: StateFlow<Boolean> = settingsRepository.identifySpeakers
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
+    val markUncertainWords: StateFlow<Boolean> = settingsRepository.markUncertainWords
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
+
     val autoCopyTranscript: StateFlow<Boolean> = settingsRepository.autoCopyTranscript
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), false)
 
@@ -106,6 +109,10 @@ class SettingsViewModel @Inject constructor(
 
     fun setIdentifySpeakers(enabled: Boolean) {
         viewModelScope.launch { settingsRepository.setIdentifySpeakers(enabled) }
+    }
+
+    fun setMarkUncertainWords(enabled: Boolean) {
+        viewModelScope.launch { settingsRepository.setMarkUncertainWords(enabled) }
     }
 
     fun setTranscriptionLanguage(language: TranscriptionLanguage) {

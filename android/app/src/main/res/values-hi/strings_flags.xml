@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="flags_setting_title">अनिश्चित शब्द चिह्नित करें</string>
+    <string name="flags_setting_desc">उन शब्दों के नीचे रेखा खींचता है जिनसे दूसरी जाँच सहमत नहीं है। इसके लिए Accurate गुणवत्ता, लगभग 45 MB का एक बार का डाउनलोड (Fast मॉडल) चाहिए और प्रोसेसिंग का समय बढ़ता है। यह आपके डिवाइस पर ही रहता है।</string>
+    <string name="flags_setting_unsupported">%1$s के लिए उपलब्ध नहीं है, इसलिए कोई शब्द चिह्नित नहीं किया जाता।</string>
+    <string name="flags_a11y_unsure">अनिश्चित</string>
+</resources>
