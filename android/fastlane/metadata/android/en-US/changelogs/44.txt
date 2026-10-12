@@ -1,0 +1,6 @@
+• Edit your transcript: long-press any paragraph to fix it
+• Key points summary for any transcript (on your phone)
+• Optional: underline words the app is unsure about (Settings > Mark uncertain words)
+• Optional: live transcript while you record (Settings, off by default)
+• Faster, lighter English transcription on phones with less memory
+• Fix: Fast transcription no longer drops text said before the last pause
