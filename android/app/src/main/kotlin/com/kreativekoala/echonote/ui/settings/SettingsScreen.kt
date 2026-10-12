@@ -523,6 +523,8 @@ fun SettingsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AcknowledgmentsScreen(onBack: () -> Unit) {
+    var showLicenseTexts by remember { mutableStateOf(false) }
+    if (showLicenseTexts) LicensesSheet(onDismiss = { showLicenseTexts = false })
     Scaffold(
         topBar = {
             TopAppBar(
@@ -572,6 +574,22 @@ private fun AcknowledgmentsScreen(onBack: () -> Unit) {
             FrameworkRow(stringResource(R.string.acknowledgments_vosk), stringResource(R.string.acknowledgments_vosk_desc))
             FrameworkRow(stringResource(R.string.acknowledgments_location), stringResource(R.string.acknowledgments_location_desc))
             FrameworkRow(stringResource(R.string.acknowledgments_mediacodec), stringResource(R.string.acknowledgments_mediacodec_desc))
+
+            Spacer(modifier = Modifier.height(16.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Speech models, speaker labels and type",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            FrameworkRow("Whisper by OpenAI", "Accurate transcription model. MIT License.")
+            FrameworkRow("sherpa-onnx and ONNX Runtime", "Run the speech and speaker models on your phone. Apache 2.0 and MIT.")
+            FrameworkRow("NVIDIA TitaNet and pyannote segmentation", "Tell voices apart for speaker labels. NeMo Apache 2.0 and MIT.")
+            FrameworkRow("Figtree and Source Serif 4", "The app's typefaces. SIL Open Font License 1.1.")
+            Spacer(modifier = Modifier.height(8.dp))
+            TextButton(onClick = { showLicenseTexts = true }) { Text("View full license texts") }
         }
     }
 }
