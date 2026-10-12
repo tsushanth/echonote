@@ -33,3 +33,27 @@ Same model files as the app, run on a Mac (speed numbers are Mac, not phone).
 * The ROVER here is a simple backbone-and-vote implementation. Whisper's training data may overlap
   some of these public sets, which would flatter it.
 * Not measured on the phone. TedLium returned no rows and is not included.
+
+## Speaker labels: which embedding model and threshold (2026-10-11)
+
+`diar_fetch.py` + `diar_eval.py`: real human speakers from LibriSpeech test-clean (ids give the speaker)
+stitched into 16 conversations (alternating 2 or 3 speakers, 0.5 s gaps). Scores the number of speakers
+found and the share of speech given to the wrong speaker after the best speaker mapping.
+Segmentation is pyannote-segmentation-3-0 in every row; only the embedding model and the clustering
+threshold change.
+
+| embedding model | best threshold tried | right speaker count | speech on wrong speaker |
+|---|---|---|---|
+| NeMo TitaNet-small (40 MB) | 0.8 to 0.9 | **16/16** | **7.8%** |
+| WeSpeaker ResNet34 (26 MB) | 0.4 to 0.6 | 12/16 | 13-15% |
+| 3D-Speaker ERes2Net base (zh) | 0.8 | 13/16 | 8.9% |
+| 3D-Speaker CAM++ en (30 MB) | 0.8 | 4/16 | 38% |
+| WeSpeaker CAM++ en (29 MB), first choice | 0.7 (30 conversations) | 12/30 | 41% |
+
+TitaNet-small by threshold: 0.4 4/16, 0.6 12/16, 0.7 15/16, 0.8 16/16, 0.9 16/16, 1.0 13/16, 1.1 3/16.
+The app uses 0.85.
+
+Caveats: clean read speech, no overlapping talk, sequential turns, 16 conversations. Real meetings will be
+worse and the usable threshold range is not wide. A synthetic two-voice test (macOS TTS) looked fine at
+0.3 and merged both voices at 0.5, which is why that test alone is not enough. TitaNet-small's licence has
+not been confirmed (the large model's card says CC-BY-4.0).

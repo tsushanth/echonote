@@ -254,7 +254,7 @@ class TranscriptionService @Inject constructor(
                 ModelDownloader.ensure(whisperDir, SherpaModels.WHISPER_BASE) { _progress.value = 0.02f + it * 0.2f }
             }
             if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
-                _statusMessage.value = "Downloading speaker model (35 MB)..."
+                _statusMessage.value = "Downloading speaker model (46 MB)..."
                 ModelDownloader.ensure(diarizationDir, SherpaModels.DIARIZATION) { _progress.value = 0.22f + it * 0.03f }
             }
         } catch (e: Exception) {

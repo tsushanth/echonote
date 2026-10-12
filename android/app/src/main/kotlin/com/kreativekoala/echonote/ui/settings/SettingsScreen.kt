@@ -218,7 +218,7 @@ fun SettingsScreen(
                 Column(modifier = Modifier.weight(1f)) {
                     Text("Label Speakers", style = MaterialTheme.typography.bodyLarge)
                     Text(
-                        "Mark who is talking in each paragraph. Needs Accurate quality, a one-time 35 MB download, and recordings up to 30 minutes.",
+                        "Mark who is talking in each paragraph. Needs Accurate quality, a one-time 46 MB download, and recordings up to 30 minutes.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
