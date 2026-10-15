@@ -15,7 +15,7 @@ import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioEditorService
 import com.kreativekoala.echonote.service.AudioPlayerService
-import com.kreativekoala.echonote.service.ReviewManager
+import com.kreativekoala.ratingkit.RatingKit
 import com.kreativekoala.echonote.service.applyParagraphEdit
 import com.kreativekoala.echonote.service.transcriptText
 import com.kreativekoala.echonote.service.TranscriptionResult
@@ -55,7 +55,6 @@ class PlayerViewModel @Inject constructor(
     private val recordingRepository: RecordingRepository,
     private val transcriptionService: TranscriptionService,
     private val audioEditorService: AudioEditorService,
-    private val reviewManager: ReviewManager,
     private val settingsRepository: SettingsRepository,
     private val summaryManager: SummaryManager
 ) : ViewModel() {
@@ -237,7 +236,9 @@ class PlayerViewModel @Inject constructor(
                     recordingRepository.updateRecording(updatedRec)
                     _currentRecording.value = updatedRec
                     loadStoredSummary(updatedRec) // marks an existing summary as out of date
-                    if (reviewManager.shouldPromptReview()) _triggerReview.tryEmit(Unit)
+                    // Magic moment: the user now has their finished transcript. RatingKit decides whether to ask (it
+                    // needs several moments and a few days of use first); the screen calls it once this is visible.
+                    _triggerReview.tryEmit(Unit)
                     val contributeVoiceData = settingsRepository.contributeVoiceData.first()
                     enqueueContributionUpload(updatedRec.id)
                     // Auto-copy transcript
@@ -269,6 +270,7 @@ class PlayerViewModel @Inject constructor(
                     }
                 }
                 is TranscriptionResult.Error -> {
+                    RatingKit.reportError() // stay quiet for a while after a visible failure
                     _transcriptionError.value = result.message
                 }
             }

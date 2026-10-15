@@ -6,7 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.google.android.play.core.review.ReviewManagerFactory
+import com.kreativekoala.ratingkit.RatingKit
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -79,10 +79,7 @@ fun PlaybackScreen(
     LaunchedEffect(Unit) {
         viewModel.triggerReview.collect {
             val activity = context as? Activity ?: return@collect
-            val manager = ReviewManagerFactory.create(context)
-            manager.requestReviewFlow().addOnSuccessListener { reviewInfo ->
-                manager.launchReviewFlow(activity, reviewInfo)
-            }
+            RatingKit.trackAction(activity)
         }
     }
 
