@@ -40,8 +40,6 @@ import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.ui.components.LiveWaveformView
 import com.kreativekoala.echonote.ui.components.lip
 import com.kreativekoala.echonote.ui.theme.*
-import com.kreativekoala.ratingkit.RatingKit
-import android.app.Activity
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -159,7 +157,6 @@ fun RecordingScreen(
             confirmButton = {
                 Button(onClick = {
                     viewModel.saveRecording()
-                    (context as? Activity)?.let { RatingKit.trackAction(it) }
                     onDismiss()
                 }) {
                     Text(stringResource(R.string.recording_save))
