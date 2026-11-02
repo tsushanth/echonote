@@ -18,12 +18,6 @@ val localProperties = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) f.inputStream().use { load(it) }
 }
-// Release signing secrets live in the gitignored local.properties (or env CLEARVOICE_STORE_PASSWORD / CLEARVOICE_KEY_PASSWORD), never in this file.
-fun signingProp(name: String): String =
-    localProperties.getProperty(name)
-        ?: System.getenv(name.removePrefix("clearvoice.").replace(Regex("([A-Z])"), "_$1").uppercase().let { "CLEARVOICE_$it" })
-        ?: ""
-
 fun ingestProp(name: String) = (localProperties.getProperty(name) ?: "").replace("\"", "")
 
 // sherpa-onnx (Whisper + speaker diarization). The AAR is ~50 MB, so it is fetched
@@ -69,10 +63,17 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("/Users/sushanthtiruvaipati/Documents/GitHub/AndroidAppKey")
-            storePassword = signingProp("clearvoice.storePassword")
-            keyAlias = "androidappkey"
-            keyPassword = signingProp("clearvoice.keyPassword")
+            // Credentials live outside the repo, in ~/.gradle/gradle.properties:
+            // ANDROID_UPLOAD_STORE_FILE, ANDROID_UPLOAD_STORE_PASSWORD, ANDROID_UPLOAD_KEY_ALIAS, ANDROID_UPLOAD_KEY_PASSWORD
+            val uploadStore = providers.gradleProperty("ANDROID_UPLOAD_STORE_FILE").orNull
+            if (uploadStore != null) {
+                storeFile = file(uploadStore)
+                storePassword = providers.gradleProperty("ANDROID_UPLOAD_STORE_PASSWORD").get()
+                keyAlias = providers.gradleProperty("ANDROID_UPLOAD_KEY_ALIAS").get()
+                keyPassword = providers.gradleProperty("ANDROID_UPLOAD_KEY_PASSWORD").get()
+            } else if (gradle.startParameter.taskNames.any { it.contains("Release", ignoreCase = true) }) {
+                throw GradleException("Release signing needs ANDROID_UPLOAD_* in ~/.gradle/gradle.properties (see build.gradle.kts).")
+            }
         }
     }
 
