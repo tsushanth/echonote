@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.recording
 
+import com.kreativekoala.echonote.service.Funnel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -123,6 +124,8 @@ class RecordingViewModel @Inject constructor(
             return
         }
 
+        Funnel.recordingStarted()
+
         // Start foreground service so recording survives screen lock
         val serviceIntent = RecordingForegroundService.startIntent(context)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -204,6 +207,7 @@ class RecordingViewModel @Inject constructor(
                 locationName = pendingLocationName
             )
             recordingRepository.insertRecording(recording)
+            Funnel.recordingCompleted(result.durationMs)
             _showSaveDialog.value = false
             pendingResult = null
             pendingLocationName = null

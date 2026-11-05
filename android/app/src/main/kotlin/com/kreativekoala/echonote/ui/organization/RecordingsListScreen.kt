@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.organization
 
+import com.kreativekoala.echonote.service.Funnel
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -450,6 +451,7 @@ fun RecordingsListScreen(
                                                         putExtra(Intent.EXTRA_STREAM, uri)
                                                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                                                     }
+                                                    Funnel.shared("recording")
                                                     context.startActivity(Intent.createChooser(intent, context.getString(R.string.playback_share_recording)))
                                                 } catch (_: Exception) { }
                                             },

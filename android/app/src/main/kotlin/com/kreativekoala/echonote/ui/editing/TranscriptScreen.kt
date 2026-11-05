@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.editing
 
+import com.kreativekoala.echonote.service.Funnel
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -86,6 +87,7 @@ fun TranscriptScreen(
                                 type = "text/plain"
                                 putExtra(Intent.EXTRA_TEXT, transcript)
                             }
+                            Funnel.shared("transcript")
                             context.startActivity(Intent.createChooser(intent, context.getString(R.string.transcript_share_chooser)))
                         },
                         modifier = Modifier.size(32.dp)
