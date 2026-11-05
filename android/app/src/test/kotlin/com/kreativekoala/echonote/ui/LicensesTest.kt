@@ -31,7 +31,7 @@ class LicensesTest {
     fun bundledFileCreditsEveryShippedComponentAndHasTheFullTexts() {
         val text = licenseFile.readText()
         listOf(
-            "Whisper", "OpenAI", "sherpa-onnx", "ONNX Runtime", "Microsoft Corporation", "pyannote", "CNRS",
+            "Whisper", "OpenAI", "sherpa-onnx", "ONNX Runtime", "eSpeak NG", "Jonathan Duddington", "Microsoft Corporation", "pyannote", "CNRS",
             "TitaNet", "NVIDIA", "FastConformer", "Commons Compress", "CC BY 4.0", "Vosk", "Figtree", "Source Serif 4"
         ).forEach { assertTrue("missing credit: $it", text.contains(it)) }
         // the three full license texts, not just names
@@ -41,5 +41,14 @@ class LicensesTest {
         assertTrue(text.contains("THE SOFTWARE IS PROVIDED \"AS IS\""))
         assertTrue(text.contains("=== SIL Open Font License 1.1 ==="))
         assertTrue(text.contains("PERMISSION & CONDITIONS"))
+    }
+
+    @Test
+    fun eSpeakNgCreditNamesItsLicenseAndPointsToSourceAndLicenseText() {
+        val text = licenseFile.readText()
+        assertTrue(text.contains("GPL-3.0-or-later"))
+        assertTrue(text.contains("https://github.com/espeak-ng/espeak-ng"))
+        assertTrue(text.contains("https://github.com/csukuangfj/espeak-ng/tree/ed530aa113046142eb5115cf2fc9157854d0ffe1"))
+        assertTrue(text.contains("https://www.gnu.org/licenses/gpl-3.0.txt"))
     }
 }
