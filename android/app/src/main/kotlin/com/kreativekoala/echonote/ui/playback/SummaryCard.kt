@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -35,6 +37,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.service.summary.SummaryKind
@@ -45,15 +50,21 @@ import com.kreativekoala.echonote.service.summary.SummaryUiState
  * Callers that scroll to list rows by index must count one extra row when this adds one
  * (see [summaryItemCount]).
  */
-fun LazyListScope.summaryItem(state: SummaryUiState, onRefresh: () -> Unit) {
+fun LazyListScope.summaryItem(
+    state: SummaryUiState,
+    onRefresh: () -> Unit,
+    onListen: () -> Unit = {},
+    /** Index of the key point being read aloud right now, or -1. */
+    spokenPoint: Int = -1
+) {
     if (state == SummaryUiState.None) return
-    item(key = "summary") { SummaryCard(state, onRefresh) }
+    item(key = "summary") { SummaryCard(state, onRefresh, onListen, spokenPoint) }
 }
 
 fun summaryItemCount(state: SummaryUiState): Int = if (state == SummaryUiState.None) 0 else 1
 
 @Composable
-private fun SummaryCard(state: SummaryUiState, onRefresh: () -> Unit) {
+private fun SummaryCard(state: SummaryUiState, onRefresh: () -> Unit, onListen: () -> Unit, spokenPoint: Int) {
     val context = LocalContext.current
     var expanded by rememberSaveable { mutableStateOf(true) }
     val ready = state as? SummaryUiState.Ready
@@ -79,6 +90,9 @@ private fun SummaryCard(state: SummaryUiState, onRefresh: () -> Unit) {
                     )
                 }
                 if (ready != null) {
+                    IconButton(onClick = onListen) {
+                        Icon(Icons.AutoMirrored.Filled.VolumeUp, contentDescription = stringResource(R.string.listen_summary_button))
+                    }
                     IconButton(onClick = {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         clipboard.setPrimaryClip(ClipData.newPlainText("Key points", ready.result.asPlainText()))
@@ -109,14 +123,27 @@ private fun SummaryCard(state: SummaryUiState, onRefresh: () -> Unit) {
                     )
                     is SummaryUiState.Ready -> {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            state.result.points.forEach { point ->
-                                Row {
+                            state.result.points.forEachIndexed { index, point ->
+                                val spoken = index == spokenPoint
+                                val spokenLabel = stringResource(R.string.listen_summary_row_spoken, index + 1)
+                                Row(
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .then(
+                                            if (spoken) Modifier
+                                                .background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(8.dp))
+                                                .padding(horizontal = 8.dp, vertical = 4.dp)
+                                                .semantics { stateDescription = spokenLabel }
+                                            else Modifier
+                                        )
+                                ) {
                                     Text("•", style = MaterialTheme.typography.bodyMedium)
                                     Spacer(Modifier.width(8.dp))
                                     Text(
                                         point,
                                         style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurface
+                                        fontWeight = if (spoken) FontWeight.Bold else FontWeight.Normal,
+                                        color = if (spoken) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             }

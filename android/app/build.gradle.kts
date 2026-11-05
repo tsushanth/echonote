@@ -162,6 +162,8 @@ dependencies {
     val media3Version = "1.6.0"
     implementation("androidx.media3:media3-exoplayer:$media3Version")
     implementation("androidx.media3:media3-session:$media3Version")
+    // MediaSessionCompat + MediaStyle notification for Listen's headset / lock-screen controls
+    implementation("androidx.media:media:1.7.0")
     implementation("androidx.media3:media3-transformer:$media3Version")
 
     // Google Play Billing
