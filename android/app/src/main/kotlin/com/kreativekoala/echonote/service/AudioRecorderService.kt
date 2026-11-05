@@ -52,6 +52,8 @@ class AudioRecorderService @Inject constructor(
         isStereo: Boolean = false,
         gain: Float = 1.0f  // placeholder — applied post-recording in future implementation
     ): String? {
+        // A reading voice must never leak into a recording.
+        com.kreativekoala.echonote.tts.ListenController.stopIfRunning()
         try {
             val extension = format.extension
             val file = File(getRecordingsDir(), "$fileName.$extension")

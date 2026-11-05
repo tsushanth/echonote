@@ -19,6 +19,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,7 +31,13 @@ import androidx.core.content.FileProvider
 import com.kreativekoala.echonote.R
 import com.kreativekoala.echonote.service.joinWords
 import com.kreativekoala.echonote.service.summary.SummaryUiState
-import com.kreativekoala.echonote.tts.ReadAloudSheet
+import com.kreativekoala.echonote.tts.ListenController
+import com.kreativekoala.echonote.tts.ListenPhase
+import com.kreativekoala.echonote.tts.ListenRequest
+import com.kreativekoala.echonote.tts.ListenSheet
+import com.kreativekoala.echonote.tts.ListenSource
+import com.kreativekoala.echonote.tts.ListenText
+import com.kreativekoala.echonote.tts.SentenceSplitter
 import com.kreativekoala.echonote.ui.components.WaveformView
 import com.kreativekoala.echonote.ui.theme.EchoTheme
 import com.kreativekoala.echonote.ui.theme.TimerTextStyle
@@ -43,6 +50,11 @@ private val SPEEDS = listOf(0.5f, 0.75f, 1f, 1.25f, 1.5f, 2f)
 
 private fun speedLabel(speed: Float): String =
     if (speed == speed.toInt().toFloat()) "${speed.toInt()}×" else "${speed}×"
+
+private const val LISTEN_NONE = -1
+private const val LISTEN_SUMMARY = -2
+private const val LISTEN_TRANSCRIPT = -3
+private const val LISTEN_PARTIAL = -4
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,7 +84,11 @@ fun PlaybackScreen(
     val summaryState by viewModel.summaryState.collectAsState()
     val context = LocalContext.current
     var showMenu by remember { mutableStateOf(false) }
-    var showReadAloud by remember { mutableStateOf(false) }
+    // What Listen is reading: -1 nothing, LISTEN_SUMMARY, LISTEN_TRANSCRIPT, LISTEN_PARTIAL, or a paragraph index (>= 0).
+    var listenTarget by rememberSaveable { mutableIntStateOf(LISTEN_NONE) }
+    var partialSnapshot by rememberSaveable { mutableStateOf("") }
+    val listenUi by ListenController.get(context).ui.collectAsState()
+    val speechLocaleSetting by viewModel.speechLocale.collectAsState()
     var editTarget by remember { mutableStateOf<EditTarget?>(null) }
     var confirmRetranscribe by remember { mutableStateOf(false) }
     val hasEdits by viewModel.hasEdits.collectAsState()
@@ -218,11 +234,11 @@ fun PlaybackScreen(
                                     }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Read aloud") },
+                                    text = { Text(stringResource(R.string.listen_menu_transcript)) },
                                     leadingIcon = { Icon(Icons.Default.VolumeUp, contentDescription = null) },
                                     onClick = {
                                         showMenu = false
-                                        showReadAloud = true
+                                        listenTarget = LISTEN_TRANSCRIPT
                                     }
                                 )
                                 DropdownMenuItem(
@@ -298,7 +314,7 @@ fun PlaybackScreen(
                         status = transcriptionStatus ?: "Transcribing…",
                         progress = transcriptionProgress,
                         partial = partialTranscript,
-                        onReadAloud = { showReadAloud = true }
+                        onReadAloud = { partialSnapshot = partialTranscript; listenTarget = LISTEN_PARTIAL }
                     )
                 }
             }
@@ -337,14 +353,21 @@ fun PlaybackScreen(
             }
 
             if (hasText) {
-                summaryItem(summaryState, onRefresh = viewModel::summarize)
+                summaryItem(
+                    summaryState,
+                    onRefresh = viewModel::summarize,
+                    onListen = { listenTarget = LISTEN_SUMMARY },
+                    spokenPoint = if (listenUi.request?.source == ListenSource.SUMMARY &&
+                        (listenUi.phase == ListenPhase.Speaking || listenUi.phase == ListenPhase.Paused)) listenUi.unit else -1
+                )
                 if (paragraphs.isNotEmpty()) {
                     transcriptItems(
                         words = transcriptSegments,
                         paragraphs = paragraphs,
                         activeWord = activeSegmentIndex,
                         onSeek = viewModel::seekTo,
-                        onEdit = if (isTranscribing) null else openParagraphEditor
+                        onEdit = if (isTranscribing) null else openParagraphEditor,
+                        onListen = { p -> listenTarget = paragraphs.indexOf(p) }
                     )
                 } else {
                     plainTranscriptItem(transcriptionResult!!, if (isTranscribing) null else openPlainEditor)
@@ -374,11 +397,32 @@ fun PlaybackScreen(
         )
     }
 
-    if (showReadAloud) {
-        ReadAloudSheet(
-            text = if (isTranscribing) partialTranscript else transcriptionResult.orEmpty(),
-            onDismiss = { showReadAloud = false }
-        )
+    if (listenTarget != LISTEN_NONE) {
+        val locale = rec.contributionLanguage?.let { java.util.Locale.forLanguageTag(it.bcp47Tag) } ?: speechLocaleSetting
+        val request: ListenRequest? = when {
+            listenTarget == LISTEN_SUMMARY -> (summaryState as? SummaryUiState.Ready)?.let {
+                ListenRequest(it.result.points, ListenSource.SUMMARY, locale)
+            }
+            listenTarget == LISTEN_PARTIAL -> ListenRequest(SentenceSplitter.split(partialSnapshot), ListenSource.TRANSCRIPT, locale)
+            listenTarget == LISTEN_TRANSCRIPT -> ListenRequest(
+                ListenText.transcriptUnits(transcriptSegments, transcriptionResult.orEmpty()), ListenSource.TRANSCRIPT, locale
+            )
+            else -> paragraphs.getOrNull(listenTarget)?.let {
+                ListenRequest(ListenText.paragraphUnits(transcriptSegments, it.firstWord, it.endWord), ListenSource.SEGMENT, locale)
+            }
+        }
+        if (request == null || request.units.isEmpty()) {
+            LaunchedEffect(listenTarget) {
+                Toast.makeText(context, context.getString(R.string.listen_no_text), Toast.LENGTH_SHORT).show()
+                listenTarget = LISTEN_NONE
+            }
+        } else {
+            ListenSheet(
+                request = request,
+                onDismiss = { listenTarget = LISTEN_NONE },
+                onBeforeStart = viewModel::pausePlayback
+            )
+        }
     }
 }
 

@@ -173,6 +173,14 @@ class PlayerViewModel @Inject constructor(
 
     fun togglePlayPause() = playerService.togglePlayPause()
 
+    /** Pauses the recording's audio, e.g. when Listen starts so the two voices never overlap. */
+    fun pausePlayback() = playerService.pause()
+
+    /** Language Listen should speak when a recording carries none of its own: the transcription language setting. */
+    val speechLocale: StateFlow<java.util.Locale> = settingsRepository.transcriptionLanguage
+        .map { java.util.Locale.forLanguageTag(it.bcp47Tag) }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, java.util.Locale.getDefault())
+
     fun seekTo(positionMs: Long) = playerService.seekTo(positionMs)
 
     fun seekToProgress(progress: Float) = playerService.seekToProgress(progress)
