@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Listen / Find / Ask. English only for now; translations for the other locales are still to do. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="listen_action">Listen</string>
+    <string name="listen_title">Listen</string>
+    <string name="listen_summary_button">Listen to key points</string>
+    <string name="listen_paragraph_button">Listen to this paragraph from %1$s</string>
+    <string name="listen_menu_transcript">Listen to transcript</string>
+    <string name="listen_voice_label">Voice: %1$s</string>
+    <string name="listen_privacy_note">Spoken by a voice installed on this phone. Nothing is sent anywhere.</string>
+    <string name="listen_preparing">Getting the voice ready…</string>
+    <string name="listen_status_speaking">Reading aloud</string>
+    <string name="listen_status_paused">Paused</string>
+    <string name="listen_status_finished">Finished</string>
+    <string name="listen_status_idle">Stopped</string>
+    <string name="listen_play">Play</string>
+    <string name="listen_pause">Pause</string>
+    <string name="listen_resume">Resume</string>
+    <string name="listen_stop">Stop</string>
+    <string name="listen_next">Next sentence</string>
+    <string name="listen_previous">Previous sentence</string>
+    <string name="listen_again">Listen again</string>
+    <string name="listen_done">Done</string>
+    <string name="listen_speed_label">Speed</string>
+    <string name="listen_speed_chip">%1$s times</string>
+    <string name="listen_speed_selected">Selected</string>
+    <string name="listen_voice_picker">Choose voice</string>
+    <string name="listen_row_hint">Read from here</string>
+    <string name="listen_row_current">Now reading</string>
+    <string name="listen_try_again">Try again</string>
+    <string name="listen_no_engine">This phone has no text-to-speech engine installed, so ClearVoice cannot read aloud. Install Speech Services by Google, then try again. ClearVoice never uses an online voice.</string>
+    <string name="listen_get_engine">Get Speech Services by Google</string>
+    <string name="listen_missing_voice">The voice for %1$s is not installed on this phone. Install the voice data, then try again. ClearVoice never uses an online voice.</string>
+    <string name="listen_install_voice">Install voice data</string>
+    <string name="listen_unsupported_language">None of the voices installed on this phone can read %1$s aloud. You can still read the text.</string>
+    <string name="listen_open_tts_settings">Open text-to-speech settings</string>
+    <string name="listen_init_failed">The text-to-speech engines on this phone did not start. Try again, or check the text-to-speech settings.</string>
+    <string name="listen_failed">The voice stopped: %1$s</string>
+    <string name="listen_no_text">There is nothing to read yet.</string>
+    <string name="listen_channel_name">Listen controls</string>
+    <string name="listen_media_title">Reading aloud</string>
+    <string name="listen_source_summary">Key points</string>
+    <string name="listen_source_segment">Paragraph</string>
+    <string name="listen_source_transcript">Transcript</string>
+    <string name="listen_source_passage">Passage</string>
+    <string name="listen_summary_row_spoken">Key point %1$d, now being read</string>
+
+</resources>

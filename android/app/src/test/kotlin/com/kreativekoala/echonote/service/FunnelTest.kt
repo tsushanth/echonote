@@ -58,4 +58,41 @@ class FunnelTest {
         assertEquals(listOf("first_share", "share"), s.events.map { it.first })
         assertEquals(mapOf("what" to "transcript"), s.events.first().second)
     }
+
+    @Test fun listenEventsCarryOnlyAWhitelistedSource() {
+        val s = Sink(); val t = FunnelTracker(s, Once())
+        t.listenStarted("summary"); t.listenCompleted("passage"); t.listenStarted("My Secret Title")
+        assertEquals(listOf("listen_started", "listen_completed", "listen_started"), s.events.map { it.first })
+        assertEquals(mapOf("source" to "summary"), s.events[0].second)
+        assertEquals(mapOf("source" to "passage"), s.events[1].second)
+        assertEquals(mapOf("source" to "other"), s.events[2].second)
+    }
+
+    @Test fun findAndAskEventsCarryInputKindAndCountBucketNeverText() {
+        val s = Sink(); val t = FunnelTracker(s, Once())
+        t.findQuery("typed", 0); t.findQuery("voice", 3); t.askQuery("typed", 12); t.askQuery("what did Maria say about the loan", 99)
+        t.findResultOpened("all"); t.askResultOpened("recording"); t.findResultOpened("some title")
+        assertEquals(mapOf("input" to "typed", "results" to "0"), s.events[0].second)
+        assertEquals(mapOf("input" to "voice", "results" to "2_5"), s.events[1].second)
+        assertEquals(mapOf("input" to "typed", "results" to "6_20"), s.events[2].second)
+        assertEquals(mapOf("input" to "other", "results" to "gt_20"), s.events[3].second)
+        assertEquals(mapOf("scope" to "all"), s.events[4].second)
+        assertEquals(mapOf("scope" to "recording"), s.events[5].second)
+        assertEquals(mapOf("scope" to "other"), s.events[6].second)
+        assertEquals(listOf("find_query", "find_query", "ask_query", "ask_query", "find_result_opened", "ask_result_opened", "find_result_opened"), s.events.map { it.first })
+    }
+
+    @Test fun countBuckets() {
+        assertEquals("0", FunnelTracker.countBucket(0)); assertEquals("1", FunnelTracker.countBucket(1))
+        assertEquals("2_5", FunnelTracker.countBucket(2)); assertEquals("2_5", FunnelTracker.countBucket(5))
+        assertEquals("6_20", FunnelTracker.countBucket(6)); assertEquals("6_20", FunnelTracker.countBucket(20))
+        assertEquals("gt_20", FunnelTracker.countBucket(21))
+    }
+
+    @Test fun premiumEventsHaveNoParams() {
+        val s = Sink(); val t = FunnelTracker(s, Once())
+        t.premiumRowViewed(); t.premiumSheetOpened()
+        assertEquals(listOf("premium_row_viewed", "premium_sheet_opened"), s.events.map { it.first })
+        assertTrue(s.events.all { it.second.isEmpty() })
+    }
 }

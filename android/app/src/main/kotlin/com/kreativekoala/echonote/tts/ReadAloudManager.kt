@@ -18,8 +18,8 @@ class ReadAloudManager private constructor(context: Context) {
 
     private val appContext = context.applicationContext
 
-    /** Phase A engine — swap to Kokoro engine in Phase B without touching callers. */
-    val engine: TtsEngine = SystemTtsEngine(appContext)
+    /** Owns the engine (system TTS with an explicitly chosen offline engine), audio focus and media controls. */
+    val listen: ListenController = ListenController.get(appContext)
 
     companion object {
         @Volatile private var INSTANCE: ReadAloudManager? = null

@@ -25,7 +25,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kreativekoala.echonote.R
-import com.kreativekoala.echonote.tts.ReadAloudSheet
+import com.kreativekoala.echonote.tts.ListenRequest
+import com.kreativekoala.echonote.tts.ListenSheet
+import com.kreativekoala.echonote.tts.ListenSource
+import com.kreativekoala.echonote.tts.SentenceSplitter
 
 @Composable
 fun TranscriptScreen(
@@ -57,7 +60,7 @@ fun TranscriptScreen(
                         ) {
                             Icon(
                                 Icons.Default.VolumeUp,
-                                contentDescription = "Read Aloud",
+                                contentDescription = stringResource(R.string.listen_menu_transcript),
                                 modifier = Modifier.size(18.dp),
                                 tint = MaterialTheme.colorScheme.primary
                             )
@@ -111,8 +114,8 @@ fun TranscriptScreen(
     }
 
     if (showReadAloud) {
-        ReadAloudSheet(
-            text = transcript,
+        ListenSheet(
+            request = ListenRequest(SentenceSplitter.split(transcript), ListenSource.TRANSCRIPT, java.util.Locale.getDefault()),
             onDismiss = { showReadAloud = false }
         )
     }

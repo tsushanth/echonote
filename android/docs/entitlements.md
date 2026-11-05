@@ -27,4 +27,5 @@ debug builds only, an override can force the answer:
     <map><boolean name="billing_available" value="true" /><boolean name="is_premium" value="false" /></map>
     X
 
-Remove the file to return to the real answer. Release builds ignore it.
+Force-stop the app after changing the file (preferences are cached per process). Remove the file to return to the real
+answer. Release builds ignore it.

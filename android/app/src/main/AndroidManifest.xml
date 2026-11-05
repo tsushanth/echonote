@@ -16,6 +16,13 @@
 
     <uses-feature android:name="android.hardware.microphone" android:required="true" />
 
+    <!-- Lets the app see which text-to-speech engines are installed, so it can pick one explicitly. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
     <application
         android:name=".EchoNoteApplication"
         android:allowBackup="true"
@@ -48,6 +55,11 @@
             android:name=".service.RecordingForegroundService"
             android:exported="false"
             android:foregroundServiceType="microphone" />
+
+        <!-- Buttons on the Listen notification (play/pause/skip/stop). Only our own PendingIntents reach it. -->
+        <receiver
+            android:name=".tts.ListenActionReceiver"
+            android:exported="false" />
 
         <receiver
             android:name=".ui.widget.RecordingWidgetReceiver"

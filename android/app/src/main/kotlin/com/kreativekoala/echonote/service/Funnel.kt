@@ -56,7 +56,44 @@ class FunnelTracker(private val sink: FunnelSink, private val once: OnceStore) {
         sink.log("share", mapOf("what" to what))
     }
 
+    // --- Listen / Find / Ask. Params are whitelisted below, so text can never reach analytics. ---
+
+    /** [source] is one of "summary", "segment", "transcript", "passage". */
+    fun listenStarted(source: String) = sink.log("listen_started", mapOf("source" to oneOf(source, LISTEN_SOURCES)))
+
+    fun listenCompleted(source: String) = sink.log("listen_completed", mapOf("source" to oneOf(source, LISTEN_SOURCES)))
+
+    /** [input] is "typed" or "voice"; [resultCount] becomes a bucket. The query text is never sent. */
+    fun findQuery(input: String, resultCount: Int) =
+        sink.log("find_query", mapOf("input" to oneOf(input, INPUTS), "results" to countBucket(resultCount)))
+
+    /** [scope] is "all" or "recording". */
+    fun findResultOpened(scope: String) = sink.log("find_result_opened", mapOf("scope" to oneOf(scope, SCOPES)))
+
+    fun askQuery(input: String, resultCount: Int) =
+        sink.log("ask_query", mapOf("input" to oneOf(input, INPUTS), "results" to countBucket(resultCount)))
+
+    fun askResultOpened(scope: String) = sink.log("ask_result_opened", mapOf("scope" to oneOf(scope, SCOPES)))
+
+    fun premiumRowViewed() = sink.log("premium_row_viewed")
+
+    fun premiumSheetOpened() = sink.log("premium_sheet_opened")
+
     companion object {
+        private val LISTEN_SOURCES = setOf("summary", "segment", "transcript", "passage")
+        private val INPUTS = setOf("typed", "voice")
+        private val SCOPES = setOf("all", "recording")
+
+        private fun oneOf(value: String, allowed: Set<String>) = if (value in allowed) value else "other"
+
+        fun countBucket(n: Int): String = when {
+            n <= 0 -> "0"
+            n == 1 -> "1"
+            n <= 5 -> "2_5"
+            n <= 20 -> "6_20"
+            else -> "gt_20"
+        }
+
         fun durationBucket(ms: Long): String = when {
             ms < 10_000 -> "lt_10s"
             ms < 60_000 -> "10s_1m"
@@ -116,4 +153,12 @@ object Funnel {
     fun transcriptionCompleted() { tracker?.transcriptionCompleted() }
     fun transcriptionFailed(message: String) { tracker?.transcriptionFailed(message) }
     fun shared(what: String) { tracker?.shared(what) }
+    fun listenStarted(source: String) { tracker?.listenStarted(source) }
+    fun listenCompleted(source: String) { tracker?.listenCompleted(source) }
+    fun findQuery(input: String, resultCount: Int) { tracker?.findQuery(input, resultCount) }
+    fun findResultOpened(scope: String) { tracker?.findResultOpened(scope) }
+    fun askQuery(input: String, resultCount: Int) { tracker?.askQuery(input, resultCount) }
+    fun askResultOpened(scope: String) { tracker?.askResultOpened(scope) }
+    fun premiumRowViewed() { tracker?.premiumRowViewed() }
+    fun premiumSheetOpened() { tracker?.premiumSheetOpened() }
 }
