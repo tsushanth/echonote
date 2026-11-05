@@ -10,6 +10,11 @@ import com.kreativekoala.echonote.service.Funnel
 import com.kreativekoala.echonote.service.TikTokHelper
 import com.kreativekoala.ratingkit.RatingKit
 import dagger.hilt.android.HiltAndroidApp
+import com.kreativekoala.echonote.billing.EntitlementRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -17,6 +22,9 @@ class EchoNoteApplication : Application(), Configuration.Provider {
 
     @Inject lateinit var appOpenTracker: AppOpenTracker
     @Inject lateinit var workerFactory: HiltWorkerFactory
+    @Inject lateinit var entitlements: EntitlementRepository
+
+    private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
@@ -31,5 +39,7 @@ class EchoNoteApplication : Application(), Configuration.Provider {
         FacebookSDKHelper.initialize(this)
         RatingKit.init(this, appId = "clearvoice")
         appOpenTracker.incrementOpenCount()
+        // Restore on launch: ask Google Play which legacy subscriptions are active. Read-only; gates nothing.
+        appScope.launch { entitlements.refresh() }
     }
 }
