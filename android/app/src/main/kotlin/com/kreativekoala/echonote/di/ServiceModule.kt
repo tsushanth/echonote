@@ -1,6 +1,11 @@
 package com.kreativekoala.echonote.di
 
 import android.content.Context
+import com.kreativekoala.echonote.BuildConfig
+import com.kreativekoala.echonote.billing.EntitlementRepository
+import com.kreativekoala.echonote.billing.PlayBillingGateway
+import com.kreativekoala.echonote.billing.PrefsEntitlementOverride
+import com.kreativekoala.echonote.billing.PrefsEntitlementStore
 import com.kreativekoala.echonote.data.repository.SettingsRepository
 import com.kreativekoala.echonote.service.AudioRecorderService
 import com.kreativekoala.echonote.service.AudioPlayerService
@@ -63,5 +68,16 @@ object ServiceModule {
     @Singleton
     fun provideAppOpenTracker(@ApplicationContext context: Context): AppOpenTracker {
         return AppOpenTracker(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEntitlementRepository(@ApplicationContext context: Context): EntitlementRepository {
+        return EntitlementRepository(
+            gateway = PlayBillingGateway(context),
+            store = PrefsEntitlementStore(context),
+            checkEnabled = BuildConfig.ENTITLEMENT_CHECK_ENABLED,
+            override = if (BuildConfig.DEBUG) PrefsEntitlementOverride(context) else null,
+        )
     }
 }

@@ -57,6 +57,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        // Entitlement CHECK only: asks Google Play which legacy subscriptions are active. There is no purchase
+        // UI and nothing in the app is gated by it. Compile-time, no remote config.
+        buildConfigField("boolean", "ENTITLEMENT_CHECK_ENABLED", "true")
         buildConfigField("String", "INGEST_URL", "\"${ingestProp("clearvoice.ingestUrl")}\"")
         buildConfigField("String", "INGEST_KEY", "\"${ingestProp("clearvoice.ingestKey")}\"")
     }
@@ -78,6 +81,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Installs next to the production app; never overwrites it. app/src/debug/google-services.json
+            // carries the matching client and app/src/debug/AndroidManifest.xml turns analytics off.
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
         release {
             isMinifyEnabled = false
             isShrinkResources = false
