@@ -6,6 +6,8 @@ sherpa-onnx -- Apache License 2.0. Runs the Whisper and speaker models on this p
 
 ONNX Runtime -- MIT License, Copyright (c) Microsoft Corporation. Included with sherpa-onnx.
 
+eSpeak NG -- GNU General Public License, version 3 or (at your option) any later version (GPL-3.0-or-later). Copyright (C) 2005 to 2013 Jonathan Duddington, Copyright (C) 2013 to 2017 Reece H. Dunn, and other eSpeak NG authors. Code from eSpeak NG is built into the sherpa-onnx native libraries that ship with this app, where sherpa-onnx uses it to turn text into phonemes for its text-to-speech feature. This app does not call that feature; it uses sherpa-onnx only for Whisper transcription and speaker labels. Project: https://github.com/espeak-ng/espeak-ng . Source of the version sherpa-onnx 1.13.8 builds (a fork pinned at commit ed530aa113046142eb5115cf2fc9157854d0ffe1): https://github.com/csukuangfj/espeak-ng/tree/ed530aa113046142eb5115cf2fc9157854d0ffe1 . License text: https://www.gnu.org/licenses/gpl-3.0.txt
+
 pyannote segmentation 3.0 -- MIT License, Copyright (c) 2020 CNRS (pyannote.audio project). Finds when someone is speaking.
 
 NVIDIA NeMo TitaNet-small speaker model -- distributed by NVIDIA under the license of the NVIDIA NeMo Toolkit, the Apache License 2.0. Tells voices apart. Distributed in ONNX form by the sherpa-onnx project.
