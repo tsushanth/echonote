@@ -46,6 +46,7 @@ fun RecordingsListScreen(
     folders: List<RecordingFolder> = emptyList(),
     onMoveToFolder: (Recording, String?) -> Unit = { _, _ -> },
     onRecycleBinClick: () -> Unit = {},
+    onSearchTranscripts: () -> Unit = {},
     viewModel: RecordingsListViewModel = hiltViewModel()
 ) {
     val recordings by viewModel.recordings.collectAsState()
@@ -150,6 +151,9 @@ fun RecordingsListScreen(
                 TopAppBar(
                     title = { Text(stringResource(R.string.recordings_title)) },
                     actions = {
+                        IconButton(onClick = onSearchTranscripts) {
+                            Icon(Icons.Default.Search, contentDescription = stringResource(R.string.find_open))
+                        }
                         IconButton(onClick = onRecycleBinClick) {
                             Icon(Icons.Default.Delete, contentDescription = "Recycle Bin")
                         }

@@ -153,7 +153,28 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
-    fun loadRecording(recording: Recording) {
+    /** Time (ms) a Find/Ask result asked the transcript to scroll to; cleared by [consumeFocus]. */
+    private val _focusMs = MutableStateFlow<Long?>(null)
+    val focusMs: StateFlow<Long?> = _focusMs
+
+    private val _audioMissing = MutableStateFlow(false)
+    /** True when the recording's audio file is gone (deleted after transcription), so only the text can be shown. */
+    val audioMissing: StateFlow<Boolean> = _audioMissing
+
+    fun consumeFocus() { _focusMs.value = null }
+
+    /** Loads a recording by id and starts it at [startMs]; calls [onReady] once it is loaded (main thread). */
+    fun openRecordingAt(recordingId: String, startMs: Long?, onReady: () -> Unit) {
+        viewModelScope.launch {
+            val rec = recordingRepository.getRecordingById(recordingId) ?: return@launch
+            loadRecording(rec, startMs)
+            onReady()
+        }
+    }
+
+    fun loadRecording(recording: Recording, focusMs: Long? = null) {
+        _audioMissing.value = !File(recording.fileUri).exists()
+        _focusMs.value = focusMs
         _currentRecording.value = recording
         loadStoredSummary(recording)
         _showPlayback.value = true
@@ -163,7 +184,7 @@ class PlayerViewModel @Inject constructor(
         _showTrimMode.value = false
         _trimStart.value = 0f
         _trimEnd.value = 1f
-        playerService.play(recording.fileUri)
+        playerService.play(recording.fileUri, startPositionMs = focusMs ?: 0L)
 
         viewModelScope.launch(Dispatchers.IO) {
             val waveform = playerService.generateWaveformData(recording.fileUri)
