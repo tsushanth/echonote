@@ -40,14 +40,15 @@ class AudioPlayerService @Inject constructor(
     private val _skipSilence = MutableStateFlow(false)
     val skipSilence: StateFlow<Boolean> = _skipSilence
 
-    fun play(filePath: String, autoPlay: Boolean = true) {
+    fun play(filePath: String, autoPlay: Boolean = true, startPositionMs: Long = 0L) {
         release()
 
         val player = ExoPlayer.Builder(context).build()
         val file = File(filePath)
         val mediaItem = MediaItem.fromUri(file.toURI().toString())
 
-        player.setMediaItem(mediaItem)
+        player.setMediaItem(mediaItem, startPositionMs.coerceAtLeast(0L))
+        _currentPositionMs.value = startPositionMs.coerceAtLeast(0L)
         player.playbackParameters = PlaybackParameters(_playbackSpeed.value)
 
         player.addListener(object : Player.Listener {

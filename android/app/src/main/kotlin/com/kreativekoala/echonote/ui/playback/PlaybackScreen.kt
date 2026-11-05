@@ -60,7 +60,9 @@ private const val LISTEN_PARTIAL = -4
 @Composable
 fun PlaybackScreen(
     viewModel: PlayerViewModel,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    /** Leaves the player and opens Find/Ask limited to this recording ([ask] true = Ask mode). */
+    onFindInRecording: (recordingId: String, title: String, ask: Boolean) -> Unit = { _, _, _ -> }
 ) {
     val recording by viewModel.currentRecording.collectAsState()
     val isPlaying by viewModel.isPlaying.collectAsState()
@@ -112,6 +114,17 @@ fun PlaybackScreen(
         (if (hasText) summaryItemCount(summaryState) else 0)
     val listState = rememberLazyListState()
     val activeParagraph = paragraphIndexOf(paragraphs, activeSegmentIndex)
+    // A Find/Ask result opened this recording at a moment: bring that paragraph into view once the list exists.
+    val focusMs by viewModel.focusMs.collectAsState()
+    val audioMissing by viewModel.audioMissing.collectAsState()
+    LaunchedEffect(focusMs, paragraphs.size) {
+        val target = focusMs ?: return@LaunchedEffect
+        if (audioMissing) Toast.makeText(context, context.getString(R.string.find_audio_missing), Toast.LENGTH_LONG).show()
+        if (paragraphs.isNotEmpty()) {
+            listState.animateScrollToItem(leadingItems + paragraphs.indexOfLast { it.startMs <= target }.coerceAtLeast(0))
+        }
+        viewModel.consumeFocus()
+    }
     // One stable lambda so paragraphs away from the playhead can still skip recomposition.
     val openParagraphEditor = remember(transcriptSegments) {
         { p: TranscriptParagraph ->
@@ -212,6 +225,24 @@ fun PlaybackScreen(
                                         showMenu = false
                                         if (paragraphs.isEmpty()) openPlainEditor()
                                         else openParagraphEditor(paragraphs[maxOf(activeParagraph, 0)])
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.find_menu_in_recording)) },
+                                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                                    onClick = {
+                                        showMenu = false
+                                        val id = rec.id; val title = rec.title
+                                        viewModel.dismiss(); onDismiss(); onFindInRecording(id, title, false)
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.ask_menu_this_recording)) },
+                                    leadingIcon = { Icon(Icons.Default.QuestionAnswer, contentDescription = null) },
+                                    onClick = {
+                                        showMenu = false
+                                        val id = rec.id; val title = rec.title
+                                        viewModel.dismiss(); onDismiss(); onFindInRecording(id, title, true)
                                     }
                                 )
                                 DropdownMenuItem(

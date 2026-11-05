@@ -9,8 +9,23 @@ import androidx.room.Update
 import com.kreativekoala.echonote.data.model.Recording
 import kotlinx.coroutines.flow.Flow
 
+/** Just what the transcript search index needs, so indexing never loads waveforms or other blobs. */
+data class TranscriptIndexRow(
+    val id: String,
+    val title: String,
+    val dateCreated: Long,
+    val transcript: String?,
+    val transcriptSegmentsJson: String?
+)
+
 @Dao
 interface RecordingDao {
+
+    @Query(
+        "SELECT id, title, dateCreated, transcript, transcriptSegmentsJson FROM recordings " +
+            "WHERE deletedAt IS NULL AND transcript IS NOT NULL AND transcript != '' ORDER BY dateCreated DESC"
+    )
+    fun transcriptIndexRows(): Flow<List<TranscriptIndexRow>>
 
     @Query("SELECT * FROM recordings WHERE deletedAt IS NULL ORDER BY dateCreated DESC")
     fun getAllRecordings(): Flow<List<Recording>>

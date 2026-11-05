@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +42,10 @@ import com.kreativekoala.echonote.ui.organization.RecordingsListScreen
 import com.kreativekoala.echonote.ui.organization.FoldersScreen
 import com.kreativekoala.echonote.ui.organization.FavoritesScreen
 import com.kreativekoala.echonote.ui.organization.RecycleBinScreen
+import com.kreativekoala.echonote.ui.find.FindMode
+import com.kreativekoala.echonote.ui.find.FindScope
+import com.kreativekoala.echonote.ui.find.FindScreen
+import com.kreativekoala.echonote.ui.find.FindViewModel
 import com.kreativekoala.echonote.ui.playback.PlaybackScreen
 import com.kreativekoala.echonote.ui.playback.PlayerViewModel
 import com.kreativekoala.echonote.ui.recording.RecordingScreen
@@ -106,9 +111,21 @@ fun EchoNoteNavigation() {
     val playerViewModel: PlayerViewModel = hiltViewModel()
     val folderViewModel: FolderViewModel = hiltViewModel()
     var showRecordingSheet by remember { mutableStateOf(false) }
-    var showPlaybackScreen by remember { mutableStateOf(false) }
+    // Saveable: a rotation keeps the player (and an open Listen sheet) instead of dropping back to the list.
+    var showPlaybackScreen by rememberSaveable { mutableStateOf(false) }
     var showFolderDetail by remember { mutableStateOf(false) }
     var showRecycleBin by remember { mutableStateOf(false) }
+    // Find / Ask overlay. Saveable so a rotation keeps the screen; the query itself lives in the activity-scoped view model.
+    val findViewModel: FindViewModel = hiltViewModel()
+    var showFind by rememberSaveable { mutableStateOf(false) }
+    var findRecordingId by rememberSaveable { mutableStateOf<String?>(null) }
+    var findRecordingTitle by rememberSaveable { mutableStateOf<String?>(null) }
+    var findAsk by rememberSaveable { mutableStateOf(false) }
+    fun openFind(recordingId: String?, title: String?, ask: Boolean) {
+        findRecordingId = recordingId; findRecordingTitle = title; findAsk = ask
+        findViewModel.open(FindScope(recordingId, title), if (ask) FindMode.ASK else FindMode.FIND, fresh = true)
+        showFind = true
+    }
 
     val folders by folderViewModel.folders.collectAsState()
     val folderRecordings by folderViewModel.folderRecordings.collectAsState()
@@ -126,7 +143,8 @@ fun EchoNoteNavigation() {
     if (showPlaybackScreen) {
         PlaybackScreen(
             viewModel = playerViewModel,
-            onDismiss = { showPlaybackScreen = false }
+            onDismiss = { showPlaybackScreen = false },
+            onFindInRecording = { id, title, ask -> openFind(id, title, ask) }
         )
         return
     }
@@ -134,6 +152,23 @@ fun EchoNoteNavigation() {
     // Recycle Bin as a full-screen overlay
     if (showRecycleBin) {
         RecycleBinScreen(onBack = { showRecycleBin = false })
+        return
+    }
+
+    // Find / Ask over all transcripts (or one recording); opening a result shows the player over it, back returns here
+    if (showFind) {
+        LaunchedEffect(Unit) {
+            // re-created after rotation or process restart: make sure the index is running
+            findViewModel.open(FindScope(findRecordingId, findRecordingTitle), if (findAsk) FindMode.ASK else FindMode.FIND, fresh = false)
+        }
+        BackHandler { showFind = false }
+        FindScreen(
+            viewModel = findViewModel,
+            onBack = { showFind = false },
+            onOpen = { id, startMs ->
+                playerViewModel.openRecordingAt(id, startMs) { showPlaybackScreen = true }
+            }
+        )
         return
     }
 
@@ -198,7 +233,8 @@ fun EchoNoteNavigation() {
                         onMoveToFolder = { recording, folderId ->
                             folderViewModel.moveRecordingToFolder(recording.id, folderId)
                         },
-                        onRecycleBinClick = { showRecycleBin = true }
+                        onRecycleBinClick = { showRecycleBin = true },
+                        onSearchTranscripts = { openFind(null, null, false) }
                     )
                 }
                 composable(BottomNavItem.Folders.route) {
