@@ -6,6 +6,7 @@ import androidx.work.Configuration
 import com.kreativekoala.echonote.service.AppOpenTracker
 import com.kreativekoala.echonote.service.FacebookSDKHelper
 import com.kreativekoala.echonote.service.FirebaseAnalyticsHelper
+import com.kreativekoala.echonote.service.Funnel
 import com.kreativekoala.echonote.service.TikTokHelper
 import com.kreativekoala.ratingkit.RatingKit
 import dagger.hilt.android.HiltAndroidApp
@@ -25,6 +26,7 @@ class EchoNoteApplication : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         FirebaseAnalyticsHelper.initialize(this)
+        Funnel.init(this)
         TikTokHelper.initialize(this)
         FacebookSDKHelper.initialize(this)
         RatingKit.init(this, appId = "clearvoice")

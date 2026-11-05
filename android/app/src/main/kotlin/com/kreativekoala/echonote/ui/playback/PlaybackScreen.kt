@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.playback
 
+import com.kreativekoala.echonote.service.Funnel
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -141,6 +142,7 @@ fun PlaybackScreen(
                                 putExtra(Intent.EXTRA_STREAM, uri)
                                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                             }
+                            Funnel.shared("recording")
                             context.startActivity(Intent.createChooser(intent, context.getString(R.string.playback_share_recording)))
                         } catch (_: Exception) { }
                     }) {

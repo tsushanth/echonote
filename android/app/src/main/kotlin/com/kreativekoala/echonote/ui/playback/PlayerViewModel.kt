@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.playback
 
+import com.kreativekoala.echonote.service.Funnel
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -216,10 +217,12 @@ class PlayerViewModel @Inject constructor(
         if (transcriptionService.isTranscribing.value) return
 
         _transcriptionError.value = null
+        Funnel.transcriptionStarted()
 
         viewModelScope.launch(Dispatchers.Main) {
             when (val result = transcriptionService.transcribe(rec.fileUri)) {
                 is TranscriptionResult.Success -> {
+                    Funnel.transcriptionCompleted()
                     _transcriptionResult.value = result.text
                     _transcriptSegments.value = result.segments
                     _transcriptionError.value = null
@@ -270,6 +273,7 @@ class PlayerViewModel @Inject constructor(
                     }
                 }
                 is TranscriptionResult.Error -> {
+                    Funnel.transcriptionFailed(result.message)
                     RatingKit.reportError() // stay quiet for a while after a visible failure
                     _transcriptionError.value = result.message
                 }
@@ -454,6 +458,7 @@ class PlayerViewModel @Inject constructor(
             }
             val chooser = Intent.createChooser(intent, "Export Transcript")
             chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Funnel.shared("transcript")
             context.startActivity(chooser)
         }
     }
