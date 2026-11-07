@@ -1,11 +1,14 @@
 package com.kreativekoala.echonote.util
 
 import com.kreativekoala.echonote.data.model.TranscriptSegment
+import com.kreativekoala.echonote.service.isNoSpaceScript
 import com.kreativekoala.echonote.service.joinWords
 
 data class SubtitleCue(val startMs: Long, val endMs: Long, val text: String)
 
 private const val MAX_CUE_WORDS = 10
+/** Chinese, Japanese and Thai words are single characters or syllables, so a cue holds more of them. */
+private const val MAX_CUE_UNITS_NO_SPACE = 24
 private const val MAX_CUE_MS = 5000L
 private const val CUE_BREAK_GAP_MS = 700L
 
@@ -26,7 +29,8 @@ fun buildSubtitleCues(words: List<TranscriptSegment>): List<SubtitleCue> {
         val gap = words[i].startMs - words[i - 1].endMs
         val count = i - first
         val span = words[i - 1].endMs - words[first].startMs
-        if (gap >= CUE_BREAK_GAP_MS || count >= MAX_CUE_WORDS || span >= MAX_CUE_MS) flush(i)
+        val limit = if (words[first].word.firstOrNull()?.let { isNoSpaceScript(it) } == true) MAX_CUE_UNITS_NO_SPACE else MAX_CUE_WORDS
+        if (gap >= CUE_BREAK_GAP_MS || count >= limit || span >= MAX_CUE_MS) flush(i)
     }
     flush(words.size)
     return cues
@@ -44,7 +48,7 @@ fun List<SubtitleCue>.toSrt(): String = buildString {
     this@toSrt.forEachIndexed { i, cue ->
         appendLine(i + 1)
         appendLine("${timestamp(cue.startMs, ',')} --> ${timestamp(cue.endMs, ',')}")
-        appendLine(cue.text)
+        appendLine(Bidi.markRtl(cue.text))
         appendLine()
     }
 }
@@ -54,7 +58,7 @@ fun List<SubtitleCue>.toVtt(): String = buildString {
     appendLine()
     this@toVtt.forEach { cue ->
         appendLine("${timestamp(cue.startMs, '.')} --> ${timestamp(cue.endMs, '.')}")
-        appendLine(cue.text)
+        appendLine(Bidi.markRtl(cue.text))
         appendLine()
     }
 }
