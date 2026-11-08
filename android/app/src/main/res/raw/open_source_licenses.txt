@@ -18,7 +18,7 @@ NVIDIA NeMo FastConformer 10-language speech model (Belarusian, German, English,
 
 PengCheng Starling multilingual streaming Zipformer (Arabic, Indonesian and others) -- Apache License 2.0, Copyright the PengCheng Starling authors, https://huggingface.co/stdo/PengChengStarling . Converted to ONNX and quantized to int8 for sherpa-onnx.
 
-Dolphin base speech model (Thai, Arabic, Indonesian and other Eastern languages) -- Apache License 2.0, Copyright Dataocean AI and Tsinghua University, https://github.com/DataoceanAI/Dolphin . Converted to ONNX and quantized to int8 by the sherpa-onnx project.
+Dolphin base speech model (Thai, Arabic, Indonesian and other Eastern languages) -- Apache License 2.0, Copyright DataoceanAI and Tsinghua University, https://github.com/DataoceanAI/Dolphin . Converted to ONNX and quantized to int8 by the sherpa-onnx project.
 
 Omnilingual ASR 300M CTC speech model -- Apache License 2.0, Copyright Meta Platforms, Inc. and affiliates, https://github.com/facebookresearch/omnilingual-asr . Used for Swahili, Tagalog, Telugu, Tamil and some European languages. Converted to ONNX and quantized to int8 by the sherpa-onnx project.
 

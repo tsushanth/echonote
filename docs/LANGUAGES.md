@@ -75,6 +75,29 @@ Notes on the table:
   FLEURS results for Persian, Kazakh and Georgian on its model page, so it is possible those models were tuned against FLEURS;
   we cannot tell, and the number may flatter them.
 
+## How the app uses this
+
+* **Picker** (Settings, Transcription Language): native name first, a Supported or Experimental badge, the Accurate download size and the
+  Fast size before anything is downloaded, a note when this phone has less memory than the best model needs, and a section for
+  languages that need a bigger phone. Languages that were measured and failed (Hebrew, Urdu) are listed greyed with the closest
+  available language. Arabic carries a plain warning that dialect speech is much worse.
+* **Quality setting.** Fast (Vosk) stays the default and is untouched for the first ten languages. For a new language with no Fast model,
+  or whose Fast model scored above 50%, the Accurate engine is always used and the settings screen says so.
+* **Memory.** Below 5e9 bytes of reported RAM an engine marked big is skipped for the next one in the language's list; if nothing
+  is left, transcription stops with a message that the language needs a phone with 6 GB or more.
+* **Word times.** Every engine except Whisper returns token times, used as they are (leading spaces mark word starts, so Arabic words
+  and Thai pieces group correctly). Whisper has none; `distributeOverSpeech` spreads its words over the speech. Thai, Lao, Khmer and
+  Burmese pieces are treated like Chinese characters: each piece is a timed word and pieces join with no spaces, so the phrase spaces
+  an engine puts in Thai are not kept. The Vietnamese Zipformer writes capitals; the app lower-cases them.
+* **Right-to-left.** The transcript view is one Compose text per paragraph, which takes its direction from the first strong letter.
+  SRT and VTT cues that contain Arabic, Persian, Urdu or Hebrew letters get a right-to-left mark so other players lay them out right
+  to left even when a cue starts with a digit or a Latin word. Search ignores Arabic and Hebrew vowel marks, folds alef/yeh/teh
+  marbuta variants, and searches Thai character by character. Arabic and Urdu question marks and full stops end a sentence.
+* **Not changed:** the live transcript (Vosk only, so it says it is unavailable for languages with no Fast model), "Mark uncertain
+  words" (stays off for the new languages: it was only measured for seven), voice-data contribution (new languages upload with their
+  language tag like the others; the raw transcript of an Experimental language is likely to contain errors).
+
+
 ## Engines considered
 
 Sizes are what the user downloads (the release archive, or the int8 files for Whisper). RAM is the peak resident memory of a fresh Mac Python process decoding three ~28 s windows with 4 threads (about 50 MB of that is Python); it is not a phone number. The only phone measurements ever made are the old ones in tools/asr-bench/README.md (Whisper small about 1.3 GB, NeMo about 0.38 GB on a Pixel 9 Pro).
@@ -109,43 +132,43 @@ Timestamps were checked directly (`lang_timestamps.py`): every engine above exce
 
 Error % on the 25 FLEURS clips (CER for th). `-` = not run. Vosk columns include models we do not ship (Czech, Telugu, Vietnamese failed the bar). Whisper small is close to useless on bn (100.8), ta (80.6), sw (74.9) and hi (90.7); it was not run on Telugu.
 
-| lang | vosk | whisper-small | whisper-base | whisper-medium | stream-zipformer-multi | dolphin-base | dolphin-small | omnilingual-300m | nemo10 | parakeet-v3 | zipformer-ru | zipformer-vi | stream-zipformer-bn | gigaam-v3-ru |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ar | 38.2 | 27.6 | 48.4 | 15.4 | 18.4 | 39.0 | 20.4 | 18.2 | - | - | - | - | - | - |
-| bg | - | 37.1 | - | - | - | - | - | 25.2 | - | 12.9 | - | - | - | - |
-| bn | - | 100.8 | - | - | - | 38.2 | 30.4 | 35.5 | - | - | - | - | 17.1 | - |
-| ca | 17.3 | 18.3 | - | - | - | - | - | 18.9 | - | - | - | - | - | - |
-| cs | 60.0 | 44.3 | - | - | - | - | - | 29.3 | - | 25.9 | - | - | - | - |
-| da | - | 34.8 | - | - | - | - | - | 39.3 | - | 25.8 | - | - | - | - |
-| el | - | 50.3 | - | - | - | - | - | 38.4 | - | 45.7 | - | - | - | - |
-| fa | 16.9 | 56.1 | - | - | - | 42.7 | 37.8 | 25.4 | - | - | - | - | - | - |
-| fi | - | 31.5 | - | - | - | - | - | 28.4 | - | 21.1 | - | - | - | - |
-| he | - | 58.2 | - | - | - | - | - | 50.9 | - | - | - | - | - | - |
-| hi | 16.4 | 90.7 | - | - | - | 35.2 | 45.0 | 30.5 | - | - | - | - | - | - |
-| hr | - | 37.7 | - | - | - | - | - | 19.6 | 88.0 | 27.7 | - | - | - | - |
-| hu | - | 40.8 | - | - | - | - | - | 36.5 | - | 33.4 | - | - | - | - |
-| id | - | 14.6 | 39.6 | - | 12.2 | 19.1 | 15.0 | 17.2 | - | - | - | - | - | - |
-| it | 8.8 | 9.8 | - | - | - | - | - | 9.3 | 8.3 | 3.4 | - | - | - | - |
-| ka | 32.1 | 100.9 | - | - | - | - | - | 38.6 | - | - | - | - | - | - |
-| kk | 19.0 | 84.2 | - | - | - | 62.3 | 42.9 | 22.1 | - | - | - | - | - | - |
-| ms | - | 23.0 | - | - | - | 32.1 | 26.2 | 30.4 | - | - | - | - | - | - |
-| nl | 48.7 | 21.7 | 44.7 | - | - | - | - | 30.4 | - | 12.1 | - | - | - | - |
-| pl | 17.1 | 19.8 | 45.0 | - | - | - | - | 22.7 | 14.7 | 9.5 | - | - | - | - |
-| ro | - | 32.9 | - | - | - | - | - | 25.8 | - | 22.0 | - | - | - | - |
-| ru | 22.6 | 13.0 | 25.9 | - | 16.9 | 53.6 | 39.6 | 30.5 | 17.1 | 9.7 | 9.5 | - | - | 8.8 |
-| sk | - | 43.1 | - | - | - | - | - | 19.3 | - | 18.2 | - | - | - | - |
-| sl | - | 56.9 | - | - | - | - | - | 35.8 | - | 56.3 | - | - | - | - |
-| sv | 38.8 | 24.6 | - | - | - | - | - | 35.7 | - | 22.4 | - | - | - | - |
-| sw | - | 74.9 | - | - | - | - | - | 22.1 | - | - | - | - | - | - |
-| ta | - | 80.6 | - | - | - | 72.6 | 60.3 | 45.7 | - | - | - | - | - | - |
-| te | 72.4 | - | - | - | - | 65.6 | 52.0 | 34.4 | - | - | - | - | - | - |
-| th | - | 55.4 | 68.3 | - | 12.5 | 14.2 | 16.7 | 24.1 | - | - | - | - | - | - |
-| tl | - | 31.5 | - | - | - | 36.3 | 30.5 | 22.3 | - | - | - | - | - | - |
-| tr | 29.7 | 18.2 | 36.1 | - | - | - | - | 27.3 | - | - | - | - | - | - |
-| uk | 18.6 | 19.2 | 46.8 | - | - | - | - | 32.1 | 15.8 | 12.0 | - | - | - | - |
-| ur | - | 51.8 | - | - | - | 56.6 | 74.7 | 68.8 | - | - | - | - | - | - |
-| uz | 29.1 | 99.8 | - | - | - | 59.0 | 48.2 | 41.5 | - | - | - | - | - | - |
-| vi | 58.5 | 22.2 | 39.9 | - | 11.7 | 22.2 | 17.7 | 29.6 | - | - | - | 8.5 | - | - |
+| lang | vosk | whisper-small | whisper-base | whisper-medium | stream-zipformer-multi | dolphin-base | dolphin-small | omnilingual-300m | nemo10 | parakeet-v3 | zipformer-ru | zipformer-vi | zipformer-th | stream-zipformer-bn | gigaam-v3-ru |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ar | 38.2 | 27.6 | 48.4 | 15.4 | 18.4 | 39.0 | 20.4 | 18.2 | - | - | - | - | - | - | - |
+| bg | - | 37.1 | - | - | - | - | - | 25.2 | - | 12.9 | - | - | - | - | - |
+| bn | - | 100.8 | - | - | - | 38.2 | 30.4 | 35.5 | - | - | - | - | - | 17.1 | - |
+| ca | 17.3 | 18.3 | - | - | - | - | - | 18.9 | - | - | - | - | - | - | - |
+| cs | 60.0 | 44.3 | - | - | - | - | - | 29.3 | - | 25.9 | - | - | - | - | - |
+| da | - | 34.8 | - | - | - | - | - | 39.3 | - | 25.8 | - | - | - | - | - |
+| el | - | 50.3 | - | - | - | - | - | 38.4 | - | 45.7 | - | - | - | - | - |
+| fa | 16.9 | 56.1 | - | - | - | 42.7 | 37.8 | 25.4 | - | - | - | - | - | - | - |
+| fi | - | 31.5 | - | - | - | - | - | 28.4 | - | 21.1 | - | - | - | - | - |
+| he | - | 58.2 | - | - | - | - | - | 50.9 | - | - | - | - | - | - | - |
+| hi | 16.4 | 90.7 | - | - | - | 35.2 | 45.0 | 30.5 | - | - | - | - | - | - | - |
+| hr | - | 37.7 | - | - | - | - | - | 19.6 | 88.0 | 27.7 | - | - | - | - | - |
+| hu | - | 40.8 | - | - | - | - | - | 36.5 | - | 33.4 | - | - | - | - | - |
+| id | - | 14.6 | 39.6 | - | 12.2 | 19.1 | 15.0 | 17.2 | - | - | - | - | - | - | - |
+| it | 8.8 | 9.8 | - | - | - | - | - | 9.3 | 8.3 | 3.4 | - | - | - | - | - |
+| ka | 32.1 | 100.9 | - | - | - | - | - | 38.6 | - | - | - | - | - | - | - |
+| kk | 19.0 | 84.2 | - | - | - | 62.3 | 42.9 | 22.1 | - | - | - | - | - | - | - |
+| ms | - | 23.0 | - | - | - | 32.1 | 26.2 | 30.4 | - | - | - | - | - | - | - |
+| nl | 48.7 | 21.7 | 44.7 | - | - | - | - | 30.4 | - | 12.1 | - | - | - | - | - |
+| pl | 17.1 | 19.8 | 45.0 | - | - | - | - | 22.7 | 14.7 | 9.5 | - | - | - | - | - |
+| ro | - | 32.9 | - | - | - | - | - | 25.8 | - | 22.0 | - | - | - | - | - |
+| ru | 22.6 | 13.0 | 25.9 | - | 16.9 | 53.6 | 39.6 | 30.5 | 17.1 | 9.7 | 9.5 | - | - | - | 8.8 |
+| sk | - | 43.1 | - | - | - | - | - | 19.3 | - | 18.2 | - | - | - | - | - |
+| sl | - | 56.9 | - | - | - | - | - | 35.8 | - | 56.3 | - | - | - | - | - |
+| sv | 38.8 | 24.6 | - | - | - | - | - | 35.7 | - | 22.4 | - | - | - | - | - |
+| sw | - | 74.9 | - | - | - | - | - | 22.1 | - | - | - | - | - | - | - |
+| ta | - | 80.6 | - | - | - | 72.6 | 60.3 | 45.7 | - | - | - | - | - | - | - |
+| te | 72.4 | - | - | - | - | 65.6 | 52.0 | 34.4 | - | - | - | - | - | - | - |
+| th | - | 55.4 | 68.3 | - | 12.5 | 14.2 | 16.7 | 24.1 | - | - | - | - | 11.0 | - | - |
+| tl | - | 31.5 | - | - | - | 36.3 | 30.5 | 22.3 | - | - | - | - | - | - | - |
+| tr | 29.7 | 18.2 | 36.1 | - | - | - | - | 27.3 | - | - | - | - | - | - | - |
+| uk | 18.6 | 19.2 | 46.8 | - | - | - | - | 32.1 | 15.8 | 12.0 | - | - | - | - | - |
+| ur | - | 51.8 | - | - | - | 56.6 | 74.7 | 68.8 | - | - | - | - | - | - | - |
+| uz | 29.1 | 99.8 | - | - | - | 59.0 | 48.2 | 41.5 | - | - | - | - | - | - | - |
+| vi | 58.5 | 22.2 | 39.9 | - | 11.7 | 22.2 | 17.7 | 29.6 | - | - | - | 8.5 | - | - | - |
 
 ## Arabic, honestly
 
@@ -164,7 +187,7 @@ Standard Arabic (FLEURS ar_eg: formal sentences read aloud) and Egyptian dialect
 
 * Standard Arabic is usable (about 1 word in 5 wrong). Everyday dialect is not: two thirds of the words wrong, for every engine.
   Part of that is spelling (MGB-3 writes dialect words its own way, so a recogniser that outputs the standard spelling is
-  marked wrong), but not most of it: the output of the best engines is visibly not the sentence that was said.
+  marked wrong), but not all of it: reading the output, the best engines give the gist of a sentence with many words wrong, merged or dropped (the nine words of one clip came back as four), which is readable by someone who knows what was said and not much more.
 * **Gulf, Levantine and Maghrebi dialects were not measured.** No open, ungated test set for them was reachable (Casablanca and
   the Saudi set are gated by hand approval; the commercial conversational sets list no files). A user in the UAE speaking
   Gulf Arabic should expect something between the two columns at best. This is why Arabic is labelled Experimental in the app.
