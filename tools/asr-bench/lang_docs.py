@@ -166,7 +166,7 @@ if "ar-tn" in S: md.append("| vosk Tunisian (ar-tn) on standard Arabic | %.1f | 
 md.append("""
 * Standard Arabic is usable (about 1 word in 5 wrong). Everyday dialect is not: two thirds of the words wrong, for every engine.
   Part of that is spelling (MGB-3 writes dialect words its own way, so a recogniser that outputs the standard spelling is
-  marked wrong), but not all of it: reading the output, the best engines give the gist of a sentence with many words wrong, merged or dropped (the nine words of one clip came back as four), which is readable by someone who knows what was said and not much more.
+  marked wrong), but not all of it: reading the output, the best engines give the gist of a sentence with many words wrong, merged or dropped, which is readable by someone who knows what was said and not much more.
 * **Gulf, Levantine and Maghrebi dialects were not measured.** No open, ungated test set for them was reachable (Casablanca and
   the Saudi set are gated by hand approval; the commercial conversational sets list no files). A user in the UAE speaking
   Gulf Arabic should expect something between the two columns at best. This is why Arabic is labelled Experimental in the app.
