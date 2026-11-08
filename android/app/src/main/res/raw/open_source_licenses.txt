@@ -14,9 +14,19 @@ NVIDIA NeMo TitaNet-small speaker model -- distributed by NVIDIA under the licen
 
 NVIDIA NeMo FastConformer multilingual speech model (English, German, Spanish, French) -- Copyright NVIDIA. NVIDIA releases its NeMo speech models under Creative Commons Attribution 4.0 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) or the Apache License 2.0 of the NeMo Toolkit. Used for Accurate transcription of German, Spanish and French. Converted to ONNX and quantized to int8 by the sherpa-onnx project; the model itself was not otherwise changed.
 
+NVIDIA NeMo FastConformer 10-language speech model (Belarusian, German, English, Spanish, French, Croatian, Italian, Polish, Russian, Ukrainian) -- Copyright NVIDIA, released under Creative Commons Attribution 4.0 (CC BY 4.0). Used for Accurate transcription of Polish and Ukrainian. Converted to ONNX and quantized to int8 by the sherpa-onnx project; the model itself was not otherwise changed.
+
+PengCheng Starling multilingual streaming Zipformer (Arabic, Indonesian and others) -- Apache License 2.0, Copyright the PengCheng Starling authors, https://huggingface.co/stdo/PengChengStarling . Converted to ONNX and quantized to int8 for sherpa-onnx.
+
+Dolphin base speech model (Thai, Arabic, Indonesian and other Eastern languages) -- Apache License 2.0, Copyright Dataocean AI and Tsinghua University, https://github.com/DataoceanAI/Dolphin . Converted to ONNX and quantized to int8 by the sherpa-onnx project.
+
+Omnilingual ASR 300M CTC speech model -- Apache License 2.0, Copyright Meta Platforms, Inc. and affiliates, https://github.com/facebookresearch/omnilingual-asr . Used for Swahili, Tagalog, Telugu, Tamil and some European languages. Converted to ONNX and quantized to int8 by the sherpa-onnx project.
+
+Zipformer Russian and Bengali speech models -- Apache License 2.0, Copyright Alpha Cephei Inc. (Vosk project), https://huggingface.co/alphacep . Zipformer Vietnamese speech model -- Apache License 2.0, https://huggingface.co/zzasdf/viet_iter3_pseudo_label . Converted to ONNX and quantized to int8 for sherpa-onnx.
+
 Apache Commons Compress -- Apache License 2.0. Unpacks the model download.
 
-Vosk speech recognition library and its small language models -- Apache License 2.0, Copyright Alpha Cephei Inc. Used for Fast transcription.
+Vosk speech recognition library and its small language models -- Apache License 2.0 (the Swedish model is MIT licensed), Copyright Alpha Cephei Inc. Used for Fast transcription.
 
 Figtree font -- SIL Open Font License 1.1, Copyright 2022 The Figtree Project Authors.
 
@@ -359,6 +369,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
 
 === Creative Commons Attribution 4.0 (CC BY 4.0) ===
-(applies to the NVIDIA NeMo FastConformer model where licensed under it)
+(applies to the NVIDIA NeMo FastConformer models where licensed under it)
 
-You may share and adapt this model, including commercially, if you give appropriate credit, link to the license, and indicate changes. Credit: NVIDIA NeMo FastConformer multilingual model. Changes: converted to ONNX and quantized to int8 by the sherpa-onnx project. License text: https://creativecommons.org/licenses/by/4.0/legalcode
+You may share and adapt this model, including commercially, if you give appropriate credit, link to the license, and indicate changes. Credit: NVIDIA NeMo FastConformer multilingual models. Changes: converted to ONNX and quantized to int8 by the sherpa-onnx project. License text: https://creativecommons.org/licenses/by/4.0/legalcode

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Transcription language</string>
+    <string name="language_picker_close">Close</string>
+    <string name="language_picker_intro">Badges come from tests on read speech. Real recordings with noise, accents or dialects are harder, so expect more mistakes than the numbers suggest.</string>
+    <string name="language_section_supported">Supported</string>
+    <string name="language_section_experimental">Experimental: expect many mistakes</string>
+    <string name="language_section_bigger_phone">Needs a bigger phone</string>
+    <string name="language_section_not_yet">Not supported yet</string>
+    <string name="language_badge_supported">Supported</string>
+    <string name="language_badge_experimental">Experimental</string>
+    <string name="language_accurate_size">Accurate: %1$s, %2$d MB download, once.</string>
+    <string name="language_accurate_size_large">Accurate: %1$s, %2$d MB download, once. Large download: use Wi-Fi.</string>
+    <string name="language_fast_size">Fast: %1$d MB download, once.</string>
+    <string name="language_fast_unavailable">No Fast model for this language. Accurate is always used.</string>
+    <string name="language_fast_poor">Fast is not accurate enough for this language, so Accurate is always used.</string>
+    <string name="language_ram_smaller">This phone has less memory than the best model needs, so a smaller one is used and results are less accurate.</string>
+    <string name="language_ram_needs_bigger">Needs a phone with 6 GB of memory or more (%1$s, %2$d MB). This phone cannot run it.</string>
+    <string name="language_not_yet_closest">Not supported yet: it scored %1$d%% errors in our test. Closest available: %2$s.</string>
+    <string name="language_not_yet_none">Not supported yet: it scored %1$d%% errors in our test, too many to be useful. Nothing close is available.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s has no Fast model, so Accurate (%2$s, %3$d MB download, once) is always used.</string>
+    <string name="settings_accurate_fast_poor">Fast is not accurate enough for %1$s, so Accurate (%2$s, %3$d MB download, once) is always used.</string>
+    <string name="settings_accurate_needs_bigger">%1$s needs a phone with 6 GB of memory or more (%2$s, %3$d MB). This phone cannot run it.</string>
+    <string name="settings_language_experimental_note">%1$s is experimental: in our test about %2$d%% of it came out wrong.</string>
+    <string name="language_dialect_warning">%1$s works for standard (formal) speech such as news and lectures. Everyday dialect speech is much worse: about two thirds of the words were wrong in our Egyptian dialect test.</string>
+</resources>

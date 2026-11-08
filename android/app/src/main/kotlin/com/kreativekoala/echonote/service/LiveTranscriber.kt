@@ -15,7 +15,7 @@ import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
-enum class LiveStatus { OFF, STARTING, LISTENING, NO_MODEL, UNAVAILABLE }
+enum class LiveStatus { OFF, STARTING, LISTENING, NO_MODEL, UNAVAILABLE, NOT_FOR_LANGUAGE }
 
 data class LiveTranscriptState(val status: LiveStatus = LiveStatus.OFF, val text: String = "")
 
@@ -40,7 +40,7 @@ class LiveTranscriber @Inject constructor(
 
     /** True when the language's Vosk model is already on disk (same check as Fast transcription). */
     fun isModelOnDisk(language: TranscriptionLanguage): Boolean = try {
-        File(context.filesDir, language.modelDirName).let { it.exists() && it.listFiles()?.isNotEmpty() == true }
+        language.hasVosk && File(context.filesDir, language.modelDirName).let { it.exists() && it.listFiles()?.isNotEmpty() == true }
     } catch (_: Throwable) { false }
 
     fun start(language: TranscriptionLanguage) {
@@ -52,6 +52,10 @@ class LiveTranscriber @Inject constructor(
             }
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 _state.value = LiveTranscriptState(LiveStatus.UNAVAILABLE); return
+            }
+            if (!language.hasVosk) {
+                // Live words come from the Fast (Vosk) model, which this language does not have.
+                _state.value = LiveTranscriptState(LiveStatus.NOT_FOR_LANGUAGE); return
             }
             if (!isModelOnDisk(language)) {
                 _state.value = LiveTranscriptState(LiveStatus.NO_MODEL); return
