@@ -8,14 +8,35 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.security.MessageDigest
 
-/** One downloadable model file, pinned by size and SHA-256 because native code parses it. */
-data class ModelFile(val url: String, val fileName: String, val sizeBytes: Long, val sha256: String)
+/**
+ * One downloadable model file, pinned by size and SHA-256 because native code parses it. [fileName] is the name it is
+ * saved under; when it is taken out of an archive under a different name, [archiveName] is the name inside the archive.
+ */
+data class ModelFile(val url: String, val fileName: String, val sizeBytes: Long, val sha256: String, val archiveName: String? = null)
 
 /** A model published as a .tar.bz2: the archive is pinned, and so are the files taken out of it. */
 data class ArchiveModel(val url: String, val sizeBytes: Long, val sha256: String, val files: List<ModelFile>)
 
+/** Where an engine's files live on disk and how they are fetched: [archive] when it ships as a .tar.bz2, otherwise [files]. */
+data class EngineFiles(val dirName: String, val files: List<ModelFile>, val archive: ArchiveModel? = null)
+
 object SherpaModels {
     private const val HF = "https://huggingface.co/csukuangfj"
+
+    /** The files for [engine], or null for Vosk (which has its own per-language download). */
+    fun forEngine(engine: AsrEngine): EngineFiles? = when (engine) {
+        AsrEngine.VOSK -> null
+        AsrEngine.WHISPER_SMALL -> EngineFiles(WHISPER_SMALL_DIR, WHISPER_SMALL)
+        AsrEngine.SENSE_VOICE -> EngineFiles(SENSE_VOICE_DIR, SENSE_VOICE)
+        AsrEngine.NEMO_FAST_CONFORMER -> EngineFiles(NEMO_DIR, NEMO_FAST_CONFORMER.files, NEMO_FAST_CONFORMER)
+        AsrEngine.NEMO_MULTILINGUAL -> EngineFiles(SherpaModelPins.NEMO_MULTILINGUAL_DIR, SherpaModelPins.NEMO_MULTILINGUAL.files, SherpaModelPins.NEMO_MULTILINGUAL)
+        AsrEngine.STARLING -> EngineFiles(SherpaModelPins.STARLING_DIR, SherpaModelPins.STARLING.files, SherpaModelPins.STARLING)
+        AsrEngine.ZIPFORMER_RU -> EngineFiles(SherpaModelPins.ZIPFORMER_RU_DIR, SherpaModelPins.ZIPFORMER_RU.files, SherpaModelPins.ZIPFORMER_RU)
+        AsrEngine.ZIPFORMER_VI -> EngineFiles(SherpaModelPins.ZIPFORMER_VI_DIR, SherpaModelPins.ZIPFORMER_VI.files, SherpaModelPins.ZIPFORMER_VI)
+        AsrEngine.STREAMING_BN -> EngineFiles(SherpaModelPins.STREAMING_BN_DIR, SherpaModelPins.STREAMING_BN.files, SherpaModelPins.STREAMING_BN)
+        AsrEngine.DOLPHIN_BASE -> EngineFiles(SherpaModelPins.DOLPHIN_BASE_DIR, SherpaModelPins.DOLPHIN_BASE.files, SherpaModelPins.DOLPHIN_BASE)
+        AsrEngine.OMNILINGUAL_300M -> EngineFiles(SherpaModelPins.OMNILINGUAL_300M_DIR, SherpaModelPins.OMNILINGUAL_300M.files, SherpaModelPins.OMNILINGUAL_300M)
+    }
 
     /** Whisper small, int8: roughly 375 MB. Replaces the base model of earlier builds. */
     const val WHISPER_SMALL_DIR = "whisper-small-int8"
@@ -82,6 +103,18 @@ object SherpaModels {
 }
 
 object ModelDownloader {
+    /** True when [file] has exactly [sizeBytes] bytes and the SHA-256 [sha256]. */
+    fun matches(file: File, sizeBytes: Long, sha256: String): Boolean {
+        if (!file.exists() || file.length() != sizeBytes) return false
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().use { input ->
+            val buf = ByteArray(64 * 1024)
+            var read = input.read(buf)
+            while (read >= 0) { digest.update(buf, 0, read); read = input.read(buf) }
+        }
+        return digest.digest().joinToString("") { "%02x".format(it) } == sha256
+    }
+
     fun isReady(dir: File, files: List<ModelFile>): Boolean =
         files.all { File(dir, it.fileName).let { f -> f.exists() && f.length() == it.sizeBytes } }
 
@@ -130,7 +163,7 @@ object ModelDownloader {
      * SHA-256. Throws if a wanted file is missing or fails its check.
      */
     fun extractModelFiles(archiveFile: File, files: List<ModelFile>, destDir: File) {
-        val wanted = files.associateBy { it.fileName }
+        val wanted = files.associateBy { it.archiveName ?: it.fileName }
         val found = mutableSetOf<String>()
         TarArchiveInputStream(BZip2CompressorInputStream(BufferedInputStream(archiveFile.inputStream()))).use { tar ->
             while (true) {
@@ -139,7 +172,8 @@ object ModelDownloader {
                 val name = entry.name.substringAfterLast('/')
                 val spec = wanted[name] ?: continue
                 if (entry.size != spec.sizeBytes) error("Archive entry $name has an unexpected size")
-                val part = File(destDir, "$name.part")
+                val saveAs = spec.fileName
+                val part = File(destDir, "$saveAs.part")
                 val digest = MessageDigest.getInstance("SHA-256")
                 part.outputStream().use { out ->
                     val buf = ByteArray(64 * 1024)
@@ -153,9 +187,9 @@ object ModelDownloader {
                     part.delete()
                     error("Extracted $name failed its integrity check")
                 }
-                val target = File(destDir, name)
+                val target = File(destDir, saveAs)
                 target.delete()
-                check(part.renameTo(target)) { "Could not save $name" }
+                check(part.renameTo(target)) { "Could not save $saveAs" }
                 found += name
             }
         }

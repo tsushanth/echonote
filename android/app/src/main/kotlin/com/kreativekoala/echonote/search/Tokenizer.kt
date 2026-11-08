@@ -11,7 +11,9 @@ data class Token(val norm: String, val start: Int, val end: Int)
  *  - case-insensitive; accents are ignored for Latin script ("cafe" finds "café") but never for scripts where marks
  *    carry meaning (Devanagari vowel signs);
  *  - apostrophes are dropped ("don't" -> "dont"), on both sides, so they match each other;
- *  - Han / Kana have no spaces, so every character is its own token.
+ *  - Arabic and Hebrew vowel marks are ignored and the Arabic letter variants that people type interchangeably are
+ *    folded (alef with hamza, alef maksura, teh marbuta, tatweel), so a query finds the word however it is spelled;
+ *  - Han / Kana / Thai / Lao / Khmer / Burmese have no spaces, so every character is its own token.
  */
 object Tokenizer {
 
@@ -58,13 +60,29 @@ object Tokenizer {
             val cp = nfd.codePointAt(i)
             i += Character.charCount(cp)
             if (isMark(cp)) {
-                if (!baseIsLatin) sb.appendCodePoint(cp)
+                if (!baseIsLatin && !isRtlVowelMark(cp)) sb.appendCodePoint(cp)
+            } else if (cp == TATWEEL) {
+                // elongation stroke, carries no letter
             } else {
                 baseIsLatin = Character.UnicodeScript.of(cp) == Character.UnicodeScript.LATIN
-                sb.appendCodePoint(cp)
+                sb.appendCodePoint(foldLetter(cp))
             }
         }
         return Normalizer.normalize(sb.toString(), Normalizer.Form.NFC)
+    }
+
+    private const val TATWEEL = 0x0640
+
+    /** Arabic harakat, Quranic marks (including the hamza that NFD splits off an alef) and Hebrew points. */
+    private fun isRtlVowelMark(cp: Int): Boolean =
+        cp in 0x0610..0x061A || cp in 0x064B..0x065F || cp == 0x0670 || cp in 0x06D6..0x06ED || cp in 0x0591..0x05C7
+
+    /** alef maksura and Farsi yeh to yeh, teh marbuta to heh, Farsi kaf to kaf. */
+    private fun foldLetter(cp: Int): Int = when (cp) {
+        0x0649, 0x06CC -> 0x064A
+        0x0629 -> 0x0647
+        0x06A9 -> 0x0643
+        else -> cp
     }
 
     private fun isMark(cp: Int): Boolean = when (Character.getType(cp).toByte()) {
@@ -73,7 +91,8 @@ object Tokenizer {
     }
 
     private fun isCjk(cp: Int): Boolean = when (Character.UnicodeScript.of(cp)) {
-        Character.UnicodeScript.HAN, Character.UnicodeScript.HIRAGANA, Character.UnicodeScript.KATAKANA -> true
+        Character.UnicodeScript.HAN, Character.UnicodeScript.HIRAGANA, Character.UnicodeScript.KATAKANA,
+        Character.UnicodeScript.THAI, Character.UnicodeScript.LAO, Character.UnicodeScript.KHMER, Character.UnicodeScript.MYANMAR -> true
         else -> false
     }
 }

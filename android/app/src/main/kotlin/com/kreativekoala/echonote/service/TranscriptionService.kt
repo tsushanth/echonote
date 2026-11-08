@@ -77,12 +77,21 @@ class TranscriptionService @Inject constructor(
         try {
             val language = settingsRepository.transcriptionLanguage.first()
 
-            // Accurate picks the best engine for the language; where that is Vosk it is the same as Fast. On a
-            // phone with too little RAM for Whisper small, English runs NeMo (same sherpa path, speaker labels
-            // included) and the other Whisper languages run Vosk; see EnginePlan.lowRamFallback.
-            val engine = EnginePlan.forLanguage(language, DeviceMemory.totalBytes(context))
-            if (settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE && engine != AsrEngine.VOSK) {
-                return@withContext transcribeWithSherpa(fileUri, language, engine)
+            // Accurate picks the best engine for the language that fits this phone; where that is Vosk it is the same as
+            // Fast. Languages whose Fast (Vosk) model is missing or too poor (see EnginePlan.fastIsUsable) always take their
+            // Accurate engine. On a phone with too little RAM for an engine the next one down runs, and when none fits the
+            // user is told the language needs a bigger phone (see EnginePlan.resolve).
+            val accurateSetting = settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE
+            if (accurateSetting || !EnginePlan.fastIsUsable(language)) {
+                when (val plan = EnginePlan.resolve(language, DeviceMemory.totalBytes(context))) {
+                    is Resolution.Run -> if (plan.engine != AsrEngine.VOSK) return@withContext transcribeWithSherpa(fileUri, language, plan.engine)
+                    is Resolution.NeedsBiggerPhone -> if (!EnginePlan.fastIsUsable(language)) {
+                        return@withContext TranscriptionResult.Error(
+                            "${language.displayName} needs a phone with at least 6 GB of memory (${plan.best.engine.displayName}, " +
+                                "${plan.best.engine.downloadMb} MB). This phone cannot run it."
+                        )
+                    }
+                }
             }
 
             // Ensure model is ready
@@ -118,6 +127,7 @@ class TranscriptionService @Inject constructor(
     }
 
     private suspend fun getOrDownloadModel(language: TranscriptionLanguage): Model? {
+        if (!language.hasVosk) return null // no Fast model for this language
         // Return cached model if available
         modelCache[language]?.let { return it }
 
@@ -143,7 +153,8 @@ class TranscriptionService @Inject constructor(
         _statusMessage.value = "Downloading ${language.displayName} speech model..."
         _progress.value = 0.05f
 
-        val modelUrl = language.modelUrl
+        val pack = language.vosk ?: return@withContext null
+        val modelUrl = pack.url
         val tempZip = File(context.cacheDir, "vosk-model-${language.name.lowercase()}.zip")
         val dir = modelDir(language)
 
@@ -176,6 +187,12 @@ class TranscriptionService @Inject constructor(
                         }
                     }
                 }
+            }
+
+            // Languages added after the first ten are pinned: a truncated or swapped zip is never unpacked or loaded.
+            if (pack.sha256 != null && !ModelDownloader.matches(tempZip, pack.sizeBytes, pack.sha256)) {
+                tempZip.delete()
+                return@withContext null
             }
 
             // Extract
@@ -248,17 +265,9 @@ class TranscriptionService @Inject constructor(
      * requested, the audio itself (recordings up to 30 minutes).
      */
     private suspend fun transcribeWithSherpa(fileUri: String, language: TranscriptionLanguage, engine: AsrEngine): TranscriptionResult {
-        val dirName = when (engine) {
-            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL_DIR
-            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE_DIR
-            AsrEngine.NEMO_FAST_CONFORMER -> SherpaModels.NEMO_DIR
-            AsrEngine.VOSK -> return TranscriptionResult.Error("Fast engine selected")
-        }
-        val files = when (engine) {
-            AsrEngine.WHISPER_SMALL -> SherpaModels.WHISPER_SMALL
-            AsrEngine.SENSE_VOICE -> SherpaModels.SENSE_VOICE
-            else -> SherpaModels.NEMO_FAST_CONFORMER.files
-        }
+        val layout = SherpaModels.forEngine(engine) ?: return TranscriptionResult.Error("Fast engine selected")
+        val dirName = layout.dirName
+        val files = layout.files
         val modelDir = File(context.filesDir, dirName)
         val wantSpeakers = settingsRepository.identifySpeakers.first()
         val diarizationDir = File(context.filesDir, SherpaModels.DIARIZATION_DIR)
@@ -268,8 +277,8 @@ class TranscriptionService @Inject constructor(
         try {
             if (!ModelDownloader.isReady(modelDir, files)) {
                 _statusMessage.value = "Downloading ${language.displayName} speech model (${engine.downloadMb} MB)..."
-                if (engine == AsrEngine.NEMO_FAST_CONFORMER) {
-                    ModelDownloader.ensureArchive(modelDir, SherpaModels.NEMO_FAST_CONFORMER) { _progress.value = 0.02f + it * 0.2f }
+                if (layout.archive != null) {
+                    ModelDownloader.ensureArchive(modelDir, layout.archive) { _progress.value = 0.02f + it * 0.2f }
                 } else {
                     ModelDownloader.ensure(modelDir, files) { _progress.value = 0.02f + it * 0.2f }
                 }

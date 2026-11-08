@@ -2,67 +2,145 @@ package com.kreativekoala.echonote.service
 
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 
-/** The speech recognizers the app can run. */
-enum class AsrEngine(val displayName: String, val downloadMb: Int) {
+/**
+ * The speech recognizers the app can run.
+ *
+ * [downloadMb] is what the user downloads once (the archive or the files). [minRamBytes] is the phone memory below
+ * which the engine is not used. [wordTimes] says whether the engine returns token times; without them (Whisper) the
+ * words are spread over the speech by [distributeOverSpeech]. [upperCaseOutput] marks engines that write capitals.
+ * Peak memory and speed were measured on a Mac with the same files (docs/LANGUAGES.md); on-phone memory was measured
+ * for the first four only.
+ */
+enum class AsrEngine(
+    val displayName: String,
+    val downloadMb: Int,
+    val minRamBytes: Long = 0L,
+    val wordTimes: Boolean = true,
+    val upperCaseOutput: Boolean = false
+) {
     /** Small Kaldi models; the Fast option, one per language, downloaded on first use. */
     VOSK("Vosk", 0),
-    WHISPER_SMALL("Whisper small", 375),
+    WHISPER_SMALL("Whisper small", 375, EnginePlan.BIG_ENGINE_MIN_RAM_BYTES, wordTimes = false),
     NEMO_FAST_CONFORMER("NeMo FastConformer", 103),
-    SENSE_VOICE("SenseVoice", 237)
+    SENSE_VOICE("SenseVoice", 237),
+
+    /** NVIDIA FastConformer CTC for Belarusian, German, English, Spanish, French, Croatian, Italian, Polish, Russian, Ukrainian. */
+    NEMO_MULTILINGUAL("NeMo FastConformer 10-language", 102),
+
+    /** PengCheng Starling streaming Zipformer for Arabic, English, Indonesian, Japanese, Russian, Thai, Vietnamese, Chinese. */
+    STARLING("Starling multilingual", 259, EnginePlan.BIG_ENGINE_MIN_RAM_BYTES),
+    ZIPFORMER_RU("Zipformer Russian", 60, EnginePlan.BIG_ENGINE_MIN_RAM_BYTES),
+    ZIPFORMER_VI("Zipformer Vietnamese", 60, EnginePlan.BIG_ENGINE_MIN_RAM_BYTES, upperCaseOutput = true),
+
+    /** Streaming Zipformer for Bengali (from the Vosk project). */
+    STREAMING_BN("Zipformer Bengali", 87),
+
+    /** DataoceanAI Dolphin base CTC, 40 Eastern languages; the small-memory engine for Thai and the Arabic/Indonesian fallback. */
+    DOLPHIN_BASE("Dolphin base", 81),
+
+    /** Meta Omnilingual ASR 300M CTC, 1,600 languages. */
+    OMNILINGUAL_300M("Omnilingual 300M", 293, EnginePlan.BIG_ENGINE_MIN_RAM_BYTES);
+}
+
+/** The tiers the picker shows. Anything above [EnginePlan.EXPERIMENTAL_MAX_ERROR] is not offered. */
+enum class SupportLevel(val label: String) {
+    SUPPORTED("Supported"),
+    EXPERIMENTAL("Experimental");
+
+    companion object {
+        /** The tier for a measured error rate (word error rate; character error rate for Chinese, Japanese, Korean, Thai), or null if too high. */
+        fun forError(errorPct: Double): SupportLevel? = when {
+            errorPct <= EnginePlan.SUPPORTED_MAX_ERROR -> SUPPORTED
+            errorPct <= EnginePlan.EXPERIMENTAL_MAX_ERROR -> EXPERIMENTAL
+            else -> null
+        }
+    }
+}
+
+/** An engine for a language and the error rate (%) it scored on 25 FLEURS read-speech clips; see [LanguageSupport]. */
+data class EnginePick(val engine: AsrEngine, val errorPct: Double) {
+    val level: SupportLevel get() = SupportLevel.forError(errorPct) ?: error("$engine at $errorPct% is not offered")
+}
+
+/** What the app will do for a language on this phone. */
+sealed interface Resolution {
+    /** Run [pick]. */
+    data class Run(val language: TranscriptionLanguage, val pick: EnginePick) : Resolution {
+        val engine: AsrEngine get() = pick.engine
+        val level: SupportLevel get() = LanguageSupport.levelFor(language, pick)
+    }
+
+    /** Every engine for this language needs more memory than the phone has. [best] is the engine that would run on a bigger phone. */
+    data class NeedsBiggerPhone(val best: EnginePick) : Resolution
 }
 
 /**
- * Which engine "Accurate" uses for each language, chosen from a benchmark of the app's own models on
- * 25 FLEURS read-speech clips per language (tools/asr-bench, ml_*.py). Error rate %, lower is better
- * (WER; CER for Chinese, Japanese, Korean):
+ * Which engine runs each language. The per-language choices and the measurements behind them are in [LanguageSupport]
+ * (generated from tools/asr-bench, see docs/LANGUAGES.md). The rule that produced them:
  *
- *   lang  Vosk  Whisper-small  NeMo FC  SenseVoice   chosen
- *   en    24.0       8.9        16.2        -        Whisper small (clearly better, CI excludes 0)
- *   pt    29.6       6.3          -         -        Whisper small
- *   ja    22.2      20.0          -        78 (broken)  Whisper small
- *   ko    29.8      22.0          -        79 (broken)  Whisper small
- *   de    23.8       9.1         9.1        -        NeMo (tied; 3.6x smaller, ~15x faster, real word times)
- *   es    11.5       5.6         6.9        -        NeMo (tied: CI -5.1..+2.0 pts; same reasons)
- *   fr    19.4      12.8        11.5        -        NeMo (better, though within noise)
- *   zh    24.2      39.3          -        11.9      SenseVoice
- *   it     9.0       9.8          -         -        Vosk (nothing is better)
- *   hi    16.4      90.7          -         -        Vosk (Whisper is unusable)
- *
- * Where Vosk is the choice, Accurate and speaker labels simply use Fast.
- *
- * On a phone with less than [WHISPER_SMALL_MIN_RAM_BYTES] of RAM, the Whisper-small languages fall back:
- *
- *   en       NeMo FC. Same 28 s windows, peaked ~383 MB on a Pixel 9 Pro (Whisper small ~1.3 GB). WER vs Vosk, paired
- *            bootstrap, Vosk minus NeMo: +12.1 points on 120 real ESB clips (CI 10.0..14.3), +7.1 on 25 FLEURS (CI 2.3..12.3).
- *            It is still worse than Whisper small (ESB 9.9 vs 8.9, FLEURS 17.8 vs 11.0 with the Whisper English normalizer).
- *   pt ja ko Vosk. NeMo does not cover them. Whisper base would be 55% of small's memory but was only clearly better for pt
- *            (29.6 to 16.7); ja is worse than Vosk and ko is within noise, so it is not shipped as a fallback.
+ *  - an engine is offered for a language only if it scored at most 50% error (CER for Chinese, Japanese, Korean and
+ *    Thai) on FLEURS; 30% or less is "Supported", above that "Experimental";
+ *  - the best scoring engine wins, except that a smaller or already shipped engine within 2 points is preferred
+ *    (25 clips cannot tell 2 points apart);
+ *  - where Vosk is the chosen engine, Accurate and speaker labels simply use Fast;
+ *  - on a phone with less than an engine's [AsrEngine.minRamBytes] the next engine down the list runs, and if none fits
+ *    the language is reported as needing a bigger phone instead of running something that would be killed.
  */
 object EnginePlan {
+    /** Error rate at or below which a language is "Supported". */
+    const val SUPPORTED_MAX_ERROR = 30.0
+
+    /** Error rate at or below which a language is offered at all, as "Experimental". */
+    const val EXPERIMENTAL_MAX_ERROR = 50.0
+
     /**
      * Whisper small peaked at about 1.3 GB of memory on a Pixel 9 Pro (SenseVoice about 0.5 GB). A 4 GB phone
      * reports about 3.8e9 bytes of RAM and a 6 GB phone about 5.7e9, so below 5e9 it is not used.
      */
     const val WHISPER_SMALL_MIN_RAM_BYTES = 5_000_000_000L
 
+    /** Default ceiling for a model download; larger engines are offered as optional and labelled as such. */
+    const val DOWNLOAD_BUDGET_MB = 400
+
+    /**
+     * Engines whose peak memory on the Mac test (28 s windows, 4 threads) was above about 0.7 GB use the same 5e9 line as
+     * Whisper small: Whisper small 1.35 GB, Omnilingual 1.22 GB, Starling 0.81 GB, Zipformer Vietnamese 0.78 GB, Zipformer
+     * Russian 0.74 GB. The engines below it (NeMo 0.53 GB, Dolphin base 0.54 GB, Bengali Zipformer 0.39 GB) run anywhere.
+     * No phone measurement exists for any of the new engines.
+     */
+    const val BIG_ENGINE_MIN_RAM_BYTES = WHISPER_SMALL_MIN_RAM_BYTES
+
+    /** The engines for [language], best first. Never empty. */
+    fun picks(language: TranscriptionLanguage): List<EnginePick> = LanguageSupport.picks(language)
+
     /** The engine best for [language], ignoring how much memory the phone has. */
-    fun bestForLanguage(language: TranscriptionLanguage): AsrEngine = when (language) {
-        TranscriptionLanguage.CHINESE -> AsrEngine.SENSE_VOICE
-        TranscriptionLanguage.GERMAN, TranscriptionLanguage.SPANISH, TranscriptionLanguage.FRENCH -> AsrEngine.NEMO_FAST_CONFORMER
-        TranscriptionLanguage.ITALIAN, TranscriptionLanguage.HINDI -> AsrEngine.VOSK
-        else -> AsrEngine.WHISPER_SMALL
+    fun bestForLanguage(language: TranscriptionLanguage): AsrEngine = picks(language).first().engine
+
+    /** What to run, or [Resolution.NeedsBiggerPhone] when no engine for [language] fits in [totalMemBytes]. */
+    fun resolve(language: TranscriptionLanguage, totalMemBytes: Long = Long.MAX_VALUE): Resolution {
+        val all = picks(language)
+        return all.firstOrNull { it.engine.minRamBytes <= totalMemBytes }?.let { Resolution.Run(language, it) }
+            ?: Resolution.NeedsBiggerPhone(all.first())
     }
 
-    /** What a phone below [WHISPER_SMALL_MIN_RAM_BYTES] runs in place of Whisper small: NeMo for English, Vosk otherwise. */
-    fun lowRamFallback(language: TranscriptionLanguage): AsrEngine =
-        if (language == TranscriptionLanguage.ENGLISH) AsrEngine.NEMO_FAST_CONFORMER else AsrEngine.VOSK
+    /** What a phone below [WHISPER_SMALL_MIN_RAM_BYTES] runs in place of the best engine, or null if the best engine already fits. */
+    fun lowRamFallback(language: TranscriptionLanguage): AsrEngine? =
+        picks(language).firstOrNull { it.engine.minRamBytes == 0L }?.engine
 
-    /** The engine to run: the best one, or [lowRamFallback] when the phone is too small for Whisper small. */
-    fun forLanguage(language: TranscriptionLanguage, totalMemBytes: Long = Long.MAX_VALUE): AsrEngine {
-        val best = bestForLanguage(language)
-        return if (best == AsrEngine.WHISPER_SMALL && totalMemBytes < WHISPER_SMALL_MIN_RAM_BYTES) lowRamFallback(language) else best
-    }
+    /**
+     * The engine to run: the best one, or the next that fits the phone. Where nothing fits (languages with no Fast model
+     * and only large engines) this returns Vosk; callers that can say "needs a bigger phone" use [resolve] instead.
+     */
+    fun forLanguage(language: TranscriptionLanguage, totalMemBytes: Long = Long.MAX_VALUE): AsrEngine =
+        (resolve(language, totalMemBytes) as? Resolution.Run)?.engine ?: AsrEngine.VOSK
+
+    /**
+     * True when "Fast" (Vosk) is good enough to offer for [language]: it has a Vosk model and that model scored at most
+     * 50%. Otherwise Fast would silently give a poor result, so the language always runs its Accurate engine.
+     */
+    fun fastIsUsable(language: TranscriptionLanguage): Boolean =
+        language.hasVosk && (LanguageSupport.voskErrorPct(language)?.let { it <= EXPERIMENTAL_MAX_ERROR } ?: false)
 
     /** Whisper needs a language code; SenseVoice takes the same ISO codes. */
-    fun languageCode(language: TranscriptionLanguage): String = language.bcp47Tag.substringBefore('-')
+    fun languageCode(language: TranscriptionLanguage): String = language.engineCode
 }

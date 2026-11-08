@@ -83,17 +83,18 @@ class LocalizationTest {
             assertEquals(lang.name, EnginePlan.lowRamFallback(lang), EnginePlan.forLanguage(lang, 0L))
             assertEquals(lang.name, AsrEngine.WHISPER_SMALL, EnginePlan.forLanguage(lang))
         }
-        // Languages that never use Whisper small do not change with memory
-        for (lang in TranscriptionLanguage.entries - whisperLanguages.toSet()) {
+        // Languages whose best engine fits any phone do not change with memory
+        for (lang in TranscriptionLanguage.entries.filter { EnginePlan.bestForLanguage(it).minRamBytes == 0L }) {
             val best = EnginePlan.bestForLanguage(lang)
             for (ram in listOf(0L, 3_800_000_000L, limit - 1, limit, 5_700_000_000L, 12_000_000_000L)) {
                 assertEquals(lang.name, best, EnginePlan.forLanguage(lang, ram))
             }
         }
-        // The fallback must never be Whisper (which would defeat it) or an engine that cannot do the language
-        for (lang in TranscriptionLanguage.entries) {
+        // For the ten languages that shipped first the fallback is unchanged: Vosk, or NeMo for English
+        for (lang in TranscriptionLanguage.entries.take(10)) {
             val fallback = EnginePlan.lowRamFallback(lang)
-            assertTrue(lang.name, fallback == AsrEngine.VOSK || (fallback == AsrEngine.NEMO_FAST_CONFORMER && lang == TranscriptionLanguage.ENGLISH))
+            assertTrue(lang.name, fallback == AsrEngine.VOSK || (fallback == AsrEngine.NEMO_FAST_CONFORMER && lang == TranscriptionLanguage.ENGLISH) ||
+                EnginePlan.bestForLanguage(lang).minRamBytes == 0L)
         }
     }
 

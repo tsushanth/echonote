@@ -191,3 +191,31 @@ opinions; with Vosk alone the numbers are those in this table.
 Caveats: 25 read-speech clips per language (about 500 to 1100 words each), so the rates carry a few points of noise;
 English on the 120 real clips is the more trustworthy row and is weaker than FLEURS. "Caught" counts only substitutions and
 insertions. Not measured on a phone, and not on noisy or accented recordings in the other languages.
+
+## More languages: Arabic, Russian, Turkish, Indonesian, Vietnamese, Thai and 25 others (2026-11-07)
+
+Full write-up, with every number, the rule, the engine inventory and what was not measured: `docs/LANGUAGES.md`.
+Scripts (run from a working folder that has `models/`, `data/`, `out/`; Python 3.12 with `sherpa-onnx==1.13.8 vosk jiwer soundfile
+numpy huggingface_hub pyarrow`; sherpa-onnx 1.13.8 is the version of the AAR in the app):
+
+* `lang_fetch.py [codes]` first 25 FLEURS test clips of 4-25 s per language (ranged read of the parquet conversion, no full download).
+  `lang_fetch_mgb3.py` 26 Egyptian-dialect clips from MGB-3 (Arabic dialect check).
+* `lang_run.py ENGINE LANG...` decodes the clips with one engine (`vosk`, `whisper-{tiny,base,small,medium}`, `dolphin-{base,small}`,
+  `omnilingual-300m`, `nemo10`, `parakeet-v3`, `zipformer-{ru,vi,th}`, `gigaam-v3-ru`, `stream-zipformer-{multi,bn}`, `moonshine-*`);
+  writes `out/res/ENGINE__LANG.json`.
+* `lang_score.py` error rate with a 95% bootstrap interval into `out/scores.json`. `lang_perf.py ENGINE LANG` memory and speed
+  with 28 s windows in a fresh process. `lang_timestamps.py` checks which engines return token times.
+* `lang_decide.py` applies the written rule (at most 30% Supported, 30-50% Experimental, above 50% not offered; 400 MB budget;
+  2 point ties go to the smaller engine) and writes `out/decision.json`; `lang_gen.py <worktree>` writes the language list and
+  `LanguageSupport.kt`; `lang_docs.py <worktree>` writes `docs/LANGUAGES.md`.
+* `lang_pins.py NAME...` downloads release archives and prints the size and SHA-256 of each archive and of every file in it (checked
+  against the release's `checksum.txt`, which can be stale: the Parakeet archive was re-uploaded on 2026-11-07 and the list was not
+  updated). `lang_pins_kt.py` turns that into `SherpaModelPins.kt`. `lang_vosk_pins.py` does the same for the Vosk zips.
+
+Headline: 31 languages added to the 10 that shipped. Same scorer as the October run: Whisper small reproduces October's Hindi (90.7)
+and Italian (9.8) exactly. Best engines found: Zipformer Russian 9.5, Zipformer Vietnamese 8.5, NeMo 10-language Polish 14.7 and
+Ukrainian 15.8, Dolphin base Thai 14.2 (CER), Starling Indonesian 12.2 and Arabic 18.4 (standard Arabic read speech; Egyptian
+dialect broadcast speech is 66-73% for every engine tried), Whisper small Turkish 18.2, Dutch 21.7, Malay 23.0, Swedish 24.6,
+Omnilingual 300M for the Slavic, Nordic and African languages nothing smaller covers (bg 25.2, hr 19.6, sk 19.3, cs 29.3, fi 28.4,
+sw 22.1, tl 22.3). Parakeet v3 beat everything on Italian (3.4) and Dutch (12.1) but is 487 MB and was left out. Moonshine's
+non-English models and the 30M Vietnamese Zipformer are non-commercial and cannot ship.

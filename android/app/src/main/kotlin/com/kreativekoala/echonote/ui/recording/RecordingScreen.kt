@@ -541,6 +541,7 @@ private fun LiveTranscriptArea(state: LiveTranscriptState) {
     val hint = when (state.status) {
         LiveStatus.NO_MODEL -> stringResource(R.string.live_transcript_no_model)
         LiveStatus.UNAVAILABLE -> stringResource(R.string.live_transcript_unavailable)
+        LiveStatus.NOT_FOR_LANGUAGE -> stringResource(R.string.live_transcript_not_for_language)
         LiveStatus.STARTING -> stringResource(R.string.live_transcript_starting)
         LiveStatus.LISTENING -> if (state.text.isEmpty()) stringResource(R.string.live_transcript_listening) else null
         LiveStatus.OFF -> null

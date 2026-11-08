@@ -28,6 +28,9 @@ import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.service.AsrEngine
 import com.kreativekoala.echonote.service.DeviceMemory
 import com.kreativekoala.echonote.service.EnginePlan
+import com.kreativekoala.echonote.service.LanguageSupport
+import com.kreativekoala.echonote.service.Resolution
+import com.kreativekoala.echonote.service.SupportLevel
 import com.kreativekoala.echonote.service.UncertainWords
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
@@ -168,23 +171,40 @@ fun SettingsScreen(
 
             HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
 
+            val totalMem = DeviceMemory.totalBytes(LocalContext.current)
+            var showLanguagePicker by remember { mutableStateOf(false) }
+            val languageResolution = EnginePlan.resolve(transcriptionLanguage, totalMem)
+            val languageSubtitle = buildString {
+                append(transcriptionLanguage.nativeName)
+                if (transcriptionLanguage.nativeName != transcriptionLanguage.displayName) append(" (").append(transcriptionLanguage.displayName).append(")")
+                if (languageResolution is Resolution.Run) append(", ").append(languageResolution.level.label)
+            }
             SettingsRow(
                 icon = Icons.Default.Translate,
                 title = "Transcription Language",
-                subtitle = transcriptionLanguage.displayName
+                subtitle = languageSubtitle
             ) {
-                androidx.compose.foundation.lazy.LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(TranscriptionLanguage.entries.size) { i ->
-                        val lang = TranscriptionLanguage.entries[i]
-                        FilterChip(
-                            selected = transcriptionLanguage == lang,
-                            onClick = { viewModel.setTranscriptionLanguage(lang) },
-                            label = { Text(lang.displayName) }
+                Column {
+                    OutlinedButton(onClick = { showLanguagePicker = true }) { Text(stringResource(R.string.language_picker_title)) }
+                    val resolved = languageResolution
+                    if (resolved is Resolution.Run && resolved.level == SupportLevel.EXPERIMENTAL) {
+                        Text(
+                            text = if (LanguageSupport.hasDialectWarning(transcriptionLanguage)) stringResource(R.string.language_dialect_warning, transcriptionLanguage.displayName)
+                            else stringResource(R.string.settings_language_experimental_note, transcriptionLanguage.displayName, resolved.pick.errorPct.toInt()),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 6.dp)
                         )
                     }
                 }
+            }
+            if (showLanguagePicker) {
+                LanguagePickerDialog(
+                    selected = transcriptionLanguage,
+                    totalMemBytes = totalMem,
+                    onSelect = { viewModel.setTranscriptionLanguage(it); showLanguagePicker = false },
+                    onDismiss = { showLanguagePicker = false }
+                )
             }
 
             HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
@@ -204,18 +224,27 @@ fun SettingsScreen(
                             )
                         }
                     }
-                    if (transcriptionEngine == TranscriptionEngine.ACCURATE) {
+                    if (transcriptionEngine == TranscriptionEngine.ACCURATE || !EnginePlan.fastIsUsable(transcriptionLanguage)) {
                         val best = EnginePlan.bestForLanguage(transcriptionLanguage)
-                        val actual = EnginePlan.forLanguage(transcriptionLanguage, DeviceMemory.totalBytes(LocalContext.current))
+                        val plan = EnginePlan.resolve(transcriptionLanguage, DeviceMemory.totalBytes(LocalContext.current))
+                        val lang = transcriptionLanguage.displayName
                         val note = when {
+                            plan is Resolution.NeedsBiggerPhone && !EnginePlan.fastIsUsable(transcriptionLanguage) ->
+                                stringResource(R.string.settings_accurate_needs_bigger, lang, plan.best.engine.displayName, plan.best.engine.downloadMb)
+                            plan is Resolution.NeedsBiggerPhone ->
+                                stringResource(R.string.settings_accurate_lowram_fast, lang)
                             best == AsrEngine.VOSK ->
-                                "For ${transcriptionLanguage.displayName}, Fast is already the best model we have, so Accurate uses it. Speaker labels are not available."
-                            actual == AsrEngine.VOSK ->
-                                stringResource(R.string.settings_accurate_lowram_fast, transcriptionLanguage.displayName)
-                            actual != best && actual == EnginePlan.lowRamFallback(transcriptionLanguage) ->
-                                stringResource(R.string.settings_accurate_lowram_smaller, actual.downloadMb)
+                                "For $lang, Fast is already the best model we have, so Accurate uses it. Speaker labels are not available."
+                            plan is Resolution.Run && plan.engine == AsrEngine.VOSK ->
+                                stringResource(R.string.settings_accurate_lowram_fast, lang)
+                            plan is Resolution.Run && plan.engine != best ->
+                                stringResource(R.string.settings_accurate_lowram_smaller, plan.engine.downloadMb)
+                            plan is Resolution.Run && !transcriptionLanguage.hasVosk ->
+                                stringResource(R.string.settings_accurate_fast_unavailable, lang, plan.engine.displayName, plan.engine.downloadMb)
+                            plan is Resolution.Run && !EnginePlan.fastIsUsable(transcriptionLanguage) ->
+                                stringResource(R.string.settings_accurate_fast_poor, lang, plan.engine.displayName, plan.engine.downloadMb)
                             else ->
-                                "For ${transcriptionLanguage.displayName}, Accurate uses ${best.displayName} (${best.downloadMb} MB download, once)."
+                                "For $lang, Accurate uses ${best.displayName} (${best.downloadMb} MB download, once)."
                         }
                         Text(
                             text = note,

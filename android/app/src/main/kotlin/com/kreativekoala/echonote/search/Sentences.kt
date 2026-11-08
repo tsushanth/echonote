@@ -17,7 +17,7 @@ object Sentences {
 
     private const val PAUSE_BREAK_MS = 1200L
     private const val MAX_WORDS = 40
-    private val enders = setOf('.', '?', '!', '…', '。', '！', '？', '।')
+    private val enders = setOf('.', '?', '!', '…', '。', '！', '？', '।', '؟', '۔')
     private val trailing = setOf('"', '\'', '”', '’', ')', ']')
 
     /**

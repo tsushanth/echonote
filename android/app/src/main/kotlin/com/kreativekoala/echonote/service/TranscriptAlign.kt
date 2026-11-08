@@ -6,10 +6,15 @@ import kotlin.math.abs
 /** A span of audio attributed to one speaker, in milliseconds. */
 data class SpeakerSpan(val startMs: Long, val endMs: Long, val speaker: Int)
 
-/** Scripts written without spaces between words: Han, Hiragana, Katakana and their punctuation. */
+/**
+ * Scripts written without spaces between words: Han, Hiragana, Katakana and their punctuation, plus Thai, Lao,
+ * Khmer and Burmese. Recognizers for these emit pieces of a few characters, so each piece is a "word" and
+ * pieces are joined with no space.
+ */
 fun isNoSpaceScript(c: Char): Boolean =
     c in '\u3040'..'\u30FF' || c in '\u3400'..'\u4DBF' || c in '\u4E00'..'\u9FFF' ||
-        c in '\u3000'..'\u303F' || c in '\uFF00'..'\uFFEF' || c in '\u31F0'..'\u31FF'
+        c in '\u3000'..'\u303F' || c in '\uFF00'..'\uFFEF' || c in '\u31F0'..'\u31FF' ||
+        c in '\u0E00'..'\u0EFF' || c in '\u1000'..'\u109F' || c in '\u1780'..'\u17FF'
 
 private fun isPunctuation(c: Char): Boolean =
     !c.isLetterOrDigit() && !c.isWhitespace() && (c in '\u3000'..'\u303F' || c in '\uFF00'..'\uFF0F' ||

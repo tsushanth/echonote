@@ -304,6 +304,8 @@ class ExtractiveSummarizer @Inject constructor() : Summarizer {
             TranscriptionLanguage.HINDI -> HI
             // CJK uses character stopwords; Korean falls back to inverse-frequency weighting alone.
             TranscriptionLanguage.CHINESE, TranscriptionLanguage.JAPANESE, TranscriptionLanguage.KOREAN -> emptySet()
+            // Languages added later have no stopword list: they too are ranked by inverse frequency alone.
+            else -> emptySet()
         }
     }
 }

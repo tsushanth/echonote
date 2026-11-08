@@ -52,8 +52,8 @@ android {
         applicationId = "com.kreativekoala.echonote"
         minSdk = 26
         targetSdk = 36
-        versionCode = 46
-        versionName = "1.12.0"
+        versionCode = 47
+        versionName = "1.13.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
