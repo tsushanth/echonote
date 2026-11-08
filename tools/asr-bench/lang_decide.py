@@ -8,7 +8,7 @@ for s in SC: S[s["lang"]][s["engine"]] = s
 # engine -> (AsrEngine name, archive MB the user downloads, minRam class "small"|"big", licence)
 SHIP = {
  "whisper-small": ("WHISPER_SMALL", 375, "big", "MIT"),
- "nemo10": ("NEMO_MULTILINGUAL", 102, "small", "CC-BY-4.0 (NVIDIA NeMo; NGC page not machine-readable, verify)"),
+ "nemo10": ("NEMO_MULTILINGUAL", 102, "small", "NVIDIA NGC Terms of Use (model card names no other licence; checked 2026-11-07)"),
  "stream-zipformer-multi": ("STARLING", 259, "big", "Apache-2.0"),
  "zipformer-ru": ("ZIPFORMER_RU", 60, "small", "Apache-2.0"),
  "zipformer-vi": ("ZIPFORMER_VI", 60, "small", "Apache-2.0"),

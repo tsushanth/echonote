@@ -12,7 +12,7 @@ The ClearVoice Recorder Android app (`com.kreativekoala.echonote`) bundles or do
 | NVIDIA NeMo TitaNet-small | Apache-2.0 | Tells voices apart |
 | NVIDIA NeMo FastConformer multilingual (en, de, es, fr) | CC BY 4.0 or Apache-2.0 (per NVIDIA) | Accurate transcription of German, Spanish, French |
 | Vosk and its small language models, Alpha Cephei | Apache-2.0 (Swedish model: MIT) | Fast transcription |
-| NVIDIA NeMo FastConformer 10-language (be, de, en, es, fr, hr, it, pl, ru, uk) | CC BY 4.0 (per NVIDIA; NGC page to be re-checked) | Accurate transcription of Polish and Ukrainian |
+| NVIDIA NeMo FastConformer 10-language (be, de, en, es, fr, hr, it, pl, ru, uk) | NVIDIA NGC Terms of Use (the model card names no Creative Commons licence; re-checked 2026-11-07) | Accurate transcription of Polish and Ukrainian |
 | PengCheng Starling streaming Zipformer (ar, id, ru, th, vi ...) | Apache-2.0 | Accurate transcription of Arabic and Indonesian |
 | Dolphin base CTC, DataoceanAI and Tsinghua University | Apache-2.0 | Accurate transcription of Thai; smaller-phone engine for Arabic, Indonesian, Malay, Tagalog |
 | Omnilingual ASR 300M CTC, Meta | Apache-2.0 | Accurate transcription of Bulgarian, Croatian, Czech, Finnish, Romanian, Slovak, Slovenian, Swahili, Tagalog, Hungarian, Greek, Tamil, Telugu |

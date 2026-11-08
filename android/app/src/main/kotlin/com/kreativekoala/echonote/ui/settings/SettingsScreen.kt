@@ -184,16 +184,18 @@ fun SettingsScreen(
                 title = "Transcription Language",
                 subtitle = languageSubtitle
             ) {
-                OutlinedButton(onClick = { showLanguagePicker = true }) { Text(stringResource(R.string.language_picker_title)) }
-                val resolved = languageResolution
-                if (resolved is Resolution.Run && resolved.level == SupportLevel.EXPERIMENTAL) {
-                    Text(
-                        text = if (LanguageSupport.hasDialectWarning(transcriptionLanguage)) stringResource(R.string.language_dialect_warning, transcriptionLanguage.displayName)
-                        else stringResource(R.string.settings_language_experimental_note, transcriptionLanguage.displayName, resolved.pick.errorPct.toInt()),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(top = 6.dp)
-                    )
+                Column {
+                    OutlinedButton(onClick = { showLanguagePicker = true }) { Text(stringResource(R.string.language_picker_title)) }
+                    val resolved = languageResolution
+                    if (resolved is Resolution.Run && resolved.level == SupportLevel.EXPERIMENTAL) {
+                        Text(
+                            text = if (LanguageSupport.hasDialectWarning(transcriptionLanguage)) stringResource(R.string.language_dialect_warning, transcriptionLanguage.displayName)
+                            else stringResource(R.string.settings_language_experimental_note, transcriptionLanguage.displayName, resolved.pick.errorPct.toInt()),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 6.dp)
+                        )
+                    }
                 }
             }
             if (showLanguagePicker) {

@@ -2,7 +2,7 @@
 import json, sys, collections, glob, re
 WT = sys.argv[1]
 exec(open("lang_gen.py").read().split("# --- Recording.kt")[0].split("WT = sys.argv[1]")[1].replace("D = json.load", "D = json.load"))  # reuse tables (EXIST, NEW, picks, S, D)
-SHIPM = {"WHISPER_SMALL": ("Whisper small", "MIT"), "NEMO_MULTILINGUAL": ("NeMo FastConformer 10-language", "CC-BY-4.0 (assumed, see below)"),
+SHIPM = {"WHISPER_SMALL": ("Whisper small", "MIT"), "NEMO_MULTILINGUAL": ("NeMo FastConformer 10-language", "NVIDIA NGC Terms of Use (see below)"),
  "STARLING": ("Starling multilingual (streaming Zipformer)", "Apache-2.0"), "ZIPFORMER_RU": ("Zipformer Russian", "Apache-2.0"),
  "ZIPFORMER_VI": ("Zipformer Vietnamese", "Apache-2.0"), "STREAMING_BN": ("Zipformer Bengali (streaming)", "Apache-2.0"),
  "DOLPHIN_BASE": ("Dolphin base CTC", "Apache-2.0"), "OMNILINGUAL_300M": ("Omnilingual 300M CTC", "Apache-2.0"),
@@ -123,7 +123,7 @@ INV = [
  ("Whisper tiny / base / small / medium (int8)", "about 99", "104 / 160 / 375 / 945 MB", "base %s, small %s" % (pf("whisper-base","peak_rss_mb"), pf("whisper-small","peak_rss_mb")), "base %s, small %s" % (pf("whisper-base","rtf","%.2f"), pf("whisper-small","rtf","%.2f")), "MIT", "no (int8 export has no cross-attention; WordTiming spreads words over the speech)", "Small shipped; tiny and base not integrated; medium over budget"),
  ("SenseVoice (int8)", "zh, yue, en, ja, ko", "237 MB", "-", "-", "see NOTICE.md", "yes", "Existing (zh)"),
  ("NeMo FastConformer CTC en/de/es/fr", "en, de, es, fr", "103 MB", "509 (old run)", "-", "CC-BY-4.0", "yes", "Existing"),
- ("NeMo FastConformer CTC 10-language", "be, de, en, es, fr, hr, it, pl, ru, uk", "102 MB", pf("nemo10","peak_rss_mb"), pf("nemo10","rtf","%.2f"), "CC-BY-4.0 assumed: NVIDIA NGC page not machine-readable; same family as the model already shipped. Verify before release", "yes", "Shipped for pl, uk. Croatian scored 88%: the model lists it but FLEURS Croatian fails"),
+ ("NeMo FastConformer CTC 10-language", "be, de, en, es, fr, hr, it, pl, ru, uk", "102 MB", pf("nemo10","peak_rss_mb"), pf("nemo10","rtf","%.2f"), "NVIDIA NGC Terms of Use. Checked 2026-11-07: the model card names no Creative Commons licence and says nothing on commercial use or redistribution, so the earlier CC-BY-4.0 assumption was wrong. Shipped; Vosk is the drop-in fallback for Polish and Ukrainian if the terms turn out not to allow it", "yes", "Shipped for pl, uk. Croatian scored 88%: the model lists it but FLEURS Croatian fails"),
  ("Parakeet TDT 0.6B v3 (int8)", "25 European", "487 MB", pf("parakeet-v3","peak_rss_mb"), pf("parakeet-v3","rtf","%.2f"), "CC-BY-4.0", "yes (token and duration)", "Not shipped: over the 400 MB budget and only Danish would need it (Whisper small already gives Danish 34.8%). Best Italian (3.4%), Dutch (12.1%), Polish (9.5%), Bulgarian (12.9%) of anything tested: a candidate for a later optional download"),
  ("Starling streaming Zipformer", "ar, en, id, ja, ru, th, vi, zh", "259 MB", pf("stream-zipformer-multi","peak_rss_mb"), pf("stream-zipformer-multi","rtf","%.2f"), "Apache-2.0 (training data licences not audited)", "yes", "Shipped for ar, id (big-phone engine)"),
  ("Zipformer Russian (Vosk project)", "ru", "60 MB", pf("zipformer-ru","peak_rss_mb"), pf("zipformer-ru","rtf","%.2f"), "Apache-2.0", "yes", "Shipped"),
@@ -226,7 +226,7 @@ md.append("""## Method
 * Hebrew and Urdu beyond the engines listed; Punjabi, Gujarati, Marathi, Nepali, Sinhala, Burmese, Khmer, Lao, Amharic and the other
   languages Omnilingual or Dolphin nominally cover (no time; no engine of ours was checked on them).
 * Play listing text and screenshots for the new markets are a separate task and are not part of this change.
-* Licences: the NeMo 10-language model's licence (NVIDIA NGC page) and the training-data licences behind Starling, Dolphin,
+* Licences: the NeMo 10-language model is under the NVIDIA NGC Terms of Use, not CC-BY-4.0 (the NGC terms were not read for commercial redistribution), and the training-data licences behind Starling, Dolphin,
   Omnilingual and the Zipformer models were not audited; the model-card licences are what is recorded.
 """)
 open(WT + "/docs/LANGUAGES.md", "w").write("\n".join(md) + "\n")
