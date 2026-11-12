@@ -1,58 +1,56 @@
-ClearVoice Recorder é um gravador de voz profissional com transcrição offline, edição de áudio e recursos de organização inteligente.
+Gravador ClearVoice - Notas de voz para dislexia, TDAH e qualquer pessoa que fale mais rápido do que digita
 
-GRAVE EM ALTA QUALIDADE
+Digitar é difícil para alguns cérebros. O ClearVoice Recorder captura seus pensamentos como áudio E texto - grave uma nota de voz, obtenha uma transcrição, ambos salvos juntos. Não é necessário teclado.
 
-Escolha entre os formatos M4A (comprimido) e WAV (sem perda)
-Qualidade ajustável: Baixa, Média, Alta ou Máxima
-Suporte para gravação mono e estéreo
-Visualização de forma de onda em tempo real durante a gravação
-Nomeie gravações automaticamente por localização
+Projetado para:
+• Escritores com dislexia que pensam mais rápido do que digitam
+• Usuários com TDAH que perdem ideias ao explicá-las
+• Pessoas com lesões nas mãos ou nos pulsos que não conseguem digitar confortavelmente
+• Jornalistas capturando entrevistas e citações
+• Alunos gravando palestras e notas de estudo
+• Qualquer pessoa que prefira digitação por voz
 
-REPRODUÇÃO COM PRECISÃO
+Recursos que priorizam a voz
+• Captura de áudio de alta qualidade: M4A, WAV, opções sem perdas
+• Transcrição no dispositivo — funciona sem internet
+• Organização inteligente com títulos gerados automaticamente
+• Pesquise gravações por conteúdo transcrito
+• Exporte áudio ou texto em vários formatos
 
-Exibição visual de forma de onda com toque para buscar
-Controles de avançar e retroceder
-Velocidade de reprodução ajustável (0,5x a 2,0x)
-Pule silêncios para avançar rapidamente
-Compartilhe gravações com qualquer app
+Fluxo de trabalho que prioriza a acessibilidade
+• Não é necessário digitar para criar ou organizar notas
+• Pesquisa por voz em toda a sua biblioteca de gravações
+• Tamanho de texto ajustável e configurações de alto contraste
+• Funciona com leitores de tela para usuários cegos e com baixa visão
+• Controles de reprodução com viva-voz
 
-TRANSCREVA VOZ EM TEXTO
+Qualidade de gravação
+• Gravação mono e estéreo
+• Predefinições de qualidade baixa, média, alta e máxima
+• Monitoramento em tempo real durante a gravação
+• Pausa automática no silêncio (opcional)
 
-Converta gravações em texto com transcrição offline
-Sem necessidade de conexão com a internet para sua privacidade
-Copie transcrições para a área de transferência instantaneamente
-Transcrições salvas junto com suas gravações
+Organização
+• Categorias e tags para agrupar gravações
+• Pastas para projetos, aulas ou tópicos
+• Favoritos para acesso rápido
 
-CORTE E EDITE
+Idiomas, Listen, Find e Ask
+• Transcreva em 41 idiomas. Cada idioma é baixado uma vez e funciona no seu celular; alguns, como o árabe, são marcados como experimentais
+• Listen: ouça os pontos principais, um parágrafo ou a transcrição inteira lidos em voz alta por uma voz instalada no seu celular, com controle de velocidade
+• Find: pesquise todas as transcrições digitando ou por voz e vá direto ao momento exato do áudio (a pesquisa por voz exige Android 13 ou mais recente)
+• Ask: veja os trechos com mais chances de responder à sua pergunta, citados das suas transcrições (ele encontra trechos, não escreve uma resposta)
 
-Editor visual de corte com seleção precisa de intervalo
-Remova seções indesejadas das gravações
-Fluxo de edição não destrutivo
+Casos de uso
+• Entradas de diário de voz que você pode pesquisar mais tarde
+• Captura rápida de ideias enquanto caminha ou dirige
+• Gravações de entrevistas com transcrições pesquisáveis
+• Notas de palestras e reuniões
+• Notas de áudio para músicas, sermões, podcasts
 
-MANTENHA-SE ORGANIZADO
+Como funciona:
+1. Toque para gravar – fale o que pensa
+2. ClearVoice transcreve automaticamente
+3. Pesquise, organize e encontre qualquer coisa por palavra falada
 
-Crie pastas com cores personalizadas para agrupar gravações
-Marque favoritos para acesso rápido
-Pesquise gravações por nome
-Ordene por data, nome, duração ou tamanho do arquivo
-Deslize para excluir com seleção em lote
-
-RECURSOS GRATUITOS
-
-Grave até 10 gravações
-Crie até 3 pastas
-Reprodução completa com visualização de forma de onda
-Compartilhe e organize gravações
-
-RECURSOS PREMIUM
-
-Gravações e pastas ilimitadas
-Transcrição de voz para texto offline
-Ferramentas de corte e edição de áudio
-Controles de velocidade de reprodução ajustável
-Modo de pular silêncios
-Marcadores ilimitados
-
-Seja você um estudante gravando aulas, um jornalista capturando entrevistas, um músico salvando ideias ou qualquer pessoa que precise de um gravador de voz confiável, o ClearVoice Recorder oferece áudio cristalino com ferramentas poderosas para gerenciar tudo.
-
-Privacidade em primeiro lugar: Todas as gravações e transcrições permanecem no seu dispositivo. Nenhum dado é enviado a qualquer servidor.
+Sua voz é mais rápida que seus dedos. ClearVoice faz disso uma vantagem.

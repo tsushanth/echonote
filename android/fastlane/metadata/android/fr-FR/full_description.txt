@@ -1,58 +1,56 @@
-ClearVoice Recorder est un enregistreur vocal professionnel avec transcription hors ligne, édition audio et fonctions d'organisation intelligente.
+ClearVoice Recorder - Notes vocales pour la dyslexie, le TDAH et toute personne qui parle plus vite qu'elle ne tape
 
-ENREGISTREZ EN HAUTE QUALITÉ
+Taper est difficile pour certains cerveaux. ClearVoice Recorder capture vos pensées sous forme audio ET de texte : enregistrez une note vocale, obtenez une transcription, les deux étant enregistrés ensemble. Aucun clavier requis.
 
-Choisissez entre les formats M4A (compressé) et WAV (sans perte)
-Qualité réglable : Basse, Moyenne, Haute ou Maximale
-Prise en charge de l'enregistrement mono et stéréo
-Visualisation de la forme d'onde en temps réel pendant l'enregistrement
-Nommez automatiquement les enregistrements par emplacement
+Conçu pour :
+• Les écrivains dyslexiques qui réfléchissent plus vite qu'ils ne tapent
+• Utilisateurs atteints de TDAH qui perdent leurs idées en les épelant
+• Les personnes blessées à la main ou au poignet qui ne peuvent pas taper confortablement
+• Journalistes capturant des interviews et des citations
+• Les étudiants enregistrent des cours et des notes d'étude
+• Toute personne préférant la saisie vocale
 
-LECTURE DE PRÉCISION
+Fonctionnalités vocales d'abord
+• Capture audio de haute qualité : M4A, WAV, options sans perte
+• Transcription sur l'appareil : fonctionne sans Internet
+• Organisation intelligente avec des titres générés automatiquement
+• Recherche parmi les enregistrements par contenu de transcription
+• Exporter de l'audio ou du texte dans plusieurs formats
 
-Affichage de la forme d'onde avec navigation tactile
-Commandes d'avance et de retour rapide
-Vitesse de lecture réglable (0,5x à 2,0x)
-Saut des silences pour avancer rapidement
-Partagez les enregistrements avec n'importe quelle app
+Flux de travail axé sur l'accessibilité
+• Aucune saisie requise pour créer ou organiser des notes
+• Recherche vocale dans toute votre bibliothèque d'enregistrements
+• Taille du texte réglable et paramètres de contraste élevé
+• Fonctionne avec les lecteurs d'écran pour les utilisateurs aveugles et malvoyants
+• Commandes de lecture mains libres
 
-TRANSCRIVEZ LA VOIX EN TEXTE
+Qualité d'enregistrement
+• Enregistrement mono et stéréo
+• Préréglages de qualité faible, moyenne, élevée et maximale
+• Surveillance en temps réel pendant l'enregistrement
+• Pause automatique en cas de silence (facultatif)
 
-Convertissez les enregistrements en texte avec la transcription hors ligne
-Aucune connexion Internet requise pour votre confidentialité
-Copiez les transcriptions dans le presse-papiers instantanément
-Les transcriptions sont sauvegardées avec vos enregistrements
+Organisation
+• Catégories et balises pour regrouper les enregistrements
+• Dossiers pour les projets, les cours ou les sujets
+• Favoris pour un accès rapide
 
-DÉCOUPEZ ET ÉDITEZ
+Langues, Listen, Find et Ask
+• Transcrivez dans 41 langues. Chaque langue se télécharge une fois et fonctionne sur votre téléphone ; quelques-unes, comme l'arabe, sont signalées comme expérimentales
+• Listen : écoutez les points clés, un paragraphe ou toute la transcription lus à voix haute par une voix installée sur votre téléphone, avec réglage de la vitesse
+• Find : recherchez dans toutes les transcriptions en tapant ou à la voix et accédez au moment exact de l'audio (la recherche vocale nécessite Android 13 ou plus récent)
+• Ask : consultez les passages les plus susceptibles de répondre à votre question, cités depuis vos transcriptions (il trouve des passages, il n'écrit pas de réponse)
 
-Éditeur visuel de découpe avec sélection précise de plage
-Supprimez les sections indésirables des enregistrements
-Flux de travail d'édition non destructif
+Cas d'utilisation
+• Entrée du journal vocal que vous pourrez rechercher plus tard
+• Capture rapide d'idées en marchant ou en conduisant
+• Enregistrements d'entretiens avec transcriptions consultables
+• Notes de cours et de réunion
+• Notes audio pour la musique, les sermons et les podcasts
 
-RESTEZ ORGANISÉ
+Comment ça marche :
+1. Appuyez pour enregistrer - exprimez votre pensée
+2. ClearVoice transcrit automatiquement
+3. Recherchez, organisez et trouvez n'importe quoi par la parole
 
-Créez des dossiers avec des couleurs personnalisées pour regrouper les enregistrements
-Marquez vos favoris pour un accès rapide
-Recherchez les enregistrements par nom
-Triez par date, nom, durée ou taille de fichier
-Balayez pour supprimer avec sélection par lots
-
-FONCTIONNALITÉS GRATUITES
-
-Enregistrez jusqu'à 10 enregistrements
-Créez jusqu'à 3 dossiers
-Lecture complète avec visualisation de la forme d'onde
-Partagez et organisez vos enregistrements
-
-FONCTIONNALITÉS PREMIUM
-
-Enregistrements et dossiers illimités
-Transcription voix-texte hors ligne
-Outils de découpe et d'édition audio
-Commandes de vitesse de lecture réglable
-Mode saut des silences
-Signets illimités
-
-Que vous soyez étudiant enregistrant des cours, journaliste capturant des interviews, musicien sauvegardant des idées ou toute personne ayant besoin d'un enregistreur vocal fiable, ClearVoice Recorder offre un son cristallin avec des outils puissants pour tout gérer.
-
-Confidentialité d'abord : Tous les enregistrements et transcriptions restent sur votre appareil. Aucune donnée n'est envoyée à un serveur.
+Votre voix est plus rapide que vos doigts. ClearVoice en fait un avantage.

@@ -1,51 +1,56 @@
-ClearVoice Recorder is a professional voice recorder with offline transcription, audio editing, and smart organization features.
+ClearVoice Recorder - Voice-First Notes for Dyslexia, ADHD, and Anyone Who Talks Faster Than They Type
 
-RECORD IN HIGH QUALITY
+Typing is hard for some brains. ClearVoice Recorder captures your thoughts as audio AND text — record a voice note, get a transcript, both saved together. No keyboard required.
 
-Choose between M4A (compressed) and WAV (lossless) formats
-Adjustable quality: Low, Medium, High, or Maximum
-Mono and stereo recording support
-Real-time waveform visualization while recording
-Auto-name recordings by location
-PLAYBACK WITH PRECISION
+Designed For:
+• Writers with dyslexia who think faster than they type
+• Users with ADHD who lose ideas while spelling them out
+• People with hand or wrist injuries who can't type comfortably
+• Journalists capturing interviews and quotes
+• Students recording lectures and study notes
+• Anyone who prefers voice over typing
 
-Visual waveform display with tap-to-seek
-Skip forward and backward controls
-Adjustable playback speed (0.5x to 2.0x)
-Skip silence to breeze through pauses
-Share recordings with any app
-TRANSCRIBE SPEECH TO TEXT
+Voice-First Features
+• High-quality audio capture: M4A, WAV, lossless options
+• On-device transcription — works without internet
+• Smart organization with auto-generated titles
+• Search across recordings by transcript content
+• Export audio or text in multiple formats
 
-Convert recordings to text with offline transcription
-No internet connection required for privacy
-Copy transcripts to clipboard instantly
-Transcripts saved alongside your recordings
-TRIM AND EDIT
+Accessibility-First Workflow
+• No typing required to create or organize notes
+• Voice search through your entire recording library
+• Adjustable text size and high-contrast settings
+• Works with screen readers for blind and low-vision users
+• Hands-free playback controls
 
-Visual trim editor with precise range selection
-Cut unwanted sections from recordings
-Non-destructive editing workflow
-STAY ORGANIZED
+Recording Quality
+• Mono and stereo recording
+• Low, medium, high, and maximum quality presets
+• Real-time monitoring during recording
+• Auto-pause on silence (optional)
 
-Create folders with custom colors to group recordings
-Mark favorites for quick access
-Search recordings by name
-Sort by date, name, duration, or file size
-Swipe to delete with batch selection support
-FREE FEATURES
+Organization
+• Categories and tags for grouping recordings
+• Folders for projects, classes, or topics
+• Favorites for quick access
 
-Record up to 10 recordings
-Create up to 3 folders
-Full playback with waveform visualization
-Share and organize recordings
-PREMIUM FEATURES
+Languages, Listen, Find and Ask
+• Transcribe in 41 languages. Each language downloads once and runs on your phone; a few, like Arabic, are marked Experimental
+• Listen: hear key points, a paragraph or a whole transcript read aloud by a voice installed on your phone, with speed control
+• Find: search every transcript by typing or voice and jump to the exact moment in the audio (voice search needs Android 13 or newer)
+• Ask: see the passages most likely to answer your question, quoted from your transcripts (it finds passages, it does not write an answer)
 
-Unlimited recordings and folders
-Offline speech-to-text transcription
-Audio trimming and editing tools
-Adjustable playback speed controls
-Skip silence mode
-Unlimited bookmarks
-Whether you're a student recording lectures, a journalist capturing interviews, a musician saving ideas, or anyone who needs a reliable voice recorder - ClearVoice Recorder delivers crystal-clear audio with powerful tools to manage it all.
+Use Cases
+• Voice journal entries you can search later
+• Quick capture of ideas while walking or driving
+• Interview recordings with searchable transcripts
+• Lecture and meeting notes
+• Audio notes for music, sermons, podcasts
 
-Privacy first: All recordings and transcriptions stay on your device. No data is uploaded to any server.
+How It Works:
+1. Tap to record — speak your thought
+2. ClearVoice transcribes automatically
+3. Search, organize, and find anything by spoken word
+
+Your voice is faster than your fingers. ClearVoice makes that an advantage.
