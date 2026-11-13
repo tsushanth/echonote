@@ -369,7 +369,7 @@ fun PlaybackScreen(
                         )
                         Spacer(Modifier.height(6.dp))
                         Text(
-                            text = "Transcribe on this phone to read, search and jump through the recording. The audio never leaves the device.",
+                            text = "Transcribe on this phone to read, search and jump through the recording. Audio leaves the phone only if you turn on Contribute Voice Data in Settings.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

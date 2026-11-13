@@ -7,7 +7,7 @@
     <string name="listen_paragraph_button">Listen to this paragraph from %1$s</string>
     <string name="listen_menu_transcript">Listen to transcript</string>
     <string name="listen_voice_label">Voice: %1$s</string>
-    <string name="listen_privacy_note">Spoken by a voice installed on this phone. Nothing is sent anywhere.</string>
+    <string name="listen_privacy_note">Spoken by a voice installed on this phone. Listening sends nothing anywhere.</string>
     <string name="listen_preparing">Getting the voice ready…</string>
     <string name="listen_status_speaking">Reading aloud</string>
     <string name="listen_status_paused">Paused</string>
@@ -68,7 +68,7 @@
     <string name="find_voice_busy">Speech recognition is busy. Try again in a moment.</string>
     <string name="find_voice_error">Voice search did not work. Type your search instead.</string>
     <string name="find_voice_old_android">Voice search needs Android 13 or newer, because ClearVoice only uses speech recognition that runs on the phone. Type your search instead.</string>
-    <string name="find_voice_no_recognizer">This phone has no offline speech recognizer installed, and ClearVoice never sends audio to an online one. Type your search instead.</string>
+    <string name="find_voice_no_recognizer">This phone has no offline speech recognizer installed, and ClearVoice never uses an online recognizer for search. Type your search instead.</string>
     <string name="find_building">Reading your transcripts…</string>
     <string name="find_no_transcripts">No transcripts yet. Transcribe a recording on this phone, then you can search it here.</string>
     <string name="find_empty_find">Type a word or phrase. Results jump to the exact moment in the recording.</string>
@@ -91,7 +91,7 @@
     <string name="premium_row_subtitle">A written answer. Coming soon.</string>
     <string name="premium_row_description">AI answer, Premium. Coming soon. Opens an explanation.</string>
     <string name="premium_sheet_title">AI answers are coming soon</string>
-    <string name="premium_sheet_body">Written answers need our servers to run the AI, so they will be a Premium feature included with your subscription. Nothing you recorded or typed is sent anywhere today.</string>
+    <string name="premium_sheet_body">Written answers need our servers to run the AI, so they will be a Premium feature included with your subscription. Today, Find, Ask and Listen run on your phone and send nothing.</string>
     <string name="premium_sheet_subscriber">You already have an active subscription, so it will be included for you.</string>
     <string name="premium_sheet_free_note">Find, Ask and Listen stay free and keep working on your phone.</string>
     <string name="premium_sheet_close">Got it</string>

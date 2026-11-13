@@ -1,6 +1,6 @@
 # On-device summaries: feasibility and status
 
-Written 2026-10-12. Promise to keep: audio and transcripts never leave the phone.
+Written 2026-10-12. Promise to keep: summaries, Listen, Find and Ask never send audio or transcripts anywhere. Only the opt-in Contribute Voice Data setting uploads audio, transcript and language.
 Sources are named per claim. "From memory" means I did not re-check it in this task and it
 must be confirmed before anyone relies on it.
 
