@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">النسخ باللغة: %1$s</string>
+    <string name="first_run_language_body">تُنزَّل كل لغة مرة واحدة، ثم تنسخ على هاتفك دون إنترنت.</string>
+    <string name="first_run_language_change">تغيير</string>
+    <string name="first_run_language_ok">تبدو صحيحة</string>
+    <string name="first_run_engine_hint">للغة %1$s، يرتكب الوضع الدقيق أخطاء أقل بكثير: نحو %3$d%% مقابل %2$d%% للوضع السريع في اختبارنا. حجم التنزيل %4$d م.ب، مرة واحدة.</string>
+    <string name="first_run_engine_use">استخدام الوضع الدقيق</string>
+    <string name="first_run_engine_on">الوضع الدقيق مفعّل. سيُنزِّل %1$d م.ب عند أول نسخ لك، مرة واحدة.</string>
+</resources>

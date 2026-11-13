@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Язык расшифровки</string>
+    <string name="language_picker_close">Закрыть</string>
+    <string name="language_picker_intro">Отметки основаны на тестах с чтением вслух. Реальные записи с шумом, акцентами или диалектами сложнее, поэтому ошибок будет больше, чем показывают цифры.</string>
+    <string name="language_section_supported">Поддерживается</string>
+    <string name="language_section_experimental">Экспериментально: ожидайте много ошибок</string>
+    <string name="language_section_bigger_phone">Нужен более мощный телефон</string>
+    <string name="language_section_not_yet">Пока не поддерживается</string>
+    <string name="language_badge_supported">Поддерживается</string>
+    <string name="language_badge_experimental">Экспериментально</string>
+    <string name="language_accurate_size">Точный: %1$s, загрузка %2$d МБ, один раз.</string>
+    <string name="language_accurate_size_large">Точный: %1$s, загрузка %2$d МБ, один раз. Большая загрузка: используйте Wi-Fi.</string>
+    <string name="language_fast_size">Быстрый: загрузка %1$d МБ, один раз.</string>
+    <string name="language_fast_unavailable">Для этого языка нет быстрой модели. Всегда используется точный режим.</string>
+    <string name="language_fast_poor">Быстрый режим недостаточно точен для этого языка, поэтому всегда используется точный.</string>
+    <string name="language_ram_smaller">У этого телефона меньше памяти, чем нужно лучшей модели, поэтому используется меньшая модель, и результаты менее точны.</string>
+    <string name="language_ram_needs_bigger">Нужен телефон с 6 ГБ памяти или больше (%1$s, %2$d МБ). Этот телефон не может её запустить.</string>
+    <string name="language_not_yet_closest">Пока не поддерживается: в нашем тесте ошибок было %1$d%%. Ближайший доступный язык: %2$s.</string>
+    <string name="language_not_yet_none">Пока не поддерживается: в нашем тесте ошибок было %1$d%%, слишком много, чтобы это было полезно. Ничего близкого нет.</string>
+    <string name="settings_accurate_fast_unavailable">Для языка «%1$s» нет быстрой модели, поэтому всегда используется точный режим (%2$s, загрузка %3$d МБ, один раз).</string>
+    <string name="settings_accurate_fast_poor">Быстрый режим недостаточно точен для языка «%1$s», поэтому всегда используется точный (%2$s, загрузка %3$d МБ, один раз).</string>
+    <string name="settings_accurate_needs_bigger">Для языка «%1$s» нужен телефон с 6 ГБ памяти или больше (%2$s, %3$d МБ). Этот телефон не может его запустить.</string>
+    <string name="settings_language_experimental_note">Язык «%1$s» экспериментальный: в нашем тесте около %2$d%% текста получилось неверным.</string>
+    <string name="language_dialect_warning">Язык «%1$s» работает для стандартной (литературной) речи, например новостей и лекций. Повседневная диалектная речь распознаётся гораздо хуже: в нашем тесте на египетском диалекте около двух третей слов были неверными.</string>
+    <string name="language_search_hint">Поиск языка</string>
+    <string name="language_search_no_match">Нет языков, подходящих под ваш запрос.</string>
+</resources>

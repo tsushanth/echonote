@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">%1$sで文字起こし</string>
+    <string name="first_run_language_body">各言語は一度ダウンロードすれば、その後はインターネットなしでこの端末上で文字起こしします。</string>
+    <string name="first_run_language_change">変更</string>
+    <string name="first_run_language_ok">これでOK</string>
+    <string name="first_run_engine_hint">%1$sでは、高精度の方が誤りがはるかに少なくなります。テストでは高速の%2$d%%に対し約%3$d%%です。ダウンロードは%4$d MB（1回のみ）です。</string>
+    <string name="first_run_engine_use">高精度を使う</string>
+    <string name="first_run_engine_on">高精度がオンです。初めて文字起こしするときに%1$d MBをダウンロードします（1回のみ）。</string>
+</resources>

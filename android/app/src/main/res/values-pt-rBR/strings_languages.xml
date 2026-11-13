@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Idioma de transcrição</string>
+    <string name="language_picker_close">Fechar</string>
+    <string name="language_picker_intro">Os selos vêm de testes com fala lida. Gravações reais, com ruído, sotaques ou dialetos, são mais difíceis, então espere mais erros do que os números sugerem.</string>
+    <string name="language_section_supported">Compatível</string>
+    <string name="language_section_experimental">Experimental: espere muitos erros</string>
+    <string name="language_section_bigger_phone">Precisa de um celular mais potente</string>
+    <string name="language_section_not_yet">Ainda não compatível</string>
+    <string name="language_badge_supported">Compatível</string>
+    <string name="language_badge_experimental">Experimental</string>
+    <string name="language_accurate_size">Preciso: %1$s, download de %2$d MB, uma única vez.</string>
+    <string name="language_accurate_size_large">Preciso: %1$s, download de %2$d MB, uma única vez. Download grande: use Wi-Fi.</string>
+    <string name="language_fast_size">Rápido: download de %1$d MB, uma única vez.</string>
+    <string name="language_fast_unavailable">Não há modelo Rápido para este idioma. O Preciso é sempre usado.</string>
+    <string name="language_fast_poor">O Rápido não é preciso o bastante para este idioma, então o Preciso é sempre usado.</string>
+    <string name="language_ram_smaller">Este celular tem menos memória do que o melhor modelo precisa, então um modelo menor é usado e os resultados são menos precisos.</string>
+    <string name="language_ram_needs_bigger">Precisa de um celular com 6 GB de memória ou mais (%1$s, %2$d MB). Este celular não consegue executá-lo.</string>
+    <string name="language_not_yet_closest">Ainda não compatível: teve %1$d%% de erros no nosso teste. Idioma disponível mais próximo: %2$s.</string>
+    <string name="language_not_yet_none">Ainda não compatível: teve %1$d%% de erros no nosso teste, o que é demais para ser útil. Não há nada parecido disponível.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s não tem modelo Rápido, então o Preciso (%2$s, download de %3$d MB, uma única vez) é sempre usado.</string>
+    <string name="settings_accurate_fast_poor">O Rápido não é preciso o bastante para %1$s, então o Preciso (%2$s, download de %3$d MB, uma única vez) é sempre usado.</string>
+    <string name="settings_accurate_needs_bigger">%1$s precisa de um celular com 6 GB de memória ou mais (%2$s, %3$d MB). Este celular não consegue executá-lo.</string>
+    <string name="settings_language_experimental_note">%1$s é experimental: no nosso teste, cerca de %2$d%% saiu errado.</string>
+    <string name="language_dialect_warning">%1$s funciona com fala padrão (formal), como noticiários e aulas. A fala cotidiana com dialeto é bem pior: no nosso teste com dialeto egípcio, cerca de dois terços das palavras saíram erradas.</string>
+    <string name="language_search_hint">Buscar idiomas</string>
+    <string name="language_search_no_match">Nenhum idioma corresponde à sua busca.</string>
+</resources>

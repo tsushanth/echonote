@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Nagta-transcribe sa %1$s</string>
+    <string name="first_run_language_body">Isang beses lang dina-download ang bawat wika, tapos magta-transcribe na ito sa iyong telepono nang walang internet.</string>
+    <string name="first_run_language_change">Baguhin</string>
+    <string name="first_run_language_ok">Tama na</string>
+    <string name="first_run_engine_hint">Para sa %1$s, mas kaunti ang mali ng Tumpak: humigit-kumulang %3$d%% kumpara sa %2$d%% ng Mabilis sa aming pagsubok. %4$d MB ang download, isang beses lang.</string>
+    <string name="first_run_engine_use">Gamitin ang Tumpak</string>
+    <string name="first_run_engine_on">Naka-on ang Tumpak. Magda-download ito ng %1$d MB sa unang beses na magta-transcribe ka, isang beses lang.</string>
+</resources>

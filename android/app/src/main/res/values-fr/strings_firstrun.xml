@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Transcription en %1$s</string>
+    <string name="first_run_language_body">Chaque langue se télécharge une fois, puis transcrit sur votre téléphone sans internet.</string>
+    <string name="first_run_language_change">Modifier</string>
+    <string name="first_run_language_ok">C’est bon</string>
+    <string name="first_run_engine_hint">Pour %1$s, Précis fait beaucoup moins d’erreurs : environ %3$d %% contre %2$d %% pour Rapide dans notre test. C’est un téléchargement de %4$d Mo, une seule fois.</string>
+    <string name="first_run_engine_use">Utiliser Précis</string>
+    <string name="first_run_engine_on">Précis est activé. Il télécharge %1$d Mo à votre première transcription, une seule fois.</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">لغة النسخ</string>
+    <string name="language_picker_close">إغلاق</string>
+    <string name="language_picker_intro">الشارات مستمدة من اختبارات على كلام مقروء. التسجيلات الحقيقية بما فيها من ضجيج ولكنات ولهجات أصعب، فتوقع أخطاء أكثر مما تشير إليه الأرقام.</string>
+    <string name="language_section_supported">مدعومة</string>
+    <string name="language_section_experimental">تجريبية: توقع أخطاء كثيرة</string>
+    <string name="language_section_bigger_phone">تحتاج إلى هاتف أقوى</string>
+    <string name="language_section_not_yet">غير مدعومة بعد</string>
+    <string name="language_badge_supported">مدعومة</string>
+    <string name="language_badge_experimental">تجريبية</string>
+    <string name="language_accurate_size">الدقيق: %1$s، تنزيل %2$d م.ب، مرة واحدة.</string>
+    <string name="language_accurate_size_large">الدقيق: %1$s، تنزيل %2$d م.ب، مرة واحدة. تنزيل كبير: استخدم Wi-Fi.</string>
+    <string name="language_fast_size">السريع: تنزيل %1$d م.ب، مرة واحدة.</string>
+    <string name="language_fast_unavailable">لا يوجد نموذج سريع لهذه اللغة. يُستخدم الوضع الدقيق دائمًا.</string>
+    <string name="language_fast_poor">الوضع السريع ليس دقيقًا بما يكفي لهذه اللغة، لذا يُستخدم الوضع الدقيق دائمًا.</string>
+    <string name="language_ram_smaller">ذاكرة هذا الهاتف أقل مما يحتاجه أفضل نموذج، لذا يُستخدم نموذج أصغر وتكون النتائج أقل دقة.</string>
+    <string name="language_ram_needs_bigger">تحتاج إلى هاتف بذاكرة 6 غ.ب أو أكثر (%1$s، %2$d م.ب). لا يستطيع هذا الهاتف تشغيلها.</string>
+    <string name="language_not_yet_closest">غير مدعومة بعد: بلغت نسبة الأخطاء %1$d%% في اختبارنا. أقرب لغة متاحة: %2$s.</string>
+    <string name="language_not_yet_none">غير مدعومة بعد: بلغت نسبة الأخطاء %1$d%% في اختبارنا، وهي أعلى من أن تكون مفيدة. لا توجد لغة قريبة منها.</string>
+    <string name="settings_accurate_fast_unavailable">لا يوجد نموذج سريع للغة %1$s، لذا يُستخدم الوضع الدقيق دائمًا (%2$s، تنزيل %3$d م.ب، مرة واحدة).</string>
+    <string name="settings_accurate_fast_poor">الوضع السريع ليس دقيقًا بما يكفي للغة %1$s، لذا يُستخدم الوضع الدقيق دائمًا (%2$s، تنزيل %3$d م.ب، مرة واحدة).</string>
+    <string name="settings_accurate_needs_bigger">تحتاج اللغة %1$s إلى هاتف بذاكرة 6 غ.ب أو أكثر (%2$s، %3$d م.ب). لا يستطيع هذا الهاتف تشغيلها.</string>
+    <string name="settings_language_experimental_note">اللغة %1$s تجريبية: في اختبارنا خرج نحو %2$d%% منها خاطئًا.</string>
+    <string name="language_dialect_warning">تعمل اللغة %1$s مع الكلام القياسي (الفصيح) مثل الأخبار والمحاضرات. أما الكلام اليومي باللهجات فهو أسوأ بكثير: في اختبارنا على اللهجة المصرية كان نحو ثلثي الكلمات خاطئًا.</string>
+    <string name="language_search_hint">ابحث عن لغة</string>
+    <string name="language_search_no_match">لا توجد لغة تطابق بحثك.</string>
+</resources>

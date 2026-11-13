@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">%1$s(으)로 받아쓰는 중</string>
+    <string name="first_run_language_body">각 언어는 한 번만 다운로드하며, 그 후에는 인터넷 없이 휴대폰에서 받아씁니다.</string>
+    <string name="first_run_language_change">변경</string>
+    <string name="first_run_language_ok">맞아요</string>
+    <string name="first_run_engine_hint">%1$s의 경우 정확 모드가 오류가 훨씬 적습니다: 테스트에서 빠른 모드 %2$d%%에 비해 약 %3$d%%입니다. %4$d MB 다운로드, 한 번만.</string>
+    <string name="first_run_engine_use">정확 모드 사용</string>
+    <string name="first_run_engine_on">정확 모드가 켜져 있습니다. 처음 받아쓸 때 %1$d MB를 한 번만 다운로드합니다.</string>
+</resources>

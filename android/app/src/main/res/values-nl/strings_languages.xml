@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Transcriptietaal</string>
+    <string name="language_picker_close">Sluiten</string>
+    <string name="language_picker_intro">De labels komen uit tests met voorgelezen spraak. Echte opnamen met ruis, accenten of dialecten zijn moeilijker, dus verwacht meer fouten dan de cijfers doen vermoeden.</string>
+    <string name="language_section_supported">Ondersteund</string>
+    <string name="language_section_experimental">Experimenteel: verwacht veel fouten</string>
+    <string name="language_section_bigger_phone">Heeft een krachtigere telefoon nodig</string>
+    <string name="language_section_not_yet">Nog niet ondersteund</string>
+    <string name="language_badge_supported">Ondersteund</string>
+    <string name="language_badge_experimental">Experimenteel</string>
+    <string name="language_accurate_size">Nauwkeurig: %1$s, download van %2$d MB, eenmalig.</string>
+    <string name="language_accurate_size_large">Nauwkeurig: %1$s, download van %2$d MB, eenmalig. Grote download: gebruik wifi.</string>
+    <string name="language_fast_size">Snel: download van %1$d MB, eenmalig.</string>
+    <string name="language_fast_unavailable">Er is geen Snel-model voor deze taal. Nauwkeurig wordt altijd gebruikt.</string>
+    <string name="language_fast_poor">Snel is niet nauwkeurig genoeg voor deze taal, dus Nauwkeurig wordt altijd gebruikt.</string>
+    <string name="language_ram_smaller">Deze telefoon heeft minder geheugen dan het beste model nodig heeft, dus er wordt een kleiner model gebruikt en de resultaten zijn minder nauwkeurig.</string>
+    <string name="language_ram_needs_bigger">Heeft een telefoon met 6 GB geheugen of meer nodig (%1$s, %2$d MB). Deze telefoon kan het niet uitvoeren.</string>
+    <string name="language_not_yet_closest">Nog niet ondersteund: in onze test had het %1$d%% fouten. Dichtstbijzijnde beschikbare taal: %2$s.</string>
+    <string name="language_not_yet_none">Nog niet ondersteund: in onze test had het %1$d%% fouten, te veel om bruikbaar te zijn. Er is niets in de buurt beschikbaar.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s heeft geen Snel-model, dus Nauwkeurig (%2$s, download van %3$d MB, eenmalig) wordt altijd gebruikt.</string>
+    <string name="settings_accurate_fast_poor">Snel is niet nauwkeurig genoeg voor %1$s, dus Nauwkeurig (%2$s, download van %3$d MB, eenmalig) wordt altijd gebruikt.</string>
+    <string name="settings_accurate_needs_bigger">%1$s heeft een telefoon met 6 GB geheugen of meer nodig (%2$s, %3$d MB). Deze telefoon kan het niet uitvoeren.</string>
+    <string name="settings_language_experimental_note">%1$s is experimenteel: in onze test kwam ongeveer %2$d%% verkeerd uit.</string>
+    <string name="language_dialect_warning">%1$s werkt voor standaardspraak (formeel), zoals nieuws en lezingen. Alledaagse dialectspraak is veel slechter: in onze test met Egyptisch dialect was ongeveer twee derde van de woorden fout.</string>
+    <string name="language_search_hint">Talen zoeken</string>
+    <string name="language_search_no_match">Geen taal komt overeen met je zoekopdracht.</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">%1$s में ट्रांसक्रिप्शन</string>
+    <string name="first_run_language_body">हर भाषा एक बार डाउनलोड होती है, फिर आपके फ़ोन पर बिना इंटरनेट के ट्रांसक्रिप्ट करती है।</string>
+    <string name="first_run_language_change">बदलें</string>
+    <string name="first_run_language_ok">सही है</string>
+    <string name="first_run_engine_hint">%1$s के लिए सटीक मोड में बहुत कम गलतियाँ होती हैं: हमारे परीक्षण में तेज़ मोड के %2$d%% के मुकाबले लगभग %3$d%%। यह %4$d MB का डाउनलोड है, सिर्फ़ एक बार।</string>
+    <string name="first_run_engine_use">सटीक मोड इस्तेमाल करें</string>
+    <string name="first_run_engine_on">सटीक मोड चालू है। पहली बार ट्रांसक्रिप्ट करने पर यह %1$d MB डाउनलोड करता है, सिर्फ़ एक बार।</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Langue de transcription</string>
+    <string name="language_picker_close">Fermer</string>
+    <string name="language_picker_intro">Les badges viennent de tests sur de la parole lue. Les enregistrements réels, avec bruit, accents ou dialectes, sont plus difficiles : attendez-vous à plus d’erreurs que ne le suggèrent les chiffres.</string>
+    <string name="language_section_supported">Pris en charge</string>
+    <string name="language_section_experimental">Expérimental : beaucoup d’erreurs à prévoir</string>
+    <string name="language_section_bigger_phone">Nécessite un téléphone plus puissant</string>
+    <string name="language_section_not_yet">Pas encore pris en charge</string>
+    <string name="language_badge_supported">Pris en charge</string>
+    <string name="language_badge_experimental">Expérimental</string>
+    <string name="language_accurate_size">Précis : %1$s, téléchargement de %2$d Mo, une seule fois.</string>
+    <string name="language_accurate_size_large">Précis : %1$s, téléchargement de %2$d Mo, une seule fois. Gros téléchargement : utilisez le Wi-Fi.</string>
+    <string name="language_fast_size">Rapide : téléchargement de %1$d Mo, une seule fois.</string>
+    <string name="language_fast_unavailable">Pas de modèle Rapide pour cette langue. Précis est toujours utilisé.</string>
+    <string name="language_fast_poor">Rapide n’est pas assez précis pour cette langue, donc Précis est toujours utilisé.</string>
+    <string name="language_ram_smaller">Ce téléphone a moins de mémoire que le meilleur modèle n’en demande, donc un modèle plus petit est utilisé et les résultats sont moins précis.</string>
+    <string name="language_ram_needs_bigger">Nécessite un téléphone avec 6 Go de mémoire ou plus (%1$s, %2$d Mo). Ce téléphone ne peut pas l’exécuter.</string>
+    <string name="language_not_yet_closest">Pas encore pris en charge : %1$d %% d’erreurs dans notre test. Langue disponible la plus proche : %2$s.</string>
+    <string name="language_not_yet_none">Pas encore pris en charge : %1$d %% d’erreurs dans notre test, trop pour être utile. Rien de proche n’est disponible.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s n’a pas de modèle Rapide, donc Précis (%2$s, téléchargement de %3$d Mo, une seule fois) est toujours utilisé.</string>
+    <string name="settings_accurate_fast_poor">Rapide n’est pas assez précis pour %1$s, donc Précis (%2$s, téléchargement de %3$d Mo, une seule fois) est toujours utilisé.</string>
+    <string name="settings_accurate_needs_bigger">%1$s nécessite un téléphone avec 6 Go de mémoire ou plus (%2$s, %3$d Mo). Ce téléphone ne peut pas l’exécuter.</string>
+    <string name="settings_language_experimental_note">%1$s est expérimental : dans notre test, environ %2$d %% du texte était faux.</string>
+    <string name="language_dialect_warning">%1$s fonctionne pour la parole standard (soutenue), comme les journaux télévisés et les cours. La parole quotidienne en dialecte est bien moins bien reconnue : environ les deux tiers des mots étaient faux dans notre test sur le dialecte égyptien.</string>
+    <string name="language_search_hint">Rechercher une langue</string>
+    <string name="language_search_no_match">Aucune langue ne correspond à votre recherche.</string>
+</resources>

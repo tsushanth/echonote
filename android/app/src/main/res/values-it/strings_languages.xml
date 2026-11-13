@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Lingua di trascrizione</string>
+    <string name="language_picker_close">Chiudi</string>
+    <string name="language_picker_intro">I badge derivano da test su parlato letto. Le registrazioni reali, con rumore, accenti o dialetti, sono più difficili, quindi aspettati più errori di quanto indichino i numeri.</string>
+    <string name="language_section_supported">Supportata</string>
+    <string name="language_section_experimental">Sperimentale: aspettati molti errori</string>
+    <string name="language_section_bigger_phone">Serve un telefono più potente</string>
+    <string name="language_section_not_yet">Non ancora supportata</string>
+    <string name="language_badge_supported">Supportata</string>
+    <string name="language_badge_experimental">Sperimentale</string>
+    <string name="language_accurate_size">Accurato: %1$s, download di %2$d MB, una sola volta.</string>
+    <string name="language_accurate_size_large">Accurato: %1$s, download di %2$d MB, una sola volta. Download grande: usa il Wi-Fi.</string>
+    <string name="language_fast_size">Veloce: download di %1$d MB, una sola volta.</string>
+    <string name="language_fast_unavailable">Non c’è un modello Veloce per questa lingua. Viene sempre usato Accurato.</string>
+    <string name="language_fast_poor">Veloce non è abbastanza accurato per questa lingua, quindi viene sempre usato Accurato.</string>
+    <string name="language_ram_smaller">Questo telefono ha meno memoria di quella richiesta dal modello migliore, quindi se ne usa uno più piccolo e i risultati sono meno accurati.</string>
+    <string name="language_ram_needs_bigger">Serve un telefono con 6 GB di memoria o più (%1$s, %2$d MB). Questo telefono non può eseguirlo.</string>
+    <string name="language_not_yet_closest">Non ancora supportata: nel nostro test ha avuto il %1$d%% di errori. Lingua disponibile più vicina: %2$s.</string>
+    <string name="language_not_yet_none">Non ancora supportata: nel nostro test ha avuto il %1$d%% di errori, troppi per essere utile. Non c’è nulla di simile disponibile.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s non ha un modello Veloce, quindi viene sempre usato Accurato (%2$s, download di %3$d MB, una sola volta).</string>
+    <string name="settings_accurate_fast_poor">Veloce non è abbastanza accurato per %1$s, quindi viene sempre usato Accurato (%2$s, download di %3$d MB, una sola volta).</string>
+    <string name="settings_accurate_needs_bigger">%1$s richiede un telefono con 6 GB di memoria o più (%2$s, %3$d MB). Questo telefono non può eseguirlo.</string>
+    <string name="settings_language_experimental_note">%1$s è sperimentale: nel nostro test circa il %2$d%% era sbagliato.</string>
+    <string name="language_dialect_warning">%1$s funziona con il parlato standard (formale), come notiziari e lezioni. Il parlato quotidiano in dialetto è molto peggiore: nel nostro test sul dialetto egiziano circa due terzi delle parole erano sbagliate.</string>
+    <string name="language_search_hint">Cerca lingue</string>
+    <string name="language_search_no_match">Nessuna lingua corrisponde alla ricerca.</string>
+</resources>

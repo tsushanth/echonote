@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">ภาษาสำหรับถอดเสียง</string>
+    <string name="language_picker_close">ปิด</string>
+    <string name="language_picker_intro">ป้ายกำกับมาจากการทดสอบกับเสียงพูดที่อ่านออกเสียง การบันทึกจริงที่มีเสียงรบกวน สำเนียง หรือภาษาถิ่นจะยากกว่า จึงควรคาดว่าจะมีข้อผิดพลาดมากกว่าตัวเลขที่แสดง</string>
+    <string name="language_section_supported">รองรับ</string>
+    <string name="language_section_experimental">ทดลอง: คาดว่าจะผิดพลาดมาก</string>
+    <string name="language_section_bigger_phone">ต้องใช้โทรศัพท์ที่แรงกว่านี้</string>
+    <string name="language_section_not_yet">ยังไม่รองรับ</string>
+    <string name="language_badge_supported">รองรับ</string>
+    <string name="language_badge_experimental">ทดลอง</string>
+    <string name="language_accurate_size">แม่นยำ: %1$s ดาวน์โหลด %2$d MB เพียงครั้งเดียว</string>
+    <string name="language_accurate_size_large">แม่นยำ: %1$s ดาวน์โหลด %2$d MB เพียงครั้งเดียว ไฟล์ใหญ่: ควรใช้ Wi-Fi</string>
+    <string name="language_fast_size">เร็ว: ดาวน์โหลด %1$d MB เพียงครั้งเดียว</string>
+    <string name="language_fast_unavailable">ภาษานี้ไม่มีโมเดลโหมดเร็ว จึงใช้โหมดแม่นยำเสมอ</string>
+    <string name="language_fast_poor">โหมดเร็วยังไม่แม่นยำพอสำหรับภาษานี้ จึงใช้โหมดแม่นยำเสมอ</string>
+    <string name="language_ram_smaller">โทรศัพท์เครื่องนี้มีหน่วยความจำน้อยกว่าที่โมเดลที่ดีที่สุดต้องการ จึงใช้โมเดลที่เล็กกว่า และผลลัพธ์จะแม่นยำน้อยลง</string>
+    <string name="language_ram_needs_bigger">ต้องใช้โทรศัพท์ที่มีหน่วยความจำ 6 GB ขึ้นไป (%1$s, %2$d MB) โทรศัพท์เครื่องนี้ใช้งานไม่ได้</string>
+    <string name="language_not_yet_closest">ยังไม่รองรับ: ในการทดสอบของเรามีข้อผิดพลาด %1$d%% ภาษาที่ใกล้เคียงที่สุดที่มีให้: %2$s</string>
+    <string name="language_not_yet_none">ยังไม่รองรับ: ในการทดสอบของเรามีข้อผิดพลาด %1$d%% มากเกินกว่าจะใช้งานได้ ไม่มีภาษาที่ใกล้เคียงให้เลือก</string>
+    <string name="settings_accurate_fast_unavailable">%1$s ไม่มีโมเดลโหมดเร็ว จึงใช้โหมดแม่นยำเสมอ (%2$s ดาวน์โหลด %3$d MB เพียงครั้งเดียว)</string>
+    <string name="settings_accurate_fast_poor">โหมดเร็วยังไม่แม่นยำพอสำหรับ%1$s จึงใช้โหมดแม่นยำเสมอ (%2$s ดาวน์โหลด %3$d MB เพียงครั้งเดียว)</string>
+    <string name="settings_accurate_needs_bigger">%1$s ต้องใช้โทรศัพท์ที่มีหน่วยความจำ 6 GB ขึ้นไป (%2$s, %3$d MB) โทรศัพท์เครื่องนี้ใช้งานไม่ได้</string>
+    <string name="settings_language_experimental_note">%1$s ยังอยู่ในขั้นทดลอง: ในการทดสอบของเรา ประมาณ %2$d%% ผิดพลาด</string>
+    <string name="language_dialect_warning">%1$s ใช้ได้ดีกับเสียงพูดมาตรฐาน (ทางการ) เช่น ข่าวและการบรรยาย แต่เสียงพูดภาษาถิ่นในชีวิตประจำวันแย่กว่ามาก: ในการทดสอบภาษาถิ่นอียิปต์ของเรา คำประมาณสองในสามผิดพลาด</string>
+    <string name="language_search_hint">ค้นหาภาษา</string>
+    <string name="language_search_no_match">ไม่มีภาษาที่ตรงกับคำค้นหาของคุณ</string>
+</resources>

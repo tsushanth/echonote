@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Yazıya dökme dili</string>
+    <string name="language_picker_close">Kapat</string>
+    <string name="language_picker_intro">Rozetler, okunan konuşma üzerindeki testlerden gelir. Gürültülü, aksanlı veya şiveli gerçek kayıtlar daha zordur, bu yüzden sayıların gösterdiğinden daha fazla hata bekleyin.</string>
+    <string name="language_section_supported">Destekleniyor</string>
+    <string name="language_section_experimental">Deneysel: çok hata bekleyin</string>
+    <string name="language_section_bigger_phone">Daha güçlü bir telefon gerekir</string>
+    <string name="language_section_not_yet">Henüz desteklenmiyor</string>
+    <string name="language_badge_supported">Destekleniyor</string>
+    <string name="language_badge_experimental">Deneysel</string>
+    <string name="language_accurate_size">Doğru: %1$s, %2$d MB indirme, yalnızca bir kez.</string>
+    <string name="language_accurate_size_large">Doğru: %1$s, %2$d MB indirme, yalnızca bir kez. Büyük indirme: Wi-Fi kullanın.</string>
+    <string name="language_fast_size">Hızlı: %1$d MB indirme, yalnızca bir kez.</string>
+    <string name="language_fast_unavailable">Bu dil için Hızlı model yok. Her zaman Doğru kullanılır.</string>
+    <string name="language_fast_poor">Hızlı, bu dil için yeterince doğru değil, bu yüzden her zaman Doğru kullanılır.</string>
+    <string name="language_ram_smaller">Bu telefonun belleği en iyi modelin gerektirdiğinden az, bu yüzden daha küçük bir model kullanılır ve sonuçlar daha az doğrudur.</string>
+    <string name="language_ram_needs_bigger">6 GB veya daha fazla belleği olan bir telefon gerekir (%1$s, %2$d MB). Bu telefon onu çalıştıramaz.</string>
+    <string name="language_not_yet_closest">Henüz desteklenmiyor: testimizde %%%1$d hata oranı çıktı. Mevcut en yakın dil: %2$s.</string>
+    <string name="language_not_yet_none">Henüz desteklenmiyor: testimizde %%%1$d hata oranı çıktı, yararlı olamayacak kadar yüksek. Yakın bir dil mevcut değil.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s için Hızlı model yok, bu yüzden her zaman Doğru (%2$s, %3$d MB indirme, yalnızca bir kez) kullanılır.</string>
+    <string name="settings_accurate_fast_poor">Hızlı, %1$s için yeterince doğru değil, bu yüzden her zaman Doğru (%2$s, %3$d MB indirme, yalnızca bir kez) kullanılır.</string>
+    <string name="settings_accurate_needs_bigger">%1$s için 6 GB veya daha fazla belleği olan bir telefon gerekir (%2$s, %3$d MB). Bu telefon onu çalıştıramaz.</string>
+    <string name="settings_language_experimental_note">%1$s deneyseldir: testimizde yaklaşık %%%2$d yanlış çıktı.</string>
+    <string name="language_dialect_warning">%1$s, haberler ve dersler gibi standart (resmî) konuşmada çalışır. Günlük şive konuşması çok daha kötüdür: Mısır şivesi testimizde kelimelerin yaklaşık üçte ikisi yanlıştı.</string>
+    <string name="language_search_hint">Dil ara</string>
+    <string name="language_search_no_match">Aramanızla eşleşen dil yok.</string>
+</resources>

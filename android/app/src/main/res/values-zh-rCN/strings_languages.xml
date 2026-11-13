@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">转写语言</string>
+    <string name="language_picker_close">关闭</string>
+    <string name="language_picker_intro">标记来自朗读语音的测试。真实录音有噪音、口音或方言，难度更高，因此错误会比数字显示的更多。</string>
+    <string name="language_section_supported">已支持</string>
+    <string name="language_section_experimental">实验性：预计错误较多</string>
+    <string name="language_section_bigger_phone">需要性能更强的手机</string>
+    <string name="language_section_not_yet">暂不支持</string>
+    <string name="language_badge_supported">已支持</string>
+    <string name="language_badge_experimental">实验性</string>
+    <string name="language_accurate_size">精准：%1$s，下载 %2$d MB，仅一次。</string>
+    <string name="language_accurate_size_large">精准：%1$s，下载 %2$d MB，仅一次。下载较大：请使用 Wi-Fi。</string>
+    <string name="language_fast_size">快速：下载 %1$d MB，仅一次。</string>
+    <string name="language_fast_unavailable">该语言没有快速模型，始终使用精准模式。</string>
+    <string name="language_fast_poor">快速模式对该语言不够准确，因此始终使用精准模式。</string>
+    <string name="language_ram_smaller">这部手机的内存少于最佳模型所需，因此使用较小的模型，结果会不太准确。</string>
+    <string name="language_ram_needs_bigger">需要 6 GB 或更多内存的手机（%1$s，%2$d MB）。这部手机无法运行。</string>
+    <string name="language_not_yet_closest">暂不支持：在我们的测试中错误率为 %1$d%%。可用的最接近语言：%2$s。</string>
+    <string name="language_not_yet_none">暂不支持：在我们的测试中错误率为 %1$d%%，高到没有实用价值。没有相近的语言可用。</string>
+    <string name="settings_accurate_fast_unavailable">%1$s没有快速模型，因此始终使用精准模式（%2$s，下载 %3$d MB，仅一次）。</string>
+    <string name="settings_accurate_fast_poor">快速模式对%1$s不够准确，因此始终使用精准模式（%2$s，下载 %3$d MB，仅一次）。</string>
+    <string name="settings_accurate_needs_bigger">%1$s需要 6 GB 或更多内存的手机（%2$s，%3$d MB）。这部手机无法运行。</string>
+    <string name="settings_language_experimental_note">%1$s为实验性：在我们的测试中约有 %2$d%% 的内容出错。</string>
+    <string name="language_dialect_warning">%1$s适用于标准（正式）语音，例如新闻和讲座。日常方言语音的效果差得多：在我们的埃及方言测试中，约三分之二的词出错。</string>
+    <string name="language_search_hint">搜索语言</string>
+    <string name="language_search_no_match">没有与您的搜索匹配的语言。</string>
+</resources>
