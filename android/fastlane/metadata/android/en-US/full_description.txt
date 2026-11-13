@@ -11,7 +11,7 @@ Designed For:
 • Anyone who prefers voice over typing
 
 Voice-First Features
-• High-quality audio capture: M4A, WAV, lossless options
+• High-quality audio capture in M4A (AAC)
 • On-device transcription — works without internet
 • Smart organization with auto-generated titles
 • Search across recordings by transcript content
@@ -20,7 +20,6 @@ Voice-First Features
 Accessibility-First Workflow
 • No typing required to create or organize notes
 • Voice search through your entire recording library
-• Adjustable text size and high-contrast settings
 • Works with screen readers for blind and low-vision users
 • Hands-free playback controls
 
@@ -28,10 +27,8 @@ Recording Quality
 • Mono and stereo recording
 • Low, medium, high, and maximum quality presets
 • Real-time monitoring during recording
-• Auto-pause on silence (optional)
 
 Organization
-• Categories and tags for grouping recordings
 • Folders for projects, classes, or topics
 • Favorites for quick access
 
@@ -50,7 +47,7 @@ Use Cases
 
 How It Works:
 1. Tap to record — speak your thought
-2. ClearVoice transcribes automatically
+2. Tap Transcribe and ClearVoice turns it into text on your phone
 3. Search, organize, and find anything by spoken word
 
 Your voice is faster than your fingers. ClearVoice makes that an advantage.

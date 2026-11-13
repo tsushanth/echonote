@@ -11,7 +11,7 @@ Entwickelt für:
 • Jeder, der Stimme dem Tippen vorzieht
 
 Voice-First-Funktionen
-• Hochwertige Audioaufnahme: M4A, WAV, verlustfreie Optionen
+• Hochwertige Audioaufnahme im M4A-Format (AAC)
 • Transkription auf dem Gerät – funktioniert ohne Internet
 • Intelligente Organisation mit automatisch generierten Titeln
 • Durchsuchen Sie alle Aufzeichnungen anhand des Transkriptinhalts
@@ -20,7 +20,6 @@ Voice-First-Funktionen
 Accessibility-First-Workflow
 • Zum Erstellen oder Organisieren von Notizen ist keine Eingabe erforderlich
 • Sprachsuche in Ihrer gesamten Aufnahmebibliothek
-• Anpassbare Textgröße und Einstellungen für hohen Kontrast
 • Funktioniert mit Bildschirmleseprogrammen für blinde und sehbehinderte Benutzer
 • Freihändige Wiedergabesteuerung
 
@@ -28,10 +27,8 @@ Aufnahmequalität
 • Mono- und Stereoaufnahme
 • Voreinstellungen für niedrige, mittlere, hohe und maximale Qualität
 • Echtzeitüberwachung während der Aufnahme
-• Automatische Pause bei Stille (optional)
 
 Organisation
-• Kategorien und Tags zum Gruppieren von Aufnahmen
 • Ordner für Projekte, Kurse oder Themen
 • Favoriten für den schnellen Zugriff
 
@@ -50,7 +47,7 @@ Anwendungsfälle
 
 So funktioniert es:
 1. Tippen Sie zum Aufzeichnen – sprechen Sie Ihre Gedanken aus
-2. ClearVoice transkribiert automatisch
+2. Tippen Sie auf „Transkribieren“, und ClearVoice wandelt es auf Ihrem Telefon in Text um
 3. Suchen, organisieren und finden Sie alles per gesprochenem Wort
 
 Deine Stimme ist schneller als deine Finger. ClearVoice macht das zu einem Vorteil.
