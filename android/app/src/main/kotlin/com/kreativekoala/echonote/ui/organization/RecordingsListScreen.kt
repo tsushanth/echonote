@@ -35,6 +35,7 @@ import com.kreativekoala.echonote.data.model.Recording
 import com.kreativekoala.echonote.data.model.RecordingFolder
 import com.kreativekoala.echonote.ui.components.RecordingRowItem
 import com.kreativekoala.echonote.ui.components.lip
+import com.kreativekoala.echonote.ui.settings.FirstRunLanguageCard
 import com.kreativekoala.echonote.ui.theme.*
 import java.io.File
 
@@ -291,6 +292,8 @@ fun RecordingsListScreen(
                     )
                 }
             }
+
+            if (!isSelectionMode) FirstRunLanguageCard()
 
             if (recordings.isEmpty()) {
                 // Empty state

@@ -37,6 +37,7 @@ class SettingsRepository @Inject constructor(
         val SOUND_EFFECTS = booleanPreferencesKey("sound_effects")
         val HAPTIC_FEEDBACK = booleanPreferencesKey("haptic_feedback")
         val CONTRIBUTE_VOICE_DATA = booleanPreferencesKey("contribute_voice_data")
+        val LANGUAGE_PROMPT_DONE = booleanPreferencesKey("language_prompt_done")
     }
 
     val defaultFormat: Flow<AudioFormat> = context.dataStore.data.map { prefs ->
@@ -58,6 +59,16 @@ class SettingsRepository @Inject constructor(
     val transcriptionLanguage: Flow<TranscriptionLanguage> = context.dataStore.data.map { prefs ->
         // No stored choice: follow the phone's language when it is a supported one (see LanguageDefaults). A stored choice always wins.
         LanguageDefaults.resolve(prefs[Keys.TRANSCRIPTION_LANGUAGE], LanguageDefaults.forDevice(context))
+    }
+
+    /** True once the user has chosen a transcription language (in Settings or on the first-run card), as opposed to the phone-language default. */
+    val hasStoredTranscriptionLanguage: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.TRANSCRIPTION_LANGUAGE] != null
+    }
+
+    /** True once the first-run language card has been confirmed or skipped. */
+    val languagePromptDone: Flow<Boolean> = context.dataStore.data.map { prefs ->
+        prefs[Keys.LANGUAGE_PROMPT_DONE] ?: false
     }
 
     val transcriptionEngine: Flow<TranscriptionEngine> = context.dataStore.data.map { prefs ->
@@ -113,6 +124,18 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setTranscriptionLanguage(language: TranscriptionLanguage) {
         context.dataStore.edit { it[Keys.TRANSCRIPTION_LANGUAGE] = language.name }
+    }
+
+    suspend fun setLanguagePromptDone() {
+        context.dataStore.edit { it[Keys.LANGUAGE_PROMPT_DONE] = true }
+    }
+
+    /** Stores [language] as the user's choice and marks the first-run card done, in one write. */
+    suspend fun confirmTranscriptionLanguage(language: TranscriptionLanguage) {
+        context.dataStore.edit {
+            it[Keys.TRANSCRIPTION_LANGUAGE] = language.name
+            it[Keys.LANGUAGE_PROMPT_DONE] = true
+        }
     }
 
     suspend fun setTranscriptionEngine(engine: TranscriptionEngine) {

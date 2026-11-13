@@ -23,4 +23,6 @@
     <string name="settings_accurate_needs_bigger">%1$s needs a phone with 6 GB of memory or more (%2$s, %3$d MB). This phone cannot run it.</string>
     <string name="settings_language_experimental_note">%1$s is experimental: in our test about %2$d%% of it came out wrong.</string>
     <string name="language_dialect_warning">%1$s works for standard (formal) speech such as news and lectures. Everyday dialect speech is much worse: about two thirds of the words were wrong in our Egyptian dialect test.</string>
+    <string name="language_search_hint">Search languages</string>
+    <string name="language_search_no_match">No language matches your search.</string>
 </resources>
