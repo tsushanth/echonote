@@ -11,7 +11,7 @@ Progettato per:
 • Chiunque preferisca la voce alla digitazione
 
 Funzionalità Voice-First
-• Acquisizione audio di alta qualità: M4A, WAV, opzioni lossless
+• Acquisizione audio di alta qualità in M4A (AAC)
 • Trascrizione sul dispositivo: funziona senza Internet
 • Organizzazione intelligente con titoli generati automaticamente
 • Ricerca tra le registrazioni in base al contenuto della trascrizione
@@ -20,7 +20,6 @@ Funzionalità Voice-First
 Flusso di lavoro basato sull'accessibilità
 • Non è richiesta la digitazione per creare o organizzare le note
 • Ricerca vocale nell'intera libreria di registrazioni
-• Dimensioni del testo regolabili e impostazioni ad alto contrasto
 • Funziona con lettori di schermo per utenti non vedenti e ipovedenti
 • Controlli di riproduzione a mani libere
 
@@ -28,10 +27,8 @@ Qualità di registrazione
 • Registrazione mono e stereo
 • Preimpostazioni di qualità bassa, media, alta e massima
 • Monitoraggio in tempo reale durante la registrazione
-• Pausa automatica durante il silenzio (opzionale)
 
 Organizzazione
-• Categorie e tag per raggruppare le registrazioni
 • Cartelle per progetti, classi o argomenti
 • Preferiti per un accesso rapido
 
@@ -50,7 +47,7 @@ Casi d'uso
 
 Come funziona:
 1. Tocca per registrare: esprimi il tuo pensiero
-2. ClearVoice trascrive automaticamente
+2. Tocca Trascrivi e ClearVoice lo trasforma in testo sul tuo telefono
 3. Cerca, organizza e trova qualsiasi cosa tramite la parola parlata
 
 La tua voce è più veloce delle tue dita. ClearVoice lo rende un vantaggio.

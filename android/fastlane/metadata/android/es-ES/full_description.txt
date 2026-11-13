@@ -11,7 +11,7 @@ Diseñado para:
 • Cualquiera que prefiera la voz en lugar de escribir
 
 Funciones de voz primero
-• Captura de audio de alta calidad: M4A, WAV, opciones sin pérdidas
+• Captura de audio de alta calidad en M4A (AAC)
 • Transcripción en el dispositivo: funciona sin Internet
 • Organización inteligente con títulos generados automáticamente
 • Busque entre grabaciones por contenido de transcripción
@@ -20,7 +20,6 @@ Funciones de voz primero
 Flujo de trabajo de accesibilidad primero
 • No es necesario escribir para crear u organizar notas
 • Búsqueda por voz en toda tu biblioteca de grabaciones
-• Tamaño de texto ajustable y configuración de alto contraste
 • Funciona con lectores de pantalla para usuarios ciegos y con baja visión
 • Controles de reproducción manos libres
 
@@ -28,10 +27,8 @@ Calidad de grabación
 • Grabación mono y estéreo
 • Ajustes preestablecidos de calidad baja, media, alta y máxima
 • Monitoreo en tiempo real durante la grabación
-• Pausa automática en silencio (opcional)
 
 Organización
-• Categorías y etiquetas para agrupar grabaciones
 • Carpetas para proyectos, clases o temas
 • Favoritos para acceso rápido
 
@@ -50,7 +47,7 @@ Casos de uso
 
 Cómo funciona:
 1. Toca para grabar: expresa tu opinión
-2. ClearVoice transcribe automáticamente
+2. Toca Transcribir y ClearVoice lo convierte en texto en tu teléfono
 3. Busque, organice y encuentre cualquier cosa mediante palabras habladas.
 
 Tu voz es más rápida que tus dedos. ClearVoice hace que esto sea una ventaja.

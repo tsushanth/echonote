@@ -11,7 +11,7 @@ Projetado para:
 • Qualquer pessoa que prefira digitação por voz
 
 Recursos que priorizam a voz
-• Captura de áudio de alta qualidade: M4A, WAV, opções sem perdas
+• Captura de áudio de alta qualidade em M4A (AAC)
 • Transcrição no dispositivo — funciona sem internet
 • Organização inteligente com títulos gerados automaticamente
 • Pesquise gravações por conteúdo transcrito
@@ -20,7 +20,6 @@ Recursos que priorizam a voz
 Fluxo de trabalho que prioriza a acessibilidade
 • Não é necessário digitar para criar ou organizar notas
 • Pesquisa por voz em toda a sua biblioteca de gravações
-• Tamanho de texto ajustável e configurações de alto contraste
 • Funciona com leitores de tela para usuários cegos e com baixa visão
 • Controles de reprodução com viva-voz
 
@@ -28,10 +27,8 @@ Qualidade de gravação
 • Gravação mono e estéreo
 • Predefinições de qualidade baixa, média, alta e máxima
 • Monitoramento em tempo real durante a gravação
-• Pausa automática no silêncio (opcional)
 
 Organização
-• Categorias e tags para agrupar gravações
 • Pastas para projetos, aulas ou tópicos
 • Favoritos para acesso rápido
 
@@ -50,7 +47,7 @@ Casos de uso
 
 Como funciona:
 1. Toque para gravar – fale o que pensa
-2. ClearVoice transcreve automaticamente
+2. Toque em Transcrever e o ClearVoice o converte em texto no seu celular
 3. Pesquise, organize e encontre qualquer coisa por palavra falada
 
 Sua voz é mais rápida que seus dedos. ClearVoice faz disso uma vantagem.
