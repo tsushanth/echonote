@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Transcriberen in %1$s</string>
+    <string name="first_run_language_body">Elke taal wordt één keer gedownload en transcribeert daarna op je telefoon zonder internet.</string>
+    <string name="first_run_language_change">Wijzigen</string>
+    <string name="first_run_language_ok">Klopt</string>
+    <string name="first_run_engine_hint">Voor %1$s maakt Nauwkeurig veel minder fouten: ongeveer %3$d%% tegen %2$d%% bij Snel in onze test. De download is %4$d MB, eenmalig.</string>
+    <string name="first_run_engine_use">Nauwkeurig gebruiken</string>
+    <string name="first_run_engine_on">Nauwkeurig staat aan. Het downloadt %1$d MB de eerste keer dat je transcribeert, eenmalig.</string>
+</resources>

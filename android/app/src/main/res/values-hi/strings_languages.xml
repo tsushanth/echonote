@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">ट्रांसक्रिप्शन की भाषा</string>
+    <string name="language_picker_close">बंद करें</string>
+    <string name="language_picker_intro">बैज पढ़ी हुई आवाज़ के परीक्षणों से आते हैं। शोर, लहजे या बोलियों वाली असली रिकॉर्डिंग ज़्यादा मुश्किल होती हैं, इसलिए आंकड़ों से ज़्यादा गलतियों की उम्मीद रखें।</string>
+    <string name="language_section_supported">समर्थित</string>
+    <string name="language_section_experimental">प्रयोगात्मक: बहुत गलतियाँ संभव</string>
+    <string name="language_section_bigger_phone">बड़ा फ़ोन चाहिए</string>
+    <string name="language_section_not_yet">अभी समर्थित नहीं</string>
+    <string name="language_badge_supported">समर्थित</string>
+    <string name="language_badge_experimental">प्रयोगात्मक</string>
+    <string name="language_accurate_size">सटीक: %1$s, %2$d MB डाउनलोड, सिर्फ़ एक बार।</string>
+    <string name="language_accurate_size_large">सटीक: %1$s, %2$d MB डाउनलोड, सिर्फ़ एक बार। बड़ा डाउनलोड: Wi-Fi इस्तेमाल करें।</string>
+    <string name="language_fast_size">तेज़: %1$d MB डाउनलोड, सिर्फ़ एक बार।</string>
+    <string name="language_fast_unavailable">इस भाषा के लिए तेज़ मॉडल नहीं है। हमेशा सटीक मोड इस्तेमाल होता है।</string>
+    <string name="language_fast_poor">तेज़ मोड इस भाषा के लिए पर्याप्त सटीक नहीं है, इसलिए हमेशा सटीक मोड इस्तेमाल होता है।</string>
+    <string name="language_ram_smaller">इस फ़ोन में सबसे अच्छे मॉडल के लिए ज़रूरी मेमोरी से कम है, इसलिए छोटा मॉडल इस्तेमाल होता है और नतीजे कम सटीक होते हैं।</string>
+    <string name="language_ram_needs_bigger">6 GB या उससे ज़्यादा मेमोरी वाला फ़ोन चाहिए (%1$s, %2$d MB)। यह फ़ोन इसे नहीं चला सकता।</string>
+    <string name="language_not_yet_closest">अभी समर्थित नहीं: हमारे परीक्षण में इसमें %1$d%% गलतियाँ आईं। उपलब्ध सबसे नज़दीकी भाषा: %2$s।</string>
+    <string name="language_not_yet_none">अभी समर्थित नहीं: हमारे परीक्षण में इसमें %1$d%% गलतियाँ आईं, जो काम के लिए बहुत ज़्यादा हैं। इसके करीब कुछ उपलब्ध नहीं है।</string>
+    <string name="settings_accurate_fast_unavailable">%1$s के लिए तेज़ मॉडल नहीं है, इसलिए हमेशा सटीक मोड (%2$s, %3$d MB डाउनलोड, सिर्फ़ एक बार) इस्तेमाल होता है।</string>
+    <string name="settings_accurate_fast_poor">तेज़ मोड %1$s के लिए पर्याप्त सटीक नहीं है, इसलिए हमेशा सटीक मोड (%2$s, %3$d MB डाउनलोड, सिर्फ़ एक बार) इस्तेमाल होता है।</string>
+    <string name="settings_accurate_needs_bigger">%1$s के लिए 6 GB या उससे ज़्यादा मेमोरी वाला फ़ोन चाहिए (%2$s, %3$d MB)। यह फ़ोन इसे नहीं चला सकता।</string>
+    <string name="settings_language_experimental_note">%1$s प्रयोगात्मक है: हमारे परीक्षण में इसका लगभग %2$d%% हिस्सा गलत निकला।</string>
+    <string name="language_dialect_warning">%1$s समाचार और व्याख्यान जैसी मानक (औपचारिक) बोली के लिए काम करता है। रोज़मर्रा की बोलियों में यह काफ़ी खराब है: मिस्र की बोली के हमारे परीक्षण में करीब दो तिहाई शब्द गलत थे।</string>
+    <string name="language_search_hint">भाषाएँ खोजें</string>
+    <string name="language_search_no_match">आपकी खोज से कोई भाषा मेल नहीं खाती।</string>
+</resources>

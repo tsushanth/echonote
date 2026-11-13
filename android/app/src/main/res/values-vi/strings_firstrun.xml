@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Đang chuyển thành văn bản bằng %1$s</string>
+    <string name="first_run_language_body">Mỗi ngôn ngữ chỉ tải về một lần, sau đó chuyển văn bản ngay trên điện thoại của bạn mà không cần internet.</string>
+    <string name="first_run_language_change">Đổi</string>
+    <string name="first_run_language_ok">Đúng rồi</string>
+    <string name="first_run_engine_hint">Với %1$s, chế độ Chính xác ít lỗi hơn nhiều: khoảng %3$d%% so với %2$d%% của chế độ Nhanh trong bài kiểm tra của chúng tôi. Dung lượng tải về là %4$d MB, chỉ một lần.</string>
+    <string name="first_run_engine_use">Dùng chế độ Chính xác</string>
+    <string name="first_run_engine_on">Chế độ Chính xác đang bật. Nó tải về %1$d MB vào lần đầu bạn chuyển văn bản, chỉ một lần.</string>
+</resources>

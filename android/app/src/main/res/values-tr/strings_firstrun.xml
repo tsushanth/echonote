@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">%1$s dilinde yazıya dökülüyor</string>
+    <string name="first_run_language_body">Her dil bir kez indirilir, sonra internet olmadan telefonunuzda yazıya dökülür.</string>
+    <string name="first_run_language_change">Değiştir</string>
+    <string name="first_run_language_ok">Doğru görünüyor</string>
+    <string name="first_run_engine_hint">%1$s için Doğru çok daha az hata yapar: testimizde Hızlı\'nın %%%2$d oranına karşı yaklaşık %%%3$d. %4$d MB indirme, yalnızca bir kez.</string>
+    <string name="first_run_engine_use">Doğru\'yu kullan</string>
+    <string name="first_run_engine_on">Doğru açık. İlk yazıya dökmenizde %1$d MB indirir, yalnızca bir kez.</string>
+</resources>

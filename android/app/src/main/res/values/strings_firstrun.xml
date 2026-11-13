@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- First-run language card and the language line above "Transcribe this recording". -->
+    <string name="first_run_language_title">Transcribing in %1$s</string>
+    <string name="first_run_language_body">Each language downloads once, then transcribes on your phone without internet.</string>
+    <string name="first_run_language_change">Change</string>
+    <string name="first_run_language_ok">Looks right</string>
+    <string name="first_run_engine_hint">For %1$s, Accurate makes far fewer mistakes: about %3$d%% errors against %2$d%% for Fast in our test. It is a %4$d MB download, once.</string>
+    <string name="first_run_engine_use">Use Accurate</string>
+    <string name="first_run_engine_on">Accurate is on. It downloads %1$d MB the first time you transcribe, once.</string>
+</resources>

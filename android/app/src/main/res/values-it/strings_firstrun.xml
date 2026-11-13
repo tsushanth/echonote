@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Trascrizione in %1$s</string>
+    <string name="first_run_language_body">Ogni lingua si scarica una volta, poi trascrive sul tuo telefono senza internet.</string>
+    <string name="first_run_language_change">Cambia</string>
+    <string name="first_run_language_ok">Va bene</string>
+    <string name="first_run_engine_hint">Per %1$s, Accurato fa molti meno errori: circa il %3$d%% contro il %2$d%% di Veloce nel nostro test. È un download di %4$d MB, una sola volta.</string>
+    <string name="first_run_engine_use">Usa Accurato</string>
+    <string name="first_run_engine_on">Accurato è attivo. Scarica %1$d MB la prima volta che trascrivi, una sola volta.</string>
+</resources>

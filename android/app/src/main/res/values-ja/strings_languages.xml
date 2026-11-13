@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">文字起こしの言語</string>
+    <string name="language_picker_close">閉じる</string>
+    <string name="language_picker_intro">バッジは読み上げ音声でのテスト結果に基づいています。ノイズ、アクセント、方言のある実際の録音はより難しいため、数字より多くの誤りが出ることがあります。</string>
+    <string name="language_section_supported">対応</string>
+    <string name="language_section_experimental">試験的: 誤りが多くなります</string>
+    <string name="language_section_bigger_phone">より高性能な端末が必要</string>
+    <string name="language_section_not_yet">未対応</string>
+    <string name="language_badge_supported">対応</string>
+    <string name="language_badge_experimental">試験的</string>
+    <string name="language_accurate_size">高精度: %1$s、%2$d MBのダウンロード（1回のみ）。</string>
+    <string name="language_accurate_size_large">高精度: %1$s、%2$d MBのダウンロード（1回のみ）。大きなダウンロードです。Wi-Fiをご利用ください。</string>
+    <string name="language_fast_size">高速: %1$d MBのダウンロード（1回のみ）。</string>
+    <string name="language_fast_unavailable">この言語には高速モデルがありません。常に高精度を使います。</string>
+    <string name="language_fast_poor">高速はこの言語には精度が足りないため、常に高精度を使います。</string>
+    <string name="language_ram_smaller">この端末のメモリは最良のモデルに必要な量より少ないため、小さめのモデルを使い、精度は下がります。</string>
+    <string name="language_ram_needs_bigger">6 GB以上のメモリを搭載した端末が必要です（%1$s、%2$d MB）。この端末では実行できません。</string>
+    <string name="language_not_yet_closest">未対応: テストでの誤り率は%1$d%%でした。利用できる最も近い言語: %2$s。</string>
+    <string name="language_not_yet_none">未対応: テストでの誤り率は%1$d%%で、役に立つには多すぎます。近い言語は利用できません。</string>
+    <string name="settings_accurate_fast_unavailable">%1$sには高速モデルがないため、常に高精度（%2$s、%3$d MBのダウンロード、1回のみ）を使います。</string>
+    <string name="settings_accurate_fast_poor">高速は%1$sには精度が足りないため、常に高精度（%2$s、%3$d MBのダウンロード、1回のみ）を使います。</string>
+    <string name="settings_accurate_needs_bigger">%1$sには6 GB以上のメモリを搭載した端末が必要です（%2$s、%3$d MB）。この端末では実行できません。</string>
+    <string name="settings_language_experimental_note">%1$sは試験的です: テストでは約%2$d%%が誤りでした。</string>
+    <string name="language_dialect_warning">%1$sはニュースや講義のような標準的（改まった）な話し方で使えます。日常的な方言の話し方は大幅に精度が下がり、エジプト方言のテストでは単語の約3分の2が誤りでした。</string>
+    <string name="language_search_hint">言語を検索</string>
+    <string name="language_search_no_match">検索に一致する言語はありません。</string>
+</resources>

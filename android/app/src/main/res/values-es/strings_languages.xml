@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Idioma de transcripción</string>
+    <string name="language_picker_close">Cerrar</string>
+    <string name="language_picker_intro">Las etiquetas vienen de pruebas con habla leída. Las grabaciones reales, con ruido, acentos o dialectos, son más difíciles, así que espera más errores de los que sugieren los números.</string>
+    <string name="language_section_supported">Compatible</string>
+    <string name="language_section_experimental">Experimental: espera muchos errores</string>
+    <string name="language_section_bigger_phone">Necesita un teléfono más potente</string>
+    <string name="language_section_not_yet">Aún no compatible</string>
+    <string name="language_badge_supported">Compatible</string>
+    <string name="language_badge_experimental">Experimental</string>
+    <string name="language_accurate_size">Preciso: %1$s, descarga de %2$d MB, una sola vez.</string>
+    <string name="language_accurate_size_large">Preciso: %1$s, descarga de %2$d MB, una sola vez. Descarga grande: usa Wi-Fi.</string>
+    <string name="language_fast_size">Rápido: descarga de %1$d MB, una sola vez.</string>
+    <string name="language_fast_unavailable">No hay modelo Rápido para este idioma. Siempre se usa Preciso.</string>
+    <string name="language_fast_poor">Rápido no es lo bastante preciso para este idioma, así que siempre se usa Preciso.</string>
+    <string name="language_ram_smaller">Este teléfono tiene menos memoria de la que necesita el mejor modelo, así que se usa uno más pequeño y los resultados son menos precisos.</string>
+    <string name="language_ram_needs_bigger">Necesita un teléfono con 6 GB de memoria o más (%1$s, %2$d MB). Este teléfono no puede ejecutarlo.</string>
+    <string name="language_not_yet_closest">Aún no compatible: tuvo un %1$d%% de errores en nuestra prueba. Lo más cercano disponible: %2$s.</string>
+    <string name="language_not_yet_none">Aún no compatible: tuvo un %1$d%% de errores en nuestra prueba, demasiados para ser útil. No hay nada parecido disponible.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s no tiene modelo Rápido, así que siempre se usa Preciso (%2$s, descarga de %3$d MB, una sola vez).</string>
+    <string name="settings_accurate_fast_poor">Rápido no es lo bastante preciso para %1$s, así que siempre se usa Preciso (%2$s, descarga de %3$d MB, una sola vez).</string>
+    <string name="settings_accurate_needs_bigger">%1$s necesita un teléfono con 6 GB de memoria o más (%2$s, %3$d MB). Este teléfono no puede ejecutarlo.</string>
+    <string name="settings_language_experimental_note">%1$s es experimental: en nuestra prueba, alrededor del %2$d%% salió mal.</string>
+    <string name="language_dialect_warning">%1$s funciona con habla estándar (formal), como noticias y clases. El habla cotidiana con dialecto es mucho peor: en nuestra prueba con dialecto egipcio, unas dos terceras partes de las palabras salieron mal.</string>
+    <string name="language_search_hint">Buscar idiomas</string>
+    <string name="language_search_no_match">Ningún idioma coincide con tu búsqueda.</string>
+</resources>

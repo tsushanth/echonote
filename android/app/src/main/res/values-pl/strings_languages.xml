@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Język transkrypcji</string>
+    <string name="language_picker_close">Zamknij</string>
+    <string name="language_picker_intro">Oznaczenia pochodzą z testów na mowie czytanej. Prawdziwe nagrania z hałasem, akcentami lub dialektami są trudniejsze, więc spodziewaj się więcej błędów, niż pokazują liczby.</string>
+    <string name="language_section_supported">Obsługiwany</string>
+    <string name="language_section_experimental">Eksperymentalny: spodziewaj się wielu błędów</string>
+    <string name="language_section_bigger_phone">Wymaga mocniejszego telefonu</string>
+    <string name="language_section_not_yet">Jeszcze nieobsługiwany</string>
+    <string name="language_badge_supported">Obsługiwany</string>
+    <string name="language_badge_experimental">Eksperymentalny</string>
+    <string name="language_accurate_size">Dokładny: %1$s, pobieranie %2$d MB, jednorazowo.</string>
+    <string name="language_accurate_size_large">Dokładny: %1$s, pobieranie %2$d MB, jednorazowo. Duże pobieranie: użyj Wi-Fi.</string>
+    <string name="language_fast_size">Szybki: pobieranie %1$d MB, jednorazowo.</string>
+    <string name="language_fast_unavailable">Dla tego języka nie ma szybkiego modelu. Zawsze używany jest tryb dokładny.</string>
+    <string name="language_fast_poor">Tryb szybki nie jest wystarczająco dokładny dla tego języka, więc zawsze używany jest tryb dokładny.</string>
+    <string name="language_ram_smaller">Ten telefon ma mniej pamięci, niż potrzebuje najlepszy model, więc używany jest mniejszy i wyniki są mniej dokładne.</string>
+    <string name="language_ram_needs_bigger">Wymaga telefonu z 6 GB pamięci lub więcej (%1$s, %2$d MB). Ten telefon nie może go uruchomić.</string>
+    <string name="language_not_yet_closest">Jeszcze nieobsługiwany: w naszym teście miał %1$d%% błędów. Najbliższy dostępny język: %2$s.</string>
+    <string name="language_not_yet_none">Jeszcze nieobsługiwany: w naszym teście miał %1$d%% błędów, zbyt wiele, by był przydatny. Nie ma w pobliżu nic podobnego.</string>
+    <string name="settings_accurate_fast_unavailable">Język %1$s nie ma szybkiego modelu, więc zawsze używany jest tryb dokładny (%2$s, pobieranie %3$d MB, jednorazowo).</string>
+    <string name="settings_accurate_fast_poor">Tryb szybki nie jest wystarczająco dokładny dla języka %1$s, więc zawsze używany jest tryb dokładny (%2$s, pobieranie %3$d MB, jednorazowo).</string>
+    <string name="settings_accurate_needs_bigger">Język %1$s wymaga telefonu z 6 GB pamięci lub więcej (%2$s, %3$d MB). Ten telefon nie może go uruchomić.</string>
+    <string name="settings_language_experimental_note">Język %1$s jest eksperymentalny: w naszym teście około %2$d%% wyszło błędnie.</string>
+    <string name="language_dialect_warning">Język %1$s działa dla mowy standardowej (oficjalnej), takiej jak wiadomości i wykłady. Codzienna mowa dialektalna wypada znacznie gorzej: w naszym teście dialektu egipskiego około dwóch trzecich słów było błędnych.</string>
+    <string name="language_search_hint">Szukaj języków</string>
+    <string name="language_search_no_match">Żaden język nie pasuje do wyszukiwania.</string>
+</resources>

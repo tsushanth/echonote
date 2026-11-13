@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Расшифровка на языке: %1$s</string>
+    <string name="first_run_language_body">Каждый язык загружается один раз, затем расшифровка идёт на вашем телефоне без интернета.</string>
+    <string name="first_run_language_change">Изменить</string>
+    <string name="first_run_language_ok">Всё верно</string>
+    <string name="first_run_engine_hint">Для языка «%1$s» точный режим делает намного меньше ошибок: около %3$d%% против %2$d%% у быстрого в нашем тесте. Загрузка %4$d МБ, один раз.</string>
+    <string name="first_run_engine_use">Включить точный режим</string>
+    <string name="first_run_engine_on">Точный режим включён. Он загрузит %1$d МБ при первой расшифровке, один раз.</string>
+</resources>

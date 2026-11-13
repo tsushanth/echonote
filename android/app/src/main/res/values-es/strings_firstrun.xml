@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Transcribiendo en %1$s</string>
+    <string name="first_run_language_body">Cada idioma se descarga una vez y luego transcribe en tu teléfono sin internet.</string>
+    <string name="first_run_language_change">Cambiar</string>
+    <string name="first_run_language_ok">Está bien</string>
+    <string name="first_run_engine_hint">Para %1$s, Preciso comete muchos menos errores: alrededor del %3$d%% frente al %2$d%% de Rápido en nuestra prueba. Es una descarga de %4$d MB, una sola vez.</string>
+    <string name="first_run_engine_use">Usar Preciso</string>
+    <string name="first_run_engine_on">Preciso está activado. Descarga %1$d MB la primera vez que transcribas, una sola vez.</string>
+</resources>

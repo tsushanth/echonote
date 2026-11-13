@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">กำลังถอดเสียงเป็น%1$s</string>
+    <string name="first_run_language_body">แต่ละภาษาดาวน์โหลดเพียงครั้งเดียว จากนั้นถอดเสียงบนโทรศัพท์ของคุณโดยไม่ต้องใช้อินเทอร์เน็ต</string>
+    <string name="first_run_language_change">เปลี่ยน</string>
+    <string name="first_run_language_ok">ถูกต้องแล้ว</string>
+    <string name="first_run_engine_hint">สำหรับ%1$s โหมดแม่นยำผิดพลาดน้อยกว่ามาก: ประมาณ %3$d%% เทียบกับ %2$d%% ของโหมดเร็วในการทดสอบของเรา ดาวน์โหลด %4$d MB เพียงครั้งเดียว</string>
+    <string name="first_run_engine_use">ใช้โหมดแม่นยำ</string>
+    <string name="first_run_engine_on">เปิดโหมดแม่นยำแล้ว จะดาวน์โหลด %1$d MB เมื่อคุณถอดเสียงครั้งแรก เพียงครั้งเดียว</string>
+</resources>

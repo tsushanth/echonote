@@ -11,6 +11,7 @@ import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.data.repository.RecordingRepository
 import com.kreativekoala.echonote.data.repository.SettingsRepository
+import com.kreativekoala.echonote.service.LanguageDefaults
 import com.kreativekoala.echonote.util.Constants
 import com.kreativekoala.echonote.util.TimeFormatting
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,7 +46,7 @@ class SettingsViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), true)
 
     val transcriptionLanguage: StateFlow<TranscriptionLanguage> = settingsRepository.transcriptionLanguage
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranscriptionLanguage.ENGLISH)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LanguageDefaults.forDevice(context))
 
     val transcriptionEngine: StateFlow<TranscriptionEngine> = settingsRepository.transcriptionEngine
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranscriptionEngine.FAST)

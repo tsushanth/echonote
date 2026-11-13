@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Transkrypcja w języku: %1$s</string>
+    <string name="first_run_language_body">Każdy język pobiera się raz, a potem transkrybuje na telefonie bez internetu.</string>
+    <string name="first_run_language_change">Zmień</string>
+    <string name="first_run_language_ok">Zgadza się</string>
+    <string name="first_run_engine_hint">Dla języka %1$s tryb dokładny robi znacznie mniej błędów: około %3$d%% wobec %2$d%% w trybie szybkim w naszym teście. Pobieranie to %4$d MB, jednorazowo.</string>
+    <string name="first_run_engine_use">Użyj trybu dokładnego</string>
+    <string name="first_run_engine_on">Tryb dokładny jest włączony. Pobierze %1$d MB przy pierwszej transkrypcji, jednorazowo.</string>
+</resources>

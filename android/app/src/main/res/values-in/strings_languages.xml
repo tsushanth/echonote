@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Bahasa transkripsi</string>
+    <string name="language_picker_close">Tutup</string>
+    <string name="language_picker_intro">Lencana berasal dari pengujian pada ucapan yang dibacakan. Rekaman asli yang berisik, beraksen, atau berdialek lebih sulit, jadi harapkan lebih banyak kesalahan daripada yang ditunjukkan angka.</string>
+    <string name="language_section_supported">Didukung</string>
+    <string name="language_section_experimental">Eksperimental: harapkan banyak kesalahan</string>
+    <string name="language_section_bigger_phone">Butuh ponsel yang lebih besar</string>
+    <string name="language_section_not_yet">Belum didukung</string>
+    <string name="language_badge_supported">Didukung</string>
+    <string name="language_badge_experimental">Eksperimental</string>
+    <string name="language_accurate_size">Akurat: %1$s, unduhan %2$d MB, sekali saja.</string>
+    <string name="language_accurate_size_large">Akurat: %1$s, unduhan %2$d MB, sekali saja. Unduhan besar: gunakan Wi-Fi.</string>
+    <string name="language_fast_size">Cepat: unduhan %1$d MB, sekali saja.</string>
+    <string name="language_fast_unavailable">Tidak ada model Cepat untuk bahasa ini. Mode Akurat selalu dipakai.</string>
+    <string name="language_fast_poor">Mode Cepat kurang akurat untuk bahasa ini, jadi mode Akurat selalu dipakai.</string>
+    <string name="language_ram_smaller">Memori ponsel ini kurang dari yang dibutuhkan model terbaik, jadi model yang lebih kecil dipakai dan hasilnya kurang akurat.</string>
+    <string name="language_ram_needs_bigger">Butuh ponsel dengan memori 6 GB atau lebih (%1$s, %2$d MB). Ponsel ini tidak bisa menjalankannya.</string>
+    <string name="language_not_yet_closest">Belum didukung: dalam pengujian kami tingkat kesalahannya %1$d%%. Bahasa tersedia yang paling mirip: %2$s.</string>
+    <string name="language_not_yet_none">Belum didukung: dalam pengujian kami tingkat kesalahannya %1$d%%, terlalu tinggi untuk berguna. Tidak ada bahasa yang mirip.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s tidak punya model Cepat, jadi mode Akurat (%2$s, unduhan %3$d MB, sekali saja) selalu dipakai.</string>
+    <string name="settings_accurate_fast_poor">Mode Cepat kurang akurat untuk %1$s, jadi mode Akurat (%2$s, unduhan %3$d MB, sekali saja) selalu dipakai.</string>
+    <string name="settings_accurate_needs_bigger">%1$s butuh ponsel dengan memori 6 GB atau lebih (%2$s, %3$d MB). Ponsel ini tidak bisa menjalankannya.</string>
+    <string name="settings_language_experimental_note">%1$s masih eksperimental: dalam pengujian kami sekitar %2$d%% hasilnya salah.</string>
+    <string name="language_dialect_warning">%1$s berfungsi untuk ucapan standar (formal) seperti berita dan kuliah. Ucapan sehari-hari berdialek jauh lebih buruk: dalam pengujian dialek Mesir kami, sekitar dua pertiga kata salah.</string>
+    <string name="language_search_hint">Cari bahasa</string>
+    <string name="language_search_no_match">Tidak ada bahasa yang cocok dengan pencarian Anda.</string>
+</resources>

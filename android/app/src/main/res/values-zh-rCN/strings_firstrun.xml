@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">正在转写：%1$s</string>
+    <string name="first_run_language_body">每种语言只需下载一次，之后即可在手机上转写，无需联网。</string>
+    <string name="first_run_language_change">更改</string>
+    <string name="first_run_language_ok">没问题</string>
+    <string name="first_run_engine_hint">对于%1$s，精准模式的错误少得多：在我们的测试中约为 %3$d%%，快速模式为 %2$d%%。下载 %4$d MB，仅一次。</string>
+    <string name="first_run_engine_use">使用精准模式</string>
+    <string name="first_run_engine_on">精准模式已开启。首次转写时会下载 %1$d MB，仅一次。</string>
+</resources>

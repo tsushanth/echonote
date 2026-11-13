@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Transkription auf %1$s</string>
+    <string name="first_run_language_body">Jede Sprache wird einmal heruntergeladen und transkribiert dann auf deinem Telefon ohne Internet.</string>
+    <string name="first_run_language_change">Ändern</string>
+    <string name="first_run_language_ok">Passt so</string>
+    <string name="first_run_engine_hint">Für %1$s macht Genau weit weniger Fehler: etwa %3$d %% Fehler gegenüber %2$d %% bei Schnell in unserem Test. Der Download ist %4$d MB groß, einmalig.</string>
+    <string name="first_run_engine_use">Genau verwenden</string>
+    <string name="first_run_engine_on">Genau ist aktiv. Es lädt beim ersten Transkribieren einmalig %1$d MB herunter.</string>
+</resources>

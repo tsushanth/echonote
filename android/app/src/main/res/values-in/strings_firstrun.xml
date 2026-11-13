@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Mentranskripsi dalam %1$s</string>
+    <string name="first_run_language_body">Setiap bahasa diunduh sekali, lalu mentranskripsi di ponsel Anda tanpa internet.</string>
+    <string name="first_run_language_change">Ubah</string>
+    <string name="first_run_language_ok">Sudah benar</string>
+    <string name="first_run_engine_hint">Untuk %1$s, mode Akurat membuat jauh lebih sedikit kesalahan: sekitar %3$d%% dibanding %2$d%% untuk mode Cepat dalam pengujian kami. Unduhannya %4$d MB, sekali saja.</string>
+    <string name="first_run_engine_use">Pakai mode Akurat</string>
+    <string name="first_run_engine_on">Mode Akurat aktif. Mode ini mengunduh %1$d MB saat pertama kali Anda mentranskripsi, sekali saja.</string>
+</resources>

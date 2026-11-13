@@ -109,4 +109,53 @@ class LocalizationTest {
             assertTrue("${dir.name} lacks the size argument", text.contains("%1\$" + "d"))
         }
     }
+
+    private val resDir = File("src/main/res")
+
+    private fun stringKeys(file: File): Set<String> =
+        Regex("<string name=\"([^\"]+)\"").findAll(file.readText()).map { it.groupValues[1] }.toSet()
+
+    private fun args(file: File): Map<String, Set<String>> =
+        Regex("<string name=\"([^\"]+)\"[^>]*>([^<]*)<").findAll(file.readText())
+            .associate { it.groupValues[1] to Regex("%\\d+\\$[sd]").findAll(it.groupValues[2]).map { m -> m.value }.toSet() }
+
+    @Test
+    fun theFirstRunAndLanguagePickerStringsExistInEveryLocaleWithTheSameFormatArguments() {
+        val locales = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") }!!
+        assertEquals(19, locales.size)
+        for (name in listOf("strings_firstrun.xml", "strings_languages.xml")) {
+            val base = File(resDir, "values/$name")
+            val keys = stringKeys(base)
+            val baseArgs = args(base)
+            assertTrue("$name has no keys", keys.isNotEmpty())
+            for (dir in locales) {
+                val f = File(dir, name)
+                assertTrue("${dir.name} lacks $name", f.exists())
+                assertEquals("${dir.name}/$name keys", keys, stringKeys(f))
+                val got = args(f)
+                for (k in keys) assertEquals("${dir.name}/$name $k format arguments", baseArgs[k], got[k])
+            }
+        }
+    }
+
+    @Test
+    fun theAppLanguageListNamesEveryTranslatedLocale() {
+        val listed = Regex("android:name=\"([^\"]+)\"").findAll(File(resDir, "xml/locales_config.xml").readText())
+            .map { it.groupValues[1] }.toList()
+        assertEquals("no duplicates", listed.size, listed.toSet().size)
+        // values-in is the legacy folder for Indonesian ("id"). values-tl is Tagalog, listed as "fil" (Filipino): on Android 17
+        // a per-app language of "tl" does not select values-tl (the app stays in English), while "fil" does.
+        // values-pt-rBR and values-zh-rCN carry their region.
+        fun tagFor(folder: String): String = when (val q = folder.removePrefix("values-")) {
+            "in" -> "id"
+            "tl" -> "fil"
+            "pt-rBR" -> "pt-BR"
+            "zh-rCN" -> "zh-CN"
+            else -> q
+        }
+        val folders = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
+            .map { tagFor(it.name) }.toSet()
+        assertEquals(19, folders.size)
+        assertEquals("every shipped locale must be pickable per app on Android 13+", folders + "en", listed.toSet())
+    }
 }

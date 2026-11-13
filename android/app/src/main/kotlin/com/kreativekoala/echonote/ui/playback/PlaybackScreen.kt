@@ -373,7 +373,8 @@ fun PlaybackScreen(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
-                        Spacer(Modifier.height(16.dp))
+                        Spacer(Modifier.height(8.dp))
+                        com.kreativekoala.echonote.ui.settings.TranscribeLanguageLine()
                         Button(onClick = viewModel::transcribe, shape = RoundedCornerShape(12.dp)) {
                             Icon(Icons.Default.TextFields, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(8.dp))

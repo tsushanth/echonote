@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Bahasa transkripsi</string>
+    <string name="language_picker_close">Tutup</string>
+    <string name="language_picker_intro">Lencana datang daripada ujian pada pertuturan yang dibacakan. Rakaman sebenar dengan bunyi bising, loghat atau dialek lebih sukar, jadi jangkakan lebih banyak kesilapan daripada yang ditunjukkan angka.</string>
+    <string name="language_section_supported">Disokong</string>
+    <string name="language_section_experimental">Eksperimen: jangkakan banyak kesilapan</string>
+    <string name="language_section_bigger_phone">Perlukan telefon yang lebih besar</string>
+    <string name="language_section_not_yet">Belum disokong</string>
+    <string name="language_badge_supported">Disokong</string>
+    <string name="language_badge_experimental">Eksperimen</string>
+    <string name="language_accurate_size">Tepat: %1$s, muat turun %2$d MB, sekali sahaja.</string>
+    <string name="language_accurate_size_large">Tepat: %1$s, muat turun %2$d MB, sekali sahaja. Muat turun besar: gunakan Wi-Fi.</string>
+    <string name="language_fast_size">Pantas: muat turun %1$d MB, sekali sahaja.</string>
+    <string name="language_fast_unavailable">Tiada model Pantas untuk bahasa ini. Mod Tepat sentiasa digunakan.</string>
+    <string name="language_fast_poor">Mod Pantas kurang tepat untuk bahasa ini, jadi mod Tepat sentiasa digunakan.</string>
+    <string name="language_ram_smaller">Telefon ini mempunyai memori yang kurang daripada yang diperlukan model terbaik, jadi model yang lebih kecil digunakan dan hasilnya kurang tepat.</string>
+    <string name="language_ram_needs_bigger">Perlukan telefon dengan memori 6 GB atau lebih (%1$s, %2$d MB). Telefon ini tidak dapat menjalankannya.</string>
+    <string name="language_not_yet_closest">Belum disokong: dalam ujian kami kadar kesilapannya %1$d%%. Bahasa tersedia yang paling hampir: %2$s.</string>
+    <string name="language_not_yet_none">Belum disokong: dalam ujian kami kadar kesilapannya %1$d%%, terlalu tinggi untuk berguna. Tiada bahasa yang hampir sama tersedia.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s tiada model Pantas, jadi mod Tepat (%2$s, muat turun %3$d MB, sekali sahaja) sentiasa digunakan.</string>
+    <string name="settings_accurate_fast_poor">Mod Pantas kurang tepat untuk %1$s, jadi mod Tepat (%2$s, muat turun %3$d MB, sekali sahaja) sentiasa digunakan.</string>
+    <string name="settings_accurate_needs_bigger">%1$s memerlukan telefon dengan memori 6 GB atau lebih (%2$s, %3$d MB). Telefon ini tidak dapat menjalankannya.</string>
+    <string name="settings_language_experimental_note">%1$s masih eksperimen: dalam ujian kami kira-kira %2$d%% hasilnya salah.</string>
+    <string name="language_dialect_warning">%1$s berfungsi untuk pertuturan standard (formal) seperti berita dan kuliah. Pertuturan harian berdialek jauh lebih teruk: dalam ujian dialek Mesir kami, kira-kira dua pertiga perkataan salah.</string>
+    <string name="language_search_hint">Cari bahasa</string>
+    <string name="language_search_no_match">Tiada bahasa yang sepadan dengan carian anda.</string>
+</resources>

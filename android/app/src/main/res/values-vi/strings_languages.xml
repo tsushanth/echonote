@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Ngôn ngữ chuyển giọng nói thành văn bản</string>
+    <string name="language_picker_close">Đóng</string>
+    <string name="language_picker_intro">Nhãn dựa trên các bài kiểm tra với giọng đọc. Bản ghi thực tế có tiếng ồn, giọng vùng miền hoặc phương ngữ khó hơn, nên hãy chờ đợi nhiều lỗi hơn so với các con số.</string>
+    <string name="language_section_supported">Được hỗ trợ</string>
+    <string name="language_section_experimental">Thử nghiệm: dự kiến nhiều lỗi</string>
+    <string name="language_section_bigger_phone">Cần điện thoại mạnh hơn</string>
+    <string name="language_section_not_yet">Chưa được hỗ trợ</string>
+    <string name="language_badge_supported">Được hỗ trợ</string>
+    <string name="language_badge_experimental">Thử nghiệm</string>
+    <string name="language_accurate_size">Chính xác: %1$s, tải về %2$d MB, chỉ một lần.</string>
+    <string name="language_accurate_size_large">Chính xác: %1$s, tải về %2$d MB, chỉ một lần. Dung lượng lớn: hãy dùng Wi-Fi.</string>
+    <string name="language_fast_size">Nhanh: tải về %1$d MB, chỉ một lần.</string>
+    <string name="language_fast_unavailable">Ngôn ngữ này không có mô hình Nhanh. Luôn dùng chế độ Chính xác.</string>
+    <string name="language_fast_poor">Chế độ Nhanh chưa đủ chính xác cho ngôn ngữ này, nên luôn dùng chế độ Chính xác.</string>
+    <string name="language_ram_smaller">Điện thoại này có ít bộ nhớ hơn mức mô hình tốt nhất cần, nên sẽ dùng mô hình nhỏ hơn và kết quả kém chính xác hơn.</string>
+    <string name="language_ram_needs_bigger">Cần điện thoại có bộ nhớ từ 6 GB trở lên (%1$s, %2$d MB). Điện thoại này không thể chạy được.</string>
+    <string name="language_not_yet_closest">Chưa được hỗ trợ: trong bài kiểm tra của chúng tôi, tỷ lệ lỗi là %1$d%%. Ngôn ngữ gần nhất hiện có: %2$s.</string>
+    <string name="language_not_yet_none">Chưa được hỗ trợ: trong bài kiểm tra của chúng tôi, tỷ lệ lỗi là %1$d%%, quá cao để hữu ích. Không có ngôn ngữ nào gần giống.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s không có mô hình Nhanh, nên luôn dùng chế độ Chính xác (%2$s, tải về %3$d MB, chỉ một lần).</string>
+    <string name="settings_accurate_fast_poor">Chế độ Nhanh chưa đủ chính xác cho %1$s, nên luôn dùng chế độ Chính xác (%2$s, tải về %3$d MB, chỉ một lần).</string>
+    <string name="settings_accurate_needs_bigger">%1$s cần điện thoại có bộ nhớ từ 6 GB trở lên (%2$s, %3$d MB). Điện thoại này không thể chạy được.</string>
+    <string name="settings_language_experimental_note">%1$s đang ở mức thử nghiệm: trong bài kiểm tra của chúng tôi, khoảng %2$d%% bị sai.</string>
+    <string name="language_dialect_warning">%1$s hoạt động với giọng nói chuẩn (trang trọng) như tin tức và bài giảng. Giọng nói hằng ngày mang phương ngữ kém hơn nhiều: trong bài kiểm tra phương ngữ Ai Cập của chúng tôi, khoảng hai phần ba số từ bị sai.</string>
+    <string name="language_search_hint">Tìm ngôn ngữ</string>
+    <string name="language_search_no_match">Không có ngôn ngữ nào khớp với tìm kiếm của bạn.</string>
+</resources>

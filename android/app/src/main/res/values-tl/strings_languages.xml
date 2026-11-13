@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_picker_title">Wika ng transkripsyon</string>
+    <string name="language_picker_close">Isara</string>
+    <string name="language_picker_intro">Ang mga badge ay galing sa mga pagsubok sa binasang pananalita. Mas mahirap ang totoong recording na may ingay, punto, o diyalekto, kaya asahan ang mas maraming mali kaysa sa ipinapakita ng mga numero.</string>
+    <string name="language_section_supported">Suportado</string>
+    <string name="language_section_experimental">Eksperimental: asahan ang maraming mali</string>
+    <string name="language_section_bigger_phone">Kailangan ng mas malakas na telepono</string>
+    <string name="language_section_not_yet">Hindi pa suportado</string>
+    <string name="language_badge_supported">Suportado</string>
+    <string name="language_badge_experimental">Eksperimental</string>
+    <string name="language_accurate_size">Tumpak: %1$s, %2$d MB na download, isang beses lang.</string>
+    <string name="language_accurate_size_large">Tumpak: %1$s, %2$d MB na download, isang beses lang. Malaking download: gumamit ng Wi-Fi.</string>
+    <string name="language_fast_size">Mabilis: %1$d MB na download, isang beses lang.</string>
+    <string name="language_fast_unavailable">Walang Mabilis na modelo para sa wikang ito. Palaging gagamitin ang Tumpak.</string>
+    <string name="language_fast_poor">Hindi sapat ang katumpakan ng Mabilis para sa wikang ito, kaya palaging gagamitin ang Tumpak.</string>
+    <string name="language_ram_smaller">Mas kaunti ang memorya ng teleponong ito kaysa sa kailangan ng pinakamahusay na modelo, kaya mas maliit na modelo ang gagamitin at mas mababa ang katumpakan ng resulta.</string>
+    <string name="language_ram_needs_bigger">Kailangan ng teleponong may 6 GB o higit pang memorya (%1$s, %2$d MB). Hindi ito mapapatakbo ng teleponong ito.</string>
+    <string name="language_not_yet_closest">Hindi pa suportado: %1$d%% ang mali nito sa aming pagsubok. Pinakamalapit na available na wika: %2$s.</string>
+    <string name="language_not_yet_none">Hindi pa suportado: %1$d%% ang mali nito sa aming pagsubok, masyadong marami para maging kapaki-pakinabang. Walang malapit na wikang available.</string>
+    <string name="settings_accurate_fast_unavailable">Walang Mabilis na modelo ang %1$s, kaya palaging gagamitin ang Tumpak (%2$s, %3$d MB na download, isang beses lang).</string>
+    <string name="settings_accurate_fast_poor">Hindi sapat ang katumpakan ng Mabilis para sa %1$s, kaya palaging gagamitin ang Tumpak (%2$s, %3$d MB na download, isang beses lang).</string>
+    <string name="settings_accurate_needs_bigger">Kailangan ng %1$s ng teleponong may 6 GB o higit pang memorya (%2$s, %3$d MB). Hindi ito mapapatakbo ng teleponong ito.</string>
+    <string name="settings_language_experimental_note">Eksperimental ang %1$s: sa aming pagsubok, humigit-kumulang %2$d%% nito ang mali.</string>
+    <string name="language_dialect_warning">Gumagana ang %1$s para sa karaniwang (pormal) na pananalita gaya ng balita at lektura. Mas mahina nang husto ang pang-araw-araw na pananalita sa diyalekto: sa aming pagsubok sa diyalektong Egyptian, humigit-kumulang dalawang katlo ng mga salita ang mali.</string>
+    <string name="language_search_hint">Maghanap ng wika</string>
+    <string name="language_search_no_match">Walang wikang tumutugma sa iyong hinahanap.</string>
+</resources>

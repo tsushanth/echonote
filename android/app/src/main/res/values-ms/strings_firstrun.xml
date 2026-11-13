@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_run_language_title">Mentranskripsi dalam %1$s</string>
+    <string name="first_run_language_body">Setiap bahasa dimuat turun sekali, kemudian mentranskripsi pada telefon anda tanpa internet.</string>
+    <string name="first_run_language_change">Tukar</string>
+    <string name="first_run_language_ok">Nampak betul</string>
+    <string name="first_run_engine_hint">Untuk %1$s, mod Tepat membuat jauh lebih sedikit kesilapan: kira-kira %3$d%% berbanding %2$d%% bagi mod Pantas dalam ujian kami. Muat turunnya %4$d MB, sekali sahaja.</string>
+    <string name="first_run_engine_use">Guna mod Tepat</string>
+    <string name="first_run_engine_on">Mod Tepat dihidupkan. Ia memuat turun %1$d MB kali pertama anda mentranskripsi, sekali sahaja.</string>
+</resources>
