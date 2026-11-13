@@ -11,6 +11,7 @@ import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
 import com.kreativekoala.echonote.data.model.TranscriptionEngine
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
+import com.kreativekoala.echonote.service.LanguageDefaults
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -55,9 +56,8 @@ class SettingsRepository @Inject constructor(
     }
 
     val transcriptionLanguage: Flow<TranscriptionLanguage> = context.dataStore.data.map { prefs ->
-        prefs[Keys.TRANSCRIPTION_LANGUAGE]?.let {
-            runCatching { TranscriptionLanguage.valueOf(it) }.getOrNull()
-        } ?: TranscriptionLanguage.ENGLISH
+        // No stored choice: follow the phone's language when it is a supported one (see LanguageDefaults). A stored choice always wins.
+        LanguageDefaults.resolve(prefs[Keys.TRANSCRIPTION_LANGUAGE], LanguageDefaults.forDevice(context))
     }
 
     val transcriptionEngine: Flow<TranscriptionEngine> = context.dataStore.data.map { prefs ->
