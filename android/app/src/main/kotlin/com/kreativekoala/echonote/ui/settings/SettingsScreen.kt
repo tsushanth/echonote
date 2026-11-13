@@ -34,6 +34,7 @@ import com.kreativekoala.echonote.service.SupportLevel
 import com.kreativekoala.echonote.service.UncertainWords
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.util.Constants
+import com.kreativekoala.echonote.util.StoreLinks
 import androidx.compose.ui.graphics.Color
 import com.kreativekoala.crosspromokit.models.AppId
 import com.kreativekoala.crosspromokit.view.CrossPromoSection
@@ -575,6 +576,56 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(stringResource(R.string.settings_terms_of_service), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                Icon(
+                    Icons.AutoMirrored.Filled.OpenInNew,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(18.dp)
+                )
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { StoreLinks.openRateListing(context) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.Star,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(stringResource(R.string.settings_rate_app), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                Icon(
+                    Icons.AutoMirrored.Filled.OpenInNew,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(18.dp)
+                )
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(start = 56.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { StoreLinks.openFeedback(context) }
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Default.Email,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(stringResource(R.string.settings_send_feedback), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 Icon(
                     Icons.AutoMirrored.Filled.OpenInNew,
                     contentDescription = null,

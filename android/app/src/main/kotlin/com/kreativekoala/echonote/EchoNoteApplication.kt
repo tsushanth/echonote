@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.kreativekoala.echonote.service.AppOpenTracker
+import com.kreativekoala.echonote.service.CLEARVOICE_RATING_CONFIG
 import com.kreativekoala.echonote.service.FacebookSDKHelper
 import com.kreativekoala.echonote.service.FirebaseAnalyticsHelper
 import com.kreativekoala.echonote.service.Funnel
@@ -37,7 +38,7 @@ class EchoNoteApplication : Application(), Configuration.Provider {
         Funnel.init(this)
         TikTokHelper.initialize(this)
         FacebookSDKHelper.initialize(this)
-        RatingKit.init(this, appId = "clearvoice")
+        RatingKit.init(this, appId = "clearvoice", config = CLEARVOICE_RATING_CONFIG)
         appOpenTracker.incrementOpenCount()
         // Restore on launch: ask Google Play which legacy subscriptions are active. Read-only; gates nothing.
         appScope.launch { entitlements.refresh() }

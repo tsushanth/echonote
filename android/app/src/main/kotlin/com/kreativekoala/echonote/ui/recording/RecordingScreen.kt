@@ -65,7 +65,6 @@ fun RecordingScreen(
     val isStereo by viewModel.isStereo.collectAsState()
     val showPermissionError by viewModel.showPermissionError.collectAsState()
     val showBatteryOptPrompt by viewModel.showBatteryOptPrompt.collectAsState()
-    val showReviewCard by viewModel.showReviewCard.collectAsState()
     val gain by viewModel.gain.collectAsState()
     val soundEffectsEnabled by viewModel.soundEffectsEnabled.collectAsState()
     val hapticFeedbackEnabled by viewModel.hapticFeedbackEnabled.collectAsState()
@@ -331,98 +330,6 @@ fun RecordingScreen(
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
-            }
-
-            // Review prompt card — slides up from bottom
-            AnimatedVisibility(
-                visible = showReviewCard,
-                modifier = Modifier.align(Alignment.BottomCenter),
-                enter = slideInVertically { it },
-                exit = slideOutVertically { it }
-            ) {
-                ReviewPromptCard(
-                    onYes = {
-                        viewModel.dismissReviewCard()
-                        try {
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.kreativekoala.echonote")).apply {
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                            context.startActivity(intent)
-                        } catch (_: Exception) {
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.kreativekoala.echonote")).apply {
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                            context.startActivity(intent)
-                        }
-                    },
-                    onNo = {
-                        viewModel.dismissReviewCard()
-                        try {
-                            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:support@kreativekoala.com?subject=ClearVoice%20Feedback")).apply {
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                            context.startActivity(intent)
-                        } catch (_: Exception) { }
-                    }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ReviewPromptCard(
-    onYes: () -> Unit,
-    onNo: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
-        )
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.review_prompt_title),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = stringResource(R.string.review_prompt_subtitle),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Button(
-                    onClick = onYes,
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    )
-                ) {
-                    Text("\uD83D\uDC4D ${stringResource(R.string.review_prompt_yes)}")
-                }
-                OutlinedButton(
-                    onClick = onNo,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("\uD83D\uDC4E ${stringResource(R.string.review_prompt_no)}")
-                }
             }
         }
     }

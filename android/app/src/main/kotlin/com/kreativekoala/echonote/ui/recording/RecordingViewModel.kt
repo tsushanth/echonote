@@ -34,10 +34,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 private const val PREFS_REVIEW = "review_prefs"
-private const val KEY_RECORDING_COUNT = "completed_recording_count"
-private const val KEY_REVIEW_CARD_SHOWN = "review_prompt_shown"
 private const val KEY_BATTERY_OPT_SHOWN = "battery_opt_shown"
-private const val REVIEW_THRESHOLD = 3
 
 @HiltViewModel
 class RecordingViewModel @Inject constructor(
@@ -95,10 +92,6 @@ class RecordingViewModel @Inject constructor(
 
     private val _recordingTitle = MutableStateFlow("")
     val recordingTitle: StateFlow<String> = _recordingTitle
-
-    /** True if review card should be shown after saving. */
-    private val _showReviewCard = MutableStateFlow(false)
-    val showReviewCard: StateFlow<Boolean> = _showReviewCard
 
     private var pendingResult: AudioRecorderService.RecordingResult? = null
     private var pendingLocationName: String? = null
@@ -211,9 +204,6 @@ class RecordingViewModel @Inject constructor(
             _showSaveDialog.value = false
             pendingResult = null
             pendingLocationName = null
-
-            // Increment recording count and check if we should show the review card
-            checkAndShowReviewCard()
         }
     }
 
@@ -247,11 +237,6 @@ class RecordingViewModel @Inject constructor(
     fun setQuality(quality: RecordingQuality) { _selectedQuality.value = quality }
     fun setStereo(stereo: Boolean) { _isStereo.value = stereo }
 
-    fun dismissReviewCard() {
-        _showReviewCard.value = false
-        markReviewPromptShown()
-    }
-
     fun dismissBatteryOptPrompt() {
         _showBatteryOptPrompt.value = false
         context.getSharedPreferences(PREFS_REVIEW, Context.MODE_PRIVATE)
@@ -274,23 +259,6 @@ class RecordingViewModel @Inject constructor(
                 context.startActivity(intent)
             } catch (_: Exception) { }
         }
-    }
-
-    private fun checkAndShowReviewCard() {
-        val prefs = context.getSharedPreferences(PREFS_REVIEW, Context.MODE_PRIVATE)
-        if (prefs.getBoolean(KEY_REVIEW_CARD_SHOWN, false)) return
-
-        val count = prefs.getInt(KEY_RECORDING_COUNT, 0) + 1
-        prefs.edit().putInt(KEY_RECORDING_COUNT, count).apply()
-
-        if (count >= REVIEW_THRESHOLD) {
-            _showReviewCard.value = true
-        }
-    }
-
-    private fun markReviewPromptShown() {
-        context.getSharedPreferences(PREFS_REVIEW, Context.MODE_PRIVATE)
-            .edit().putBoolean(KEY_REVIEW_CARD_SHOWN, true).apply()
     }
 
     private fun maybeShowBatteryOptPrompt() {
