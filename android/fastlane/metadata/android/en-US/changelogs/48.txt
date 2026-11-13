@@ -1,0 +1,1 @@
+Your transcription language now starts as your phone's language, and a short card on first launch lets you confirm or change it. Android's per-app language picker now lists every language the app is translated into. Settings has new Rate and Feedback rows.
