@@ -109,4 +109,24 @@ class LocalizationTest {
             assertTrue("${dir.name} lacks the size argument", text.contains("%1\$" + "d"))
         }
     }
+
+    private val resDir = File("src/main/res")
+
+    @Test
+    fun theAppLanguageListNamesEveryTranslatedLocale() {
+        val listed = Regex("android:name=\"([^\"]+)\"").findAll(File(resDir, "xml/locales_config.xml").readText())
+            .map { it.groupValues[1] }.toList()
+        assertEquals("no duplicates", listed.size, listed.toSet().size)
+        // values-in is the legacy folder for Indonesian ("id"); values-pt-rBR and values-zh-rCN carry their region
+        fun tagFor(folder: String): String = when (val q = folder.removePrefix("values-")) {
+            "in" -> "id"
+            "pt-rBR" -> "pt-BR"
+            "zh-rCN" -> "zh-CN"
+            else -> q
+        }
+        val folders = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
+            .map { tagFor(it.name) }.toSet()
+        assertEquals(19, folders.size)
+        assertEquals("every shipped locale must be pickable per app on Android 13+", folders + "en", listed.toSet())
+    }
 }
