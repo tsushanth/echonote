@@ -143,9 +143,12 @@ class LocalizationTest {
         val listed = Regex("android:name=\"([^\"]+)\"").findAll(File(resDir, "xml/locales_config.xml").readText())
             .map { it.groupValues[1] }.toList()
         assertEquals("no duplicates", listed.size, listed.toSet().size)
-        // values-in is the legacy folder for Indonesian ("id"); values-pt-rBR and values-zh-rCN carry their region
+        // values-in is the legacy folder for Indonesian ("id"). values-tl is Tagalog, listed as "fil" (Filipino): on Android 17
+        // a per-app language of "tl" does not select values-tl (the app stays in English), while "fil" does.
+        // values-pt-rBR and values-zh-rCN carry their region.
         fun tagFor(folder: String): String = when (val q = folder.removePrefix("values-")) {
             "in" -> "id"
+            "tl" -> "fil"
             "pt-rBR" -> "pt-BR"
             "zh-rCN" -> "zh-CN"
             else -> q
