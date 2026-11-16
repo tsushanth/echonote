@@ -13,7 +13,7 @@ Progettato per:
 Funzionalità Voice-First
 • Acquisizione audio di alta qualità in M4A (AAC)
 • Trascrizione sul dispositivo: funziona senza Internet
-• Organizzazione intelligente con titoli generati automaticamente
+• Le registrazioni ricevono un titolo automatico (per data o, se lo attivi, per luogo)
 • Ricerca tra le registrazioni in base al contenuto della trascrizione
 • Esporta audio o testo in più formati
 
@@ -21,19 +21,18 @@ Flusso di lavoro basato sull'accessibilità
 • Non è richiesta la digitazione per creare o organizzare le note
 • Ricerca vocale nell'intera libreria di registrazioni
 • Funziona con lettori di schermo per utenti non vedenti e ipovedenti
-• Controlli di riproduzione a mani libere
 
 Qualità di registrazione
 • Registrazione mono e stereo
 • Preimpostazioni di qualità bassa, media, alta e massima
-• Monitoraggio in tempo reale durante la registrazione
+• Forma d'onda in tempo reale durante la registrazione
 
 Organizzazione
 • Cartelle per progetti, classi o argomenti
 • Preferiti per un accesso rapido
 
 Lingue, Listen, Find e Ask
-• Trascrivi in 41 lingue. Ogni lingua si scarica una sola volta e funziona sul telefono; alcune, come l'arabo, sono contrassegnate come sperimentali
+• Trascrivi in 41 lingue. Ogni lingua si scarica una sola volta e funziona sul telefono; alcune, come l'arabo, sono contrassegnate come sperimentali. La lingua di trascrizione parte da quella del telefono.
 • Listen: ascolta i punti chiave, un paragrafo o l'intera trascrizione letti ad alta voce da una voce installata sul telefono, con controllo della velocità
 • Find: cerca in tutte le trascrizioni scrivendo o a voce e salta al momento esatto dell'audio (la ricerca vocale richiede Android 13 o successivo)
 • Ask: vedi i passaggi con più probabilità di rispondere alla tua domanda, citati dalle tue trascrizioni (trova passaggi, non scrive una risposta)

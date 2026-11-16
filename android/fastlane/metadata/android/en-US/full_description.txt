@@ -13,7 +13,7 @@ Designed For:
 Voice-First Features
 • High-quality audio capture in M4A (AAC)
 • On-device transcription — works without internet
-• Smart organization with auto-generated titles
+• Recordings are titled automatically (by date, or by place if you turn on location naming)
 • Search across recordings by transcript content
 • Export audio or text in multiple formats
 
@@ -21,19 +21,18 @@ Accessibility-First Workflow
 • No typing required to create or organize notes
 • Voice search through your entire recording library
 • Works with screen readers for blind and low-vision users
-• Hands-free playback controls
 
 Recording Quality
 • Mono and stereo recording
 • Low, medium, high, and maximum quality presets
-• Real-time monitoring during recording
+• Live waveform while you record
 
 Organization
 • Folders for projects, classes, or topics
 • Favorites for quick access
 
 Languages, Listen, Find and Ask
-• Transcribe in 41 languages. Each language downloads once and runs on your phone; a few, like Arabic, are marked Experimental
+• Transcribe in 41 languages. Each language downloads once and runs on your phone; a few, like Arabic, are marked Experimental. Your transcription language starts as your phone's language.
 • Listen: hear key points, a paragraph or a whole transcript read aloud by a voice installed on your phone, with speed control
 • Find: search every transcript by typing or voice and jump to the exact moment in the audio (voice search needs Android 13 or newer)
 • Ask: see the passages most likely to answer your question, quoted from your transcripts (it finds passages, it does not write an answer)

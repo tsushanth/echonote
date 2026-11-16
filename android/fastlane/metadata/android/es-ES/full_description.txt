@@ -13,7 +13,7 @@ Diseñado para:
 Funciones de voz primero
 • Captura de audio de alta calidad en M4A (AAC)
 • Transcripción en el dispositivo: funciona sin Internet
-• Organización inteligente con títulos generados automáticamente
+• Las grabaciones reciben un título automático (por fecha o, si lo activas, por lugar)
 • Busque entre grabaciones por contenido de transcripción
 • Exportar audio o texto en múltiples formatos
 
@@ -21,19 +21,18 @@ Flujo de trabajo de accesibilidad primero
 • No es necesario escribir para crear u organizar notas
 • Búsqueda por voz en toda tu biblioteca de grabaciones
 • Funciona con lectores de pantalla para usuarios ciegos y con baja visión
-• Controles de reproducción manos libres
 
 Calidad de grabación
 • Grabación mono y estéreo
 • Ajustes preestablecidos de calidad baja, media, alta y máxima
-• Monitoreo en tiempo real durante la grabación
+• Forma de onda en vivo mientras grabas
 
 Organización
 • Carpetas para proyectos, clases o temas
 • Favoritos para acceso rápido
 
 Idiomas, Listen, Find y Ask
-• Transcribe en 41 idiomas. Cada idioma se descarga una vez y funciona en tu teléfono; algunos, como el árabe, están marcados como experimentales
+• Transcribe en 41 idiomas. Cada idioma se descarga una vez y funciona en tu teléfono; algunos, como el árabe, están marcados como experimentales. El idioma de transcripción empieza siendo el de tu teléfono.
 • Listen: escucha los puntos clave, un párrafo o toda la transcripción leídos en voz alta con una voz instalada en tu teléfono, con control de velocidad
 • Find: busca en todas las transcripciones escribiendo o por voz y salta al momento exacto del audio (la búsqueda por voz requiere Android 13 o posterior)
 • Ask: ve los pasajes con más probabilidad de responder a tu pregunta, citados de tus transcripciones (encuentra pasajes, no escribe una respuesta)

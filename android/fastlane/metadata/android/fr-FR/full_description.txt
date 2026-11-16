@@ -13,7 +13,7 @@ Conçu pour :
 Fonctionnalités vocales d'abord
 • Capture audio de haute qualité au format M4A (AAC)
 • Transcription sur l'appareil : fonctionne sans Internet
-• Organisation intelligente avec des titres générés automatiquement
+• Les enregistrements reçoivent un titre automatique (par date ou, si vous l'activez, par lieu)
 • Recherche parmi les enregistrements par contenu de transcription
 • Exporter de l'audio ou du texte dans plusieurs formats
 
@@ -21,19 +21,18 @@ Flux de travail axé sur l'accessibilité
 • Aucune saisie requise pour créer ou organiser des notes
 • Recherche vocale dans toute votre bibliothèque d'enregistrements
 • Fonctionne avec les lecteurs d'écran pour les utilisateurs aveugles et malvoyants
-• Commandes de lecture mains libres
 
 Qualité d'enregistrement
 • Enregistrement mono et stéréo
 • Préréglages de qualité faible, moyenne, élevée et maximale
-• Surveillance en temps réel pendant l'enregistrement
+• Forme d'onde en direct pendant l'enregistrement
 
 Organisation
 • Dossiers pour les projets, les cours ou les sujets
 • Favoris pour un accès rapide
 
 Langues, Listen, Find et Ask
-• Transcrivez dans 41 langues. Chaque langue se télécharge une fois et fonctionne sur votre téléphone ; quelques-unes, comme l'arabe, sont signalées comme expérimentales
+• Transcrivez dans 41 langues. Chaque langue se télécharge une fois et fonctionne sur votre téléphone ; quelques-unes, comme l'arabe, sont signalées comme expérimentales. La langue de transcription correspond d'abord à celle de votre téléphone.
 • Listen : écoutez les points clés, un paragraphe ou toute la transcription lus à voix haute par une voix installée sur votre téléphone, avec réglage de la vitesse
 • Find : recherchez dans toutes les transcriptions en tapant ou à la voix et accédez au moment exact de l'audio (la recherche vocale nécessite Android 13 ou plus récent)
 • Ask : consultez les passages les plus susceptibles de répondre à votre question, cités depuis vos transcriptions (il trouve des passages, il n'écrit pas de réponse)
