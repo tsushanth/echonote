@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Transkrypcja na żywo zatrzymana. Nagrywanie trwa.</string>
     <string name="settings_live_transcript_title">Transkrypcja na żywo podczas nagrywania</string>
     <string name="settings_live_transcript_subtitle">Pokazuje słowa, gdy mówisz. Zużywa więcej baterii. Wymaga modelu Szybki dla Twojego języka (Android 10 lub nowszy).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Słowa na żywo nie są dostępne dla tego języka. Nagranie zostanie przepisane po zatrzymaniu.</string>
 </resources>

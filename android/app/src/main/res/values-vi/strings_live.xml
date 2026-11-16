@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Bản chép trực tiếp đã dừng. Việc ghi âm vẫn tiếp tục.</string>
     <string name="settings_live_transcript_title">Chép lời trực tiếp khi ghi âm</string>
     <string name="settings_live_transcript_subtitle">Hiển thị chữ khi bạn nói. Tốn pin hơn. Cần mô hình Nhanh cho ngôn ngữ của bạn (Android 10 trở lên).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Từ hiển thị trực tiếp không khả dụng cho ngôn ngữ này. Bản ghi âm sẽ được chép lời khi bạn dừng.</string>
 </resources>

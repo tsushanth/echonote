@@ -4,8 +4,8 @@
     <string name="app_name">ClearVoice Recorder</string>
 
     <!-- Meta / Facebook SDK -->
-    <string name="facebook_app_id">942682688640328</string>
-    <string name="facebook_client_token">9107b3baf06e3ba7dc3b5017f76ad225</string>
+    <string name="facebook_app_id" translatable="false">942682688640328</string>
+    <string name="facebook_client_token" translatable="false">9107b3baf06e3ba7dc3b5017f76ad225</string>
 
     <!-- Bottom Navigation Tabs -->
     <string name="tab_recordings">Recordings</string>

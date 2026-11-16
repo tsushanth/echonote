@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">Pokaż pełne teksty licencji</string>
     <string name="acknowledgments_nemo_desc">Dokładna transkrypcja dla niemieckiego, hiszpańskiego i francuskiego. CC BY 4.0 lub Apache 2.0.</string>
     <string name="licenses_title">Licencje open source</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">Oceń ClearVoice</string>
+    <string name="settings_send_feedback">Wyślij opinię</string>
+    <string name="recording_notification_title">Trwa nagrywanie</string>
+    <string name="recording_notification_text">ClearVoice nagrywa dźwięk</string>
+    <string name="recording_notification_stop">Zatrzymaj</string>
+    <string name="recording_channel_name">Nagrywanie</string>
+    <string name="recording_channel_description">Pokazuje, że trwa nagrywanie</string>
+    <string name="battery_opt_title">Nagrywanie w tle</string>
+    <string name="battery_opt_message">Aby nagrywanie trwało przy wyłączonym ekranie, wyłącz optymalizację baterii dla ClearVoice. Na urządzeniach MIUI włącz też Autostart w ustawieniach zabezpieczeń.</string>
+    <string name="battery_opt_open_settings">Otwórz ustawienia</string>
+    <string name="battery_opt_dismiss">Później</string>
+    <string name="recording_error_permission">Do nagrywania dźwięku potrzebne jest uprawnienie do mikrofonu.</string>
+    <string name="widget_description">Widżet ClearVoice</string>
 </resources>

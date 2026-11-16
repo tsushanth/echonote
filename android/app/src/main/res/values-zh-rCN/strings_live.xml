@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">实时转写已停止。录音会继续。</string>
     <string name="settings_live_transcript_title">录音时实时转写</string>
     <string name="settings_live_transcript_subtitle">在你说话时显示文字。更耗电。需要所用语言的快速模型(Android 10 或更高版本)。</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">此语言不支持实时显示文字。停止录音后会进行转写。</string>
 </resources>

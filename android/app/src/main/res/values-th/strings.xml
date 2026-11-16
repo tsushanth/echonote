@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">ดูข้อความสัญญาอนุญาตฉบับเต็ม</string>
     <string name="acknowledgments_nemo_desc">ถอดเสียงที่แม่นยำสำหรับภาษาเยอรมัน สเปน และฝรั่งเศส CC BY 4.0 หรือ Apache 2.0</string>
     <string name="licenses_title">สัญญาอนุญาตโอเพนซอร์ส</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">ให้คะแนน ClearVoice</string>
+    <string name="settings_send_feedback">ส่งความคิดเห็น</string>
+    <string name="recording_notification_title">กำลังบันทึกเสียง</string>
+    <string name="recording_notification_text">ClearVoice กำลังบันทึกเสียง</string>
+    <string name="recording_notification_stop">หยุด</string>
+    <string name="recording_channel_name">การบันทึก</string>
+    <string name="recording_channel_description">แสดงเมื่อกำลังบันทึกเสียง</string>
+    <string name="battery_opt_title">การบันทึกเบื้องหลัง</string>
+    <string name="battery_opt_message">เพื่อให้การบันทึกทำงานต่อเมื่อปิดหน้าจอ โปรดปิดการเพิ่มประสิทธิภาพแบตเตอรี่สำหรับ ClearVoice สำหรับอุปกรณ์ MIUI ให้เปิดการเริ่มอัตโนมัติ (Autostart) ในการตั้งค่าความปลอดภัยด้วย</string>
+    <string name="battery_opt_open_settings">เปิดการตั้งค่า</string>
+    <string name="battery_opt_dismiss">ภายหลัง</string>
+    <string name="recording_error_permission">ต้องได้รับอนุญาตให้ใช้ไมโครโฟนจึงจะบันทึกเสียงได้</string>
+    <string name="widget_description">วิดเจ็ต ClearVoice</string>
 </resources>

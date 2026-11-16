@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">ライブ文字起こしを停止しました。録音は続行されます。</string>
     <string name="settings_live_transcript_title">録音中のライブ文字起こし</string>
     <string name="settings_live_transcript_subtitle">話している間に文字を表示します。電池の消費が増えます。お使いの言語の高速モデルが必要です(Android 10以降)。</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">この言語ではライブ表示の単語は利用できません。録音は停止したときに文字起こしされます。</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Listen / Find / Ask. English only for now; translations for the other locales are still to do. -->
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<!-- Listen / Find / Ask. Translated in every shipped locale (machine translation, needs native-speaker review). -->
+<resources>
     <string name="listen_action">Listen</string>
     <string name="listen_title">Listen</string>
     <string name="listen_summary_button">Listen to key points</string>

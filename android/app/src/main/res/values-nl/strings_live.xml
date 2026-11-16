@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Live transcript is gestopt. De opname gaat door.</string>
     <string name="settings_live_transcript_title">Live transcript tijdens opnemen</string>
     <string name="settings_live_transcript_subtitle">Toont woorden terwijl je spreekt. Gebruikt meer batterij. Heeft het Snelle model voor jouw taal nodig (Android 10 of nieuwer).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Live woorden zijn niet beschikbaar voor deze taal. Je opname wordt getranscribeerd als je stopt.</string>
 </resources>

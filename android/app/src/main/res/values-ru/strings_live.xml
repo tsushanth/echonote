@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Живая расшифровка остановлена. Запись продолжается.</string>
     <string name="settings_live_transcript_title">Живая расшифровка при записи</string>
     <string name="settings_live_transcript_subtitle">Показывает слова, пока вы говорите. Расходует больше заряда. Нужна быстрая модель для вашего языка (Android 10 или новее).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Слова в реальном времени недоступны для этого языка. Запись будет расшифрована, когда вы её остановите.</string>
 </resources>
