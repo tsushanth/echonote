@@ -44,7 +44,8 @@ class StringParityTest {
 
     private fun required(folder: String): Set<String> = when (folder.removePrefix("values-").substringBefore("-r")) {
         "ar" -> setOf("zero", "one", "two", "few", "many", "other")
-        "pl", "ru" -> setOf("one", "few", "many", "other")
+        "pl", "ru", "cs", "uk" -> setOf("one", "few", "many", "other")
+        "ro" -> setOf("one", "few", "other")
         "fr", "es", "it", "pt" -> setOf("one", "many", "other")
         "ja", "ko", "zh", "th", "vi", "in", "ms" -> setOf("other")
         else -> setOf("one", "other")
@@ -55,7 +56,7 @@ class StringParityTest {
         val base = load(File(res, "values"))
         assertTrue("default strings not found (run from android/)", base.size > 300)
         val locales = res.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
-        assertEquals(19, locales.size)
+        assertEquals(26, locales.size)
         for (dir in locales) {
             val got = load(dir)
             assertEquals("${dir.name} missing keys", emptySet<String>(), base.keys - got.keys)
@@ -67,5 +68,21 @@ class StringParityTest {
                 else assertTrue("${dir.name} $k needs plural categories ${required(dir.name)}, has ${g.quantities}", g.quantities.containsAll(required(dir.name)))
             }
         }
+    }
+
+    @Test
+    fun localesConfigListsExactlyTheShippedLanguages() {
+        val shipped = res.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
+            .map {
+                when (val c = it.name.removePrefix("values-")) {
+                    "in" -> "id"
+                    "tl" -> "fil"
+                    "pt-rBR" -> "pt-BR"
+                    "zh-rCN" -> "zh-CN"
+                    else -> c
+                }
+            }.toSet() + "en"
+        val listed = Regex("android:name=\"([^\"]+)\"").findAll(File(res, "xml/locales_config.xml").readText()).map { it.groupValues[1] }.toSet()
+        assertEquals(shipped, listed)
     }
 }
