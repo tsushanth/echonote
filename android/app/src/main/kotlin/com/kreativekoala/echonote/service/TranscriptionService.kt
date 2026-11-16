@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.service
 
+import com.kreativekoala.echonote.R
 import android.content.Context
 import android.media.MediaCodec
 import android.media.MediaCodecList
@@ -60,7 +61,7 @@ class TranscriptionService @Inject constructor(
     suspend fun transcribe(fileUri: String): TranscriptionResult = withContext(Dispatchers.IO) {
         val file = File(fileUri)
         if (!file.exists()) {
-            return@withContext TranscriptionResult.Error("Recording file not found")
+            return@withContext TranscriptionResult.Error(context.getString(R.string.err_file_not_found))
         }
 
         _isTranscribing.value = true
@@ -87,8 +88,7 @@ class TranscriptionService @Inject constructor(
                     is Resolution.Run -> if (plan.engine != AsrEngine.VOSK) return@withContext transcribeWithSherpa(fileUri, language, plan.engine)
                     is Resolution.NeedsBiggerPhone -> if (!EnginePlan.fastIsUsable(language)) {
                         return@withContext TranscriptionResult.Error(
-                            "${language.displayName} needs a phone with at least 6 GB of memory (${plan.best.engine.displayName}, " +
-                                "${plan.best.engine.downloadMb} MB). This phone cannot run it."
+                            context.getString(R.string.err_needs_bigger_phone, language.displayName, plan.best.engine.displayName, plan.best.engine.downloadMb)
                         )
                     }
                 }
@@ -97,10 +97,10 @@ class TranscriptionService @Inject constructor(
             // Ensure model is ready
             val model = getOrDownloadModel(language)
                 ?: return@withContext TranscriptionResult.Error(
-                    "Failed to load speech recognition model. Check your internet connection and try again."
+                    context.getString(R.string.err_model_load)
                 )
 
-            _statusMessage.value = "Transcribing..."
+            _statusMessage.value = context.getString(R.string.status_transcribing)
             _progress.value = 0.3f
 
             // Decode and transcribe in one streaming pass — no full PCM buffer in memory
@@ -111,12 +111,12 @@ class TranscriptionService @Inject constructor(
             _progress.value = 1f
 
             if (output == null || output.text.isBlank()) {
-                TranscriptionResult.Error("No speech detected in this recording")
+                TranscriptionResult.Error(context.getString(R.string.err_no_speech))
             } else {
                 TranscriptionResult.Success(output.text, output.segments)
             }
         } catch (e: Exception) {
-            TranscriptionResult.Error("Transcription failed: ${e.message ?: "Unknown error"}")
+            TranscriptionResult.Error(context.getString(R.string.err_transcription_failed, e.message ?: context.getString(R.string.err_unknown)))
         } finally {
             android.util.Log.i("TranscriptionService", "transcribe finished in ${android.os.SystemClock.elapsedRealtime() - startedAtMs} ms")
             _isTranscribing.value = false
@@ -135,7 +135,7 @@ class TranscriptionService @Inject constructor(
         // Check if model is already on disk
         if (dir.exists() && dir.listFiles()?.isNotEmpty() == true) {
             return try {
-                _statusMessage.value = "Loading speech model..."
+                _statusMessage.value = context.getString(R.string.status_loading_model)
                 val model = Model(dir.absolutePath)
                 modelCache[language] = model
                 model
@@ -150,7 +150,7 @@ class TranscriptionService @Inject constructor(
     }
 
     private suspend fun downloadAndExtractModel(language: TranscriptionLanguage): Model? = withContext(Dispatchers.IO) {
-        _statusMessage.value = "Downloading ${language.displayName} speech model..."
+        _statusMessage.value = context.getString(R.string.status_downloading_language_model, language.displayName)
         _progress.value = 0.05f
 
         val pack = language.vosk ?: return@withContext null
@@ -183,7 +183,7 @@ class TranscriptionService @Inject constructor(
                         if (totalBytes > 0) {
                             val downloadProgress = downloadedBytes.toFloat() / totalBytes
                             _progress.value = 0.05f + downloadProgress * 0.2f
-                            _statusMessage.value = "Downloading speech model (${(downloadProgress * 100).toInt()}%)..."
+                            _statusMessage.value = context.getString(R.string.status_downloading_model_pct, (downloadProgress * 100).toInt())
                         }
                     }
                 }
@@ -196,7 +196,7 @@ class TranscriptionService @Inject constructor(
             }
 
             // Extract
-            _statusMessage.value = "Extracting speech model..."
+            _statusMessage.value = context.getString(R.string.status_extracting_model)
             _progress.value = 0.25f
 
             dir.mkdirs()
@@ -231,7 +231,7 @@ class TranscriptionService @Inject constructor(
             tempZip.delete()
 
             // Load model
-            _statusMessage.value = "Loading speech model..."
+            _statusMessage.value = context.getString(R.string.status_loading_model)
             _progress.value = 0.28f
             val model = Model(dir.absolutePath)
             modelCache[language] = model
@@ -276,7 +276,7 @@ class TranscriptionService @Inject constructor(
 
         try {
             if (!ModelDownloader.isReady(modelDir, files)) {
-                _statusMessage.value = "Downloading ${language.displayName} speech model (${engine.downloadMb} MB)..."
+                _statusMessage.value = context.getString(R.string.status_downloading_engine_model, language.displayName, engine.downloadMb)
                 if (layout.archive != null) {
                     ModelDownloader.ensureArchive(modelDir, layout.archive) { _progress.value = 0.02f + it * 0.2f }
                 } else {
@@ -284,14 +284,14 @@ class TranscriptionService @Inject constructor(
                 }
             }
             if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
-                _statusMessage.value = "Downloading speaker model (46 MB)..."
+                _statusMessage.value = context.getString(R.string.status_downloading_speaker_model, 46)
                 ModelDownloader.ensure(diarizationDir, SherpaModels.DIARIZATION) { _progress.value = 0.22f + it * 0.03f }
             }
         } catch (e: Exception) {
-            return TranscriptionResult.Error("Could not download the accurate speech model. Check your internet connection and try again. (${e.message})")
+            return TranscriptionResult.Error(context.getString(R.string.err_accurate_download, e.message ?: context.getString(R.string.err_unknown)))
         }
 
-        _statusMessage.value = "Transcribing..."
+        _statusMessage.value = context.getString(R.string.status_transcribing)
         _progress.value = 0.25f
         val languageCode = EnginePlan.languageCode(language)
 
@@ -302,18 +302,18 @@ class TranscriptionService @Inject constructor(
                 val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
                     transcriber.accept(samples, count)
                 }
-                if (!hasAudio) return TranscriptionResult.Error("No audio found in this recording")
+                if (!hasAudio) return TranscriptionResult.Error(context.getString(R.string.err_no_audio))
                 transcriber.finish()
 
                 var words = transcriber.words.toList()
-                if (words.isEmpty()) return TranscriptionResult.Error("No speech detected in this recording")
+                if (words.isEmpty()) return TranscriptionResult.Error(context.getString(R.string.err_no_speech))
 
                 if (wantSpeakers) {
                     val kept = transcriber.keptAudio()
                     if (kept == null) {
-                        _statusMessage.value = "Speaker labels skipped: recording is longer than 30 minutes"
+                        _statusMessage.value = context.getString(R.string.status_speakers_skipped)
                     } else {
-                        _statusMessage.value = "Identifying speakers..."
+                        _statusMessage.value = context.getString(R.string.status_identifying_speakers)
                         try {
                             val spans = SpeakerDiarizer(diarizationDir).diarize(kept.first, kept.second) {
                                 _progress.value = 0.85f + it * 0.13f
@@ -328,11 +328,11 @@ class TranscriptionService @Inject constructor(
                 keptAudio = transcriber.keptAudio()
             }
         } catch (e: OutOfMemoryError) {
-            return TranscriptionResult.Error("Not enough memory for the accurate model on this phone. Switch Transcription Quality to Fast.")
+            return TranscriptionResult.Error(context.getString(R.string.err_out_of_memory))
         }
 
         // The main model is closed now, so its memory is free for the Vosk pass.
-        var words = finalWords ?: return TranscriptionResult.Error("No speech detected in this recording")
+        var words = finalWords ?: return TranscriptionResult.Error(context.getString(R.string.err_no_speech))
         if (settingsRepository.markUncertainWords.first() && UncertainWords.supports(language, engine)) {
             words = markUncertainWords(fileUri, language, words, keptAudio)
         }
@@ -354,14 +354,14 @@ class TranscriptionService @Inject constructor(
     ): List<TranscriptSegment> {
         val startedAtMs = android.os.SystemClock.elapsedRealtime()
         return try {
-            _statusMessage.value = "Checking for uncertain words..."
+            _statusMessage.value = context.getString(R.string.status_checking_uncertain)
             _progress.value = 0.85f
             val model = getOrDownloadModel(language)
             if (model == null) {
                 android.util.Log.w("TranscriptionService", "uncertain words skipped: Vosk model unavailable")
                 return words
             }
-            _statusMessage.value = "Checking for uncertain words..."
+            _statusMessage.value = context.getString(R.string.status_checking_uncertain)
             val second = recognizeVoskWords(fileUri, model, kept) { _progress.value = 0.88f + it * 0.1f }
             if (second == null) {
                 android.util.Log.w("TranscriptionService", "uncertain words skipped: Vosk pass produced nothing")

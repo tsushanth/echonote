@@ -198,7 +198,7 @@ private fun TranscriptParagraphView(
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         paragraph.speaker?.let { speaker ->
             Text(
-                text = "Speaker ${speaker + 1}",
+                text = stringResource(R.string.transcript_speaker, speaker + 1),
                 style = MaterialTheme.typography.labelLarge,
                 color = echo.speakers[speaker % echo.speakers.size]
             )

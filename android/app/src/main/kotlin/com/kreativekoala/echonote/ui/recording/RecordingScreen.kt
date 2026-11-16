@@ -147,7 +147,7 @@ fun RecordingScreen(
                         modifier = Modifier.fillMaxWidth()
                     )
                     Text(
-                        text = "${selectedFormat.displayName} • ${selectedQuality.displayName}",
+                        text = "${stringResource(selectedFormat.displayRes)} • ${stringResource(selectedQuality.displayRes)}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -368,7 +368,7 @@ private fun RecordingSettingsPanel(
             inactiveContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
             inactiveBorderColor = MaterialTheme.colorScheme.outline
         )
-        SettingRow(label = "Format") {
+        SettingRow(label = stringResource(R.string.recording_format)) {
             SingleChoiceSegmentedButtonRow {
                 formats.forEachIndexed { i, (value, label) ->
                     SegmentedButton(
@@ -381,7 +381,7 @@ private fun RecordingSettingsPanel(
             }
         }
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Quality", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+            Text(stringResource(R.string.recording_quality), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
             SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
                 qualities.forEachIndexed { i, q ->
                     SegmentedButton(
@@ -390,7 +390,7 @@ private fun RecordingSettingsPanel(
                         shape = SegmentedButtonDefaults.itemShape(i, qualities.size),
                         colors = segColors,
                         icon = {},
-                        label = { Text(q.displayName, maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelMedium) }
+                        label = { Text(stringResource(q.displayRes), maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelMedium) }
                     )
                 }
             }
@@ -404,7 +404,7 @@ private fun RecordingSettingsPanel(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Mic gain", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+                Text(stringResource(R.string.recording_mic_gain), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
                 Text(
                     text = "%.1f\u00D7".format(gain),
                     style = TimerTextStyle.copy(fontSize = 14.sp),

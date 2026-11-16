@@ -1,5 +1,8 @@
 package com.kreativekoala.echonote.ui.organization
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.kreativekoala.echonote.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,8 +35,8 @@ fun RecycleBinScreen(
     if (showConfirmEmpty) {
         AlertDialog(
             onDismissRequest = { showConfirmEmpty = false },
-            title = { Text("Empty Trash") },
-            text = { Text("Permanently delete all ${deletedRecordings.size} recordings? This cannot be undone.") },
+            title = { Text(stringResource(R.string.bin_empty_action)) },
+            text = { Text(LocalContext.current.resources.getQuantityString(R.plurals.bin_empty_confirm, deletedRecordings.size, deletedRecordings.size)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -42,11 +45,11 @@ fun RecycleBinScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                 ) {
-                    Text("Delete All")
+                    Text(stringResource(R.string.bin_delete_all))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showConfirmEmpty = false }) { Text("Cancel") }
+                TextButton(onClick = { showConfirmEmpty = false }) { Text(stringResource(R.string.common_cancel)) }
             }
         )
     }
@@ -54,10 +57,10 @@ fun RecycleBinScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Recycle Bin") },
+                title = { Text(stringResource(R.string.bin_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.common_back))
                     }
                 },
                 actions = {
@@ -65,7 +68,7 @@ fun RecycleBinScreen(
                         IconButton(onClick = { showConfirmEmpty = true }) {
                             Icon(
                                 Icons.Default.DeleteForever,
-                                contentDescription = "Empty Trash",
+                                contentDescription = stringResource(R.string.bin_empty_action),
                                 tint = MaterialTheme.colorScheme.error
                             )
                         }
@@ -91,13 +94,13 @@ fun RecycleBinScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Recycle Bin is Empty",
+                        text = stringResource(R.string.bin_empty_title),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Deleted recordings will appear here",
+                        text = stringResource(R.string.bin_empty_body),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                         textAlign = TextAlign.Center
@@ -138,7 +141,7 @@ private fun RecycleBinItem(
             supportingContent = {
                 Column {
                     Text(
-                        text = "Deleted: ${recording.deletedAt?.let { DateFormatting.formatDateTime(it) } ?: "Unknown"}",
+                        text = stringResource(R.string.bin_deleted_on, recording.deletedAt?.let { DateFormatting.formatDateTime(it) } ?: stringResource(R.string.common_unknown)),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -154,14 +157,14 @@ private fun RecycleBinItem(
                     IconButton(onClick = onRestore) {
                         Icon(
                             Icons.Default.Restore,
-                            contentDescription = "Restore",
+                            contentDescription = stringResource(R.string.bin_restore),
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
                     IconButton(onClick = onDelete) {
                         Icon(
                             Icons.Default.DeleteForever,
-                            contentDescription = "Delete Permanently",
+                            contentDescription = stringResource(R.string.bin_delete_permanently),
                             tint = MaterialTheme.colorScheme.error
                         )
                     }

@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.widget
 
+import com.kreativekoala.echonote.R
 import android.content.Context
 import android.content.Intent
 import androidx.compose.runtime.Composable
@@ -41,14 +42,14 @@ class RecordingWidget : GlanceAppWidget() {
 
         provideContent {
             GlanceTheme {
-                RecordingWidgetContent(count = count)
+                RecordingWidgetContent(count = count, context = context)
             }
         }
     }
 }
 
 @Composable
-private fun RecordingWidgetContent(count: Int) {
+private fun RecordingWidgetContent(count: Int, context: Context) {
     Column(
         modifier = GlanceModifier
             .fillMaxSize()
@@ -68,7 +69,7 @@ private fun RecordingWidgetContent(count: Int) {
         )
         Spacer(modifier = GlanceModifier.height(4.dp))
         Text(
-            text = "$count Recording${if (count != 1) "s" else ""}",
+            text = context.resources.getQuantityString(R.plurals.widget_recordings, count, count),
             style = TextStyle(
                 fontSize = 12.sp,
                 color = GlanceTheme.colors.secondary
@@ -83,7 +84,7 @@ private fun RecordingWidgetContent(count: Int) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Tap to Record",
+                text = context.getString(R.string.widget_tap_to_record),
                 style = TextStyle(
                     fontWeight = FontWeight.Medium,
                     fontSize = 12.sp,

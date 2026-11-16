@@ -1,5 +1,7 @@
 package com.kreativekoala.echonote.data.model
 
+import com.kreativekoala.echonote.R
+import androidx.annotation.StringRes
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -90,20 +92,21 @@ enum class TranscriptionLanguage(
     }
 }
 
-enum class AudioFormat(val extension: String, val displayName: String) {
-    UNCOMPRESSED("m4a", "Uncompressed (M4A)"),
-    COMPRESSED("m4a", "Compressed (M4A)")
+enum class AudioFormat(val extension: String, val displayName: String, @StringRes val displayRes: Int) {
+    UNCOMPRESSED("m4a", "Uncompressed (M4A)", R.string.format_uncompressed),
+    COMPRESSED("m4a", "Compressed (M4A)", R.string.format_compressed)
 }
 
 enum class RecordingQuality(
     val displayName: String,
     val sampleRate: Int,
-    val bitRate: Int
+    val bitRate: Int,
+    @StringRes val displayRes: Int
 ) {
-    LOW("Low", 12000, 32000),
-    MEDIUM("Medium", 24000, 64000),
-    HIGH("High", 44100, 128000),
-    MAXIMUM("Maximum", 48000, 256000)
+    LOW("Low", 12000, 32000, R.string.quality_low),
+    MEDIUM("Medium", 24000, 64000, R.string.quality_medium),
+    HIGH("High", 44100, 128000, R.string.quality_high),
+    MAXIMUM("Maximum", 48000, 256000, R.string.quality_maximum)
 }
 
 @Entity(

@@ -156,7 +156,7 @@ fun RecordingsListScreen(
                             Icon(Icons.Default.Search, contentDescription = stringResource(R.string.find_open))
                         }
                         IconButton(onClick = onRecycleBinClick) {
-                            Icon(Icons.Default.Delete, contentDescription = "Recycle Bin")
+                            Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.bin_title))
                         }
                         Box {
                             IconButton(onClick = { showSortMenu = true }) {
@@ -221,7 +221,7 @@ fun RecordingsListScreen(
                         ) {
                             Icon(
                                 Icons.Default.FileUpload,
-                                contentDescription = "Import audio/video",
+                                contentDescription = stringResource(R.string.cd_import_media),
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                         }

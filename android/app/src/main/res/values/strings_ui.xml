@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings that used to be hard-coded in Kotlin: consent screen, Settings rows, Recycle Bin, transcript actions, widget, date wording and transcription progress/error messages. -->
+<resources>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_back">Back</string>
+    <string name="common_unknown">Unknown</string>
+    <string name="cd_more">More</string>
+    <string name="cd_import_media">Import audio or video</string>
+
+    <string name="consent_title">Help Improve Speech Recognition</string>
+    <string name="consent_intro">Voice recognition works best for widely-spoken languages. You can help train better models for more languages by sharing recordings you choose to transcribe.</string>
+    <string name="consent_shared_title">What\'s shared</string>
+    <string name="consent_shared_body">The audio recording, its transcript, and the language it\'s in, only for recordings you choose to transcribe.</string>
+    <string name="consent_why_title">Why</string>
+    <string name="consent_why_body">To help train speech-recognition models for more languages, including ones that are underserved today.</string>
+    <string name="consent_optional_title">Fully optional</string>
+    <string name="consent_optional_body">This is off by default. You can turn it off anytime in Settings, under the Privacy section.</string>
+    <string name="consent_accept">Yes, I\'ll contribute</string>
+    <string name="consent_decline">No thanks</string>
+
+    <string name="settings_transcription_language_title">Transcription Language</string>
+    <string name="settings_transcription_quality_title">Transcription Quality</string>
+    <string name="settings_label_speakers">Label Speakers</string>
+    <string name="settings_auto_copy">Auto-copy Transcript</string>
+    <string name="settings_auto_delete_audio">Auto-delete Audio</string>
+    <string name="settings_sound_effects">Sound Effects</string>
+    <string name="settings_haptic">Haptic Feedback</string>
+    <string name="settings_contribute_voice">Contribute Voice Data</string>
+    <string name="storage_used">Used</string>
+    <string name="storage_recordings">Recordings</string>
+    <string name="storage_total_time">Total Time</string>
+    <string name="storage_free">Free</string>
+
+    <string name="engine_fast">Fast</string>
+    <string name="engine_fast_summary">Small download, lower accuracy.</string>
+    <string name="engine_accurate">Accurate</string>
+    <string name="engine_accurate_summary">A larger model chosen for your language. 60-490 MB download depending on the language, slower.</string>
+    <string name="format_uncompressed">Uncompressed (M4A)</string>
+    <string name="format_compressed">Compressed (M4A)</string>
+    <string name="quality_low">Low</string>
+    <string name="quality_medium">Medium</string>
+    <string name="quality_high">High</string>
+    <string name="quality_maximum">Maximum</string>
+    <string name="recording_format">Format</string>
+    <string name="recording_quality">Quality</string>
+    <string name="recording_mic_gain">Mic gain</string>
+
+    <string name="bin_title">Recycle Bin</string>
+    <string name="bin_empty_action">Empty Trash</string>
+    <plurals name="bin_empty_confirm">
+        <item quantity="one">Permanently delete this recording? This cannot be undone.</item>
+        <item quantity="other">Permanently delete all %1$d recordings? This cannot be undone.</item>
+    </plurals>
+    <string name="bin_delete_all">Delete All</string>
+    <string name="bin_empty_title">Recycle Bin is Empty</string>
+    <string name="bin_empty_body">Deleted recordings will appear here</string>
+    <string name="bin_deleted_on">Deleted: %1$s</string>
+    <string name="bin_restore">Restore</string>
+    <string name="bin_delete_permanently">Delete Permanently</string>
+
+    <string name="export_text">Export as text</string>
+    <string name="export_srt">Export as subtitles (SRT)</string>
+    <string name="export_vtt">Export as web subtitles (VTT)</string>
+    <string name="transcript_none_title">No transcript yet</string>
+    <string name="transcript_none_body">Transcribe on this phone to read, search and jump through the recording. Audio leaves the phone only if you turn on Contribute Voice Data in Settings.</string>
+    <string name="transcript_transcribe_this">Transcribe this recording</string>
+    <string name="transcript_speaker">Speaker %1$d</string>
+    <string name="listen_read_so_far">Read aloud so far</string>
+
+    <string name="widget_tap_to_record">Tap to Record</string>
+    <plurals name="widget_recordings">
+        <item quantity="one">%1$d Recording</item>
+        <item quantity="other">%1$d Recordings</item>
+    </plurals>
+
+    <string name="date_just_now">Just now</string>
+    <string name="date_minutes_ago">%1$d min ago</string>
+    <string name="date_hours_ago">%1$d h ago</string>
+    <string name="date_days_ago">%1$d d ago</string>
+
+    <string name="status_transcribing">Transcribing…</string>
+    <string name="status_loading_model">Loading speech model…</string>
+    <string name="status_downloading_language_model">Downloading %1$s speech model…</string>
+    <string name="status_downloading_model_pct">Downloading speech model (%1$d%%)…</string>
+    <string name="status_extracting_model">Extracting speech model…</string>
+    <string name="status_downloading_engine_model">Downloading %1$s speech model (%2$d MB)…</string>
+    <string name="status_downloading_speaker_model">Downloading speaker model (%1$d MB)…</string>
+    <string name="status_identifying_speakers">Identifying speakers…</string>
+    <string name="status_speakers_skipped">Speaker labels skipped: recording is longer than 30 minutes</string>
+    <string name="status_checking_uncertain">Checking for uncertain words…</string>
+    <string name="err_file_not_found">Recording file not found</string>
+    <string name="err_no_audio">No audio found in this recording</string>
+    <string name="err_no_speech">No speech detected in this recording</string>
+    <string name="err_unknown">Unknown error</string>
+    <string name="err_transcription_failed">Transcription failed: %1$s</string>
+    <string name="err_model_load">Failed to load speech recognition model. Check your internet connection and try again.</string>
+    <string name="err_needs_bigger_phone">%1$s needs a phone with at least 6 GB of memory (%2$s, %3$d MB). This phone cannot run it.</string>
+    <string name="err_accurate_download">Could not download the accurate speech model. Check your internet connection and try again. (%1$s)</string>
+    <string name="err_out_of_memory">Not enough memory for the accurate model on this phone. Switch Transcription Quality to Fast.</string>
+</resources>

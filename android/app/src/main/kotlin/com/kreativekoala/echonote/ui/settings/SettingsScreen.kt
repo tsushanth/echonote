@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.settings
 
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.clickable
@@ -85,7 +86,7 @@ fun SettingsScreen(
             SettingsRow(
                 icon = Icons.Default.AudioFile,
                 title = stringResource(R.string.settings_default_format),
-                subtitle = selectedFormat.displayName
+                subtitle = stringResource(selectedFormat.displayRes)
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     AudioFormat.entries.forEach { format ->
@@ -103,14 +104,14 @@ fun SettingsScreen(
             SettingsRow(
                 icon = Icons.Default.HighQuality,
                 title = stringResource(R.string.settings_default_quality),
-                subtitle = selectedQuality.displayName
+                subtitle = stringResource(selectedQuality.displayRes)
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     RecordingQuality.entries.forEach { quality ->
                         FilterChip(
                             selected = selectedQuality == quality,
                             onClick = { viewModel.setQuality(quality) },
-                            label = { Text(quality.displayName) }
+                            label = { Text(stringResource(quality.displayRes)) }
                         )
                     }
                 }
@@ -175,14 +176,17 @@ fun SettingsScreen(
             val totalMem = DeviceMemory.totalBytes(LocalContext.current)
             var showLanguagePicker by remember { mutableStateOf(false) }
             val languageResolution = EnginePlan.resolve(transcriptionLanguage, totalMem)
+            val levelLabel = (languageResolution as? Resolution.Run)?.level?.let {
+                stringResource(if (it == SupportLevel.EXPERIMENTAL) R.string.language_badge_experimental else R.string.language_badge_supported)
+            }
             val languageSubtitle = buildString {
                 append(transcriptionLanguage.nativeName)
                 if (transcriptionLanguage.nativeName != transcriptionLanguage.displayName) append(" (").append(transcriptionLanguage.displayName).append(")")
-                if (languageResolution is Resolution.Run) append(", ").append(languageResolution.level.label)
+                if (levelLabel != null) append(", ").append(levelLabel)
             }
             SettingsRow(
                 icon = Icons.Default.Translate,
-                title = "Transcription Language",
+                title = stringResource(R.string.settings_transcription_language_title),
                 subtitle = languageSubtitle
             ) {
                 Column {
@@ -212,8 +216,8 @@ fun SettingsScreen(
 
             SettingsRow(
                 icon = Icons.Default.GraphicEq,
-                title = "Transcription Quality",
-                subtitle = transcriptionEngine.summary
+                title = stringResource(R.string.settings_transcription_quality_title),
+                subtitle = stringResource(transcriptionEngine.summaryRes)
             ) {
                 Column {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -221,7 +225,7 @@ fun SettingsScreen(
                             FilterChip(
                                 selected = transcriptionEngine == engine,
                                 onClick = { viewModel.setTranscriptionEngine(engine) },
-                                label = { Text(engine.displayName) }
+                                label = { Text(stringResource(engine.displayRes)) }
                             )
                         }
                     }
@@ -274,7 +278,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Label Speakers", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_label_speakers), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Mark who is talking in each paragraph. Needs Accurate quality, a one-time 46 MB download, and recordings up to 30 minutes.",
                         style = MaterialTheme.typography.bodySmall,
@@ -334,7 +338,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Auto-copy Transcript", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_auto_copy), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Automatically copy transcripts to clipboard",
                         style = MaterialTheme.typography.bodySmall,
@@ -361,7 +365,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Auto-delete Audio", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_auto_delete_audio), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Delete audio file after successful transcription to save space",
                         style = MaterialTheme.typography.bodySmall,
@@ -393,26 +397,26 @@ fun SettingsScreen(
                         Icon(Icons.Default.Storage, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(storageUsed, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
-                        Text("Used", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.storage_used), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.MicNone, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                         Spacer(modifier = Modifier.height(4.dp))
                         Text("$totalRecordingsCount", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
-                        Text("Recordings", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.storage_recordings), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Default.Timer, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(totalDuration, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
-                        Text("Total Time", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(R.string.storage_total_time), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     if (availableSpace.isNotEmpty()) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(Icons.Default.SdCard, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(availableSpace, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
-                            Text("Free", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            Text(stringResource(R.string.storage_free), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }
@@ -437,7 +441,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Sound Effects", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_sound_effects), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Play sounds on recording start/stop",
                         style = MaterialTheme.typography.bodySmall,
@@ -464,7 +468,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Haptic Feedback", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_haptic), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Vibrate on recording start/stop",
                         style = MaterialTheme.typography.bodySmall,
@@ -493,7 +497,7 @@ fun SettingsScreen(
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("Contribute Voice Data", style = MaterialTheme.typography.bodyLarge)
+                    Text(stringResource(R.string.settings_contribute_voice), style = MaterialTheme.typography.bodyLarge)
                     Text(
                         "Share recording audio, transcript, and language to help train speech recognition. Off by default, fully optional.",
                         style = MaterialTheme.typography.bodySmall,
@@ -652,7 +656,7 @@ fun SettingsScreen(
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(stringResource(R.string.settings_acknowledgments), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 Icon(
-                    Icons.Default.ChevronRight,
+                    Icons.AutoMirrored.Filled.KeyboardArrowRight,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
