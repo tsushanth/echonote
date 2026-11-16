@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Jazyk přepisu</string>
+    <string name="language_picker_close">Zavřít</string>
+    <string name="language_picker_intro">Odznaky vycházejí z testů na čtené řeči. Skutečné nahrávky s hlukem, přízvukem nebo nářečím jsou náročnější, takže čekejte více chyb, než naznačují čísla.</string>
+    <string name="language_section_supported">Podporované</string>
+    <string name="language_section_experimental">Experimentální: čekejte mnoho chyb</string>
+    <string name="language_section_bigger_phone">Vyžaduje výkonnější telefon</string>
+    <string name="language_section_not_yet">Zatím nepodporované</string>
+    <string name="language_badge_supported">Podporované</string>
+    <string name="language_badge_experimental">Experimentální</string>
+    <string name="language_accurate_size">Přesný: %1$s, stažení %2$d MB, jednou.</string>
+    <string name="language_accurate_size_large">Přesný: %1$s, stažení %2$d MB, jednou. Velké stahování: použijte Wi-Fi.</string>
+    <string name="language_fast_size">Rychlý: stažení %1$d MB, jednou.</string>
+    <string name="language_fast_unavailable">Pro tento jazyk není model Rychlý. Vždy se použije Přesný.</string>
+    <string name="language_fast_poor">Režim Rychlý není pro tento jazyk dostatečně přesný, proto se vždy použije Přesný.</string>
+    <string name="language_ram_smaller">Tento telefon má méně paměti, než nejlepší model potřebuje, proto se použije menší model a výsledky jsou méně přesné.</string>
+    <string name="language_ram_needs_bigger">Vyžaduje telefon s 6 GB paměti nebo více (%1$s, %2$d MB). Tento telefon jej nespustí.</string>
+    <string name="language_not_yet_closest">Zatím nepodporováno: v našem testu mělo %1$d %% chyb. Nejbližší dostupný jazyk: %2$s.</string>
+    <string name="language_not_yet_none">Zatím nepodporováno: v našem testu mělo %1$d %% chyb, což je pro užitečné použití příliš. Žádný blízký jazyk není k dispozici.</string>
+    <string name="settings_accurate_fast_unavailable">Pro jazyk %1$s není model Rychlý, proto se vždy použije Přesný (%2$s, stažení %3$d MB, jednou).</string>
+    <string name="settings_accurate_fast_poor">Režim Rychlý není pro jazyk %1$s dostatečně přesný, proto se vždy použije Přesný (%2$s, stažení %3$d MB, jednou).</string>
+    <string name="settings_accurate_needs_bigger">Jazyk %1$s vyžaduje telefon s 6 GB paměti nebo více (%2$s, %3$d MB). Tento telefon jej nespustí.</string>
+    <string name="settings_language_experimental_note">Jazyk %1$s je experimentální: v našem testu bylo asi %2$d %% špatně.</string>
+    <string name="language_dialect_warning">Jazyk %1$s funguje pro spisovnou (formální) řeč, například zprávy a přednášky. Běžná nářeční řeč je mnohem horší: v našem testu egyptského nářečí bylo špatně asi dvě třetiny slov.</string>
+    <string name="language_search_hint">Hledat jazyky</string>
+    <string name="language_search_no_match">Hledání neodpovídá žádný jazyk.</string>
+</resources>

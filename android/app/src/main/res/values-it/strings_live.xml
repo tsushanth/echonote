@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Trascrizione in diretta interrotta. La registrazione continua.</string>
     <string name="settings_live_transcript_title">Trascrizione in diretta durante la registrazione</string>
     <string name="settings_live_transcript_subtitle">Mostra le parole mentre parli. Usa più batteria. Richiede il modello Veloce della tua lingua (Android 10 o successivo).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Le parole in tempo reale non sono disponibili per questa lingua. La registrazione viene trascritta quando la fermi.</string>
 </resources>

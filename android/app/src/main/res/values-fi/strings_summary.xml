@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Tiivistä</string>
+    <string name="summary_title_key_points">Keskeiset kohdat</string>
+    <string name="summary_title_ai">Tiivistelmä</string>
+    <string name="summary_note_extracted">Litteraatista valitut lauseet</string>
+    <string name="summary_note_ai">Laitteella toimivan tekoälyn kirjoittama</string>
+    <string name="summary_working">Etsitään keskeisiä kohtia…</string>
+    <string name="summary_too_short">Tämä litteraatti on liian lyhyt tiivistettäväksi.</string>
+    <string name="summary_stale">Litteraatti muuttui näiden keskeisten kohtien luomisen jälkeen.</string>
+    <string name="summary_update">Päivitä</string>
+    <string name="summary_copy">Kopioi keskeiset kohdat</string>
+    <string name="summary_copied">Keskeiset kohdat kopioitu</string>
+    <string name="summary_hide">Piilota keskeiset kohdat</string>
+    <string name="summary_show">Näytä keskeiset kohdat</string>
+</resources>

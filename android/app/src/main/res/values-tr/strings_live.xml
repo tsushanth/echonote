@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Canlı transkript durdu. Kayıt devam ediyor.</string>
     <string name="settings_live_transcript_title">Kayıt sırasında canlı transkript</string>
     <string name="settings_live_transcript_subtitle">Siz konuşurken sözcükleri gösterir. Daha fazla pil kullanır. Dilinizin Hızlı modeli gerekir (Android 10 veya üzeri).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Bu dil için canlı sözcükler kullanılamıyor. Kaydınız durdurduğunuzda yazıya dökülür.</string>
 </resources>

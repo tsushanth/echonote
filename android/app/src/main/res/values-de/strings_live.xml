@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Live-Transkript beendet. Die Aufnahme läuft weiter.</string>
     <string name="settings_live_transcript_title">Live-Transkript während der Aufnahme</string>
     <string name="settings_live_transcript_subtitle">Zeigt Wörter beim Sprechen. Braucht mehr Akku. Benötigt das Schnell-Modell für deine Sprache (Android 10 oder neuer).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Live-Wörter sind für diese Sprache nicht verfügbar. Ihre Aufnahme wird transkribiert, wenn Sie stoppen.</string>
 </resources>

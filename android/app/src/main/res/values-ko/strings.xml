@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">라이선스 전문 보기</string>
     <string name="acknowledgments_nemo_desc">독일어, 스페인어, 프랑스어용 정확한 받아쓰기. CC BY 4.0 또는 Apache 2.0.</string>
     <string name="licenses_title">오픈소스 라이선스</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">ClearVoice 평가하기</string>
+    <string name="settings_send_feedback">의견 보내기</string>
+    <string name="recording_notification_title">녹음 중</string>
+    <string name="recording_notification_text">ClearVoice가 오디오를 녹음하고 있습니다</string>
+    <string name="recording_notification_stop">중지</string>
+    <string name="recording_channel_name">녹음</string>
+    <string name="recording_channel_description">녹음이 진행 중일 때 표시됩니다</string>
+    <string name="battery_opt_title">백그라운드 녹음</string>
+    <string name="battery_opt_message">화면이 꺼져 있어도 녹음이 계속되도록 ClearVoice의 배터리 최적화를 해제해 주세요. MIUI 기기에서는 보안 설정에서 자동 시작도 사용 설정하세요.</string>
+    <string name="battery_opt_open_settings">설정 열기</string>
+    <string name="battery_opt_dismiss">나중에</string>
+    <string name="recording_error_permission">오디오를 녹음하려면 마이크 권한이 필요합니다.</string>
+    <string name="widget_description">ClearVoice 위젯</string>
 </resources>

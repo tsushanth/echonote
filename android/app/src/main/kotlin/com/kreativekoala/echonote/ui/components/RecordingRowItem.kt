@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.components
 
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
@@ -78,7 +79,7 @@ fun RecordingRowItem(
                     color = colors.onSurface
                 )
                 Text(
-                    text = DateFormatting.formatRelativeDate(recording.dateCreated),
+                    text = DateFormatting.formatRelativeDate(LocalContext.current, recording.dateCreated),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Normal,
                     color = colors.onSurfaceVariant

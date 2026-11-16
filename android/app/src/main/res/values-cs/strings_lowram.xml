@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">Režim Přesný potřebuje více paměti, než má tento telefon, proto jazyk %1$s používá místo něj Rychlý. Označení mluvčích není k dispozici.</string>
+    <string name="settings_accurate_lowram_smaller">Tento telefon má méně paměti, než nejlepší model potřebuje, proto Přesný používá menší model (stažení %1$d MB, jednou). Je o něco méně přesný než na telefonech s větší pamětí. Označení mluvčích funguje dál.</string>
+</resources>

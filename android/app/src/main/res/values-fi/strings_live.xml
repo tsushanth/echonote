@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Reaaliaikainen litteraatti</string>
+    <string name="live_transcript_starting">Valmistellaan…</string>
+    <string name="live_transcript_listening">Kuunnellaan…</string>
+    <string name="live_transcript_no_model">Reaaliaikainen litteraatti tarvitsee Nopea-mallin. Suorita nopea litterointi kerran sen lataamiseksi. Äänitys jatkuu.</string>
+    <string name="live_transcript_not_for_language">Reaaliaikaiset sanat eivät ole saatavilla tälle kielelle. Äänite litteroidaan, kun pysäytät sen.</string>
+    <string name="live_transcript_unavailable">Reaaliaikainen litteraatti pysähtyi. Äänitys jatkuu.</string>
+    <string name="settings_live_transcript_title">Reaaliaikainen litteraatti äänityksen aikana</string>
+    <string name="settings_live_transcript_subtitle">Näyttää sanat puhuessasi. Kuluttaa enemmän akkua. Tarvitsee kielesi Nopea-mallin (Android 10 tai uudempi).</string>
+</resources>

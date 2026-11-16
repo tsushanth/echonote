@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">Transkrip langsung berhenti. Rakaman diteruskan.</string>
     <string name="settings_live_transcript_title">Transkrip langsung semasa merakam</string>
     <string name="settings_live_transcript_subtitle">Menunjukkan perkataan semasa anda bercakap. Guna lebih banyak bateri. Perlukan model Pantas untuk bahasa anda (Android 10 atau lebih baharu).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Perkataan langsung tidak tersedia untuk bahasa ini. Rakaman anda ditranskripsikan apabila anda berhenti.</string>
 </resources>

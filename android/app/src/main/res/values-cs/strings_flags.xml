@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="flags_setting_title">Označovat nejisté výrazy</string>
+    <string name="flags_setting_desc">Podtrhne slova, s nimiž druhá kontrola nesouhlasí. Vyžaduje kvalitu Přesný, jednorázové stažení asi 45 MB (model Rychlý) a prodlužuje zpracování. Běží ve vašem zařízení.</string>
+    <string name="flags_setting_unsupported">Pro jazyk %1$s není k dispozici, takže se neoznačuje žádné slovo.</string>
+    <string name="flags_a11y_unsure">nejisté</string>
+</resources>

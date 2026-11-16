@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Muokkaa litteraattia</string>
+    <string name="edit_title">Muokkaa tekstiä</string>
+    <string name="edit_blank">Teksti ei voi olla tyhjä</string>
+    <string name="edit_save">Tallenna</string>
+    <string name="edit_cancel">Peruuta</string>
+    <string name="edit_retranscribe_title">Korvataanko muokkauksesi?</string>
+    <string name="edit_retranscribe_body">Uudelleenlitterointi korvaa korjaamasi tekstin.</string>
+    <string name="edit_retranscribe_confirm">Litteroi uudelleen</string>
+</resources>

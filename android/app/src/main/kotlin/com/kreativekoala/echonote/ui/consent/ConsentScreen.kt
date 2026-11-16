@@ -1,5 +1,7 @@
 package com.kreativekoala.echonote.ui.consent
 
+import androidx.compose.ui.res.stringResource
+import com.kreativekoala.echonote.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -68,7 +70,7 @@ fun ConsentScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Help Improve Speech Recognition",
+                text = stringResource(R.string.consent_title),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
@@ -77,7 +79,7 @@ fun ConsentScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = "Voice recognition works best for widely-spoken languages. You can help train better models for more languages by sharing recordings you choose to transcribe.",
+                text = stringResource(R.string.consent_intro),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -92,20 +94,20 @@ fun ConsentScreen(
                 Column(modifier = Modifier.padding(20.dp)) {
                     ConsentPoint(
                         icon = Icons.Default.Mic,
-                        title = "What's shared",
-                        body = "The audio recording, its transcript, and the language it's in — only for recordings you choose to transcribe."
+                        title = stringResource(R.string.consent_shared_title),
+                        body = stringResource(R.string.consent_shared_body)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     ConsentPoint(
                         icon = Icons.Default.Language,
-                        title = "Why",
-                        body = "To help train speech-recognition models for more languages, including ones that are underserved today."
+                        title = stringResource(R.string.consent_why_title),
+                        body = stringResource(R.string.consent_why_body)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     ConsentPoint(
                         icon = Icons.Default.Lock,
-                        title = "Fully optional",
-                        body = "This is off by default. You can turn it off anytime in Settings, under the Privacy section."
+                        title = stringResource(R.string.consent_optional_title),
+                        body = stringResource(R.string.consent_optional_body)
                     )
                 }
             }
@@ -125,7 +127,7 @@ fun ConsentScreen(
             ) {
                 Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.height(20.dp))
                 Spacer(modifier = Modifier.height(0.dp).padding(end = 8.dp))
-                Text("Yes, I'll contribute", fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.consent_accept), fontWeight = FontWeight.SemiBold)
             }
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -140,7 +142,7 @@ fun ConsentScreen(
                     contentColor = MaterialTheme.colorScheme.onBackground
                 )
             ) {
-                Text("No thanks", fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.consent_decline), fontWeight = FontWeight.SemiBold)
             }
 
             Spacer(modifier = Modifier.height(24.dp))

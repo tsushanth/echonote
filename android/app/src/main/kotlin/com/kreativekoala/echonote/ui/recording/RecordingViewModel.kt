@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.recording
 
+import com.kreativekoala.echonote.util.DateFormatting
 import com.kreativekoala.echonote.service.Funnel
 import android.content.Context
 import android.content.Intent
@@ -100,7 +101,7 @@ class RecordingViewModel @Inject constructor(
         val dateFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault())
         val fileName = "Recording_${dateFormat.format(Date())}"
 
-        val defaultTitle = SimpleDateFormat("MMM d, yyyy h:mm a", Locale.getDefault()).format(Date())
+        val defaultTitle = DateFormatting.formatDateTime(System.currentTimeMillis())
         _recordingTitle.value = defaultTitle
 
         val filePath = recorderService.startRecording(

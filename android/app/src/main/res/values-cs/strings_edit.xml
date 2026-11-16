@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Upravit přepis</string>
+    <string name="edit_title">Upravit text</string>
+    <string name="edit_blank">Text nesmí být prázdný</string>
+    <string name="edit_save">Uložit</string>
+    <string name="edit_cancel">Zrušit</string>
+    <string name="edit_retranscribe_title">Nahradit vaše úpravy?</string>
+    <string name="edit_retranscribe_body">Opětovným přepisem se nahradí text, který jste opravili.</string>
+    <string name="edit_retranscribe_confirm">Přepsat znovu</string>
+</resources>

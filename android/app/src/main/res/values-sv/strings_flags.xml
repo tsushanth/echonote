@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="flags_setting_title">Markera osäkra ord</string>
+    <string name="flags_setting_desc">Understryker ord som en andra kontroll är oenig om. Kräver kvaliteten Exakt, en engångsnedladdning på cirka 45 MB (modellen Snabb) och ger längre bearbetningstid. Körs på din enhet.</string>
+    <string name="flags_setting_unsupported">Inte tillgängligt för %1$s, så inga ord markeras.</string>
+    <string name="flags_a11y_unsure">osäkert</string>
+</resources>

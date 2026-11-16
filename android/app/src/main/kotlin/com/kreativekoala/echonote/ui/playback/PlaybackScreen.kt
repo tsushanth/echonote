@@ -179,7 +179,7 @@ fun PlaybackScreen(
                     }
                     Box {
                         IconButton(onClick = { showMenu = true }) {
-                            Icon(Icons.Default.MoreVert, contentDescription = "More")
+                            Icon(Icons.Default.MoreVert, contentDescription = stringResource(R.string.cd_more))
                         }
                         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                             DropdownMenuItem(
@@ -273,15 +273,15 @@ fun PlaybackScreen(
                                     }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Export as text") },
+                                    text = { Text(stringResource(R.string.export_text)) },
                                     onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.TXT, context) }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Export as subtitles (SRT)") },
+                                    text = { Text(stringResource(R.string.export_srt)) },
                                     onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.SRT, context) }
                                 )
                                 DropdownMenuItem(
-                                    text = { Text("Export as web subtitles (VTT)") },
+                                    text = { Text(stringResource(R.string.export_vtt)) },
                                     onClick = { showMenu = false; viewModel.exportTranscript(ExportFormat.VTT, context) }
                                 )
                             }
@@ -342,7 +342,7 @@ fun PlaybackScreen(
             if (isTranscribing) {
                 item(key = "progress") {
                     TranscribingCard(
-                        status = transcriptionStatus ?: "Transcribing…",
+                        status = transcriptionStatus ?: stringResource(R.string.status_transcribing),
                         progress = transcriptionProgress,
                         partial = partialTranscript,
                         onReadAloud = { partialSnapshot = partialTranscript; listenTarget = LISTEN_PARTIAL }
@@ -363,13 +363,13 @@ fun PlaybackScreen(
                 item(key = "cta") {
                     Column(Modifier.padding(horizontal = 20.dp, vertical = 24.dp)) {
                         Text(
-                            text = "No transcript yet",
+                            text = stringResource(R.string.transcript_none_title),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onBackground
                         )
                         Spacer(Modifier.height(6.dp))
                         Text(
-                            text = "Transcribe on this phone to read, search and jump through the recording. Audio leaves the phone only if you turn on Contribute Voice Data in Settings.",
+                            text = stringResource(R.string.transcript_none_body),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -378,7 +378,7 @@ fun PlaybackScreen(
                         Button(onClick = viewModel::transcribe, shape = RoundedCornerShape(12.dp)) {
                             Icon(Icons.Default.TextFields, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(Modifier.width(8.dp))
-                            Text("Transcribe this recording")
+                            Text(stringResource(R.string.transcript_transcribe_this))
                         }
                     }
                 }
@@ -500,7 +500,7 @@ private fun TranscribingCard(
                     maxLines = 5
                 )
                 Spacer(Modifier.height(8.dp))
-                TextButton(onClick = onReadAloud) { Text("Read aloud so far") }
+                TextButton(onClick = onReadAloud) { Text(stringResource(R.string.listen_read_so_far)) }
             }
         }
     }

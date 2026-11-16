@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">Режиму Точний потрібно більше пам’яті, ніж є в цьому телефоні, тому для мови %1$s використовується Швидкий. Мітки мовців недоступні.</string>
+    <string name="settings_accurate_lowram_smaller">У цьому телефоні менше пам’яті, ніж потрібно найкращій моделі, тому Точний використовує меншу модель (завантаження %1$d МБ, один раз). Вона трохи менш точна, ніж на телефонах із більшою пам’яттю. Мітки мовців і далі працюють.</string>
+</resources>

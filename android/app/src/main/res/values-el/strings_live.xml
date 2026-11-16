@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Ζωντανή μεταγραφή</string>
+    <string name="live_transcript_starting">Προετοιμασία…</string>
+    <string name="live_transcript_listening">Ακρόαση…</string>
+    <string name="live_transcript_no_model">Η ζωντανή μεταγραφή χρειάζεται το μοντέλο Γρήγορη. Εκτελέστε μία φορά μια γρήγορη μεταγραφή για να ληφθεί. Η εγγραφή συνεχίζεται.</string>
+    <string name="live_transcript_not_for_language">Οι ζωντανές λέξεις δεν είναι διαθέσιμες για αυτή τη γλώσσα. Η εγγραφή σας μεταγράφεται όταν τη σταματήσετε.</string>
+    <string name="live_transcript_unavailable">Η ζωντανή μεταγραφή σταμάτησε. Η εγγραφή συνεχίζεται.</string>
+    <string name="settings_live_transcript_title">Ζωντανή μεταγραφή κατά την εγγραφή</string>
+    <string name="settings_live_transcript_subtitle">Εμφανίζει λέξεις καθώς μιλάτε. Καταναλώνει περισσότερη μπαταρία. Χρειάζεται το μοντέλο Γρήγορη για τη γλώσσα σας (Android 10 ή νεότερο).</string>
+</resources>

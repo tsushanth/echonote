@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Σύνοψη</string>
+    <string name="summary_title_key_points">Βασικά σημεία</string>
+    <string name="summary_title_ai">Σύνοψη</string>
+    <string name="summary_note_extracted">Προτάσεις επιλεγμένες από τη μεταγραφή</string>
+    <string name="summary_note_ai">Γραμμένο από τεχνητή νοημοσύνη στη συσκευή</string>
+    <string name="summary_working">Αναζήτηση βασικών σημείων…</string>
+    <string name="summary_too_short">Αυτή η μεταγραφή είναι πολύ σύντομη για σύνοψη.</string>
+    <string name="summary_stale">Η μεταγραφή άλλαξε μετά τη δημιουργία αυτών των βασικών σημείων.</string>
+    <string name="summary_update">Ενημέρωση</string>
+    <string name="summary_copy">Αντιγραφή βασικών σημείων</string>
+    <string name="summary_copied">Τα βασικά σημεία αντιγράφηκαν</string>
+    <string name="summary_hide">Απόκρυψη βασικών σημείων</string>
+    <string name="summary_show">Εμφάνιση βασικών σημείων</string>
+</resources>

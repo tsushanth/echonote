@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">Tingnan ang buong teksto ng mga lisensya</string>
     <string name="acknowledgments_nemo_desc">Tumpak na transkripsyon para sa Aleman, Espanyol, at Pranses. CC BY 4.0 o Apache 2.0.</string>
     <string name="licenses_title">Mga lisensya ng open source</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">I-rate ang ClearVoice</string>
+    <string name="settings_send_feedback">Magpadala ng feedback</string>
+    <string name="recording_notification_title">Kasalukuyang nagre-record</string>
+    <string name="recording_notification_text">Nagre-record ng audio ang ClearVoice</string>
+    <string name="recording_notification_stop">Ihinto</string>
+    <string name="recording_channel_name">Pagre-record</string>
+    <string name="recording_channel_description">Ipinapakita kapag may kasalukuyang recording</string>
+    <string name="battery_opt_title">Pagre-record sa Background</string>
+    <string name="battery_opt_message">Para magpatuloy ang mga recording kapag patay ang screen, i-disable ang battery optimization para sa ClearVoice. Sa mga MIUI device, i-enable din ang Autostart sa mga setting ng Seguridad.</string>
+    <string name="battery_opt_open_settings">Buksan ang Mga Setting</string>
+    <string name="battery_opt_dismiss">Mamaya</string>
+    <string name="recording_error_permission">Kailangan ang pahintulot sa mikropono para mag-record ng audio.</string>
+    <string name="widget_description">Widget ng ClearVoice</string>
 </resources>

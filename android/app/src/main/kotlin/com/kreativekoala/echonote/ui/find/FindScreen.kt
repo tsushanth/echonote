@@ -358,7 +358,7 @@ private fun FindResults(ui: FindUiState, onOpen: (FindHit) -> Unit) {
             val time = stamp(hit.sentence.startMs)
             val openHint = stringResource(R.string.find_result_open_hint, time ?: stringResource(R.string.find_no_timestamp))
             val description = stringResource(
-                R.string.find_result_item, hit.title, DateFormatting.formatRelativeDate(hit.dateCreated),
+                R.string.find_result_item, hit.title, DateFormatting.formatRelativeDate(LocalContext.current, hit.dateCreated),
                 time ?: stringResource(R.string.find_no_timestamp), hit.sentence.text
             )
             Surface(
@@ -385,7 +385,7 @@ private fun ResultHeader(title: String, date: Long, time: String?, speaker: Int?
         Column(Modifier.weight(1f)) {
             Text(title, style = MaterialTheme.typography.titleSmall, maxLines = 1, color = MaterialTheme.colorScheme.onSurface)
             Text(
-                DateFormatting.formatRelativeDate(date) + (speaker?.let { "  ·  " + stringResource(R.string.find_speaker, it + 1) } ?: ""),
+                DateFormatting.formatRelativeDate(LocalContext.current, date) + (speaker?.let { "  ·  " + stringResource(R.string.find_speaker, it + 1) } ?: ""),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -433,7 +433,7 @@ private fun AskResults(
         itemsIndexed(ui.passages, key = { _, p -> p.recordingId + ":" + p.best.index }) { index, p ->
             val time = stamp(p.best.startMs)
             val description = stringResource(
-                R.string.ask_passage_item, p.title, DateFormatting.formatRelativeDate(p.dateCreated),
+                R.string.ask_passage_item, p.title, DateFormatting.formatRelativeDate(LocalContext.current, p.dateCreated),
                 time ?: stringResource(R.string.find_no_timestamp), p.text
             )
             val openHint = stringResource(R.string.ask_open_passage, time ?: stringResource(R.string.find_no_timestamp))

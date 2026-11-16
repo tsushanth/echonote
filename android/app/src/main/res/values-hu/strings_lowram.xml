@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">A Pontos módhoz több memória kell, mint amennyi ebben a telefonban van, ezért a(z) %1$s nyelv helyette a Gyorsat használja. A beszélőcímkék nem érhetők el.</string>
+    <string name="settings_accurate_lowram_smaller">Ennek a telefonnak kevesebb memóriája van, mint amennyit a legjobb modell igényel, ezért a Pontos kisebb modellt használ (%1$d MB letöltés, egyszer). Kicsit kevésbé pontos, mint több memóriás telefonokon. A beszélőcímkék továbbra is működnek.</string>
+</resources>

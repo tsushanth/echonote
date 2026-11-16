@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">Lihat teks lisensi lengkap</string>
     <string name="acknowledgments_nemo_desc">Transkripsi akurat untuk bahasa Jerman, Spanyol, dan Prancis. CC BY 4.0 atau Apache 2.0.</string>
     <string name="licenses_title">Lisensi sumber terbuka</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">Beri nilai ClearVoice</string>
+    <string name="settings_send_feedback">Kirim masukan</string>
+    <string name="recording_notification_title">Sedang merekam</string>
+    <string name="recording_notification_text">ClearVoice sedang merekam audio</string>
+    <string name="recording_notification_stop">Hentikan</string>
+    <string name="recording_channel_name">Perekaman</string>
+    <string name="recording_channel_description">Muncul saat rekaman sedang berlangsung</string>
+    <string name="battery_opt_title">Perekaman di latar belakang</string>
+    <string name="battery_opt_message">Agar rekaman terus berjalan saat layar mati, nonaktifkan optimalisasi baterai untuk ClearVoice. Di perangkat MIUI, aktifkan juga Mulai otomatis di pengaturan keamanan.</string>
+    <string name="battery_opt_open_settings">Buka Pengaturan</string>
+    <string name="battery_opt_dismiss">Nanti</string>
+    <string name="recording_error_permission">Izin mikrofon diperlukan untuk merekam audio.</string>
+    <string name="widget_description">Widget ClearVoice</string>
 </resources>

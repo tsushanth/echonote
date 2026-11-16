@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Мова розшифрування</string>
+    <string name="language_picker_close">Закрити</string>
+    <string name="language_picker_intro">Позначки ґрунтуються на тестах із прочитаним мовленням. Справжні записи із шумом, акцентами чи діалектами складніші, тож очікуйте більше помилок, ніж показують цифри.</string>
+    <string name="language_section_supported">Підтримується</string>
+    <string name="language_section_experimental">Експериментально: очікуйте багато помилок</string>
+    <string name="language_section_bigger_phone">Потрібен потужніший телефон</string>
+    <string name="language_section_not_yet">Ще не підтримується</string>
+    <string name="language_badge_supported">Підтримується</string>
+    <string name="language_badge_experimental">Експериментально</string>
+    <string name="language_accurate_size">Точний: %1$s, завантаження %2$d МБ, один раз.</string>
+    <string name="language_accurate_size_large">Точний: %1$s, завантаження %2$d МБ, один раз. Велике завантаження: використовуйте Wi-Fi.</string>
+    <string name="language_fast_size">Швидкий: завантаження %1$d МБ, один раз.</string>
+    <string name="language_fast_unavailable">Для цієї мови немає моделі Швидкий. Завжди використовується Точний.</string>
+    <string name="language_fast_poor">Режим Швидкий недостатньо точний для цієї мови, тому завжди використовується Точний.</string>
+    <string name="language_ram_smaller">У цьому телефоні менше пам’яті, ніж потрібно найкращій моделі, тому використовується менша модель, а результати менш точні.</string>
+    <string name="language_ram_needs_bigger">Потрібен телефон із 6 ГБ пам’яті або більше (%1$s, %2$d МБ). Цей телефон не може її запустити.</string>
+    <string name="language_not_yet_closest">Ще не підтримується: у нашому тесті було %1$d %% помилок. Найближча доступна: %2$s.</string>
+    <string name="language_not_yet_none">Ще не підтримується: у нашому тесті було %1$d %% помилок, надто багато, щоб бути корисною. Близької доступної мови немає.</string>
+    <string name="settings_accurate_fast_unavailable">Для мови %1$s немає моделі Швидкий, тому завжди використовується Точний (%2$s, завантаження %3$d МБ, один раз).</string>
+    <string name="settings_accurate_fast_poor">Режим Швидкий недостатньо точний для мови %1$s, тому завжди використовується Точний (%2$s, завантаження %3$d МБ, один раз).</string>
+    <string name="settings_accurate_needs_bigger">Мова %1$s потребує телефона з 6 ГБ пам’яті або більше (%2$s, %3$d МБ). Цей телефон не може її запустити.</string>
+    <string name="settings_language_experimental_note">Мова %1$s експериментальна: у нашому тесті приблизно %2$d %% вийшло хибно.</string>
+    <string name="language_dialect_warning">Мова %1$s працює для стандартного (формального) мовлення, наприклад новин і лекцій. Повсякденне діалектне мовлення значно гірше: у нашому тесті з єгипетським діалектом близько двох третин слів були хибні.</string>
+    <string name="language_search_hint">Пошук мов</string>
+    <string name="language_search_no_match">Жодна мова не відповідає вашому пошуку.</string>
+</resources>

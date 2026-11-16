@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Розшифровка наживо</string>
+    <string name="live_transcript_starting">Підготовка…</string>
+    <string name="live_transcript_listening">Слухаю…</string>
+    <string name="live_transcript_no_model">Для розшифровки наживо потрібна модель Швидкий. Один раз запустіть швидке розшифрування, щоб її завантажити. Запис триває.</string>
+    <string name="live_transcript_not_for_language">Слова наживо недоступні для цієї мови. Запис розшифровується, коли ви його зупините.</string>
+    <string name="live_transcript_unavailable">Розшифровку наживо зупинено. Запис триває.</string>
+    <string name="settings_live_transcript_title">Розшифровка наживо під час запису</string>
+    <string name="settings_live_transcript_subtitle">Показує слова, поки ви говорите. Витрачає більше заряду. Потрібна модель Швидкий для вашої мови (Android 10 або новіший).</string>
+</resources>

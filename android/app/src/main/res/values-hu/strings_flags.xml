@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="flags_setting_title">Bizonytalan szavak jelölése</string>
+    <string name="flags_setting_desc">Aláhúzza azokat a szavakat, amelyekkel egy második ellenőrzés nem ért egyet. Pontos minőséget, egyszeri, kb. 45 MB letöltést (a Gyors modell) igényel, és növeli a feldolgozási időt. Az eszközödön fut.</string>
+    <string name="flags_setting_unsupported">A(z) %1$s nyelven nem érhető el, ezért nem jelöl szavakat.</string>
+    <string name="flags_a11y_unsure">bizonytalan</string>
+</resources>

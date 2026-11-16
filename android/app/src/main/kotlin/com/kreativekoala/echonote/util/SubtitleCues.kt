@@ -41,7 +41,8 @@ private fun timestamp(ms: Long, separator: Char): String {
     val m = (ms % 3_600_000) / 60_000
     val s = (ms % 60_000) / 1000
     val millis = ms % 1000
-    return "%02d:%02d:%02d%c%03d".format(h, m, s, separator, millis)
+    // Locale.ROOT: subtitle files must carry ASCII digits whatever the phone language (ar, fa, hi digit sets would break players)
+    return String.format(java.util.Locale.ROOT, "%02d:%02d:%02d%c%03d", h, m, s, separator, millis)
 }
 
 fun List<SubtitleCue>.toSrt(): String = buildString {

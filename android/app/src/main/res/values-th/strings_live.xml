@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">ถอดเสียงสดหยุดแล้ว การบันทึกยังคงดำเนินต่อไป</string>
     <string name="settings_live_transcript_title">ถอดเสียงสดขณะบันทึก</string>
     <string name="settings_live_transcript_subtitle">แสดงคำขณะที่คุณพูด ใช้แบตเตอรี่มากขึ้น ต้องมีโมเดลแบบเร็วของภาษาคุณ (Android 10 ขึ้นไป)</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">คำแบบสดไม่พร้อมใช้งานสำหรับภาษานี้ การบันทึกของคุณจะถูกถอดเสียงเมื่อคุณหยุด</string>
 </resources>

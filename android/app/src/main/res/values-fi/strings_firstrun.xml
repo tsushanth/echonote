@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Litterointi kielellä: %1$s</string>
+    <string name="first_run_language_body">Jokainen kieli ladataan kerran, ja sen jälkeen litterointi tapahtuu puhelimellasi ilman internetiä.</string>
+    <string name="first_run_language_change">Vaihda</string>
+    <string name="first_run_language_ok">Oikein</string>
+    <string name="first_run_engine_hint">Kielelle %1$s tila Tarkka tekee paljon vähemmän virheitä: testissämme noin %3$d %% virheitä, kun Nopea-tilassa %2$d %%. Lataus on %4$d Mt, kerran.</string>
+    <string name="first_run_engine_use">Käytä Tarkkaa</string>
+    <string name="first_run_engine_on">Tarkka on päällä. Se lataa %1$d Mt ensimmäisellä litterointikerralla, kerran.</string>
+</resources>

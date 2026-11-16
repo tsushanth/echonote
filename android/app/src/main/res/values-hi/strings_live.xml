@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">लाइव ट्रांसक्रिप्ट रुक गया। रिकॉर्डिंग जारी है।</string>
     <string name="settings_live_transcript_title">रिकॉर्डिंग के दौरान लाइव ट्रांसक्रिप्ट</string>
     <string name="settings_live_transcript_subtitle">बोलते समय शब्द दिखाता है। ज़्यादा बैटरी लगती है। आपकी भाषा के तेज़ मॉडल की ज़रूरत है (Android 10 या नया)।</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">इस भाषा के लिए लाइव शब्द उपलब्ध नहीं हैं। आपकी रिकॉर्डिंग रोकने पर ट्रांसक्राइब की जाती है।</string>
 </resources>

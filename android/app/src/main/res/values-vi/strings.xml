@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">Xem toàn văn giấy phép</string>
     <string name="acknowledgments_nemo_desc">Chép lời chính xác cho tiếng Đức, Tây Ban Nha và Pháp. CC BY 4.0 hoặc Apache 2.0.</string>
     <string name="licenses_title">Giấy phép nguồn mở</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">Đánh giá ClearVoice</string>
+    <string name="settings_send_feedback">Gửi phản hồi</string>
+    <string name="recording_notification_title">Đang ghi âm</string>
+    <string name="recording_notification_text">ClearVoice đang ghi âm</string>
+    <string name="recording_notification_stop">Dừng</string>
+    <string name="recording_channel_name">Ghi âm</string>
+    <string name="recording_channel_description">Hiển thị khi đang ghi âm</string>
+    <string name="battery_opt_title">Ghi âm nền</string>
+    <string name="battery_opt_message">Để bản ghi âm tiếp tục chạy khi màn hình tắt, hãy tắt tối ưu hóa pin cho ClearVoice. Trên thiết bị MIUI, hãy bật thêm Tự khởi động trong cài đặt bảo mật.</string>
+    <string name="battery_opt_open_settings">Mở Cài đặt</string>
+    <string name="battery_opt_dismiss">Để sau</string>
+    <string name="recording_error_permission">Cần quyền micrô để ghi âm.</string>
+    <string name="widget_description">Tiện ích ClearVoice</string>
 </resources>

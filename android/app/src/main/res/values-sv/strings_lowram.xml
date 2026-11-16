@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">Exakt kräver mer minne än den här telefonen har, så %1$s använder Snabb i stället. Talaretiketter är inte tillgängliga.</string>
+    <string name="settings_accurate_lowram_smaller">Den här telefonen har mindre minne än den bästa modellen behöver, så Exakt använder en mindre modell (%1$d MB nedladdning, en gång). Den är lite mindre exakt än på telefoner med mer minne. Talaretiketter fungerar fortfarande.</string>
+</resources>

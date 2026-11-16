@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Élő átirat</string>
+    <string name="live_transcript_starting">Előkészítés…</string>
+    <string name="live_transcript_listening">Figyelés…</string>
+    <string name="live_transcript_no_model">Az élő átirathoz a Gyors modell szükséges. Futtass egyszer gyors átírást a letöltéséhez. A felvétel folytatódik.</string>
+    <string name="live_transcript_not_for_language">Az élő szavak nem érhetők el ezen a nyelven. A felvétel leállításkor kerül átírásra.</string>
+    <string name="live_transcript_unavailable">Az élő átirat leállt. A felvétel folytatódik.</string>
+    <string name="settings_live_transcript_title">Élő átirat felvétel közben</string>
+    <string name="settings_live_transcript_subtitle">Beszéd közben megjeleníti a szavakat. Több akkumulátort használ. A nyelvedhez a Gyors modell szükséges (Android 10 vagy újabb).</string>
+</resources>

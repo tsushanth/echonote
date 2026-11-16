@@ -7,4 +7,6 @@
     <string name="live_transcript_unavailable">La transcripción en vivo se detuvo. La grabación continúa.</string>
     <string name="settings_live_transcript_title">Transcripción en vivo al grabar</string>
     <string name="settings_live_transcript_subtitle">Muestra las palabras mientras hablas. Usa más batería. Necesita el modelo Rápido de tu idioma (Android 10 o superior).</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="live_transcript_not_for_language">Las palabras en directo no están disponibles para este idioma. Tu grabación se transcribe cuando la detengas.</string>
 </resources>

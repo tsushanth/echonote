@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Živý přepis</string>
+    <string name="live_transcript_starting">Připravuje se…</string>
+    <string name="live_transcript_listening">Poslouchá…</string>
+    <string name="live_transcript_no_model">Živý přepis vyžaduje model Rychlý. Jednou spusťte rychlý přepis, aby se stáhl. Nahrávání pokračuje.</string>
+    <string name="live_transcript_not_for_language">Živá slova nejsou pro tento jazyk k dispozici. Nahrávka se přepíše po zastavení.</string>
+    <string name="live_transcript_unavailable">Živý přepis se zastavil. Nahrávání pokračuje.</string>
+    <string name="settings_live_transcript_title">Živý přepis během nahrávání</string>
+    <string name="settings_live_transcript_subtitle">Zobrazuje slova při mluvení. Spotřebuje více baterie. Vyžaduje model Rychlý pro váš jazyk (Android 10 nebo novější).</string>
+</resources>

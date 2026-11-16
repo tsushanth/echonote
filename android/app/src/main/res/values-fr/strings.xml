@@ -217,4 +217,18 @@
     <string name="acknowledgments_view_licenses">Afficher les textes complets des licences</string>
     <string name="acknowledgments_nemo_desc">Transcription précise pour l’allemand, l’espagnol et le français. CC BY 4.0 ou Apache 2.0.</string>
     <string name="licenses_title">Licences open source</string>
+    <!-- Machine translation, needs native-speaker review. -->
+    <string name="settings_rate_app">Noter ClearVoice</string>
+    <string name="settings_send_feedback">Envoyer un commentaire</string>
+    <string name="recording_notification_title">Enregistrement en cours</string>
+    <string name="recording_notification_text">ClearVoice enregistre du son</string>
+    <string name="recording_notification_stop">Arrêter</string>
+    <string name="recording_channel_name">Enregistrement</string>
+    <string name="recording_channel_description">S\'affiche pendant un enregistrement</string>
+    <string name="battery_opt_title">Enregistrement en arrière-plan</string>
+    <string name="battery_opt_message">Pour que les enregistrements continuent écran éteint, désactivez l\'optimisation de la batterie pour ClearVoice. Sur les appareils MIUI, activez aussi le démarrage automatique dans les paramètres de sécurité.</string>
+    <string name="battery_opt_open_settings">Ouvrir les paramètres</string>
+    <string name="battery_opt_dismiss">Plus tard</string>
+    <string name="recording_error_permission">L\'autorisation du micro est nécessaire pour enregistrer du son.</string>
+    <string name="widget_description">Widget ClearVoice</string>
 </resources>

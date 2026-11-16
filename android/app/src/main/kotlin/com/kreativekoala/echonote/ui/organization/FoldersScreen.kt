@@ -1,5 +1,6 @@
 package com.kreativekoala.echonote.ui.organization
 
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -202,7 +203,7 @@ fun FoldersScreen(
                                 )
                             }
                             Icon(
-                                Icons.Default.ChevronRight,
+                                Icons.AutoMirrored.Filled.KeyboardArrowRight,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
