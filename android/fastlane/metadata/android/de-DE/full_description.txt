@@ -13,7 +13,7 @@ Entwickelt für:
 Voice-First-Funktionen
 • Hochwertige Audioaufnahme im M4A-Format (AAC)
 • Transkription auf dem Gerät – funktioniert ohne Internet
-• Intelligente Organisation mit automatisch generierten Titeln
+• Aufnahmen erhalten automatisch einen Titel (nach Datum oder, wenn Sie es einschalten, nach Ort)
 • Durchsuchen Sie alle Aufzeichnungen anhand des Transkriptinhalts
 • Exportieren Sie Audio oder Text in mehreren Formaten
 
@@ -21,19 +21,18 @@ Accessibility-First-Workflow
 • Zum Erstellen oder Organisieren von Notizen ist keine Eingabe erforderlich
 • Sprachsuche in Ihrer gesamten Aufnahmebibliothek
 • Funktioniert mit Bildschirmleseprogrammen für blinde und sehbehinderte Benutzer
-• Freihändige Wiedergabesteuerung
 
 Aufnahmequalität
 • Mono- und Stereoaufnahme
 • Voreinstellungen für niedrige, mittlere, hohe und maximale Qualität
-• Echtzeitüberwachung während der Aufnahme
+• Live-Wellenform während der Aufnahme
 
 Organisation
 • Ordner für Projekte, Kurse oder Themen
 • Favoriten für den schnellen Zugriff
 
 Sprachen, Listen, Find und Ask
-• Transkribieren Sie in 41 Sprachen. Jede Sprache wird einmal heruntergeladen und läuft auf Ihrem Telefon; einige, etwa Arabisch, sind als experimentell gekennzeichnet
+• Transkribieren Sie in 41 Sprachen. Jede Sprache wird einmal heruntergeladen und läuft auf Ihrem Telefon; einige, etwa Arabisch, sind als experimentell gekennzeichnet. Die Transkriptionssprache entspricht anfangs der Sprache Ihres Telefons.
 • Listen: Lassen Sie sich Kernpunkte, einen Absatz oder das ganze Transkript von einer auf Ihrem Telefon installierten Stimme vorlesen, mit Geschwindigkeitsregelung
 • Find: Durchsuchen Sie alle Transkripte per Tastatur oder Sprache und springen Sie zur genauen Stelle im Audio (die Sprachsuche erfordert Android 13 oder neuer)
 • Ask: Sehen Sie die Passagen, die Ihre Frage am wahrscheinlichsten beantworten, zitiert aus Ihren Transkripten (es findet Passagen, schreibt aber keine Antwort)
