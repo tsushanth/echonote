@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Редагувати розшифровку</string>
+    <string name="edit_title">Редагувати текст</string>
+    <string name="edit_blank">Текст не може бути порожнім</string>
+    <string name="edit_save">Зберегти</string>
+    <string name="edit_cancel">Скасувати</string>
+    <string name="edit_retranscribe_title">Замінити ваші правки?</string>
+    <string name="edit_retranscribe_body">Повторне розшифрування замінює текст, який ви виправили.</string>
+    <string name="edit_retranscribe_confirm">Розшифрувати знову</string>
+</resources>

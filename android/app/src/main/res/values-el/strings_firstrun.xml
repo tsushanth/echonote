@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Μεταγραφή στα: %1$s</string>
+    <string name="first_run_language_body">Κάθε γλώσσα λαμβάνεται μία φορά και μετά μεταγράφεται στο τηλέφωνό σας χωρίς διαδίκτυο.</string>
+    <string name="first_run_language_change">Αλλαγή</string>
+    <string name="first_run_language_ok">Σωστό</string>
+    <string name="first_run_engine_hint">Για τη γλώσσα %1$s, η λειτουργία Ακριβής κάνει πολύ λιγότερα λάθη: περίπου %3$d%% λάθη έναντι %2$d%% της λειτουργίας Γρήγορη στη δοκιμή μας. Η λήψη είναι %4$d MB, μία φορά.</string>
+    <string name="first_run_engine_use">Χρήση Ακριβούς</string>
+    <string name="first_run_engine_on">Η λειτουργία Ακριβής είναι ενεργή. Λαμβάνει %1$d MB την πρώτη φορά που θα κάνετε μεταγραφή, μία φορά.</string>
+</resources>

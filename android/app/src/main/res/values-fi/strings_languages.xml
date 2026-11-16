@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Litterointikieli</string>
+    <string name="language_picker_close">Sulje</string>
+    <string name="language_picker_intro">Merkit perustuvat luetun puheen testeihin. Todelliset äänitteet, joissa on melua, korostuksia tai murteita, ovat vaikeampia, joten odota enemmän virheitä kuin luvut antavat ymmärtää.</string>
+    <string name="language_section_supported">Tuetut</string>
+    <string name="language_section_experimental">Kokeellinen: odota paljon virheitä</string>
+    <string name="language_section_bigger_phone">Tarvitsee tehokkaamman puhelimen</string>
+    <string name="language_section_not_yet">Ei vielä tuettu</string>
+    <string name="language_badge_supported">Tuettu</string>
+    <string name="language_badge_experimental">Kokeellinen</string>
+    <string name="language_accurate_size">Tarkka: %1$s, lataus %2$d Mt, kerran.</string>
+    <string name="language_accurate_size_large">Tarkka: %1$s, lataus %2$d Mt, kerran. Suuri lataus: käytä Wi-Fiä.</string>
+    <string name="language_fast_size">Nopea: lataus %1$d Mt, kerran.</string>
+    <string name="language_fast_unavailable">Tälle kielelle ei ole Nopea-mallia. Käytössä on aina Tarkka.</string>
+    <string name="language_fast_poor">Nopea ei ole tälle kielelle riittävän tarkka, joten käytössä on aina Tarkka.</string>
+    <string name="language_ram_smaller">Tässä puhelimessa on vähemmän muistia kuin parhaalle mallille tarvitaan, joten käytetään pienempää mallia ja tulokset ovat vähemmän tarkkoja.</string>
+    <string name="language_ram_needs_bigger">Vaatii puhelimen, jossa on vähintään 6 Gt muistia (%1$s, %2$d Mt). Tämä puhelin ei voi suorittaa sitä.</string>
+    <string name="language_not_yet_closest">Ei vielä tuettu: testissämme virheitä oli %1$d %%. Lähin saatavilla oleva: %2$s.</string>
+    <string name="language_not_yet_none">Ei vielä tuettu: testissämme virheitä oli %1$d %%, liian paljon ollakseen hyödyllinen. Lähellä olevaa kieltä ei ole saatavilla.</string>
+    <string name="settings_accurate_fast_unavailable">Kielelle %1$s ei ole Nopea-mallia, joten käytössä on aina Tarkka (%2$s, lataus %3$d Mt, kerran).</string>
+    <string name="settings_accurate_fast_poor">Nopea ei ole kielelle %1$s riittävän tarkka, joten käytössä on aina Tarkka (%2$s, lataus %3$d Mt, kerran).</string>
+    <string name="settings_accurate_needs_bigger">Kieli %1$s vaatii puhelimen, jossa on vähintään 6 Gt muistia (%2$s, %3$d Mt). Tämä puhelin ei voi suorittaa sitä.</string>
+    <string name="settings_language_experimental_note">Kieli %1$s on kokeellinen: testissämme noin %2$d %% tuli väärin.</string>
+    <string name="language_dialect_warning">Kieli %1$s toimii yleiskielisellä (muodollisella) puheella, kuten uutisilla ja luennoilla. Arkinen murrepuhe on paljon huonompaa: egyptiläisen murteen testissämme noin kaksi kolmasosaa sanoista meni väärin.</string>
+    <string name="language_search_hint">Hae kieliä</string>
+    <string name="language_search_no_match">Mikään kieli ei vastaa hakuasi.</string>
+</resources>

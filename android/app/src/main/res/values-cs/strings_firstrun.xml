@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Přepis v jazyce: %1$s</string>
+    <string name="first_run_language_body">Každý jazyk se stáhne jednou a poté se přepisuje ve vašem telefonu bez internetu.</string>
+    <string name="first_run_language_change">Změnit</string>
+    <string name="first_run_language_ok">Souhlasí</string>
+    <string name="first_run_engine_hint">Pro jazyk %1$s dělá režim Přesný mnohem méně chyb: v našem testu asi %3$d %% chyb oproti %2$d %% u režimu Rychlý. Stahuje se jednou, %4$d MB.</string>
+    <string name="first_run_engine_use">Použít Přesný</string>
+    <string name="first_run_engine_on">Režim Přesný je zapnutý. Při prvním přepisu se jednou stáhne %1$d MB.</string>
+</resources>

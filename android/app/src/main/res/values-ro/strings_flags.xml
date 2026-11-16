@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="flags_setting_title">Marchează cuvintele nesigure</string>
+    <string name="flags_setting_desc">Subliniază cuvintele cu care o a doua verificare nu este de acord. Necesită calitatea Precis, o descărcare unică de aproximativ 45 MB (modelul Rapid) și adaugă timp de procesare. Rulează pe dispozitivul tău.</string>
+    <string name="flags_setting_unsupported">Nu este disponibil pentru %1$s, deci nu se marchează niciun cuvânt.</string>
+    <string name="flags_a11y_unsure">nesigur</string>
+</resources>

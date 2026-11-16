@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Átírás ezen a nyelven: %1$s</string>
+    <string name="first_run_language_body">Minden nyelv egyszer töltődik le, utána internet nélkül, a telefonodon történik az átírás.</string>
+    <string name="first_run_language_change">Módosítás</string>
+    <string name="first_run_language_ok">Rendben</string>
+    <string name="first_run_engine_hint">A(z) %1$s nyelven a Pontos mód sokkal kevesebb hibát vét: tesztünkben kb. %3$d%% hiba a Gyors mód %2$d%%-ával szemben. Egyszeri, %4$d MB letöltés.</string>
+    <string name="first_run_engine_use">Pontos használata</string>
+    <string name="first_run_engine_on">A Pontos mód be van kapcsolva. Az első átíráskor egyszer letölt %1$d MB-ot.</string>
+</resources>

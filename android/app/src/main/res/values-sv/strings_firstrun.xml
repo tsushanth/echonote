@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Transkriberar på %1$s</string>
+    <string name="first_run_language_body">Varje språk laddas ned en gång och transkriberas sedan på din telefon utan internet.</string>
+    <string name="first_run_language_change">Ändra</string>
+    <string name="first_run_language_ok">Ser rätt ut</string>
+    <string name="first_run_engine_hint">För %1$s gör Exakt mycket färre fel: ungefär %3$d %% fel jämfört med %2$d %% för Snabb i vårt test. Det är en nedladdning på %4$d MB, en gång.</string>
+    <string name="first_run_engine_use">Använd Exakt</string>
+    <string name="first_run_engine_on">Exakt är på. Det laddar ned %1$d MB första gången du transkriberar, en gång.</string>
+</resources>

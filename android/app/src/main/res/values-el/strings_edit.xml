@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Επεξεργασία μεταγραφής</string>
+    <string name="edit_title">Επεξεργασία κειμένου</string>
+    <string name="edit_blank">Το κείμενο δεν μπορεί να είναι κενό</string>
+    <string name="edit_save">Αποθήκευση</string>
+    <string name="edit_cancel">Ακύρωση</string>
+    <string name="edit_retranscribe_title">Αντικατάσταση των αλλαγών σας;</string>
+    <string name="edit_retranscribe_body">Η νέα μεταγραφή αντικαθιστά το κείμενο που διορθώσατε.</string>
+    <string name="edit_retranscribe_confirm">Νέα μεταγραφή</string>
+</resources>

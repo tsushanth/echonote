@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">Modul Precis are nevoie de mai multă memorie decât are acest telefon, așa că %1$s folosește Rapid în loc. Etichetele de vorbitori nu sunt disponibile.</string>
+    <string name="settings_accurate_lowram_smaller">Acest telefon are mai puțină memorie decât are nevoie cel mai bun model, așa că Precis folosește un model mai mic (descărcare de %1$d MB, o singură dată). Este puțin mai puțin precis decât pe telefoanele cu mai multă memorie. Etichetele de vorbitori funcționează în continuare.</string>
+</resources>

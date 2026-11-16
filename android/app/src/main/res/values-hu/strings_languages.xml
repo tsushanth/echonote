@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Átírás nyelve</string>
+    <string name="language_picker_close">Bezárás</string>
+    <string name="language_picker_intro">A jelvények felolvasott beszéden végzett tesztekből származnak. A zajos, akcentusos vagy nyelvjárásos valódi felvételek nehezebbek, ezért a számoknál több hibára számíts.</string>
+    <string name="language_section_supported">Támogatott</string>
+    <string name="language_section_experimental">Kísérleti: sok hibára számíts</string>
+    <string name="language_section_bigger_phone">Erősebb telefont igényel</string>
+    <string name="language_section_not_yet">Még nem támogatott</string>
+    <string name="language_badge_supported">Támogatott</string>
+    <string name="language_badge_experimental">Kísérleti</string>
+    <string name="language_accurate_size">Pontos: %1$s, %2$d MB letöltés, egyszer.</string>
+    <string name="language_accurate_size_large">Pontos: %1$s, %2$d MB letöltés, egyszer. Nagy letöltés: használj Wi-Fit.</string>
+    <string name="language_fast_size">Gyors: %1$d MB letöltés, egyszer.</string>
+    <string name="language_fast_unavailable">Ehhez a nyelvhez nincs Gyors modell. Mindig a Pontos módot használja.</string>
+    <string name="language_fast_poor">A Gyors mód nem elég pontos ehhez a nyelvhez, ezért mindig a Pontos módot használja.</string>
+    <string name="language_ram_smaller">Ennek a telefonnak kevesebb memóriája van, mint amennyit a legjobb modell igényel, ezért kisebb modellt használ, és az eredmények kevésbé pontosak.</string>
+    <string name="language_ram_needs_bigger">6 GB vagy több memóriás telefont igényel (%1$s, %2$d MB). Ez a telefon nem tudja futtatni.</string>
+    <string name="language_not_yet_closest">Még nem támogatott: tesztünkben %1$d%% hibát ért el. Legközelebbi elérhető: %2$s.</string>
+    <string name="language_not_yet_none">Még nem támogatott: tesztünkben %1$d%% hibát ért el, ami túl sok a használhatósághoz. Nincs közeli elérhető nyelv.</string>
+    <string name="settings_accurate_fast_unavailable">A(z) %1$s nyelvhez nincs Gyors modell, ezért mindig a Pontos módot használja (%2$s, %3$d MB letöltés, egyszer).</string>
+    <string name="settings_accurate_fast_poor">A Gyors mód nem elég pontos a(z) %1$s nyelvhez, ezért mindig a Pontos módot használja (%2$s, %3$d MB letöltés, egyszer).</string>
+    <string name="settings_accurate_needs_bigger">A(z) %1$s nyelv 6 GB vagy több memóriás telefont igényel (%2$s, %3$d MB). Ez a telefon nem tudja futtatni.</string>
+    <string name="settings_language_experimental_note">A(z) %1$s nyelv kísérleti: tesztünkben kb. %2$d%%-a lett hibás.</string>
+    <string name="language_dialect_warning">A(z) %1$s nyelv a sztenderd (formális) beszédre működik, például hírekre és előadásokra. A mindennapi nyelvjárásos beszéd sokkal rosszabb: az egyiptomi nyelvjárási tesztünkben a szavak kb. kétharmada volt hibás.</string>
+    <string name="language_search_hint">Nyelvek keresése</string>
+    <string name="language_search_no_match">Egyetlen nyelv sem egyezik a kereséseddel.</string>
+</resources>

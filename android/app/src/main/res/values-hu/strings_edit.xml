@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Átirat szerkesztése</string>
+    <string name="edit_title">Szöveg szerkesztése</string>
+    <string name="edit_blank">A szöveg nem lehet üres</string>
+    <string name="edit_save">Mentés</string>
+    <string name="edit_cancel">Mégse</string>
+    <string name="edit_retranscribe_title">Felülírod a szerkesztéseidet?</string>
+    <string name="edit_retranscribe_body">Az újraátírás felülírja a javított szöveget.</string>
+    <string name="edit_retranscribe_confirm">Átírás újra</string>
+</resources>

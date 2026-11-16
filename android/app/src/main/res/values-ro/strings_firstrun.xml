@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="first_run_language_title">Transcriere în %1$s</string>
+    <string name="first_run_language_body">Fiecare limbă se descarcă o singură dată, apoi se transcrie pe telefonul tău, fără internet.</string>
+    <string name="first_run_language_change">Schimbă</string>
+    <string name="first_run_language_ok">Corect</string>
+    <string name="first_run_engine_hint">Pentru %1$s, modul Precis face mult mai puține greșeli: în testul nostru, aproximativ %3$d%% erori față de %2$d%% pentru modul Rapid. Descărcarea este de %4$d MB, o singură dată.</string>
+    <string name="first_run_engine_use">Folosește Precis</string>
+    <string name="first_run_engine_on">Modul Precis este activat. Descarcă %1$d MB la prima transcriere, o singură dată.</string>
+</resources>

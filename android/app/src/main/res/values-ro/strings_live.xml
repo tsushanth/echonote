@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Transcriere în direct</string>
+    <string name="live_transcript_starting">Se pregătește…</string>
+    <string name="live_transcript_listening">Se ascultă…</string>
+    <string name="live_transcript_no_model">Transcrierea în direct are nevoie de modelul Rapid. Rulează o dată o transcriere Rapid pentru a-l descărca. Înregistrarea continuă.</string>
+    <string name="live_transcript_not_for_language">Cuvintele în direct nu sunt disponibile pentru această limbă. Înregistrarea este transcrisă când o oprești.</string>
+    <string name="live_transcript_unavailable">Transcrierea în direct s-a oprit. Înregistrarea continuă.</string>
+    <string name="settings_live_transcript_title">Transcriere în direct în timpul înregistrării</string>
+    <string name="settings_live_transcript_subtitle">Afișează cuvintele pe măsură ce vorbești. Consumă mai multă baterie. Necesită modelul Rapid pentru limba ta (Android 10 sau mai nou).</string>
+</resources>

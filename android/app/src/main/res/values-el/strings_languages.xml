@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Γλώσσα μεταγραφής</string>
+    <string name="language_picker_close">Κλείσιμο</string>
+    <string name="language_picker_intro">Τα σήματα προκύπτουν από δοκιμές σε αναγνωσμένη ομιλία. Οι πραγματικές εγγραφές με θόρυβο, προφορές ή διαλέκτους είναι πιο δύσκολες, γι\' αυτό περιμένετε περισσότερα λάθη από όσα δείχνουν οι αριθμοί.</string>
+    <string name="language_section_supported">Υποστηριζόμενες</string>
+    <string name="language_section_experimental">Πειραματικές: περιμένετε πολλά λάθη</string>
+    <string name="language_section_bigger_phone">Χρειάζεται ισχυρότερο τηλέφωνο</string>
+    <string name="language_section_not_yet">Δεν υποστηρίζονται ακόμη</string>
+    <string name="language_badge_supported">Υποστηρίζεται</string>
+    <string name="language_badge_experimental">Πειραματική</string>
+    <string name="language_accurate_size">Ακριβής: %1$s, λήψη %2$d MB, μία φορά.</string>
+    <string name="language_accurate_size_large">Ακριβής: %1$s, λήψη %2$d MB, μία φορά. Μεγάλη λήψη: χρησιμοποιήστε Wi-Fi.</string>
+    <string name="language_fast_size">Γρήγορη: λήψη %1$d MB, μία φορά.</string>
+    <string name="language_fast_unavailable">Δεν υπάρχει μοντέλο Γρήγορη για αυτή τη γλώσσα. Χρησιμοποιείται πάντα η Ακριβής.</string>
+    <string name="language_fast_poor">Η λειτουργία Γρήγορη δεν είναι αρκετά ακριβής για αυτή τη γλώσσα, γι\' αυτό χρησιμοποιείται πάντα η Ακριβής.</string>
+    <string name="language_ram_smaller">Αυτό το τηλέφωνο έχει λιγότερη μνήμη από όση χρειάζεται το καλύτερο μοντέλο, γι\' αυτό χρησιμοποιείται μικρότερο και τα αποτελέσματα είναι λιγότερο ακριβή.</string>
+    <string name="language_ram_needs_bigger">Χρειάζεται τηλέφωνο με 6 GB μνήμης ή περισσότερα (%1$s, %2$d MB). Αυτό το τηλέφωνο δεν μπορεί να το εκτελέσει.</string>
+    <string name="language_not_yet_closest">Δεν υποστηρίζεται ακόμη: είχε %1$d%% λάθη στη δοκιμή μας. Πλησιέστερη διαθέσιμη: %2$s.</string>
+    <string name="language_not_yet_none">Δεν υποστηρίζεται ακόμη: είχε %1$d%% λάθη στη δοκιμή μας, πολλά για να είναι χρήσιμη. Δεν υπάρχει κοντινή διαθέσιμη γλώσσα.</string>
+    <string name="settings_accurate_fast_unavailable">Η γλώσσα %1$s δεν έχει μοντέλο Γρήγορη, γι\' αυτό χρησιμοποιείται πάντα η Ακριβής (%2$s, λήψη %3$d MB, μία φορά).</string>
+    <string name="settings_accurate_fast_poor">Η λειτουργία Γρήγορη δεν είναι αρκετά ακριβής για τη γλώσσα %1$s, γι\' αυτό χρησιμοποιείται πάντα η Ακριβής (%2$s, λήψη %3$d MB, μία φορά).</string>
+    <string name="settings_accurate_needs_bigger">Η γλώσσα %1$s χρειάζεται τηλέφωνο με 6 GB μνήμης ή περισσότερα (%2$s, %3$d MB). Αυτό το τηλέφωνο δεν μπορεί να το εκτελέσει.</string>
+    <string name="settings_language_experimental_note">Η γλώσσα %1$s είναι πειραματική: στη δοκιμή μας περίπου το %2$d%% βγήκε λάθος.</string>
+    <string name="language_dialect_warning">Η γλώσσα %1$s λειτουργεί για τυπική (επίσημη) ομιλία, όπως ειδήσεις και διαλέξεις. Η καθημερινή διαλεκτική ομιλία είναι πολύ χειρότερη: περίπου τα δύο τρίτα των λέξεων ήταν λάθος στη δοκιμή μας με την αιγυπτιακή διάλεκτο.</string>
+    <string name="language_search_hint">Αναζήτηση γλωσσών</string>
+    <string name="language_search_no_match">Καμία γλώσσα δεν ταιριάζει με την αναζήτησή σας.</string>
+</resources>

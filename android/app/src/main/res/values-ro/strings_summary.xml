@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Rezumă</string>
+    <string name="summary_title_key_points">Puncte principale</string>
+    <string name="summary_title_ai">Rezumat</string>
+    <string name="summary_note_extracted">Propoziții alese din transcriere</string>
+    <string name="summary_note_ai">Scris de inteligența artificială de pe dispozitiv</string>
+    <string name="summary_working">Se caută punctele principale…</string>
+    <string name="summary_too_short">Această transcriere este prea scurtă pentru a fi rezumată.</string>
+    <string name="summary_stale">Transcrierea s-a schimbat după crearea acestor puncte principale.</string>
+    <string name="summary_update">Actualizează</string>
+    <string name="summary_copy">Copiază punctele principale</string>
+    <string name="summary_copied">Punctele principale au fost copiate</string>
+    <string name="summary_hide">Ascunde punctele principale</string>
+    <string name="summary_show">Arată punctele principale</string>
+</resources>

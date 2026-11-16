@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Sammanfatta</string>
+    <string name="summary_title_key_points">Nyckelpunkter</string>
+    <string name="summary_title_ai">Sammanfattning</string>
+    <string name="summary_note_extracted">Meningar utvalda ur transkriptionen</string>
+    <string name="summary_note_ai">Skriven av AI på enheten</string>
+    <string name="summary_working">Hittar nyckelpunkter…</string>
+    <string name="summary_too_short">Den här transkriptionen är för kort för att sammanfatta.</string>
+    <string name="summary_stale">Transkriptionen ändrades efter att de här nyckelpunkterna skapades.</string>
+    <string name="summary_update">Uppdatera</string>
+    <string name="summary_copy">Kopiera nyckelpunkter</string>
+    <string name="summary_copied">Nyckelpunkter kopierade</string>
+    <string name="summary_hide">Dölj nyckelpunkter</string>
+    <string name="summary_show">Visa nyckelpunkter</string>
+</resources>

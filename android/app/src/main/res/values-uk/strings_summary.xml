@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Підсумувати</string>
+    <string name="summary_title_key_points">Ключові моменти</string>
+    <string name="summary_title_ai">Підсумок</string>
+    <string name="summary_note_extracted">Речення, вибрані з розшифровки</string>
+    <string name="summary_note_ai">Написано ШІ на пристрої</string>
+    <string name="summary_working">Пошук ключових моментів…</string>
+    <string name="summary_too_short">Ця розшифровка надто коротка для підсумку.</string>
+    <string name="summary_stale">Розшифровка змінилася після створення цих ключових моментів.</string>
+    <string name="summary_update">Оновити</string>
+    <string name="summary_copy">Копіювати ключові моменти</string>
+    <string name="summary_copied">Ключові моменти скопійовано</string>
+    <string name="summary_hide">Сховати ключові моменти</string>
+    <string name="summary_show">Показати ключові моменти</string>
+</resources>

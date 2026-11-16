@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Összefoglalás</string>
+    <string name="summary_title_key_points">Főbb pontok</string>
+    <string name="summary_title_ai">Összefoglaló</string>
+    <string name="summary_note_extracted">Az átiratból kiválasztott mondatok</string>
+    <string name="summary_note_ai">Az eszközön futó mesterséges intelligencia írta</string>
+    <string name="summary_working">Főbb pontok keresése…</string>
+    <string name="summary_too_short">Ez az átirat túl rövid az összefoglaláshoz.</string>
+    <string name="summary_stale">Az átirat megváltozott a főbb pontok elkészítése után.</string>
+    <string name="summary_update">Frissítés</string>
+    <string name="summary_copy">Főbb pontok másolása</string>
+    <string name="summary_copied">Főbb pontok másolva</string>
+    <string name="summary_hide">Főbb pontok elrejtése</string>
+    <string name="summary_show">Főbb pontok megjelenítése</string>
+</resources>

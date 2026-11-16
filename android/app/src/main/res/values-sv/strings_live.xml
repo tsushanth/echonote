@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="live_transcript_label">Direkttranskription</string>
+    <string name="live_transcript_starting">Gör sig redo…</string>
+    <string name="live_transcript_listening">Lyssnar…</string>
+    <string name="live_transcript_no_model">Direkttranskription kräver modellen Snabb. Kör en Snabb-transkribering en gång för att ladda ned den. Inspelningen fortsätter.</string>
+    <string name="live_transcript_not_for_language">Direktord är inte tillgängliga för det här språket. Din inspelning transkriberas när du stoppar.</string>
+    <string name="live_transcript_unavailable">Direkttranskriptionen stoppades. Inspelningen fortsätter.</string>
+    <string name="settings_live_transcript_title">Direkttranskription under inspelning</string>
+    <string name="settings_live_transcript_subtitle">Visar ord medan du talar. Använder mer batteri. Kräver modellen Snabb för ditt språk (Android 10 eller senare).</string>
+</resources>

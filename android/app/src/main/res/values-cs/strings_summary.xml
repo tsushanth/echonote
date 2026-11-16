@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="summary_action">Shrnout</string>
+    <string name="summary_title_key_points">Hlavní body</string>
+    <string name="summary_title_ai">Shrnutí</string>
+    <string name="summary_note_extracted">Věty vybrané z přepisu</string>
+    <string name="summary_note_ai">Napsáno umělou inteligencí v zařízení</string>
+    <string name="summary_working">Hledání hlavních bodů…</string>
+    <string name="summary_too_short">Tento přepis je příliš krátký na shrnutí.</string>
+    <string name="summary_stale">Přepis se po vytvoření těchto hlavních bodů změnil.</string>
+    <string name="summary_update">Aktualizovat</string>
+    <string name="summary_copy">Kopírovat hlavní body</string>
+    <string name="summary_copied">Hlavní body zkopírovány</string>
+    <string name="summary_hide">Skrýt hlavní body</string>
+    <string name="summary_show">Zobrazit hlavní body</string>
+</resources>

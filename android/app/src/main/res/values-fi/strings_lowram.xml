@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="settings_accurate_lowram_fast">Tarkka tarvitsee enemmän muistia kuin tässä puhelimessa on, joten kieli %1$s käyttää sen sijaan Nopeaa. Puhujamerkinnät eivät ole käytettävissä.</string>
+    <string name="settings_accurate_lowram_smaller">Tässä puhelimessa on vähemmän muistia kuin parhaalle mallille tarvitaan, joten Tarkka käyttää pienempää mallia (lataus %1$d Mt, kerran). Se on hieman vähemmän tarkka kuin puhelimissa, joissa on enemmän muistia. Puhujamerkinnät toimivat edelleen.</string>
+</resources>

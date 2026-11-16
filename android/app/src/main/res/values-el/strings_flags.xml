@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="flags_setting_title">Επισήμανση αβέβαιων λέξεων</string>
+    <string name="flags_setting_desc">Υπογραμμίζει λέξεις με τις οποίες διαφωνεί ένας δεύτερος έλεγχος. Απαιτεί ποιότητα Ακριβής, εφάπαξ λήψη περίπου 45 MB (το μοντέλο Γρήγορη) και προσθέτει χρόνο επεξεργασίας. Εκτελείται στη συσκευή σας.</string>
+    <string name="flags_setting_unsupported">Δεν είναι διαθέσιμο για τη γλώσσα %1$s, επομένως δεν επισημαίνονται λέξεις.</string>
+    <string name="flags_a11y_unsure">αβέβαιο</string>
+</resources>

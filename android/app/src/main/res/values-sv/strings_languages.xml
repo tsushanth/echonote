@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Transkriberingsspråk</string>
+    <string name="language_picker_close">Stäng</string>
+    <string name="language_picker_intro">Märkena kommer från tester på uppläst tal. Verkliga inspelningar med brus, accenter eller dialekter är svårare, så räkna med fler fel än siffrorna antyder.</string>
+    <string name="language_section_supported">Stöds</string>
+    <string name="language_section_experimental">Experimentellt: räkna med många fel</string>
+    <string name="language_section_bigger_phone">Kräver en kraftfullare telefon</string>
+    <string name="language_section_not_yet">Stöds inte ännu</string>
+    <string name="language_badge_supported">Stöds</string>
+    <string name="language_badge_experimental">Experimentellt</string>
+    <string name="language_accurate_size">Exakt: %1$s, %2$d MB nedladdning, en gång.</string>
+    <string name="language_accurate_size_large">Exakt: %1$s, %2$d MB nedladdning, en gång. Stor nedladdning: använd Wi-Fi.</string>
+    <string name="language_fast_size">Snabb: %1$d MB nedladdning, en gång.</string>
+    <string name="language_fast_unavailable">Det finns ingen Snabb-modell för det här språket. Exakt används alltid.</string>
+    <string name="language_fast_poor">Snabb är inte tillräckligt exakt för det här språket, så Exakt används alltid.</string>
+    <string name="language_ram_smaller">Den här telefonen har mindre minne än den bästa modellen behöver, så en mindre modell används och resultaten blir mindre exakta.</string>
+    <string name="language_ram_needs_bigger">Kräver en telefon med 6 GB minne eller mer (%1$s, %2$d MB). Den här telefonen kan inte köra den.</string>
+    <string name="language_not_yet_closest">Stöds inte ännu: den fick %1$d %% fel i vårt test. Närmaste tillgängliga: %2$s.</string>
+    <string name="language_not_yet_none">Stöds inte ännu: den fick %1$d %% fel i vårt test, för många för att vara användbar. Inget nära alternativ finns tillgängligt.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s saknar Snabb-modell, så Exakt (%2$s, %3$d MB nedladdning, en gång) används alltid.</string>
+    <string name="settings_accurate_fast_poor">Snabb är inte tillräckligt exakt för %1$s, så Exakt (%2$s, %3$d MB nedladdning, en gång) används alltid.</string>
+    <string name="settings_accurate_needs_bigger">%1$s kräver en telefon med 6 GB minne eller mer (%2$s, %3$d MB). Den här telefonen kan inte köra den.</string>
+    <string name="settings_language_experimental_note">%1$s är experimentellt: i vårt test blev ungefär %2$d %% fel.</string>
+    <string name="language_dialect_warning">%1$s fungerar för standardtal (formellt), till exempel nyheter och föreläsningar. Vardagligt dialekttal är mycket sämre: ungefär två tredjedelar av orden blev fel i vårt test med egyptisk dialekt.</string>
+    <string name="language_search_hint">Sök språk</string>
+    <string name="language_search_no_match">Inget språk matchar din sökning.</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Redigera transkription</string>
+    <string name="edit_title">Redigera text</string>
+    <string name="edit_blank">Texten får inte vara tom</string>
+    <string name="edit_save">Spara</string>
+    <string name="edit_cancel">Avbryt</string>
+    <string name="edit_retranscribe_title">Ersätta dina ändringar?</string>
+    <string name="edit_retranscribe_body">Om du transkriberar igen ersätts texten du har rättat.</string>
+    <string name="edit_retranscribe_confirm">Transkribera igen</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="edit_menu">Editează transcrierea</string>
+    <string name="edit_title">Editează textul</string>
+    <string name="edit_blank">Textul nu poate fi gol</string>
+    <string name="edit_save">Salvează</string>
+    <string name="edit_cancel">Anulează</string>
+    <string name="edit_retranscribe_title">Înlocuiești modificările tale?</string>
+    <string name="edit_retranscribe_body">Retranscrierea înlocuiește textul pe care l-ai corectat.</string>
+    <string name="edit_retranscribe_confirm">Retranscrie</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Machine translation, needs native-speaker review. -->
+<resources>
+    <string name="language_picker_title">Limba transcrierii</string>
+    <string name="language_picker_close">Închide</string>
+    <string name="language_picker_intro">Insignele provin din teste pe vorbire citită. Înregistrările reale cu zgomot, accente sau dialecte sunt mai grele, așa că așteaptă-te la mai multe greșeli decât sugerează cifrele.</string>
+    <string name="language_section_supported">Acceptate</string>
+    <string name="language_section_experimental">Experimental: așteaptă-te la multe greșeli</string>
+    <string name="language_section_bigger_phone">Necesită un telefon mai performant</string>
+    <string name="language_section_not_yet">Încă neacceptate</string>
+    <string name="language_badge_supported">Acceptată</string>
+    <string name="language_badge_experimental">Experimentală</string>
+    <string name="language_accurate_size">Precis: %1$s, descărcare de %2$d MB, o singură dată.</string>
+    <string name="language_accurate_size_large">Precis: %1$s, descărcare de %2$d MB, o singură dată. Descărcare mare: folosește Wi-Fi.</string>
+    <string name="language_fast_size">Rapid: descărcare de %1$d MB, o singură dată.</string>
+    <string name="language_fast_unavailable">Nu există model Rapid pentru această limbă. Se folosește întotdeauna Precis.</string>
+    <string name="language_fast_poor">Modul Rapid nu este suficient de precis pentru această limbă, așa că se folosește întotdeauna Precis.</string>
+    <string name="language_ram_smaller">Acest telefon are mai puțină memorie decât are nevoie cel mai bun model, așa că se folosește unul mai mic, iar rezultatele sunt mai puțin precise.</string>
+    <string name="language_ram_needs_bigger">Necesită un telefon cu 6 GB de memorie sau mai mult (%1$s, %2$d MB). Acest telefon nu îl poate rula.</string>
+    <string name="language_not_yet_closest">Încă neacceptată: a avut %1$d%% erori în testul nostru. Cea mai apropiată disponibilă: %2$s.</string>
+    <string name="language_not_yet_none">Încă neacceptată: a avut %1$d%% erori în testul nostru, prea multe pentru a fi utilă. Nu există nicio limbă apropiată disponibilă.</string>
+    <string name="settings_accurate_fast_unavailable">%1$s nu are model Rapid, deci se folosește întotdeauna Precis (%2$s, descărcare de %3$d MB, o singură dată).</string>
+    <string name="settings_accurate_fast_poor">Modul Rapid nu este suficient de precis pentru %1$s, deci se folosește întotdeauna Precis (%2$s, descărcare de %3$d MB, o singură dată).</string>
+    <string name="settings_accurate_needs_bigger">%1$s necesită un telefon cu 6 GB de memorie sau mai mult (%2$s, %3$d MB). Acest telefon nu îl poate rula.</string>
+    <string name="settings_language_experimental_note">%1$s este experimentală: în testul nostru, aproximativ %2$d%% a ieșit greșit.</string>
+    <string name="language_dialect_warning">%1$s funcționează pentru vorbirea standard (formală), de exemplu știri și prelegeri. Vorbirea dialectală de zi cu zi este mult mai slabă: în testul nostru pe dialectul egiptean, aproximativ două treimi din cuvinte au fost greșite.</string>
+    <string name="language_search_hint">Caută limbi</string>
+    <string name="language_search_no_match">Nicio limbă nu corespunde căutării tale.</string>
+</resources>
