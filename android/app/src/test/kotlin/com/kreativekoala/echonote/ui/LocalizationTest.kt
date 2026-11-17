@@ -122,7 +122,7 @@ class LocalizationTest {
     @Test
     fun theFirstRunAndLanguagePickerStringsExistInEveryLocaleWithTheSameFormatArguments() {
         val locales = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") }!!
-        assertEquals(19, locales.size)
+        assertEquals(26, locales.size)
         for (name in listOf("strings_firstrun.xml", "strings_languages.xml")) {
             val base = File(resDir, "values/$name")
             val keys = stringKeys(base)
@@ -155,7 +155,7 @@ class LocalizationTest {
         }
         val folders = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
             .map { tagFor(it.name) }.toSet()
-        assertEquals(19, folders.size)
+        assertEquals(26, folders.size)
         assertEquals("every shipped locale must be pickable per app on Android 13+", folders + "en", listed.toSet())
     }
 }

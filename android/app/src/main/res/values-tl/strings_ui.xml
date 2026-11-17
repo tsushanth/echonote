@@ -44,7 +44,7 @@
     <string name="bin_title">Recycle Bin</string>
     <string name="bin_empty_action">Alisin ang Laman ng Basurahan</string>
     <plurals name="bin_empty_confirm">
-        <item quantity="one">Permanenteng burahin ang recording na ito? Hindi ito mababawi.</item>
+        <item quantity="one">Permanenteng burahin ang %1$d recording? Hindi ito mababawi.</item>
         <item quantity="other">Permanenteng burahin ang lahat ng %1$d recording? Hindi ito mababawi.</item>
     </plurals>
     <string name="bin_delete_all">Burahin Lahat</string>

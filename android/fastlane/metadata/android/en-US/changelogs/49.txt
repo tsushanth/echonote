@@ -1,0 +1,1 @@
+ClearVoice is now available in 26 languages, with new Czech, Greek, Finnish, Hungarian, Romanian, Swedish and Ukrainian. Listen, Find, Ask, Settings, the Recycle Bin and the consent screen are translated in every language. New recordings get a title in your language's date format, and exported subtitle files use standard digits.

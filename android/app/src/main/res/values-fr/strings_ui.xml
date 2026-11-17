@@ -44,7 +44,7 @@
     <string name="bin_title">Corbeille</string>
     <string name="bin_empty_action">Vider la corbeille</string>
     <plurals name="bin_empty_confirm">
-        <item quantity="one">Supprimer définitivement cet enregistrement ? Cette action est irréversible.</item>
+        <item quantity="one">Supprimer définitivement %1$d enregistrement ? Cette action est irréversible.</item>
         <item quantity="many">Supprimer définitivement les %1$d enregistrements ? Cette action est irréversible.</item>
         <item quantity="other">Supprimer définitivement les %1$d enregistrements ? Cette action est irréversible.</item>
     </plurals>

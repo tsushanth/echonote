@@ -44,7 +44,7 @@
     <string name="bin_title">रीसायकल बिन</string>
     <string name="bin_empty_action">बिन खाली करें</string>
     <plurals name="bin_empty_confirm">
-        <item quantity="one">इस रिकॉर्डिंग को हमेशा के लिए हटाएँ? इसे पहले जैसा नहीं किया जा सकता।</item>
+        <item quantity="one">%1$d रिकॉर्डिंग हमेशा के लिए हटाएँ? इसे पहले जैसा नहीं किया जा सकता।</item>
         <item quantity="other">सभी %1$d रिकॉर्डिंग हमेशा के लिए हटाएँ? इसे पहले जैसा नहीं किया जा सकता।</item>
     </plurals>
     <string name="bin_delete_all">सभी हटाएँ</string>

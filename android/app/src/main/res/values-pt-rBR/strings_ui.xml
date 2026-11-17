@@ -44,7 +44,7 @@
     <string name="bin_title">Lixeira</string>
     <string name="bin_empty_action">Esvaziar lixeira</string>
     <plurals name="bin_empty_confirm">
-        <item quantity="one">Excluir esta gravação permanentemente? Não é possível desfazer.</item>
+        <item quantity="one">Excluir permanentemente %1$d gravação? Não é possível desfazer.</item>
         <item quantity="many">Excluir permanentemente todas as %1$d gravações? Não é possível desfazer.</item>
         <item quantity="other">Excluir permanentemente todas as %1$d gravações? Não é possível desfazer.</item>
     </plurals>
