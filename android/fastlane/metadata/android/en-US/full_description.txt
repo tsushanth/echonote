@@ -50,3 +50,6 @@ How It Works:
 3. Search, organize, and find anything by spoken word
 
 Your voice is faster than your fingers. ClearVoice makes that an advantage.
+
+LANGUAGES
+The app's interface is available in English and 26 other languages: Arabic, Chinese (Simplified), Czech, Dutch, Filipino, Finnish, French, German, Greek, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Malay, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Ukrainian and Vietnamese.
