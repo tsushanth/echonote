@@ -90,3 +90,7 @@ Both platforms follow the **MVVM** (Model-View-ViewModel) pattern:
 | Speech Recognition | Transcribing recordings |
 | Location | Automatic location-based recording names (optional) |
 | Billing / IAP | Premium subscriptions |
+
+## Hard-coded UI strings guard
+
+A unit test (`NoHardcodedUiStringsTest`) fails if new user-visible English is hard-coded in `app/src/main` instead of strings.xml. Pre-existing literals are recorded in `app/hardcoded-ui-strings.baseline.json`. How it works and how to update the baseline: `android/docs/hardcoded-ui-strings-guard.md`.
