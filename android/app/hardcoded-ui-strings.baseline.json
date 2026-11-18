@@ -1,0 +1,14 @@
+{
+  "_note": "Per-file count of hard-coded user-visible English literals in src/main. NoHardcodedUiStringsTest fails if a count rises or a new file adds any. Lower counts are fine. Regenerate deliberately with scripts/update-hardcoded-baseline.sh; see docs/hardcoded-ui-strings-guard.md.",
+  "total": 73,
+  "files": {
+    "src/main/kotlin/com/kreativekoala/echonote/data/model/Recording.kt": {"count": 45, "h": ["00012b34", "002251c2", "0027c1bc", "03a13250", "03e92393", "03f52d88", "041ddee0", "042800b2", "046acb70", "04cd74a3", "04e6bfa3", "06eab5bd", "29ab25a4", "3062bfbb", "3ac84f80", "55f322c2", "72299f70", "755f0ccc", "79940b6d", "7de945ba", "7eecd1a6", "816c4783", "8457f64e", "858b4d3a", "864d0124", "89237b95", "8ed29331", "8fb4b0cd", "93c8624a", "95193648", "95924e00", "9626275f", "9d65a89f", "a39c63ca", "a42152ed", "a8c17e55", "b9fe9817", "bff06773", "d6fca3d1", "dfde4ecc", "e122a3e0", "eb4e7cd4", "f57ecb59", "f73dae1b", "f7743b7b"]},
+    "src/main/kotlin/com/kreativekoala/echonote/data/model/TranscriptionEngine.kt": {"count": 2, "h": ["00214c7c", "84cb1f14"]},
+    "src/main/kotlin/com/kreativekoala/echonote/service/EnginePlan.kt": {"count": 13, "h": ["0028c6f1", "25c03f54", "2ad44bf3", "52042476", "7643f48e", "8fbd8405", "91e3c809", "a2edd6c9", "a435e98d", "c0336d50", "ca46c644", "ee9c8ea9", "f1ae3108"]},
+    "src/main/kotlin/com/kreativekoala/echonote/service/TranscriptionService.kt": {"count": 1, "h": ["1ad0d315"]},
+    "src/main/kotlin/com/kreativekoala/echonote/tts/SystemTtsEngine.kt": {"count": 2, "h": ["a2e4a384", "b98636e1"]},
+    "src/main/kotlin/com/kreativekoala/echonote/ui/recording/RecordingViewModel.kt": {"count": 1, "h": ["6f0e1030"]},
+    "src/main/kotlin/com/kreativekoala/echonote/ui/settings/SettingsScreen.kt": {"count": 8, "h": ["26d0a062", "2ca3ed58", "66296aee", "665167e8", "698e2143", "c58d8d9d", "f02b862f", "f4b7deae"]},
+    "src/main/kotlin/com/kreativekoala/echonote/ui/widget/RecordingWidget.kt": {"count": 1, "h": ["4aa2ff05"]}
+  }
+}
