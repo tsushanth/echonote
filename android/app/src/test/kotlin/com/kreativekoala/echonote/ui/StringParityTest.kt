@@ -47,7 +47,7 @@ class StringParityTest {
         "pl", "ru", "cs", "uk" -> setOf("one", "few", "many", "other")
         "ro" -> setOf("one", "few", "other")
         "fr", "es", "it", "pt" -> setOf("one", "many", "other")
-        "ja", "ko", "zh", "th", "vi", "in", "ms" -> setOf("other")
+        "ja", "ko", "zh", "b+zh+Hant", "th", "vi", "in", "ms" -> setOf("other")
         else -> setOf("one", "other")
     }
 
@@ -56,7 +56,8 @@ class StringParityTest {
         val base = load(File(res, "values"))
         assertTrue("default strings not found (run from android/)", base.size > 300)
         val locales = res.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
-        assertEquals(26, locales.size)
+        // 26 languages; Traditional Chinese adds zh-rTW, zh-rHK and the b+zh+Hant script fallback.
+        assertEquals(29, locales.size)
         for (dir in locales) {
             val got = load(dir)
             assertEquals("${dir.name} missing keys", emptySet<String>(), base.keys - got.keys)
@@ -72,13 +73,16 @@ class StringParityTest {
 
     @Test
     fun localesConfigListsExactlyTheShippedLanguages() {
-        val shipped = res.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
+        // values-b+zh+Hant is the script fallback (Macau and other Traditional regions): it is not a separate picker entry.
+        val shipped = res.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && f.name != "values-b+zh+Hant" && File(f, "strings.xml").exists() }!!
             .map {
                 when (val c = it.name.removePrefix("values-")) {
                     "in" -> "id"
                     "tl" -> "fil"
                     "pt-rBR" -> "pt-BR"
                     "zh-rCN" -> "zh-CN"
+                    "zh-rTW" -> "zh-TW"
+                    "zh-rHK" -> "zh-HK"
                     else -> c
                 }
             }.toSet() + "en"

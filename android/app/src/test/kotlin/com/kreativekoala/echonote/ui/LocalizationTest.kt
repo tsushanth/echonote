@@ -122,7 +122,7 @@ class LocalizationTest {
     @Test
     fun theFirstRunAndLanguagePickerStringsExistInEveryLocaleWithTheSameFormatArguments() {
         val locales = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") }!!
-        assertEquals(26, locales.size)
+        assertEquals(29, locales.size)
         for (name in listOf("strings_firstrun.xml", "strings_languages.xml")) {
             val base = File(resDir, "values/$name")
             val keys = stringKeys(base)
@@ -151,11 +151,14 @@ class LocalizationTest {
             "tl" -> "fil"
             "pt-rBR" -> "pt-BR"
             "zh-rCN" -> "zh-CN"
+            "zh-rTW" -> "zh-TW"
+            "zh-rHK" -> "zh-HK"
             else -> q
         }
-        val folders = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && File(f, "strings.xml").exists() }!!
+        val folders = resDir.listFiles { f -> f.isDirectory && f.name.startsWith("values-") && f.name != "values-b+zh+Hant" && File(f, "strings.xml").exists() }!!
             .map { tagFor(it.name) }.toSet()
-        assertEquals(26, folders.size)
+        // values-b+zh+Hant is the Traditional script fallback (Macau etc.), not a picker entry.
+        assertEquals(28, folders.size)
         assertEquals("every shipped locale must be pickable per app on Android 13+", folders + "en", listed.toSet())
     }
 }
