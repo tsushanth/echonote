@@ -1,0 +1,1 @@
+ClearVoice now speaks Traditional Chinese. Phones set to Taiwan or Hong Kong Chinese get the app in Traditional characters, with Taiwan or Hong Kong wording, instead of English. You can also pick it per app in Android settings.
