@@ -22,7 +22,7 @@
     <string name="settings_auto_copy">自動複製文字記錄</string>
     <string name="settings_auto_delete_audio">自動刪除音訊</string>
     <string name="settings_sound_effects">音效</string>
-    <string name="settings_haptic">觸感反饋</string>
+    <string name="settings_haptic">觸感回饋</string>
     <string name="settings_contribute_voice">貢獻語音資料</string>
     <string name="storage_used">已用</string>
     <string name="storage_recordings">錄音</string>
