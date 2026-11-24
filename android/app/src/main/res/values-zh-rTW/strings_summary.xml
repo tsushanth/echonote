@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="summary_action">摘要</string>
+    <string name="summary_title_key_points">要點</string>
+    <string name="summary_title_ai">摘要</string>
+    <string name="summary_note_extracted">從轉寫文字中挑選的句子</string>
+    <string name="summary_note_ai">由裝置上的 AI 撰寫</string>
+    <string name="summary_working">正在提取要點…</string>
+    <string name="summary_too_short">這段轉寫文字太短，無法生成摘要。</string>
+    <string name="summary_stale">生成這些要點後，轉寫文字已更改。</string>
+    <string name="summary_update">更新</string>
+    <string name="summary_copy">複製要點</string>
+    <string name="summary_copied">已複製要點</string>
+    <string name="summary_hide">隱藏要點</string>
+    <string name="summary_show">顯示要點</string>
+</resources>

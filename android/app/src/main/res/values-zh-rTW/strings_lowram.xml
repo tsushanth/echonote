@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_accurate_lowram_fast">精準模式需要的記憶體超出這部手機所能提供的，因此%1$s改用快速模式。無法使用說話人標籤。</string>
+    <string name="settings_accurate_lowram_smaller">這部手機的記憶體少於最佳模型所需，因此精準模式使用較小的模型（一次性下載 %1$d MB）。精度比記憶體更大的手機略低。說話人標籤仍可使用。</string>
+</resources>

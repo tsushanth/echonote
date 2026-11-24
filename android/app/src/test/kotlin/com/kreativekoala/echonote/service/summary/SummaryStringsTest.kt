@@ -8,7 +8,7 @@ import org.junit.Test
 class SummaryStringsTest {
     @Test fun everyLocaleHasEverySummaryStringAndPlaceholdersMatch() {
         val dirs = File("src/main/res").listFiles { f -> f.isDirectory && f.name.startsWith("values") }!!
-        assertEquals(27, dirs.count { File(it, "strings_summary.xml").exists() })
+        assertEquals(30, dirs.count { File(it, "strings_summary.xml").exists() })
         val re = Regex("<string name=\"(summary_[a-z_]+)\">([^<]*)</string>")
         val en = re.findAll(File("src/main/res/values/strings_summary.xml").readText()).associate { it.groupValues[1] to it.groupValues[2] }
         assertTrue(en.size >= 13)
