@@ -153,7 +153,7 @@
     <string name="settings_premium_subtitle">無限錄音、轉錄等更多功能</string>
     <string name="settings_section_recording_defaults">錄音默認設置</string>
     <string name="settings_default_format">默認格式</string>
-    <string name="settings_default_quality">默認質量</string>
+    <string name="settings_default_quality">默認質素</string>
     <string name="settings_stereo_recording">立體聲錄音</string>
     <string name="settings_stereo_subtitle">可用時以立體聲錄音</string>
     <string name="settings_auto_tag_location">自動標記位置</string>

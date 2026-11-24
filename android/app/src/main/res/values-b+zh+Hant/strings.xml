@@ -10,7 +10,7 @@
     <string name="tab_settings">設定</string>
 
     <!-- Permissions -->
-    <string name="permission_microphone_rationale">ClearVoice Recorder需要麥克風許可權來錄製音訊。</string>
+    <string name="permission_microphone_rationale">ClearVoice Recorder需要麥克風權限來錄製音訊。</string>
     <string name="permission_location_rationale">ClearVoice Recorder使用您的位置來自動命名錄音。</string>
     <string name="permission_speech_rationale">ClearVoice Recorder需要語音識別來轉錄錄音。</string>
 
@@ -153,7 +153,7 @@
     <string name="settings_premium_subtitle">無限錄音、轉錄等更多功能</string>
     <string name="settings_section_recording_defaults">錄音預設設定</string>
     <string name="settings_default_format">預設格式</string>
-    <string name="settings_default_quality">預設質量</string>
+    <string name="settings_default_quality">預設品質</string>
     <string name="settings_stereo_recording">立體聲錄音</string>
     <string name="settings_stereo_subtitle">可用時以立體聲錄音</string>
     <string name="settings_auto_tag_location">自動標記位置</string>
@@ -229,6 +229,6 @@
     <string name="battery_opt_message">為了在螢幕關閉時保持錄音繼續進行，請為 ClearVoice 關閉電池最佳化。在 MIUI 裝置上，還請在安全設定中啟用自啟動。</string>
     <string name="battery_opt_open_settings">開啟設定</string>
     <string name="battery_opt_dismiss">稍後</string>
-    <string name="recording_error_permission">錄製音訊需要麥克風許可權。</string>
+    <string name="recording_error_permission">錄製音訊需要麥克風權限。</string>
     <string name="widget_description">ClearVoice 小元件</string>
 </resources>
