@@ -219,13 +219,13 @@
     <string name="licenses_title">開源許可證</string>
     <!-- Machine translation, needs native-speaker review. -->
     <string name="settings_rate_app">為 ClearVoice 評分</string>
-    <string name="settings_send_feedback">傳送反饋</string>
+    <string name="settings_send_feedback">傳送回饋</string>
     <string name="recording_notification_title">正在錄音</string>
     <string name="recording_notification_text">ClearVoice 正在錄製音訊</string>
     <string name="recording_notification_stop">停止</string>
     <string name="recording_channel_name">錄音</string>
     <string name="recording_channel_description">錄音進行時顯示</string>
-    <string name="battery_opt_title">後臺錄音</string>
+    <string name="battery_opt_title">背景錄音</string>
     <string name="battery_opt_message">為了在螢幕關閉時保持錄音繼續進行，請為 ClearVoice 關閉電池最佳化。在 MIUI 裝置上，還請在安全設定中啟用自啟動。</string>
     <string name="battery_opt_open_settings">開啟設定</string>
     <string name="battery_opt_dismiss">稍後</string>
