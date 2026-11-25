@@ -6,6 +6,9 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Build
 import com.kreativekoala.echonote.data.model.TranscriptionLanguage
+import com.kreativekoala.echonote.diagnostics.FailureReporter
+import com.kreativekoala.echonote.diagnostics.ReportFlow
+import com.kreativekoala.echonote.diagnostics.ReportReason
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -64,9 +67,10 @@ class LiveTranscriber @Inject constructor(
             val loader = Thread({ load(language, gen) }, "live-load")
             loader.priority = Thread.MIN_PRIORITY + 1
             loader.isDaemon = true
-            loader.setUncaughtExceptionHandler { _, _ -> failIfCurrent(gen) }
+            loader.setUncaughtExceptionHandler { _, e -> failIfCurrent(gen, e, "load") }
             loader.start()
-        } catch (_: Throwable) {
+        } catch (e: Throwable) {
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_LIVE, e, ReportReason.EXCEPTION, mapOf("stage" to "start"))
             _state.value = LiveTranscriptState(LiveStatus.UNAVAILABLE)
         }
     }
@@ -87,11 +91,12 @@ class LiveTranscriber @Inject constructor(
         session = null
     }
 
-    private fun failIfCurrent(gen: Int) {
+    private fun failIfCurrent(gen: Int, cause: Throwable, stage: String) {
         synchronized(lock) {
-            if (gen != generation) return
+            if (gen != generation) return // that recording is over: nothing the user can notice
             stopLocked()
         }
+        FailureReporter.failure(ReportFlow.TRANSCRIPTION_LIVE, cause, ReportReason.EXCEPTION, mapOf("stage" to stage))
         _state.value = LiveTranscriptState(LiveStatus.UNAVAILABLE)
     }
 
@@ -111,7 +116,7 @@ class LiveTranscriber @Inject constructor(
                         if (gen == generation) _state.value = LiveTranscriptState(LiveStatus.LISTENING, text)
                     }
                 },
-                onFailed = { failIfCurrent(gen) },
+                onFailed = { failIfCurrent(gen, it, "session") },
                 onClosed = { try { ownedModel.close() } catch (_: Throwable) {} }
             )
             synchronized(lock) {
@@ -124,9 +129,9 @@ class LiveTranscriber @Inject constructor(
                 s.start()    // only spawns threads; inside the lock so stop() cannot slip in before it
                 _state.value = LiveTranscriptState(LiveStatus.LISTENING)
             }
-        } catch (_: Throwable) {   // includes OutOfMemoryError from loading the model
+        } catch (e: Throwable) {   // includes OutOfMemoryError from loading the model
             try { model?.close() } catch (_: Throwable) {}
-            failIfCurrent(gen)
+            failIfCurrent(gen, e, "load")
         }
     }
 

@@ -1,12 +1,18 @@
 package com.kreativekoala.echonote.service
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import androidx.core.content.ContextCompat
 import com.kreativekoala.echonote.data.model.AudioFormat
 import com.kreativekoala.echonote.data.model.RecordingQuality
+import com.kreativekoala.echonote.diagnostics.FailureReporter
+import com.kreativekoala.echonote.diagnostics.ReportFlow
+import com.kreativekoala.echonote.diagnostics.ReportReason
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.io.File
@@ -54,6 +60,7 @@ class AudioRecorderService @Inject constructor(
     ): String? {
         // A reading voice must never leak into a recording.
         com.kreativekoala.echonote.tts.ListenController.stopIfRunning()
+        var stage = "setup" // for the failure report
         try {
             val extension = format.extension
             val file = File(getRecordingsDir(), "$fileName.$extension")
@@ -64,6 +71,13 @@ class AudioRecorderService @Inject constructor(
             } else {
                 @Suppress("DEPRECATION")
                 MediaRecorder()
+            }
+            // Errors the recorder raises while it is writing. Reporting only; recording behaves as before.
+            recorder.setOnErrorListener { _, what, extra ->
+                FailureReporter.failure(
+                    ReportFlow.RECORDING_WRITE, reason = ReportReason.MEDIA_RECORDER_ERROR,
+                    context = mapOf("code" to what.toString(), "status" to extra.toString())
+                )
             }
 
             val audioSources = listOf(
@@ -102,7 +116,9 @@ class AudioRecorderService @Inject constructor(
             recorder.setAudioChannels(if (isStereo) 2 else 1)
             recorder.setOutputFile(file.absolutePath)
 
+            stage = "prepare"
             recorder.prepare()
+            stage = "start"
             recorder.start()
 
             mediaRecorder = recorder
@@ -116,6 +132,10 @@ class AudioRecorderService @Inject constructor(
             return file.absolutePath
         } catch (e: Exception) {
             e.printStackTrace()
+            // Without the microphone permission a failed start is the user's choice, not a defect.
+            if (hasMicrophonePermission()) {
+                FailureReporter.failure(ReportFlow.RECORDING_START, e, ReportReason.EXCEPTION, mapOf("stage" to stage, "format" to format.name))
+            }
             cleanup()
             return null
         }
@@ -130,6 +150,7 @@ class AudioRecorderService @Inject constructor(
                 stopMetering()
             } catch (e: Exception) {
                 e.printStackTrace()
+                FailureReporter.failure(ReportFlow.RECORDING_PAUSE, e, ReportReason.EXCEPTION, mapOf("stage" to "pause"))
             }
         }
     }
@@ -143,6 +164,7 @@ class AudioRecorderService @Inject constructor(
                 startMetering()
             } catch (e: Exception) {
                 e.printStackTrace()
+                FailureReporter.failure(ReportFlow.RECORDING_PAUSE, e, ReportReason.EXCEPTION, mapOf("stage" to "resume"))
             }
         }
     }
@@ -150,12 +172,17 @@ class AudioRecorderService @Inject constructor(
     fun stopRecording(): RecordingResult? {
         if (!_isRecording.value) return null
 
+        val ranForMs = (if (_isPaused.value) pauseStartMs else System.currentTimeMillis()) - startTimeMs - pausedDurationMs
+
         try {
             stopMetering()
             mediaRecorder?.stop()
             mediaRecorder?.release()
 
-            val file = outputFile ?: return null
+            val file = outputFile ?: run {
+                FailureReporter.failure(ReportFlow.RECORDING_STOP, reason = ReportReason.NO_OUTPUT_FILE)
+                return null
+            }
             val elapsed = if (_isPaused.value) {
                 pauseStartMs - startTimeMs - pausedDurationMs
             } else {
@@ -168,13 +195,28 @@ class AudioRecorderService @Inject constructor(
             _elapsedTimeMs.value = 0L
             mediaRecorder = null
 
+            val fileSize = file.length()
+            if (fileSize == 0L) {
+                FailureReporter.failure(
+                    ReportFlow.RECORDING_STOP, reason = ReportReason.EMPTY_FILE,
+                    context = mapOf("duration" to FunnelTracker.durationBucket(elapsed))
+                )
+            }
+
             return RecordingResult(
                 filePath = file.absolutePath,
                 durationMs = elapsed,
-                fileSize = file.length()
+                fileSize = fileSize
             )
         } catch (e: Exception) {
             e.printStackTrace()
+            // MediaRecorder.stop() always throws when stopped before any audio arrived, e.g. a double tap.
+            if (ranForMs >= MIN_REPORTABLE_STOP_MS) {
+                FailureReporter.failure(
+                    ReportFlow.RECORDING_STOP, e, ReportReason.EXCEPTION,
+                    mapOf("duration" to FunnelTracker.durationBucket(ranForMs))
+                )
+            }
             cleanup()
             return null
         }
@@ -228,6 +270,16 @@ class AudioRecorderService @Inject constructor(
     private fun stopMetering() {
         meteringRunnable?.let { handler.removeCallbacks(it) }
         meteringRunnable = null
+    }
+
+    private fun hasMicrophonePermission(): Boolean = try {
+        ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+    } catch (_: Exception) {
+        true // unknown: better to report
+    }
+
+    private companion object {
+        const val MIN_REPORTABLE_STOP_MS = 1000L
     }
 
     data class RecordingResult(

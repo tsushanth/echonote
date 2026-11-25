@@ -1,5 +1,8 @@
 package com.kreativekoala.echonote.service
 
+import com.kreativekoala.echonote.diagnostics.FailureReporter
+import com.kreativekoala.echonote.diagnostics.ReportFlow
+import com.kreativekoala.echonote.diagnostics.ReportReason
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
 import java.io.BufferedInputStream
@@ -102,7 +105,31 @@ object SherpaModels {
     )
 }
 
+/** The model host answered with something other than 200. */
+class ModelHttpException(val status: Int) : IllegalStateException("Download failed (HTTP $status)")
+
+/** Downloaded or extracted bytes are not the pinned model. [reason] says how, for failure reports. */
+class ModelIntegrityException(message: String, val reason: ReportReason) : IllegalStateException(message)
+
 object ModelDownloader {
+    /** Why a file that failed its size and SHA-256 check is wrong. */
+    fun integrityReason(actualBytes: Long, expectedBytes: Long): ReportReason = when {
+        actualBytes < expectedBytes -> ReportReason.SIZE_SHORT
+        actualBytes > expectedBytes -> ReportReason.SIZE_LONG
+        else -> ReportReason.CHECKSUM_MISMATCH
+    }
+
+    /** Reports a failed [ensure] or [ensureArchive]: a bad file is "model.verify", everything else "model.download". */
+    fun reportFailure(error: Throwable, modelDirName: String, engine: AsrEngine) {
+        val context = mutableMapOf("model" to modelDirName, "engine" to engine.name)
+        if (error is ModelHttpException) context["status"] = error.status.toString()
+        when (error) {
+            is ModelIntegrityException -> FailureReporter.failure(ReportFlow.MODEL_VERIFY, error, error.reason, context)
+            is ModelHttpException -> FailureReporter.failure(ReportFlow.MODEL_DOWNLOAD, error, ReportReason.HTTP_STATUS, context)
+            else -> FailureReporter.failure(ReportFlow.MODEL_DOWNLOAD, error, ReportReason.EXCEPTION, context)
+        }
+    }
+
     /** True when [file] has exactly [sizeBytes] bytes and the SHA-256 [sha256]. */
     fun matches(file: File, sizeBytes: Long, sha256: String): Boolean {
         if (!file.exists() || file.length() != sizeBytes) return false
@@ -171,7 +198,7 @@ object ModelDownloader {
                 if (!entry.isFile) continue
                 val name = entry.name.substringAfterLast('/')
                 val spec = wanted[name] ?: continue
-                if (entry.size != spec.sizeBytes) error("Archive entry $name has an unexpected size")
+                if (entry.size != spec.sizeBytes) throw ModelIntegrityException("Archive entry $name has an unexpected size", ReportReason.ENTRY_SIZE)
                 val saveAs = spec.fileName
                 val part = File(destDir, "$saveAs.part")
                 val digest = MessageDigest.getInstance("SHA-256")
@@ -184,8 +211,9 @@ object ModelDownloader {
                 }
                 val actual = digest.digest().joinToString("") { "%02x".format(it) }
                 if (part.length() != spec.sizeBytes || actual != spec.sha256) {
+                    val reason = integrityReason(part.length(), spec.sizeBytes)
                     part.delete()
-                    error("Extracted $name failed its integrity check")
+                    throw ModelIntegrityException("Extracted $name failed its integrity check", reason)
                 }
                 val target = File(destDir, saveAs)
                 target.delete()
@@ -194,7 +222,7 @@ object ModelDownloader {
             }
         }
         val missing = wanted.keys - found
-        if (missing.isNotEmpty()) error("Archive is missing ${missing.joinToString()}")
+        if (missing.isNotEmpty()) throw ModelIntegrityException("Archive is missing ${missing.joinToString()}", ReportReason.MISSING_ENTRY)
     }
 
     /** Streams [url] to [target] via a .part file, then checks size and SHA-256 before moving it into place. */
@@ -207,7 +235,7 @@ object ModelDownloader {
             instanceFollowRedirects = true
         }
         try {
-            check(conn.responseCode == 200) { "Download failed (HTTP ${conn.responseCode})" }
+            if (conn.responseCode != 200) throw ModelHttpException(conn.responseCode)
             conn.inputStream.use { input ->
                 part.outputStream().use { out ->
                     val buf = ByteArray(64 * 1024)
@@ -227,8 +255,9 @@ object ModelDownloader {
         }
         val actual = digest.digest().joinToString("") { "%02x".format(it) }
         if (part.length() != sizeBytes || actual != sha256) {
+            val reason = integrityReason(part.length(), sizeBytes)
             part.delete()
-            error("Downloaded model failed its integrity check")
+            throw ModelIntegrityException("Downloaded model failed its integrity check", reason)
         }
         target.delete()
         check(part.renameTo(target)) { "Could not save model file" }

@@ -12,6 +12,7 @@ import com.kreativekoala.echonote.service.TikTokHelper
 import com.kreativekoala.ratingkit.RatingKit
 import dagger.hilt.android.HiltAndroidApp
 import com.kreativekoala.echonote.billing.EntitlementRepository
+import com.kreativekoala.echonote.diagnostics.FailureReporter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -34,6 +35,8 @@ class EchoNoteApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        // First, so a crash while the SDKs below start is reported too. Inactive without a key and in debug or test runs.
+        FailureReporter.init(this, BuildConfig.REPORTER_KEY, BuildConfig.VERSION_NAME, BuildConfig.DEBUG)
         FirebaseAnalyticsHelper.initialize(this)
         Funnel.init(this)
         TikTokHelper.initialize(this)

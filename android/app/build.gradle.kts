@@ -62,6 +62,8 @@ android {
         buildConfigField("boolean", "ENTITLEMENT_CHECK_ENABLED", "true")
         buildConfigField("String", "INGEST_URL", "\"${ingestProp("clearvoice.ingestUrl")}\"")
         buildConfigField("String", "INGEST_KEY", "\"${ingestProp("clearvoice.ingestKey")}\"")
+        // Failure reporting (diagnostics/FailureReporter). Blank = the reporter is completely inactive.
+        buildConfigField("String", "REPORTER_KEY", "\"${ingestProp("clearvoice.reporterKey")}\"")
     }
 
     signingConfigs {

@@ -9,6 +9,9 @@ import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.QueryPurchasesParams
 import com.android.billingclient.api.queryPurchasesAsync
+import com.kreativekoala.echonote.diagnostics.FailureReporter
+import com.kreativekoala.echonote.diagnostics.ReportFlow
+import com.kreativekoala.echonote.diagnostics.ReportReason
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.withTimeoutOrNull
@@ -42,17 +45,26 @@ class PlayBillingGateway(private val context: Context) : BillingGateway {
                 }
             })
             val setup = withTimeoutOrNull(CONNECT_TIMEOUT_MS) { connected.await() }
-                ?: return BillingQueryResult.Unavailable("connect_timeout")
+                ?: return unavailable("connect_timeout", report = ReportReason.CONNECT_TIMEOUT)
             if (setup.responseCode != BillingClient.BillingResponseCode.OK) {
-                return BillingQueryResult.Unavailable("setup_${setup.responseCode}")
+                return unavailable(
+                    "setup_${setup.responseCode}",
+                    report = ReportReason.SETUP_FAILED.takeIf { BillingFailurePolicy.shouldReport(setup.responseCode) },
+                    code = setup.responseCode
+                )
             }
             val result = withTimeoutOrNull(QUERY_TIMEOUT_MS) {
                 client.queryPurchasesAsync(
                     QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build()
                 )
-            } ?: return BillingQueryResult.Unavailable("query_timeout")
-            if (result.billingResult.responseCode != BillingClient.BillingResponseCode.OK) {
-                return BillingQueryResult.Unavailable("query_${result.billingResult.responseCode}")
+            } ?: return unavailable("query_timeout", report = ReportReason.QUERY_TIMEOUT)
+            val queryCode = result.billingResult.responseCode
+            if (queryCode != BillingClient.BillingResponseCode.OK) {
+                return unavailable(
+                    "query_$queryCode",
+                    report = ReportReason.QUERY_FAILED.takeIf { BillingFailurePolicy.shouldReport(queryCode) },
+                    code = queryCode
+                )
             }
             val active = result.purchasesList
                 .filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }
@@ -63,10 +75,24 @@ class PlayBillingGateway(private val context: Context) : BillingGateway {
             throw e
         } catch (e: Exception) {
             Log.w(TAG, "billing query failed", e)
-            return BillingQueryResult.Unavailable("exception")
+            return unavailable("exception", report = ReportReason.EXCEPTION, error = e)
         } finally {
             try { client.endConnection() } catch (_: Exception) { }
         }
+    }
+
+    /** The answer for the caller, plus a failure report when [report] is set (null = an expected condition). */
+    private fun unavailable(
+        reason: String,
+        report: ReportReason?,
+        code: Int? = null,
+        error: Throwable? = null
+    ): BillingQueryResult.Unavailable {
+        if (report != null) {
+            val context = if (code != null) mapOf("code" to code.toString()) else emptyMap()
+            FailureReporter.failure(ReportFlow.BILLING_ENTITLEMENT, error, report, context)
+        }
+        return BillingQueryResult.Unavailable(reason)
     }
 
     private companion object {

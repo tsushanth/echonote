@@ -15,6 +15,10 @@ import com.kreativekoala.echonote.data.model.TranscriptionLanguage
 import com.kreativekoala.echonote.data.model.TranscriptionOutput
 import com.kreativekoala.echonote.data.model.TranscriptSegment
 import com.kreativekoala.echonote.data.repository.SettingsRepository
+import com.kreativekoala.echonote.diagnostics.FailureReporter
+import com.kreativekoala.echonote.diagnostics.ReportFlow
+import com.kreativekoala.echonote.diagnostics.ReportReason
+import com.kreativekoala.echonote.diagnostics.TranscriptionFailure
 import org.vosk.Model
 import org.vosk.Recognizer
 import java.io.File
@@ -61,6 +65,7 @@ class TranscriptionService @Inject constructor(
     suspend fun transcribe(fileUri: String): TranscriptionResult = withContext(Dispatchers.IO) {
         val file = File(fileUri)
         if (!file.exists()) {
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_RUN, reason = ReportReason.FILE_MISSING)
             return@withContext TranscriptionResult.Error(context.getString(R.string.err_file_not_found))
         }
 
@@ -75,6 +80,7 @@ class TranscriptionService @Inject constructor(
             audioPlayerService.release()
         }
 
+        var engineInUse = AsrEngine.VOSK // for the failure report
         try {
             val language = settingsRepository.transcriptionLanguage.first()
 
@@ -85,7 +91,10 @@ class TranscriptionService @Inject constructor(
             val accurateSetting = settingsRepository.transcriptionEngine.first() == TranscriptionEngine.ACCURATE
             if (accurateSetting || !EnginePlan.fastIsUsable(language)) {
                 when (val plan = EnginePlan.resolve(language, DeviceMemory.totalBytes(context))) {
-                    is Resolution.Run -> if (plan.engine != AsrEngine.VOSK) return@withContext transcribeWithSherpa(fileUri, language, plan.engine)
+                    is Resolution.Run -> if (plan.engine != AsrEngine.VOSK) {
+                        engineInUse = plan.engine
+                        return@withContext transcribeWithSherpa(fileUri, language, plan.engine)
+                    }
                     is Resolution.NeedsBiggerPhone -> if (!EnginePlan.fastIsUsable(language)) {
                         return@withContext TranscriptionResult.Error(
                             context.getString(R.string.err_needs_bigger_phone, language.displayName, plan.best.engine.displayName, plan.best.engine.downloadMb)
@@ -104,18 +113,21 @@ class TranscriptionService @Inject constructor(
             _progress.value = 0.3f
 
             // Decode and transcribe in one streaming pass — no full PCM buffer in memory
-            val output = decodeAndRecognize(fileUri, model) { partial ->
+            var decodeError: Throwable? = null
+            val output = decodeAndRecognize(fileUri, model, onError = { decodeError = it }) { partial ->
                 _partialTranscript.value = partial
             }
 
             _progress.value = 1f
 
             if (output == null || output.text.isBlank()) {
+                reportNoText(AsrEngine.VOSK, decodeError, hadAudio = output != null)
                 TranscriptionResult.Error(context.getString(R.string.err_no_speech))
             } else {
                 TranscriptionResult.Success(output.text, output.segments)
             }
         } catch (e: Exception) {
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_RUN, e, ReportReason.EXCEPTION, mapOf("engine" to engineInUse.name))
             TranscriptionResult.Error(context.getString(R.string.err_transcription_failed, e.message ?: context.getString(R.string.err_unknown)))
         } finally {
             android.util.Log.i("TranscriptionService", "transcribe finished in ${android.os.SystemClock.elapsedRealtime() - startedAtMs} ms")
@@ -141,6 +153,7 @@ class TranscriptionService @Inject constructor(
                 model
             } catch (e: Exception) {
                 // Model files corrupted, re-download
+                FailureReporter.failure(ReportFlow.MODEL_LOAD, e, ReportReason.CACHED_MODEL_UNREADABLE, mapOf("model" to language.modelDirName))
                 dir.deleteRecursively()
                 downloadAndExtractModel(language)
             }
@@ -157,6 +170,7 @@ class TranscriptionService @Inject constructor(
         val modelUrl = pack.url
         val tempZip = File(context.cacheDir, "vosk-model-${language.name.lowercase()}.zip")
         val dir = modelDir(language)
+        var stage = "download" // for the failure report
 
         try {
             // Download
@@ -167,6 +181,10 @@ class TranscriptionService @Inject constructor(
             connection.connect()
 
             if (connection.responseCode != HttpURLConnection.HTTP_OK) {
+                FailureReporter.failure(
+                    ReportFlow.MODEL_DOWNLOAD, reason = ReportReason.HTTP_STATUS,
+                    context = mapOf("model" to language.modelDirName, "status" to connection.responseCode.toString())
+                )
                 return@withContext null
             }
 
@@ -191,6 +209,10 @@ class TranscriptionService @Inject constructor(
 
             // Languages added after the first ten are pinned: a truncated or swapped zip is never unpacked or loaded.
             if (pack.sha256 != null && !ModelDownloader.matches(tempZip, pack.sizeBytes, pack.sha256)) {
+                FailureReporter.failure(
+                    ReportFlow.MODEL_VERIFY, reason = ModelDownloader.integrityReason(tempZip.length(), pack.sizeBytes),
+                    context = mapOf("model" to language.modelDirName)
+                )
                 tempZip.delete()
                 return@withContext null
             }
@@ -198,6 +220,7 @@ class TranscriptionService @Inject constructor(
             // Extract
             _statusMessage.value = context.getString(R.string.status_extracting_model)
             _progress.value = 0.25f
+            stage = "extract"
 
             dir.mkdirs()
             ZipInputStream(tempZip.inputStream()).use { zip ->
@@ -233,10 +256,15 @@ class TranscriptionService @Inject constructor(
             // Load model
             _statusMessage.value = context.getString(R.string.status_loading_model)
             _progress.value = 0.28f
+            stage = "load"
             val model = Model(dir.absolutePath)
             modelCache[language] = model
             model
         } catch (e: Exception) {
+            FailureReporter.failure(
+                if (stage == "load") ReportFlow.MODEL_LOAD else ReportFlow.MODEL_DOWNLOAD, e, ReportReason.EXCEPTION,
+                mapOf("model" to language.modelDirName, "stage" to stage)
+            )
             tempZip.delete()
             dir.deleteRecursively()
             null
@@ -274,6 +302,7 @@ class TranscriptionService @Inject constructor(
         // The Whisper base model of earlier builds is no longer used; free its ~160 MB.
         File(context.filesDir, SherpaModels.LEGACY_WHISPER_BASE_DIR).takeIf { it.exists() }?.deleteRecursively()
 
+        var fetching = dirName // which model a download failure is about
         try {
             if (!ModelDownloader.isReady(modelDir, files)) {
                 _statusMessage.value = context.getString(R.string.status_downloading_engine_model, language.displayName, engine.downloadMb)
@@ -285,9 +314,11 @@ class TranscriptionService @Inject constructor(
             }
             if (wantSpeakers && !ModelDownloader.isReady(diarizationDir, SherpaModels.DIARIZATION)) {
                 _statusMessage.value = context.getString(R.string.status_downloading_speaker_model, 46)
+                fetching = SherpaModels.DIARIZATION_DIR
                 ModelDownloader.ensure(diarizationDir, SherpaModels.DIARIZATION) { _progress.value = 0.22f + it * 0.03f }
             }
         } catch (e: Exception) {
+            ModelDownloader.reportFailure(e, fetching, engine)
             return TranscriptionResult.Error(context.getString(R.string.err_accurate_download, e.message ?: context.getString(R.string.err_unknown)))
         }
 
@@ -299,14 +330,25 @@ class TranscriptionService @Inject constructor(
         var keptAudio: Pair<ShortArray, Int>? = null
         try {
             SherpaTranscriber(engine, modelDir, languageCode, keepAudio = wantSpeakers) { _partialTranscript.value = it }.use { transcriber ->
-                val hasAudio = decodeAudio(fileUri, onProgress = { _progress.value = 0.25f + it * 0.6f }) { samples, count ->
+                var decodeError: Throwable? = null
+                val hasAudio = decodeAudio(
+                    fileUri,
+                    onProgress = { _progress.value = 0.25f + it * 0.6f },
+                    onError = { decodeError = it }
+                ) { samples, count ->
                     transcriber.accept(samples, count)
                 }
-                if (!hasAudio) return TranscriptionResult.Error(context.getString(R.string.err_no_audio))
+                if (!hasAudio) {
+                    reportNoText(engine, decodeError, hadAudio = false)
+                    return TranscriptionResult.Error(context.getString(R.string.err_no_audio))
+                }
                 transcriber.finish()
 
                 var words = transcriber.words.toList()
-                if (words.isEmpty()) return TranscriptionResult.Error(context.getString(R.string.err_no_speech))
+                if (words.isEmpty()) {
+                    reportNoText(engine, decodeError = null, hadAudio = true)
+                    return TranscriptionResult.Error(context.getString(R.string.err_no_speech))
+                }
 
                 if (wantSpeakers) {
                     val kept = transcriber.keptAudio()
@@ -321,6 +363,7 @@ class TranscriptionService @Inject constructor(
                             words = smoothSpeakersBySentence(assignSpeakers(words, spans))
                         } catch (e: Exception) {
                             android.util.Log.e("TranscriptionService", "diarization failed", e)
+                            FailureReporter.failure(ReportFlow.TRANSCRIPTION_SPEAKERS, e, ReportReason.EXCEPTION, mapOf("engine" to engine.name))
                         }
                     }
                 }
@@ -328,6 +371,7 @@ class TranscriptionService @Inject constructor(
                 keptAudio = transcriber.keptAudio()
             }
         } catch (e: OutOfMemoryError) {
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_RUN, e, ReportReason.OUT_OF_MEMORY, mapOf("engine" to engine.name))
             return TranscriptionResult.Error(context.getString(R.string.err_out_of_memory))
         }
 
@@ -376,9 +420,11 @@ class TranscriptionService @Inject constructor(
             marked
         } catch (e: Exception) {
             android.util.Log.w("TranscriptionService", "uncertain words skipped", e)
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_UNCERTAIN_WORDS, e, ReportReason.EXCEPTION)
             words
         } catch (e: OutOfMemoryError) {
             android.util.Log.w("TranscriptionService", "uncertain words skipped: out of memory")
+            FailureReporter.failure(ReportFlow.TRANSCRIPTION_UNCERTAIN_WORDS, e, ReportReason.OUT_OF_MEMORY)
             words
         }
     }
@@ -425,13 +471,22 @@ class TranscriptionService @Inject constructor(
         }
     }
 
+    private fun reportNoText(engine: AsrEngine, decodeError: Throwable?, hadAudio: Boolean) {
+        FailureReporter.failure(
+            ReportFlow.TRANSCRIPTION_RUN, decodeError, TranscriptionFailure.noTextReason(decodeError, hadAudio),
+            mapOf("engine" to engine.name)
+        )
+    }
+
     /**
      * Decodes [fileUri] to 16 kHz mono PCM and hands it to [onChunk] as it is produced, so the
-     * whole recording is never held in memory. Returns false when the file has no audio track.
+     * whole recording is never held in memory. Returns false when the file has no audio track, or when
+     * decoding failed, in which case [onError] is told why.
      */
     private fun decodeAudio(
         fileUri: String,
         onProgress: (Float) -> Unit = {},
+        onError: (Throwable) -> Unit = {},
         onChunk: (ShortArray, Int) -> Unit
     ): Boolean {
         val extractor = MediaExtractor()
@@ -521,6 +576,7 @@ class TranscriptionService @Inject constructor(
             return true
         } catch (e: Exception) {
             android.util.Log.e("TranscriptionService", "decodeAudio failed", e)
+            onError(e)
             return false
         } finally {
             extractor.release()
@@ -528,7 +584,12 @@ class TranscriptionService @Inject constructor(
     }
 
     /** Vosk path: stream the decoded audio into a Vosk recognizer and keep every sentence it finishes. */
-    private fun decodeAndRecognize(fileUri: String, model: Model, onPartial: (String) -> Unit = {}): TranscriptionOutput? {
+    private fun decodeAndRecognize(
+        fileUri: String,
+        model: Model,
+        onError: (Throwable) -> Unit,
+        onPartial: (String) -> Unit = {}
+    ): TranscriptionOutput? {
         val recognizer = Recognizer(model, 16000.0f)
         recognizer.setWords(true)
         try {
@@ -550,7 +611,8 @@ class TranscriptionService @Inject constructor(
 
             val hasAudio = decodeAudio(
                 fileUri,
-                onProgress = { _progress.value = 0.3f + it * 0.65f }
+                onProgress = { _progress.value = 0.3f + it * 0.65f },
+                onError = onError
             ) { samples, count ->
                 for (i in 0 until count) {
                     val s = samples[i].toInt()
@@ -566,6 +628,7 @@ class TranscriptionService @Inject constructor(
             return mergeVoskResults(results)
         } catch (e: Exception) {
             android.util.Log.e("TranscriptionService", "decodeAndRecognize failed", e)
+            onError(e)
             return null
         } finally {
             recognizer.close()
