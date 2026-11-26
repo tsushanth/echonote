@@ -19,3 +19,7 @@ Built from main with `bundleRelease`; 234 unit tests pass. `lintDebug` reports 4
 - NOT verified: any device run, a report arriving from a real phone, the Play-signed build.
 - Rollback: halt the rollout; 1.15.1 (50) stays completed.
 
+## Merged, not released (next: 1.15.3, versionCode 52)
+
+- Transcribing no longer crashes the app on Android 8 and 9. Decoder selection called `MediaCodecInfo.isSoftwareOnly` (Android 10+), so every transcription of a recording or imported file ended in `NoSuchMethodError`; 51 and earlier are affected. Below Android 10 the system's default decoder is used.
+- Checks: Android 9 emulator, debug build, a 9 s recording, Fast English: before, the crash at `TranscriptionService.findSoftwareDecoder`; after, no crash, and an imported 6 s speech file transcribed correctly. 281 unit tests pass; `:app:compileReleaseKotlin`; `lintDebug` still fails with 3 errors judged not to be runtime faults (`VoiceQueryInput.kt` is guarded by `unavailable()`; muxer sample flags in `AudioEditorService.kt`; a media3 opt-in marker in `AudioPlayerService.kt`). Not run: Android 8 on an emulator, a physical device, Accurate engines, the release AAB.
