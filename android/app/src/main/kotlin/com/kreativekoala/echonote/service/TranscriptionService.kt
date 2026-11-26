@@ -2,6 +2,8 @@ package com.kreativekoala.echonote.service
 
 import com.kreativekoala.echonote.R
 import android.content.Context
+import android.os.Build
+import androidx.annotation.ChecksSdkIntAtLeast
 import android.media.MediaCodec
 import android.media.MediaCodecList
 import android.media.MediaExtractor
@@ -42,6 +44,12 @@ class TranscriptionService @Inject constructor(
     private val audioPlayerService: AudioPlayerService,
     private val settingsRepository: SettingsRepository
 ) {
+    internal companion object {
+        /** `MediaCodecInfo.isSoftwareOnly` exists from Android 10. */
+        @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.Q)
+        fun canFindSoftwareDecoder(sdkInt: Int = Build.VERSION.SDK_INT): Boolean = sdkInt >= Build.VERSION_CODES.Q
+    }
+
     private val _isTranscribing = MutableStateFlow(false)
     val isTranscribing: StateFlow<Boolean> = _isTranscribing
 
@@ -274,8 +282,11 @@ class TranscriptionService @Inject constructor(
     /**
      * Find a software-only decoder for the given MIME type.
      * Software decoders don't share the hardware codec pool with ExoPlayer.
+     * Null before Android 10, where codecs cannot be asked (calling `isSoftwareOnly` there crashes): the caller then
+     * takes the system's default decoder.
      */
     private fun findSoftwareDecoder(mime: String): MediaCodec? {
+        if (!canFindSoftwareDecoder()) return null
         val list = MediaCodecList(MediaCodecList.ALL_CODECS)
         for (info in list.codecInfos) {
             if (info.isEncoder) continue
