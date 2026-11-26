@@ -1,0 +1,1 @@
+ClearVoice now sends us crash and failure reports, with no audio or transcripts, so we can find and fix problems.
